@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kara Defter · siluetler</title>
+<link rel="stylesheet" href="../style.css">
+<style>
+  .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; padding: 16px; max-width: 900px; margin: 0 auto; }
+  figure { margin: 0; text-align: center; }
+  figcaption { font-size: 14px; }
+  .dark { background: var(--night); padding: 16px; }
+  .dark .hunt-fig { opacity: 1; transform: none; width: 140px; margin: 0 auto; }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute"><defs><filter id="ink" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency="0.045" numOctaves="2" seed="7" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="3.2" xChannelSelector="R" yChannelSelector="G"/></filter></defs></svg>
+<div class="grid" id="full"></div>
+<div class="grid hunt dark" id="night" style="position:static"></div>
+<div class="grid" id="veiled"></div>
+<script type="module">
+  import { CREATURES } from '../js/data.js';
+  import { silhouette, candleRow } from '../js/art.js';
+  const ids = CREATURES.map((c) => c.id);
+  document.getElementById('full').innerHTML = ids.map((id) => `<figure>${silhouette(id)}<figcaption>${id}</figcaption></figure>`).join('');
+  document.getElementById('night').innerHTML = ids.map((id) => `<figure><div class="hunt-fig on">${silhouette(id)}</div></figure>`).join('');
+  document.getElementById('veiled').innerHTML = ids.map((id) => `<figure>${silhouette(id, 'veiled')}</figure>`).join('') + `<div class="candles" style="grid-column:1/-1;position:static">${candleRow(6, 3, 3)}</div>`;
+</script>
+</body>
+</html>
