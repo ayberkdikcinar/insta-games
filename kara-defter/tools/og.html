@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="tr"><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,500&family=EB+Garamond:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<style>
+  html, body { margin: 0; width: 1200px; height: 630px; overflow: hidden; }
+  body { background-color: var(--paper); background-image: var(--grain); }
+  .frame { position: absolute; inset: 26px; border: 3px solid var(--ink); }
+  .frame::after { content: ""; position: absolute; inset: 7px; border: 1px solid var(--ink); }
+  .t { position: absolute; top: 70px; left: 0; right: 0; text-align: center; font-family: var(--display); font-weight: 700; font-size: 34px; letter-spacing: .42em; }
+  .rule { position: absolute; top: 128px; left: 560px; width: 80px; height: 3px; background: var(--blood); }
+  .h { position: absolute; top: 146px; left: 0; right: 0; text-align: center; font-family: var(--display); font-weight: 600; font-size: 64px; line-height: 1.05; }
+  .s { position: absolute; top: 228px; left: 0; right: 0; text-align: center; font-family: var(--text); font-style: italic; font-size: 27px; color: var(--ink-2); }
+  .figs { position: absolute; left: 70px; right: 70px; bottom: 44px; display: flex; justify-content: space-between; align-items: flex-end; }
+  .figs .sil { width: 128px; }
+</style></head><body>
+<svg width="0" height="0" style="position:absolute"><defs><filter id="ink" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency="0.045" numOctaves="2" seed="7" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="3.2" xChannelSelector="R" yChannelSelector="G"/></filter></defs></svg>
+<div class="frame"></div>
+<div class="t">KARA DEFTER</div><div class="rule"></div>
+<div class="h">Her gün bir köyden bir mektup.</div>
+<div class="s">Elli yaratıklık defterden doğrusunu bul, altı mumla avla.</div>
+<div class="figs" id="figs"></div>
+<script type="module">
+  import { silhouette } from '../js/art.js';
+  document.getElementById('figs').innerHTML = ['albasti', 'karakoncolos', 'surale', 'sahmeran', 'hortlak', 'kurtadam', 'suaygiri', 'carsamba']
+    .map((id) => silhouette(id)).join('');
+</script></body></html>

@@ -1,6 +1,6 @@
 // 1080×1920 spoiler-free result card + share flow (native share sheet, or a save/copy modal).
 import { mulberry32, formatDateTR } from './util.js';
-import { MAX_CANDLES } from './data.js';
+import { MAX_CANDLES } from './traits.js';
 
 const INK = '#1A1714';
 const INK_2 = '#5B4F43';
@@ -32,7 +32,8 @@ export function outcomeLine(info) {
 
 export function shareText(info) {
   const streak = info.streak > 0 ? ` · Seri ${info.streak}` : '';
-  return `Kara Defter · Vaka #${info.no} · ${outcomeLine(info)}${streak}\nBugünün vakasını sen çöz: ${info.url}`;
+  const candles = '🕯️'.repeat(info.candlesLeft) + '▫️'.repeat(MAX_CANDLES - info.candlesLeft);
+  return `Kara Defter · Vaka #${info.no}\n${candles} ${outcomeLine(info)}${streak}\nBugünün vakasını sen çöz: ${info.url}`;
 }
 
 function spaced(g, text, x, y, spacing) {
@@ -209,10 +210,12 @@ export async function drawCard(info) {
     g.font = `600 ${size}px ${SERIF_DISPLAY}`;
   }
   g.fillText(line, W / 2, 1530);
-  if (info.streak > 0) {
+  const sub = [info.streak > 0 ? `Seri: ${info.streak} gün` : '', info.total ? `Defter: ${info.pages}/${info.total}` : '']
+    .filter(Boolean).join('   ·   ');
+  if (sub) {
     g.fillStyle = INK_2;
     g.font = `400 44px ${SERIF_TEXT}`;
-    g.fillText(`Seri: ${info.streak} gün`, W / 2, 1604);
+    g.fillText(sub, W / 2, 1604);
   }
 
   g.fillStyle = INK;
@@ -227,7 +230,7 @@ export async function drawCard(info) {
 }
 
 let cached = { key: '', blob: null, url: '' };
-const keyOf = (info) => JSON.stringify([info.no, info.outcome, info.candlesLeft, info.streak, info.url]);
+const keyOf = (info) => JSON.stringify([info.no, info.outcome, info.candlesLeft, info.streak, info.pages, info.url]);
 
 export async function prepareCard(info) {
   const key = keyOf(info);

@@ -1,0 +1,226 @@
+// The deduction system. Every creature has, in each dimension, one or more trait values.
+// A case picks one value per dimension; the letter reveals `dert` for free, each candle reveals one more
+// dimension as a clue. A clue "fits" every creature that shares its trait, so the candidate pool is computed,
+// never hand-listed. tools/check-cases.mjs proves every possible case narrows to exactly one creature.
+
+export const MAX_CANDLES = 6;
+export const LETTER_DIM = 'dert';
+
+export const DIMS = [
+  { id: 'dert', name: 'Dert', page: 'Ne yapar' },
+  { id: 'kurban', name: 'Kurban', page: 'Kime dokunur', action: 'Kurbanı gör' },
+  { id: 'iz', name: 'İzler', page: 'Ardında ne bırakır', action: 'İzlere bak' },
+  { id: 'tanik', name: 'Tanık', page: 'Nasıl görünür', action: 'Tanığı dinle' },
+  { id: 'zaman', name: 'Vakit', page: 'Ne zaman gelir', action: 'Ne zaman olduğunu sor' },
+  { id: 'yer', name: 'Olay yeri', page: 'Nerede görülür', action: 'Olay yerini gez' },
+  { id: 'sebep', name: 'Köyün yaşlısı', page: 'Neden gelir', action: 'Yaşlıya danış' },
+];
+
+export const CLUE_DIMS = DIMS.filter((d) => d.id !== LETTER_DIM);
+
+// `who` (kurban only) picks the victim's name pool: f, m, child, any.
+export const TRAITS = {
+  dert: [
+    { id: 'erime', label: 'Gün gün eritir' },
+    { id: 'kayip', label: 'İnsanı alıp götürür' },
+    { id: 'carpilma', label: 'Çarpar' },
+    { id: 'olum', label: 'Can alır' },
+    { id: 'mal', label: 'Bereketi, malı vurur' },
+    { id: 'korku', label: 'Gece gece gelir, korkutur' },
+  ],
+  kurban: [
+    { id: 'lohusa', label: 'Lohusa ve bebeği', who: 'f' },
+    { id: 'cocuk', label: 'Çocuklar', who: 'child' },
+    { id: 'genc_kiz', label: 'Genç kızlar, yeni gelinler', who: 'f' },
+    { id: 'delikanli', label: 'Bekâr delikanlılar', who: 'm' },
+    { id: 'uyuyan', label: 'Uykudakiler', who: 'any' },
+    { id: 'yolcu', label: 'Gece yolcuları', who: 'm' },
+    { id: 'coban', label: 'Çobanlar', who: 'm' },
+    { id: 'kadin', label: 'Gece iş tutan kadınlar', who: 'f' },
+    { id: 'hane', label: 'Bütün ev halkı', who: 'any' },
+    { id: 'hayvan', label: 'Ahırdaki hayvanlar', who: 'any' },
+    { id: 'avci', label: 'Avcılar', who: 'm' },
+    { id: 'yas_evi', label: 'Yas evindekiler', who: 'f' },
+    { id: 'ciftci', label: 'Tarlada, harmanda çalışanlar', who: 'any' },
+    { id: 'denizci', label: 'Balıkçılar, kayıkçılar', who: 'm' },
+    { id: 'defineci', label: 'Toprağı kazanlar', who: 'm' },
+  ],
+  iz: [
+    { id: 'islak', label: 'Islak ayak izi' },
+    { id: 'yele', label: 'Örülmüş at yelesi' },
+    { id: 'tirnak', label: 'Uzun tırnak çizikleri' },
+    { id: 'sac', label: 'Upuzun saç telleri' },
+    { id: 'ters', label: 'Ters basılmış izler' },
+    { id: 'mezar', label: 'Eşilmiş toprak' },
+    { id: 'kul', label: 'Kül, is, yanık' },
+    { id: 'morluk', label: 'Tende morluk' },
+    { id: 'kil', label: 'Keçeleşmiş kıl' },
+    { id: 'sut', label: 'Kesilmiş süt' },
+    { id: 'deri', label: 'Yılan gömleği' },
+    { id: 'dagin', label: 'Darmadağın eşya' },
+    { id: 'kan', label: 'Kan' },
+    { id: 'buyuk_iz', label: 'Kocaman ayak izi' },
+    { id: 'yosun', label: 'Yosun ve saz' },
+    { id: 'kuru', label: 'Bir gecede kuruyan yeşillik' },
+    { id: 'pence', label: 'Pençe izi' },
+    { id: 'halka', label: 'Çimende halka' },
+  ],
+  tanik: [
+    { id: 'uzun_sacli', label: 'Saçları yerlere inen bir kadın' },
+    { id: 'kocakari', label: 'İki büklüm bir kocakarı' },
+    { id: 'golge', label: 'Kara bir gölge' },
+    { id: 'killi', label: 'Kıllı, iri bir şey' },
+    { id: 'dev', label: 'İnsan boyunun iki katı' },
+    { id: 'olu', label: 'Tanıdık bir ölü' },
+    { id: 'ufak', label: 'Ufacık bir şey' },
+    { id: 'hayvan', label: 'Hayvan kılığı' },
+    { id: 'yilan', label: 'Yılan' },
+    { id: 'cagiran', label: 'Adıyla çağıran ses' },
+    { id: 'kalabalik', label: 'Kalabalık, düğün sesi' },
+    { id: 'tek_goz', label: 'Tek göz' },
+    { id: 'guzel', label: 'Göz alan bir güzellik' },
+    { id: 'alev', label: 'Alev, ışık' },
+    { id: 'gorunmez', label: 'Görünmez; yalnızca etkisi' },
+    { id: 'at', label: 'Bir at' },
+    { id: 'kahkaha', label: 'Kahkaha' },
+  ],
+  zaman: [
+    { id: 'gece_yarisi', label: 'Gece yarısı' },
+    { id: 'safak', label: 'Şafaktan hemen önce' },
+    { id: 'aksam', label: 'Akşam karanlığı' },
+    { id: 'ogle', label: 'Öğle sıcağı' },
+    { id: 'kirk', label: 'Kırk gün dolmadan' },
+    { id: 'zemheri', label: 'Zemheri' },
+    { id: 'carsamba', label: 'Çarşamba gecesi' },
+    { id: 'dolunay', label: 'Dolunay' },
+    { id: 'aysiz', label: 'Aysız, zifiri gece' },
+    { id: 'firtina', label: 'Fırtına' },
+    { id: 'harman', label: 'Harman vakti' },
+    { id: 'bahar', label: 'Bahar, Hıdırellez' },
+    { id: 'ayni_saat', label: 'Her gece aynı saat' },
+  ],
+  yer: [
+    { id: 'su', label: 'Dere, göl kıyısı' },
+    { id: 'deniz', label: 'Deniz' },
+    { id: 'kuyu', label: 'Kuyu' },
+    { id: 'mezarlik', label: 'Mezarlık' },
+    { id: 'harabe', label: 'Harabe, yıkık han' },
+    { id: 'ahir', label: 'Ahır' },
+    { id: 'hamam', label: 'Hamam' },
+    { id: 'degirmen', label: 'Değirmen' },
+    { id: 'orman', label: 'Orman' },
+    { id: 'dag', label: 'Dağ, yayla' },
+    { id: 'yol', label: 'Issız yol' },
+    { id: 'oda', label: 'Kapalı bir oda' },
+    { id: 'ocak', label: 'Ocak başı' },
+    { id: 'tarla', label: 'Tarla' },
+    { id: 'agac', label: 'Ulu ağaç' },
+    { id: 'magara', label: 'Mağara' },
+    { id: 'esik', label: 'Kapı eşiği' },
+  ],
+  sebep: [
+    { id: 'sozsuz', label: 'Destur, besmele denmedi' },
+    { id: 'yalniz', label: 'Biri yalnız bırakıldı' },
+    { id: 'cevap', label: 'Gece çağrıya cevap verildi' },
+    { id: 'usulsuz_gomu', label: 'Ölü usulünce gömülmedi' },
+    { id: 'yasak_is', label: 'Yasak gecede iş tutuldu' },
+    { id: 'agac_kesmek', label: 'Dokunulmaz bir ağaç kesildi' },
+    { id: 'ates', label: 'Ateşe saygısızlık' },
+    { id: 'kiymak', label: 'Bir hayvana kıyıldı' },
+    { id: 'fazla_av', label: 'Gereğinden fazla av' },
+    { id: 'adak_unutmak', label: 'Adak, pay unutuldu' },
+    { id: 'olu_unutmak', label: 'Ölüler anılmadı' },
+    { id: 'define', label: 'Yerin altındakine el uzatıldı' },
+    { id: 'izinsiz', label: 'İzinsiz girildi' },
+    { id: 'yalniz_yol', label: 'Gece yalnız yola çıkıldı' },
+    { id: 'haksiz_olum', label: 'Haksız bir ölüm' },
+    { id: 'ovunmek', label: 'Övünme, kötü söz' },
+    { id: 'yabanci', label: 'Tanınmayan biri eve alındı' },
+    { id: 'kirlilik', label: 'Ev kirli bırakıldı' },
+  ],
+};
+
+export const TRAIT = Object.fromEntries(
+  Object.entries(TRAITS).map(([dim, list]) => [dim, Object.fromEntries(list.map((t) => [t.id, t]))]),
+);
+
+export const TOOLS = [
+  { id: 'demir', name: 'Demir', note: 'Makas, bıçak, nal. Yastık altına, eşiğe, ölünün üstüne.' },
+  { id: 'kurdele', name: 'Al kurdele', note: 'Kırmızı bez. Başa bağlanır, beşiğe, dala asılır.' },
+  { id: 'soz', name: 'Söz', note: 'Destur, besmele, selam. Ağızdan çıkan koruma.' },
+  { id: 'ates', name: 'Ateş', note: 'Ocak gece boyu söndürülmez; elde meşale.' },
+  { id: 'kalbur', name: 'Kalbur', note: 'Kapıya asılır. Delikleri sayılmakla bitmez.' },
+  { id: 'igne', name: 'Çuvaldız', note: 'Kalın, uzun iğne. Yakaya batırmak için.' },
+  { id: 'safak', name: 'Şafağı beklemek', note: 'Ezan okunana, horoz ötene kadar dayanmak.' },
+  { id: 'tuz', name: 'Tuz', note: 'Eşiğe, mezara, ocak başına serpilir.' },
+  { id: 'adak', name: 'Adak', note: 'Ekmek, süt, yağ. Hakkı olana bırakılır.' },
+  { id: 'ayna', name: 'Ayna', note: 'Kapıya dönük asılır; gerçek yüzü gösterir.' },
+  { id: 'ardic', name: 'Ardıç tütsüsü', note: 'Ardıç dalı yakılır, ev ve insan tütsülenir.' },
+  { id: 'kursun', name: 'Kurşun dökmek', note: 'Eritilen kurşun, başın üstünde suya dökülür.' },
+  { id: 'sessizlik', name: 'Susmak', note: 'Cevap vermemek, adını söylememek, sır tutmak.' },
+  { id: 'supurge', name: 'Ters süpürge', note: 'Kapının arkasına ters dikilir; istenmeyen gider.' },
+];
+export const TOOL_BY_ID = Object.fromEntries(TOOLS.map((t) => [t.id, t]));
+
+// Families: what a clue is auto-marked with and what the defter filters on. The exact trait (e.g. "Yosun ve saz"
+// inside the family "Su izi") is only in the clue's wording and on the defter page, so careful readers can rule
+// out pages the filter still shows.
+export const FAMILIES = {
+  kurban: {
+    ana_cocuk: { label: 'Ana ve çocuk', of: ['lohusa', 'cocuk'] },
+    kadinlar: { label: 'Kadınlar', of: ['kadin', 'genc_kiz', 'yas_evi'] },
+    gencler: { label: 'Delikanlılar', of: ['delikanli'] },
+    yoldakiler: { label: 'Yoldakiler', of: ['yolcu'] },
+    evdekiler: { label: 'Ev halkı', of: ['hane', 'uyuyan'] },
+    emek: { label: 'İş başındakiler', of: ['coban', 'ciftci', 'avci', 'denizci', 'defineci'] },
+    hayvanlar: { label: 'Hayvanlar', of: ['hayvan'] },
+  },
+  iz: {
+    su: { label: 'Su izi', of: ['islak', 'yosun'] },
+    pence: { label: 'Tırnak, pençe', of: ['tirnak', 'pence'] },
+    kil: { label: 'Kıl, saç', of: ['kil', 'sac'] },
+    toprak: { label: 'Toprak, kül', of: ['mezar', 'kul'] },
+    kan: { label: 'Kan, morluk', of: ['kan', 'morluk'] },
+    ayak: { label: 'Tuhaf ayak izi', of: ['ters', 'buyuk_iz'] },
+    ev: { label: 'Bozulan düzen', of: ['dagin', 'yele', 'sut'] },
+    doga: { label: 'Doğada bir işaret', of: ['kuru', 'halka', 'deri'] },
+  },
+  tanik: {
+    kadin: { label: 'Bir kadın', of: ['uzun_sacli', 'kocakari', 'guzel'] },
+    iri: { label: 'İri bir şey', of: ['killi', 'dev', 'tek_goz'] },
+    karalti: { label: 'Gölge, ışık, görünmeyen', of: ['golge', 'gorunmez', 'alev'] },
+    olu: { label: 'Bir ölü', of: ['olu'] },
+    hayvan: { label: 'Bir hayvan', of: ['hayvan', 'at', 'yilan'] },
+    ses: { label: 'Bir ses', of: ['cagiran', 'kalabalik', 'kahkaha'] },
+    ufak: { label: 'Ufak bir şey', of: ['ufak'] },
+  },
+  zaman: {
+    gece: { label: 'Gece yarısı', of: ['gece_yarisi', 'ayni_saat', 'carsamba'] },
+    karanlik: { label: 'Karanlık saatler', of: ['aksam', 'aysiz', 'safak'] },
+    gunduz: { label: 'Gündüz', of: ['ogle', 'harman'] },
+    takvim: { label: 'Belli bir mevsim', of: ['kirk', 'zemheri', 'bahar'] },
+    gok: { label: 'Gökte bir işaret', of: ['dolunay', 'firtina'] },
+  },
+  yer: {
+    su: { label: 'Su başı', of: ['su', 'deniz', 'kuyu'] },
+    olu: { label: 'Mezarlık, harabe', of: ['mezarlik', 'harabe'] },
+    ic: { label: 'Evin içi', of: ['oda', 'ocak'] },
+    esik: { label: 'Kapı eşiği', of: ['esik'] },
+    koy: { label: 'Ahır, hamam, değirmen', of: ['ahir', 'hamam', 'degirmen'] },
+    orman: { label: 'Orman, ağaç', of: ['orman', 'agac'] },
+    dag: { label: 'Dağ, mağara', of: ['dag', 'magara'] },
+    kir: { label: 'Yol, tarla', of: ['yol', 'tarla'] },
+  },
+  sebep: {
+    soz: { label: 'Bir söz', of: ['sozsuz', 'cevap', 'ovunmek'] },
+    yalniz: { label: 'Yalnızlık', of: ['yalniz', 'yalniz_yol'] },
+    olu: { label: 'Ölülerin hakkı', of: ['usulsuz_gomu', 'olu_unutmak', 'haksiz_olum'] },
+    hak: { label: 'Verilmeyen hak', of: ['adak_unutmak', 'fazla_av', 'kirlilik', 'ates'] },
+    sinir: { label: 'Aşılan sınır', of: ['izinsiz', 'define', 'agac_kesmek', 'yasak_is'] },
+    ev: { label: 'Eve giren, hayvana kıyan', of: ['kiymak', 'yabanci'] },
+  },
+};
+
+export const FAMILY_OF = Object.fromEntries(Object.entries(FAMILIES).map(([dim, fams]) => [
+  dim, Object.fromEntries(Object.entries(fams).flatMap(([f, { of }]) => of.map((t) => [t, f]))),
+]));

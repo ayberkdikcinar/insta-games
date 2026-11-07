@@ -3,28 +3,54 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Kara Defter · siluetler</title>
+<title>Kara Defter · çizimler</title>
 <link rel="stylesheet" href="../style.css">
 <style>
-  .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; padding: 16px; max-width: 900px; margin: 0 auto; }
-  figure { margin: 0; text-align: center; }
-  figcaption { font-size: 14px; }
-  .dark { background: var(--night); padding: 16px; }
-  .dark .hunt-fig { opacity: 1; transform: none; width: 140px; margin: 0 auto; }
+  body { padding: 12px; }
+  h2 { font-family: var(--display); margin: 18px 8px 4px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 14px; }
+  figure { margin: 0; padding: 8px; border: 1px solid var(--rule); }
+  figcaption { font-size: 13px; line-height: 1.3; margin-top: 4px; }
+  figcaption b { font-family: var(--display); font-size: 16px; }
+  .row3 { display: grid; grid-template-columns: 0.7fr 1.3fr; gap: 6px; align-items: end; }
+  .night { background: var(--night); }
+  .night .sil-body { fill: #0D0B09; }
+  .night .sil-detail { stroke: #CBBD9C; opacity: 0.35; }
+  .night .sil-line { stroke: #8A7D6C; }
+  .night .sil-ground { stroke: #5B4F43; opacity: 1; }
+  .night figcaption { color: #CBBD9C; }
 </style>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute"><defs><filter id="ink" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency="0.045" numOctaves="2" seed="7" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="3.2" xChannelSelector="R" yChannelSelector="G"/></filter></defs></svg>
-<div class="grid" id="full"></div>
-<div class="grid hunt dark" id="night" style="position:static"></div>
-<div class="grid" id="veiled"></div>
+<div id="out"></div>
 <script type="module">
-  import { CREATURES } from '../js/data.js';
-  import { silhouette, candleRow } from '../js/art.js';
-  const ids = CREATURES.map((c) => c.id);
-  document.getElementById('full').innerHTML = ids.map((id) => `<figure>${silhouette(id)}<figcaption>${id}</figcaption></figure>`).join('');
-  document.getElementById('night').innerHTML = ids.map((id) => `<figure><div class="hunt-fig on">${silhouette(id)}</div></figure>`).join('');
-  document.getElementById('veiled').innerHTML = ids.map((id) => `<figure>${silhouette(id, 'veiled')}</figure>`).join('') + `<div class="candles" style="grid-column:1/-1;position:static">${candleRow(6, 3, 3)}</div>`;
+  // ?ids=a,b  only these figures · ?scenes=1 every backdrop and sky · ?night=1 night palette
+  import { FIGURES, silhouette, plate } from '../js/art.js';
+  import { SCENES, SKIES } from '../js/art/scenes.js';
+  const q = new URLSearchParams(location.search);
+  const night = q.has('night');
+  const out = document.getElementById('out');
+  if (night) document.body.classList.add('night');
+  let roster = {};
+  try { roster = Object.fromEntries((await import('../js/content/roster.js')).ROSTER.map((c) => [c.id, c])); } catch {}
+  if (q.has('scenes')) {
+    const ref = q.get('fig') || 'albasti';
+    const skies = Object.keys(SKIES);
+    out.innerHTML = `<h2>Sahneler (${Object.keys(SCENES).length}) · gökler (${skies.length})</h2><div class="grid">${
+      Object.keys(SCENES).map((place, i) => `<figure>${plate(ref, { place, time: skies[i % skies.length] })}<figcaption><b>${place}</b> · ${skies[i % skies.length] || ''}</figcaption></figure>`).join('')
+    }</div><h2>Gökler</h2><div class="grid">${skies.map((time) => `<figure>${plate(ref, { place: 'yol', time })}<figcaption><b>${time}</b></figcaption></figure>`).join('')}</div>`;
+  } else {
+    const ids = q.get('ids') ? q.get('ids').split(',') : Object.keys(roster).length ? Object.keys(roster) : Object.keys(FIGURES);
+    out.innerHTML = `<h2>${ids.filter((id) => FIGURES[id]).length}/${ids.length} figür</h2><div class="grid">${ids.map((id) => {
+      const r = roster[id];
+      if (!FIGURES[id]) return `<figure><figcaption><b>${id}</b><br>çizilmedi</figcaption></figure>`;
+      const place = r ? r.traits.yer[0] : 'yol';
+      const time = r ? r.traits.zaman[0] : 'dolunay';
+      return `<figure><div class="row3">${silhouette(id)}${plate(id, { place, time })}</div>
+        <figcaption><b>${r ? r.name : id}</b> · ${FIGURES[id].label}<br>${place} · ${time}</figcaption></figure>`;
+    }).join('')}</div>`;
+  }
 </script>
 </body>
 </html>
