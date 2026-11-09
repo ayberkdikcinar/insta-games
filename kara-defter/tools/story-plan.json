@@ -1,0 +1,3676 @@
+{
+ "albasti": {
+  "name": "Albastı",
+  "village": "Yukarı Söğüt",
+  "voice": "Eğitmen, kaynanın ağzından",
+  "chosen": {
+   "kurban": "lohusa",
+   "iz": "sac",
+   "tanik": "uzun_sacli",
+   "zaman": "kirk",
+   "yer": "oda",
+   "sebep": "yalniz"
+  },
+  "open": [
+   "kurban",
+   "yer",
+   "sebep"
+  ],
+  "closed": [
+   "iz",
+   "tanik",
+   "zaman"
+  ],
+  "signs": {
+   "kurban": "Lohusa ve bebeği",
+   "iz": "Upuzun saç telleri",
+   "tanik": "Saçları yerlere inen bir kadın",
+   "zaman": "Kırk gün dolmadan",
+   "yer": "Kapalı bir oda",
+   "sebep": "Biri yalnız bırakıldı"
+  },
+  "weaknesses": [
+   "Demir",
+   "Al kurdele"
+  ],
+  "rivals": [
+   {
+    "name": "Ümmüsıbyan",
+    "weaknesses": [
+     "Kurşun dökmek",
+     "Al kurdele"
+    ],
+    "signs": {
+     "kurban": [
+      "Çocuklar",
+      "Lohusa ve bebeği"
+     ],
+     "iz": [
+      "Tende morluk"
+     ],
+     "tanik": [
+      "Kara bir gölge",
+      "Hayvan kılığı"
+     ],
+     "zaman": [
+      "Gece yarısı"
+     ],
+     "yer": [
+      "Kapalı bir oda"
+     ],
+     "sebep": [
+      "Biri yalnız bırakıldı"
+     ]
+    }
+   }
+  ],
+  "lore": "Derler ki Albastı lohusa kadına ve yeni doğmuş bebeğe musallat olur; doğumdan sonraki kırk gün en tehlikeli zamandır. Uzun boylu, sarı saçları topuklarına kadar inen bir kadın kılığında görünür. Gece yarısı, lohusa odada yalnız kaldığı bir anda başucuna gelir, göğsüne çöker, ciğerini söküp suya götürür; ciğer suya değmeden yetişilirse kadın kurtulur. Dere, çeşme kenarındaki evlerde daha çok görülmesi bundandır. Ardında ıslak izler, yastıkta upuzun sarı saç telleri kalır. Lohusa kırk gün bir an bile yalnız bırakılmaz. Yastığının altına makas, bıçak ya da bir parça demir konur, çünkü Albastı demirin soğuğundan kaçar. Lohusanın başına, bebeğin beşiğine al kurdele bağlanır; al rengi gören oranın korunduğunu bilir ve yolundan döner."
+ },
+ "karabasan": {
+  "name": "Karabasan",
+  "village": "Karaağaç",
+  "voice": "Kasaba hekimi; bilime inanıyor, yazarken inancı çatlıyor",
+  "chosen": {
+   "kurban": "uyuyan",
+   "iz": "morluk",
+   "tanik": "golge",
+   "zaman": "ayni_saat",
+   "yer": "oda",
+   "sebep": "sozsuz"
+  },
+  "open": [
+   "iz",
+   "tanik",
+   "yer"
+  ],
+  "closed": [
+   "kurban",
+   "zaman",
+   "sebep"
+  ],
+  "signs": {
+   "kurban": "Uykudakiler",
+   "iz": "Tende morluk",
+   "tanik": "Kara bir gölge",
+   "zaman": "Her gece aynı saat",
+   "yer": "Kapalı bir oda",
+   "sebep": "Destur, besmele denmedi"
+  },
+  "weaknesses": [
+   "Demir",
+   "Söz"
+  ],
+  "rivals": [
+   {
+    "name": "Ümmüsıbyan",
+    "weaknesses": [
+     "Kurşun dökmek",
+     "Al kurdele"
+    ],
+    "signs": {
+     "kurban": [
+      "Çocuklar",
+      "Lohusa ve bebeği"
+     ],
+     "iz": [
+      "Tende morluk"
+     ],
+     "tanik": [
+      "Kara bir gölge",
+      "Hayvan kılığı"
+     ],
+     "zaman": [
+      "Gece yarısı"
+     ],
+     "yer": [
+      "Kapalı bir oda"
+     ],
+     "sebep": [
+      "Biri yalnız bırakıldı"
+     ]
+    }
+   }
+  ],
+  "lore": "Derler ki Karabasan uykunun en derin yerinde gelir, uyuyanın göğsüne çöker. Kurbanı gözleri açık uyanır ama ne parmağını kıpırdatabilir ne bağırabilir; nefesi daralır, başucunda kara bir gölge görür. Sabah göğsünde, bileklerinde morluklarla kalkar. Bir eve alıştı mı her gece aynı saatte gelir; kurbanı gün gün erir, uykudan yorgun kalkar. Kapısı kapalı, karanlık odaları sever. Besmelesiz, ağzına bir dua almadan yatana kolay musallat olur. Yatmadan dua okuyan, yorganı besmeleyle örtünen rahat uyur; okunan sözün olduğu yatağa yanaşamaz. Yastığının altına bıçak, makas ya da bir parça demir koyanın göğsüne de inemez, çünkü demirin soğuğu onu uzak tutar."
+ },
+ "karakoncolos": {
+  "name": "Karakoncolos",
+  "village": "Aşağı Yayla",
+  "voice": "Muhtar, numaralı resmî yazı",
+  "chosen": {
+   "kurban": "hane",
+   "iz": "buyuk_iz",
+   "tanik": "cagiran",
+   "zaman": "zemheri",
+   "yer": "esik",
+   "sebep": "cevap"
+  },
+  "open": [
+   "kurban",
+   "tanik",
+   "yer"
+  ],
+  "closed": [
+   "iz",
+   "zaman",
+   "sebep"
+  ],
+  "signs": {
+   "kurban": "Bütün ev halkı",
+   "iz": "Kocaman ayak izi",
+   "tanik": "Adıyla çağıran ses",
+   "zaman": "Zemheri",
+   "yer": "Kapı eşiği",
+   "sebep": "Gece çağrıya cevap verildi"
+  },
+  "weaknesses": [
+   "Ateş",
+   "Kalbur"
+  ],
+  "rivals": [
+   {
+    "name": "Üör",
+    "weaknesses": [
+     "Ardıç tütsüsü",
+     "Tuz"
+    ],
+    "signs": {
+     "kurban": [
+      "Bütün ev halkı",
+      "Yas evindekiler"
+     ],
+     "iz": [
+      "Darmadağın eşya"
+     ],
+     "tanik": [
+      "Tanıdık bir ölü",
+      "Adıyla çağıran ses"
+     ],
+     "zaman": [
+      "Her gece aynı saat"
+     ],
+     "yer": [
+      "Issız yol",
+      "Kapı eşiği"
+     ],
+     "sebep": [
+      "Haksız bir ölüm"
+     ]
+    }
+   }
+  ],
+  "lore": "Derler ki Karakoncolos zemheride, kışın en soğuk kırk gününde ortaya çıkar. İri, kıllı, uzun tırnaklı bir şeydir; karda bıraktığı izler insan ayağının iki katıdır. Gece kapıları dolaşır, evdekileri tanıdık birinin, çoğu zaman ölmüş bir yakının sesiyle adlarıyla çağırır, kapının dışından sorular sorar. Çağrıya cevap verip kapıyı açan ya da sesin peşine düşen kaybolur; kimi sabah karda yarı donmuş bulunur, kimi hiç bulunmaz. Gece yolda kalanı da yanına katar. Eşikten kendiliğinden giremez. Ocağı gece boyu harıl harıl yanan eve yanaşamaz, çünkü ateşin ışığından ve sıcağından kaçar. Kapıya asılan kalburu görünce deliklerini saymaya dalar; sayar, şaşırır, baştan başlar, o kapıya bir türlü sıra gelmez."
+ },
+ "gulyabani": {
+  "name": "Gulyabani",
+  "village": "Akpınar",
+  "voice": "Kamyon şoförü; yol raporu gibi kısa, ama elleri titrer",
+  "chosen": {
+   "kurban": "yolcu",
+   "iz": "tirnak",
+   "tanik": "killi",
+   "zaman": "aysiz",
+   "yer": "harabe",
+   "sebep": "yalniz_yol"
+  },
+  "open": [
+   "kurban",
+   "tanik",
+   "sebep"
+  ],
+  "closed": [
+   "iz",
+   "zaman",
+   "yer"
+  ],
+  "signs": {
+   "kurban": "Gece yolcuları",
+   "iz": "Uzun tırnak çizikleri",
+   "tanik": "Kıllı, iri bir şey",
+   "zaman": "Aysız, zifiri gece",
+   "yer": "Harabe, yıkık han",
+   "sebep": "Gece yalnız yola çıkıldı"
+  },
+  "weaknesses": [
+   "Çuvaldız",
+   "Şafağı beklemek"
+  ],
+  "rivals": [
+   {
+    "name": "Şürale",
+    "weaknesses": [
+     "Demir",
+     "Susmak"
+    ],
+    "signs": {
+     "kurban": [
+      "Gece yolcuları",
+      "Tarlada, harmanda çalışanlar"
+     ],
+     "iz": [
+      "Keçeleşmiş kıl"
+     ],
+     "tanik": [
+      "Kıllı, iri bir şey",
+      "Kahkaha"
+     ],
+     "zaman": [
+      "Akşam karanlığı"
+     ],
+     "yer": [
+      "Orman"
+     ],
+     "sebep": [
+      "Dokunulmaz bir ağaç kesildi",
+      "Gece yalnız yola çıkıldı"
+     ]
+    }
+   },
+   {
+    "name": "Kurtadam",
+    "weaknesses": [
+     "Ateş",
+     "Kurşun dökmek"
+    ],
+    "signs": {
+     "kurban": [
+      "Çobanlar",
+      "Gece yolcuları"
+     ],
+     "iz": [
+      "Pençe izi",
+      "Kan"
+     ],
+     "tanik": [
+      "Kıllı, iri bir şey",
+      "Hayvan kılığı"
+     ],
+     "zaman": [
+      "Dolunay"
+     ],
+     "yer": [
+      "Dağ, yayla",
+      "Orman"
+     ],
+     "sebep": [
+      "Gece yalnız yola çıkıldı"
+     ]
+    }
+   }
+  ],
+  "lore": "Derler ki Gulyabani ıssız yerlerde, harabelerde, yıkık hanlarda, eski mezarlıklarda yaşar. İnsan boyunun iki katı uzunluğunda, baştan aşağı keçe gibi kıllı, kirli uzun tırnaklı bir şeydir. Ayın doğmadığı zifiri gecelerde ortaya çıkar. Gece yalnız yola düşen yolcuyu, sürüsünün başında tek kalan çobanı yolundan saptırır, peşine takıp ıssız yerlere götürür; kimi ayak sesini arkasında duyar, kimi bir yoldaşın yanına katıldığını sanır. Sabah ezanı okunup horozlar öttüğünde durduğu yerde kalamaz; gün ağarana dek dayanan kurtulur. Yakasına bir çuvaldız ya da kalın bir iğne batırmayı başaran olursa uysallaşır; iğne yakasında durdukça o kişiye kul olur, iğneyi çıkarana kadar kaçamaz."
+ },
+ "hortlak": {
+  "name": "Hortlak",
+  "village": "Söğütlü",
+  "voice": "Yeni dul kalmış kadın; kocasının hâlâ geldiğini söylemekten utanıyor",
+  "chosen": {
+   "kurban": "yas_evi",
+   "iz": "mezar",
+   "tanik": "olu",
+   "zaman": "kirk",
+   "yer": "mezarlik",
+   "sebep": "usulsuz_gomu"
+  },
+  "open": [
+   "iz",
+   "tanik",
+   "sebep"
+  ],
+  "closed": [
+   "kurban",
+   "zaman",
+   "yer"
+  ],
+  "signs": {
+   "kurban": "Yas evindekiler",
+   "iz": "Eşilmiş toprak",
+   "tanik": "Tanıdık bir ölü",
+   "zaman": "Kırk gün dolmadan",
+   "yer": "Mezarlık",
+   "sebep": "Ölü usulünce gömülmedi"
+  },
+  "weaknesses": [
+   "Demir",
+   "Tuz"
+  ],
+  "rivals": [
+   {
+    "name": "Obur",
+    "weaknesses": [
+     "Çuvaldız",
+     "Tuz"
+    ],
+    "signs": {
+     "kurban": [
+      "Ahırdaki hayvanlar",
+      "Bütün ev halkı"
+     ],
+     "iz": [
+      "Eşilmiş toprak",
+      "Kan"
+     ],
+     "tanik": [
+      "Tanıdık bir ölü"
+     ],
+     "zaman": [
+      "Dolunay"
+     ],
+     "yer": [
+      "Mezarlık",
+      "Ahır"
+     ],
+     "sebep": [
+      "Ölü usulünce gömülmedi"
+     ]
+    }
+   }
+  ],
+  "lore": "Derler ki usulünce yıkanıp gömülmeyen, cenaze gecesi üstünden kedi atlayan ölü hortlar. Mezarının toprağını içeriden iter, kefeniyle kalkar; geceleri evine döner. Eşikte durur, kapıya vurur; içeri alınırsa karısının, anasının başucuna oturur. Uğradığı evde insanlar gün gün erir, sararır, uykudan yorgun kalkar. En çok kırkı çıkmadan görülür ve her gece aynı saatte gelir. Sabah eşikte kara mezar toprağı bulunur. Bu yüzden ölünün karnına bir bıçak ya da makas konur; demir ölüyü yerinde tutar. Hortlayan ölünün mezarına bir demir şiş çakılır. Mezarın üstüne ve yas evinin eşiğine tuz serpilir; hortlak tuzu geçemez, döner mezarına gider."
+ },
+ "ecinni": {
+  "name": "Ecinni",
+  "village": "Kavaklıdere",
+  "voice": "Düğün evinin sahibi; düğün yarım kaldı",
+  "chosen": {
+   "kurban": "hane",
+   "iz": "yele",
+   "tanik": "kalabalik",
+   "zaman": "gece_yarisi",
+   "yer": "ocak",
+   "sebep": "sozsuz"
+  },
+  "open": [
+   "kurban",
+   "zaman",
+   "yer"
+  ],
+  "closed": [
+   "iz",
+   "tanik",
+   "sebep"
+  ],
+  "signs": {
+   "kurban": "Bütün ev halkı",
+   "iz": "Örülmüş at yelesi",
+   "tanik": "Kalabalık, düğün sesi",
+   "zaman": "Gece yarısı",
+   "yer": "Ocak başı",
+   "sebep": "Destur, besmele denmedi"
+  },
+  "weaknesses": [
+   "Söz",
+   "Şafağı beklemek"
+  ],
+  "rivals": [
+   {
+    "name": "Biçura",
+    "weaknesses": [
+     "Ters süpürge",
+     "Tuz"
+    ],
+    "signs": {
+     "kurban": [
+      "Bütün ev halkı"
+     ],
+     "iz": [
+      "Darmadağın eşya"
+     ],
+     "tanik": [
+      "Ufacık bir şey"
+     ],
+     "zaman": [
+      "Gece yarısı"
+     ],
+     "yer": [
+      "Ocak başı",
+      "Ahır"
+     ],
+     "sebep": [
+      "İzinsiz girildi"
+     ]
+    }
+   },
+   {
+    "name": "Kara Kedi",
+    "weaknesses": [
+     "Söz",
+     "Ters süpürge"
+    ],
+    "signs": {
+     "kurban": [
+      "Gece iş tutan kadınlar",
+      "Bütün ev halkı"
+     ],
+     "iz": [
+      "Pençe izi"
+     ],
+     "tanik": [
+      "Hayvan kılığı"
+     ],
+     "zaman": [
+      "Gece yarısı"
+     ],
+     "yer": [
+      "Ocak başı",
+      "Kapı eşiği"
+     ],
+     "sebep": [
+      "Bir hayvana kıyıldı"
+     ]
+    }
+   }
+  ],
+  "lore": "Derler ki cin taifesi karanlıkta, hamamlarda, ocak başlarında, suyun döküldüğü giderlerde toplanır; düğünlerini gece yarısı ıssız hamamlarda kurar, def çalar, halay çeker. Kapalı kapılardan geçer, ev sessizleşince ocağın başında tası tarağı tıkırdatır, atların yelesini ince ince örer. Ayakları keçi ayağına benzer; geçtikleri yerde izler ters basılmış gibidir. Gece destur demeden sıcak su döken onlardan birini haşlar, besmelesiz ocağa yanaşan çocuklarının üstüne basar; karşılığında çarpılır: ağzı yana kayar, eli kolu tutmaz. Besmeleyle, destur diyerek iş görülen eve dokunmazlar; ağızdan çıkan güzel söz onları uzak tutar. Sabah ezanı okunup horozlar ötünce de dağılırlar; o vakte dek dayanan kurtulur."
+ },
+ "suanasi": {
+  "name": "Su Anası",
+  "village": "Çamlıbel",
+  "voice": "Çocuğu kaybolan baba, imama yazdırıyor",
+  "chosen": {
+   "kurban": "cocuk",
+   "iz": "islak",
+   "tanik": "uzun_sacli",
+   "zaman": "aksam",
+   "yer": "su",
+   "sebep": "sozsuz"
+  },
+  "open": [
+   "iz",
+   "tanik",
+   "yer"
+  ],
+  "closed": [
+   "kurban",
+   "zaman",
+   "sebep"
+  ],
+  "signs": {
+   "kurban": "Çocuklar",
+   "iz": "Islak ayak izi",
+   "tanik": "Saçları yerlere inen bir kadın",
+   "zaman": "Akşam karanlığı",
+   "yer": "Dere, göl kıyısı",
+   "sebep": "Destur, besmele denmedi"
+  },
+  "weaknesses": [
+   "Adak",
+   "Susmak"
+  ],
+  "rivals": [
+   {
+    "name": "Albastı",
+    "weaknesses": [
+     "Demir",
+     "Al kurdele"
+    ],
+    "signs": {
+     "kurban": [
+      "Lohusa ve bebeği"
+     ],
+     "iz": [
+      "Islak ayak izi",
+      "Upuzun saç telleri"
+     ],
+     "tanik": [
+      "Saçları yerlere inen bir kadın"
+     ],
+     "zaman": [
+      "Kırk gün dolmadan",
+      "Gece yarısı"
+     ],
+     "yer": [
+      "Kapalı bir oda",
+      "Dere, göl kıyısı"
+     ],
+     "sebep": [
+      "Biri yalnız bırakıldı"
+     ]
+    }
+   }
+  ],
+  "lore": "Derler ki her suyun bir iyesi vardır. Su Anası derin göllerde, derenin döndüğü göllenmelerde, köprü altlarında oturur. Akşam karanlığı suya çökerken kıyıya çıkar, yerlere inen saçlarını tarar. Destursuz suya girilen, suyu destursuz bulandırılan köye gücenir; o köyün çocuklarını tatlı bir sesle, adlarıyla suya çağırır. Sesi duyan çocuk peşinden yürür, bir daha görülmez; ardında kıyıda biten ıslak izler kalır. Bir kez gücendi mi destur da yetmez artık. Gönlünü almak için suya ekmek, süt, yağ adanır, çünkü su karşılıksız bir şey bırakmaz. Akşam sudan bir ses adınızı çağırırsa susulur: cevap verilmez, dönüp bakılmaz, çocuğun adı kıyıda yüksek sesle anılmaz. Cevabı alamayan ses kimseyi suya çekemez."
+ },
+ "carsamba": {
+  "name": "Çarşamba Karısı",
+  "village": "Kızılöz",
+  "voice": "Genç dokumacı kız; yasak gecede tezgâh başındaydı",
+  "chosen": {
+   "kurban": "kadin",
+   "iz": "dagin",
+   "tanik": "kocakari",
+   "zaman": "carsamba",
+   "yer": "ocak",
+   "sebep": "yasak_is"
+  },
+  "open": [
+   "iz",
+   "yer"
+  ],
+  "closed": [
+   "kurban",
+   "tanik",
+   "zaman",
+   "sebep"
+  ],
+  "signs": {
+   "kurban": "Gece iş tutan kadınlar",
+   "iz": "Darmadağın eşya",
+   "tanik": "İki büklüm bir kocakarı",
+   "zaman": "Çarşamba gecesi",
+   "yer": "Ocak başı",
+   "sebep": "Yasak gecede iş tutuldu"
+  },
+  "weaknesses": [
+   "Ayna",
+   "Tuz"
+  ],
+  "rivals": [
+   {
+    "name": "Biçura",
+    "weaknesses": [
+     "Ters süpürge",
+     "Tuz"
+    ],
+    "signs": {
+     "kurban": [
+      "Bütün ev halkı"
+     ],
+     "iz": [
+      "Darmadağın eşya"
+     ],
+     "tanik": [
+      "Ufacık bir şey"
+     ],
+     "zaman": [
+      "Gece yarısı"
+     ],
+     "yer": [
+      "Ocak başı",
+      "Ahır"
+     ],
+     "sebep": [
+      "İzinsiz girildi"
+     ]
+    }
+   },
+   {
+    "name": "Ev İyesi",
+    "weaknesses": [
+     "Adak",
+     "Ters süpürge"
+    ],
+    "signs": {
+     "kurban": [
+      "Bütün ev halkı"
+     ],
+     "iz": [
+      "Darmadağın eşya"
+     ],
+     "tanik": [
+      "Ufacık bir şey"
+     ],
+     "zaman": [
+      "Her gece aynı saat"
+     ],
+     "yer": [
+      "Ocak başı",
+      "Kapalı bir oda"
+     ],
+     "sebep": [
+      "Ev kirli bırakıldı"
+     ]
+    }
+   }
+  ],
+  "lore": "Derler ki Çarşamba Karısı çarşambayı perşembeye bağlayan gece dolaşır ve o gece iş tutan kadını cezalandırır. Ak saçlı, iki büklüm, kambur bir kocakarı kılığında gelir. Ocak başında yün eğiren, çamaşır yıkayan, hamur yoğuran kadının yanına oturur; iği dolaştırır, yumağı çözer, kazanı devirir, ortalığı darmadağın eder. İşini bırakmayanı çarpar; eli kolu tutmaz olur, ağzı yana kayar. Bu yüzden o gece iğ, kirmen, tezgâh bir kenara kaldırılır. Kapıya dönük asılan aynada kendi yüzünü görünce kaçtığı söylenir; ne kadar yaşlı ve çirkin olduğunu görüp utanırmış. Eşiğe ve ocak başına serpilen tuzun üstüne de basamaz; tuz ayağını yakar, geri döner."
+ },
+ "obur": {
+  "name": "Obur",
+  "village": "Taşoluk",
+  "voice": "Köy imamı; cemaatine bakarak yazıyor",
+  "chosen": {
+   "kurban": "hayvan",
+   "iz": "mezar",
+   "tanik": "olu",
+   "zaman": "dolunay",
+   "yer": "mezarlik",
+   "sebep": "usulsuz_gomu"
+  },
+  "open": [
+   "tanik",
+   "yer",
+   "sebep"
+  ],
+  "closed": [
+   "kurban",
+   "iz",
+   "zaman"
+  ],
+  "signs": {
+   "kurban": "Ahırdaki hayvanlar",
+   "iz": "Eşilmiş toprak",
+   "tanik": "Tanıdık bir ölü",
+   "zaman": "Dolunay",
+   "yer": "Mezarlık",
+   "sebep": "Ölü usulünce gömülmedi"
+  },
+  "weaknesses": [
+   "Çuvaldız",
+   "Tuz"
+  ],
+  "rivals": [
+   {
+    "name": "Hortlak",
+    "weaknesses": [
+     "Demir",
+     "Tuz"
+    ],
+    "signs": {
+     "kurban": [
+      "Yas evindekiler"
+     ],
+     "iz": [
+      "Eşilmiş toprak"
+     ],
+     "tanik": [
+      "Tanıdık bir ölü"
+     ],
+     "zaman": [
+      "Kırk gün dolmadan",
+      "Her gece aynı saat"
+     ],
+     "yer": [
+      "Mezarlık",
+      "Kapı eşiği"
+     ],
+     "sebep": [
+      "Ölü usulünce gömülmedi"
+     ]
+    }
+   }
+  ],
+  "lore": "Derler ki Obur usulünce gömülmeyen bir ölüdür; kimi zaman da yaşayan birinin rahat bulmayan ruhu uykusunda bedeninden çıkıp obur olur. Dolunay gecelerinde mezarından kalkar, eski giysisiyle köye iner. Önce kilere girer: unu, yağı, peyniri yer, küpleri dibine kadar boşaltır. Sonra ahıra geçer; ineklerin sütünü içer, hayvanların kanını emer. Uğradığı ahırda hayvanlar günden güne erir, sonra birer birer ölür. Sabah mezarının toprağı eşilmiş, ağzının kenarında kan bulunur. Obur mezarına bağlanmadıkça durmaz. Mezarına, gece yakalanırsa yakasına bir çuvaldız çakılır; çuvaldız onu toprağa iğneler, bir daha kalkamaz. Mezarın üstüne, ahırın kapısına ve kilerin önüne tuz serpilir; tuzlu toprağı geçemez, geldiği yere döner."
+ },
+ "cadi": {
+  "name": "Cadı",
+  "village": "Değirmendere",
+  "voice": "Cadılıkla suçlanan kadının kendisi",
+  "chosen": {
+   "kurban": "hayvan",
+   "iz": "sut",
+   "tanik": "kocakari",
+   "zaman": "dolunay",
+   "yer": "ahir",
+   "sebep": "ovunmek"
+  },
+  "open": [
+   "kurban",
+   "zaman",
+   "yer"
+  ],
+  "closed": [
+   "iz",
+   "tanik",
+   "sebep"
+  ],
+  "signs": {
+   "kurban": "Ahırdaki hayvanlar",
+   "iz": "Kesilmiş süt",
+   "tanik": "İki büklüm bir kocakarı",
+   "zaman": "Dolunay",
+   "yer": "Ahır",
+   "sebep": "Övünme, kötü söz"
+  },
+  "weaknesses": [
+   "Kurşun dökmek",
+   "Ters süpürge"
+  ],
+  "rivals": [
+   {
+    "name": "Obur",
+    "weaknesses": [
+     "Çuvaldız",
+     "Tuz"
+    ],
+    "signs": {
+     "kurban": [
+      "Ahırdaki hayvanlar",
+      "Bütün ev halkı"
+     ],
+     "iz": [
+      "Eşilmiş toprak",
+      "Kan"
+     ],
+     "tanik": [
+      "Tanıdık bir ölü"
+     ],
+     "zaman": [
+      "Dolunay"
+     ],
+     "yer": [
+      "Mezarlık",
+      "Ahır"
+     ],
+     "sebep": [
+      "Ölü usulünce gömülmedi"
+     ]
+    }
+   }
+  ],
+  "lore": "Derler ki Cadı köyün içinde yaşar; gündüz kimsenin dikkat etmediği, kendi hâlinde bir kocakarıdır. Gözü başkasının malındadır. Biri ineğini, yeni doğmuş bebeğini “maşallah” demeden över, ya da bolluğuyla övünürse kıskançlığı uyanır. Dolunay gecelerinde kılık değiştirir; çoğu zaman bir kara kedi, kimi zaman bir tavşan olup ahıra girer. İneklerin memesini kurutur, kovadaki sütü keser, lohusanın sütünü çeker; bebek aç kalır, hayvan erir. Onun dokunduğu evde kurşun dökülür: eritilen kurşun soğuk suda cızırdar, çatlar, kötülüğün şeklini alır; kıskanç göz kurşunla birlikte suya akar. Kapının arkasına ters dikilen süpürge de cadıyı savar; istenmeyen misafiri evden süpüren süpürge onu da kapıdan geri çevirir."
+ },
+ "tepegoz": {
+  "name": "Tepegöz",
+  "village": "Yeşilyurt",
+  "voice": "Yayla ağası; çobanlarını sayıyor, sayı tutmuyor",
+  "chosen": {
+   "kurban": "coban",
+   "iz": "buyuk_iz",
+   "tanik": "dev",
+   "zaman": "ogle",
+   "yer": "dag",
+   "sebep": "izinsiz"
+  },
+  "open": [
+   "kurban",
+   "iz",
+   "tanik"
+  ],
+  "closed": [
+   "zaman",
+   "yer",
+   "sebep"
+  ],
+  "signs": {
+   "kurban": "Çobanlar",
+   "iz": "Kocaman ayak izi",
+   "tanik": "İnsan boyunun iki katı",
+   "zaman": "Öğle sıcağı",
+   "yer": "Dağ, yayla",
+   "sebep": "İzinsiz girildi"
+  },
+  "weaknesses": [
+   "Ateş",
+   "Çuvaldız"
+  ],
+  "rivals": [
+   {
+    "name": "Evren",
+    "weaknesses": [
+     "Ateş",
+     "Tuz"
+    ],
+    "signs": {
+     "kurban": [
+      "Çobanlar",
+      "Bütün ev halkı"
+     ],
+     "iz": [
+      "Yılan gömleği",
+      "Kocaman ayak izi"
+     ],
+     "tanik": [
+      "Yılan",
+      "İnsan boyunun iki katı"
+     ],
+     "zaman": [
+      "Fırtına"
+     ],
+     "yer": [
+      "Dere, göl kıyısı",
+      "Mağara"
+     ],
+     "sebep": [
+      "Adak, pay unutuldu"
+     ]
+    }
+   },
+   {
+    "name": "Dağ İyesi",
+    "weaknesses": [
+     "Ardıç tütsüsü",
+     "Al kurdele"
+    ],
+    "signs": {
+     "kurban": [
+      "Çobanlar",
+      "Avcılar"
+     ],
+     "iz": [
+      "Kocaman ayak izi"
+     ],
+     "tanik": [
+      "Görünmez; yalnızca etkisi",
+      "İnsan boyunun iki katı"
+     ],
+     "zaman": [
+      "Fırtına"
+     ],
+     "yer": [
+      "Dağ, yayla"
+     ],
+     "sebep": [
+      "Övünme, kötü söz"
+     ]
+    }
+   }
+  ],
+  "lore": "Derler ki Tepegöz bir çobanla bir peri kızının birleşmesinden doğmuştur. Boyu iki adam boyu, gözü bir tanedir; o da alnının ortasında durur. Anası parmağına bir yüzük takmış, o günden beri bedenine ok işlemez, kılıç kesmez. Büyüyünce dağa çıkmış, bir mağarayı yurt tutmuştur. Otlağına izinsiz giren sürüyü de çobanı da kendi payı sayar; Oğuz ondan korkup ona her gün iki adamla beş yüz koyun vermiştir. Öğle sıcağında, güneş tepedeyken mağarasının ağzında uyuklar. Tek yumuşak yeri o gözdür. Basat bir şişi ateşte kızdırıp o göze saplamış, onu kör etmişti. Bu yüzden ona gidenler yanlarında ateş götürür, ucunu közde kızdırdıkları bir çuvaldızı gözüne saplamak için öğle uykusunu kollar."
+ },
+ "yelmoguz": {
+  "name": "Yelmoğuz",
+  "village": "Ortaköy",
+  "voice": "Kız kardeşini arayan abla",
+  "chosen": {
+   "kurban": "cocuk",
+   "iz": "kan",
+   "tanik": "kocakari",
+   "zaman": "aksam",
+   "yer": "orman",
+   "sebep": "yalniz_yol"
+  },
+  "open": [
+   "iz",
+   "yer",
+   "sebep"
+  ],
+  "closed": [
+   "kurban",
+   "tanik",
+   "zaman"
+  ],
+  "signs": {
+   "kurban": "Çocuklar",
+   "iz": "Kan",
+   "tanik": "İki büklüm bir kocakarı",
+   "zaman": "Akşam karanlığı",
+   "yer": "Orman",
+   "sebep": "Gece yalnız yola çıkıldı"
+  },
+  "weaknesses": [
+   "Ayna",
+   "Çuvaldız"
+  ],
+  "rivals": [
+   {
+    "name": "Kurtadam",
+    "weaknesses": [
+     "Ateş",
+     "Kurşun dökmek"
+    ],
+    "signs": {
+     "kurban": [
+      "Çobanlar",
+      "Gece yolcuları"
+     ],
+     "iz": [
+      "Pençe izi",
+      "Kan"
+     ],
+     "tanik": [
+      "Kıllı, iri bir şey",
+      "Hayvan kılığı"
+     ],
+     "zaman": [
+      "Dolunay"
+     ],
+     "yer": [
+      "Dağ, yayla",
+      "Orman"
+     ],
+     "sebep": [
+      "Gece yalnız yola çıkıldı"
+     ]
+    }
+   },
+   {
+    "name": "Abası",
+    "weaknesses": [
+     "Ateş",
+     "Ardıç tütsüsü"
+    ],
+    "signs": {
+     "kurban": [
+      "Bütün ev halkı",
+      "Gece yolcuları"
+     ],
+     "iz": [
+      "Kan"
+     ],
+     "tanik": [
+      "Tek göz",
+      "Kara bir gölge"
+     ],
+     "zaman": [
+      "Zemheri",
+      "Aysız, zifiri gece"
+     ],
+     "yer": [
+      "Orman"
+     ],
+     "sebep": [
+      "Gece yalnız yola çıkıldı"
+     ]
+    }
+   }
+  ],
+  "lore": "Derler ki Yelmoğuz bir kocakarıdır ama kocakarı değildir. Akşam karanlığı orman yoluna çökerken yol kenarında iki büklüm oturur; yorgun yolcuyu, eve geç kalan çocuğu “gel yavrum, ocağım sıcak” diye kulübesine çağırır. Yüzü nine yüzüdür, dişleri demirdendir. Misafirini doyurur, yatırır, gece dişlerini biler. Yalnız yola çıkanı sever; kalabalığa görünmez. Ondan kaçan masal kahramanları ardlarına bir ayna atmış, ayna koca bir göl olmuş. Bir çuvaldız atmışlar, çuvaldız dikenli bir çalılık olmuş. Kocakarı gölü dolanırken, dikenlerde eteğini yırtarken kaçan kurtulmuş. Bu yüzden akşamüstü orman yoluna düşen, cebinde küçük bir ayna, yakasında bir çuvaldız taşır."
+ },
+ "dev": {
+  "name": "Dev",
+  "village": "Kuşluca",
+  "voice": "Yol amelesi çavuşu; rapor",
+  "chosen": {
+   "kurban": "delikanli",
+   "iz": "buyuk_iz",
+   "tanik": "dev",
+   "zaman": "ogle",
+   "yer": "dag",
+   "sebep": "izinsiz"
+  },
+  "open": [
+   "iz",
+   "tanik",
+   "zaman"
+  ],
+  "closed": [
+   "kurban",
+   "yer",
+   "sebep"
+  ],
+  "signs": {
+   "kurban": "Bekâr delikanlılar",
+   "iz": "Kocaman ayak izi",
+   "tanik": "İnsan boyunun iki katı",
+   "zaman": "Öğle sıcağı",
+   "yer": "Dağ, yayla",
+   "sebep": "İzinsiz girildi"
+  },
+  "weaknesses": [
+   "Söz",
+   "Tuz"
+  ],
+  "rivals": [
+   {
+    "name": "Tepegöz",
+    "weaknesses": [
+     "Ateş",
+     "Çuvaldız"
+    ],
+    "signs": {
+     "kurban": [
+      "Çobanlar"
+     ],
+     "iz": [
+      "Kocaman ayak izi",
+      "Kan"
+     ],
+     "tanik": [
+      "İnsan boyunun iki katı",
+      "Tek göz"
+     ],
+     "zaman": [
+      "Öğle sıcağı"
+     ],
+     "yer": [
+      "Dağ, yayla",
+      "Mağara"
+     ],
+     "sebep": [
+      "İzinsiz girildi"
+     ]
+    }
+   }
+  ],
+  "lore": "Derler ki Dev dağların ardında, kimsenin su almadığı derin kuyuların başında oturur. Boyu iki adam boyu, adımı bir tarla boyudur; öğle sıcağında kuyunun ağzına gölge olur, uyuklar. O kuyu onundur. Suyuna izinsiz kova sarkıtan, dağına sormadan çıkan delikanlıyı yakalar, kuyunun dibindeki yurduna götürür; çoğu bir daha görülmez. Masallarda yiğit kuyunun başına varınca önce selam verir. Dev “Selamın olmasaydı seni bir lokmada yutardım” der; selamı alan dev selam verene dokunamaz. Bir de onunla tuz ekmek yiyenin hakkı vardır: dev tuzunu yediği adama kıyamaz, ona yolunu gösterir. Bu yüzden dağa çıkan delikanlının dilinde selam, heybesinde bir avuç tuz olur."
+ },
+ "devanasi": {
+  "name": "Dev Anası",
+  "village": "Bozkuyu",
+  "voice": "Mağaradan dönen tek kişi",
+  "chosen": {
+   "kurban": "yolcu",
+   "iz": "buyuk_iz",
+   "tanik": "kocakari",
+   "zaman": "aksam",
+   "yer": "magara",
+   "sebep": "izinsiz"
+  },
+  "open": [
+   "kurban",
+   "tanik",
+   "zaman"
+  ],
+  "closed": [
+   "iz",
+   "yer",
+   "sebep"
+  ],
+  "signs": {
+   "kurban": "Gece yolcuları",
+   "iz": "Kocaman ayak izi",
+   "tanik": "İki büklüm bir kocakarı",
+   "zaman": "Akşam karanlığı",
+   "yer": "Mağara",
+   "sebep": "İzinsiz girildi"
+  },
+  "weaknesses": [
+   "Söz",
+   "Ateş"
+  ],
+  "rivals": [
+   {
+    "name": "Yelmoğuz",
+    "weaknesses": [
+     "Ayna",
+     "Çuvaldız"
+    ],
+    "signs": {
+     "kurban": [
+      "Çocuklar",
+      "Gece yolcuları"
+     ],
+     "iz": [
+      "Kan"
+     ],
+     "tanik": [
+      "İki büklüm bir kocakarı"
+     ],
+     "zaman": [
+      "Akşam karanlığı"
+     ],
+     "yer": [
+      "Orman",
+      "Issız yol"
+     ],
+     "sebep": [
+      "Gece yalnız yola çıkıldı"
+     ]
+    }
+   }
+  ],
+  "lore": "Derler ki devlerin bir anası vardır. Mağaranın ağzında oturur, akşam karanlığında oğullarının dönüşünü bekler. Boyu iki adam boyudur ama yaşı öyle ağırdır ki iki büklüm durur; memelerini omzunun üstünden arkaya atar, ağzından kızgın bir buğu çıkar. Mağarasına çağrılmadan giren delikanlıyı, yolunu şaşırıp kapısına düşen yolcuyu kucaklar, içeri çeker, oğulları gelince onların sofrasına koyar. Masallarda akıllı yiğit önce selam verir, ona “ana” der, arkasından dolanıp memesini emer. Dev anası “Selamın olmasa, bana ana demesen seni yerdim; şimdi süt oğlum oldun” der ve onu oğullarından saklar. Mağaranın içi soğuk ve karanlıktır; dev anası yanan ateşe yaklaşamaz, elinde meşale olana el uzatamaz derler."
+ },
+ "peri": {
+  "name": "Peri Kızı",
+  "village": "Sarıçiçek",
+  "voice": "Nişanlısı değişen genç kız",
+  "chosen": {
+   "kurban": "delikanli",
+   "iz": "halka",
+   "tanik": "guzel",
+   "zaman": "bahar",
+   "yer": "su",
+   "sebep": "izinsiz"
+  },
+  "open": [
+   "kurban",
+   "tanik",
+   "yer"
+  ],
+  "closed": [
+   "iz",
+   "zaman",
+   "sebep"
+  ],
+  "signs": {
+   "kurban": "Bekâr delikanlılar",
+   "iz": "Çimende halka",
+   "tanik": "Göz alan bir güzellik",
+   "zaman": "Bahar, Hıdırellez",
+   "yer": "Dere, göl kıyısı",
+   "sebep": "İzinsiz girildi"
+  },
+  "weaknesses": [
+   "Söz",
+   "Al kurdele"
+  ],
+  "rivals": [
+   {
+    "name": "Bakırtırnak",
+    "weaknesses": [
+     "Demir",
+     "Ayna"
+    ],
+    "signs": {
+     "kurban": [
+      "Gece yolcuları",
+      "Bekâr delikanlılar"
+     ],
+     "iz": [
+      "Uzun tırnak çizikleri",
+      "Kan"
+     ],
+     "tanik": [
+      "Göz alan bir güzellik"
+     ],
+     "zaman": [
+      "Akşam karanlığı"
+     ],
+     "yer": [
+      "Dere, göl kıyısı",
+      "Issız yol"
+     ],
+     "sebep": [
+      "Tanınmayan biri eve alındı"
+     ]
+    }
+   }
+  ],
+  "lore": "Derler ki periler pınar başlarında, ulu ağaçların altında, bahar gecelerinde toplanır; Hıdırellez’e doğru, gece yarısı düğün kurarlar. Göz alacak kadar güzeldirler. Uzaktan def sesi, türkü, el çırpma duyulur; yaklaşan kimseyi bulamaz. Oynadıkları yerin çimeni sabah bir halka gibi yatmış bulunur. O halkaya basan, onları gizlice seyreden, yurtlarına izinsiz giren çarpılır: genç kızın dili tutulur, delikanlının aklı gider, ağzı yana kayar. Buna peri çarpması denir. Gece pınara inen “destur” der, ağaç altına oturan selam verir; periler izin isteyene dokunmaz. Genç kızların başına al kurdele bağlanır, ağacın dalına al çaput asılır; peri alı görünce o insanı kendinden saymaz, oyununa çağırmaz."
+ },
+ "umaci": {
+  "name": "Umacı",
+  "village": "Gölbaşı",
+  "voice": "Köye yeni atanmış şehirli öğretmen hanım",
+  "chosen": {
+   "kurban": "cocuk",
+   "iz": "buyuk_iz",
+   "tanik": "golge",
+   "zaman": "aksam",
+   "yer": "esik",
+   "sebep": "yalniz"
+  },
+  "open": [
+   "kurban",
+   "tanik",
+   "sebep"
+  ],
+  "closed": [
+   "iz",
+   "zaman",
+   "yer"
+  ],
+  "signs": {
+   "kurban": "Çocuklar",
+   "iz": "Kocaman ayak izi",
+   "tanik": "Kara bir gölge",
+   "zaman": "Akşam karanlığı",
+   "yer": "Kapı eşiği",
+   "sebep": "Biri yalnız bırakıldı"
+  },
+  "weaknesses": [
+   "Ateş",
+   "Ters süpürge"
+  ],
+  "rivals": [
+   {
+    "name": "Ümmüsıbyan",
+    "weaknesses": [
+     "Kurşun dökmek",
+     "Al kurdele"
+    ],
+    "signs": {
+     "kurban": [
+      "Çocuklar",
+      "Lohusa ve bebeği"
+     ],
+     "iz": [
+      "Tende morluk"
+     ],
+     "tanik": [
+      "Kara bir gölge",
+      "Hayvan kılığı"
+     ],
+     "zaman": [
+      "Gece yarısı"
+     ],
+     "yer": [
+      "Kapalı bir oda"
+     ],
+     "sebep": [
+      "Biri yalnız bırakıldı"
+     ]
+    }
+   }
+  ],
+  "lore": "Derler ki Umacı akşam karanlığında köye iner, çocuk kollar. Ne yüzü vardır ne biçimi; kapının önünde koyu, kocaman bir gölge olarak durur, kapı aralığından içeri bakar. Yürüdüğü yerde toprağa gömülen izleri bir adamın ayağından iki kat büyüktür. Gün battıktan sonra dışarıda kalan, kapının önünde yalnız bırakılan çocuğu alıp götürür; giden çocuk bir daha bulunmaz. Analar çocuklarını bu yüzden güneş inmeden içeri çağırır. Umacı ışıktan kaçar: kapının önünde lamba, eşikte bir fener ya da ocaktan alınmış bir köz yanarken o kapıya yanaşamaz. Kapının arkasına ters dikilen süpürge de onu savar; süpürge evden istenmeyeni süpürür, Umacı kapıya gelir, eşiği geçemeden döner gider."
+ },
+ "surale": {
+  "name": "Şürale",
+  "village": "Kirazlı",
+  "voice": "Orman muhafaza memuru; tutanak",
+  "chosen": {
+   "kurban": "yolcu",
+   "iz": "kil",
+   "tanik": "killi",
+   "zaman": "aksam",
+   "yer": "orman",
+   "sebep": "agac_kesmek"
+  },
+  "open": [
+   "tanik",
+   "zaman",
+   "yer"
+  ],
+  "closed": [
+   "kurban",
+   "iz",
+   "sebep"
+  ],
+  "signs": {
+   "kurban": "Gece yolcuları",
+   "iz": "Keçeleşmiş kıl",
+   "tanik": "Kıllı, iri bir şey",
+   "zaman": "Akşam karanlığı",
+   "yer": "Orman",
+   "sebep": "Dokunulmaz bir ağaç kesildi"
+  },
+  "weaknesses": [
+   "Demir",
+   "Susmak"
+  ],
+  "rivals": [
+   {
+    "name": "Almastı",
+    "weaknesses": [
+     "Çuvaldız",
+     "Kalbur"
+    ],
+    "signs": {
+     "kurban": [
+      "Ahırdaki hayvanlar"
+     ],
+     "iz": [
+      "Örülmüş at yelesi",
+      "Keçeleşmiş kıl"
+     ],
+     "tanik": [
+      "Kıllı, iri bir şey"
+     ],
+     "zaman": [
+      "Akşam karanlığı"
+     ],
+     "yer": [
+      "Ahır",
+      "Orman"
+     ],
+     "sebep": [
+      "İzinsiz girildi"
+     ]
+    }
+   }
+  ],
+  "lore": "Derler ki Şürale ormanın derininde yaşar. Boyu insan kadardır, bütün gövdesi kıl içindedir; alnında tek bir boynuz, ellerinde upuzun, ince parmaklar vardır. Akşam karanlığında ormana yalnız giren yolcunun, odun kesen ya da ot biçen köylünün karşısına çıkar, gülerek “gel oynaşalım” der. Oyunu gıdıklamaktır; kahkahası ormanı doldurur, kurbanı gülmekten nefessiz kalıp ölür. En çok, dokunulmaz ağaçlar kesildiği yıl azar. Tatarlar ondan kurtulan oduncuyu şöyle anlatır: oduncu kütüğü demir baltayla yarar, yarığa kama çakar, Şürale’ye “parmaklarını buraya sok” der, sonra kamayı çeker. Parmaklar kütükte sıkışır. Şürale adını sorunca oduncu gerçek adını söylemez, “Adım Geçen Yıl” der. Şürale bütün gece “Geçen Yıl sıkıştırdı” diye bağırır; ormandakiler güler, geçen yılın derdi bugün mü bağırılır diye. Adını vermeyene, yanında demir taşıyana eli varmaz."
+ },
+ "bicura": {
+  "name": "Biçura",
+  "village": "Dereiçi",
+  "voice": "Yaşlı ev kadını; gençler inanmıyor",
+  "chosen": {
+   "kurban": "hane",
+   "iz": "dagin",
+   "tanik": "ufak",
+   "zaman": "gece_yarisi",
+   "yer": "ocak",
+   "sebep": "izinsiz"
+  },
+  "open": [
+   "kurban",
+   "iz",
+   "yer"
+  ],
+  "closed": [
+   "tanik",
+   "zaman",
+   "sebep"
+  ],
+  "signs": {
+   "kurban": "Bütün ev halkı",
+   "iz": "Darmadağın eşya",
+   "tanik": "Ufacık bir şey",
+   "zaman": "Gece yarısı",
+   "yer": "Ocak başı",
+   "sebep": "İzinsiz girildi"
+  },
+  "weaknesses": [
+   "Ters süpürge",
+   "Tuz"
+  ],
+  "rivals": [
+   {
+    "name": "Ev İyesi",
+    "weaknesses": [
+     "Adak",
+     "Ters süpürge"
+    ],
+    "signs": {
+     "kurban": [
+      "Bütün ev halkı"
+     ],
+     "iz": [
+      "Darmadağın eşya"
+     ],
+     "tanik": [
+      "Ufacık bir şey"
+     ],
+     "zaman": [
+      "Her gece aynı saat"
+     ],
+     "yer": [
+      "Ocak başı",
+      "Kapalı bir oda"
+     ],
+     "sebep": [
+      "Ev kirli bırakıldı"
+     ]
+    }
+   }
+  ],
+  "lore": "Derler ki Biçura ufacık bir kadındır; boyu bir karışı ancak geçer, başına kendinden büyük bir yemeni bağlar, eteği yerde sürünür. Evin döşemesinin altında, ocağın arkasında ya da ahırın samanlığında oturur. O yerin eski sahibidir; ev kurulmadan önce de oradaydı. Yeni ev kuran, boş eve taşınan aile ondan izin istemezse gece yarısı evi altüst eder: tencereleri devirir, unu döker, yorganları çeker, ahırda hayvanları birbirine katar. Ambarın bereketi kaçar, ev halkı uyuyamaz. Kendisine danışılan evde sesini çıkarmadan yaşar. Ama bir kez hırçınlaştı mı, eskiler onu kapının arkasına ters dikilmiş süpürgeyle evden uğurlar; eşiğe ve ocak başına serpilen tuzun üstünden geri dönemez, derler."
+ },
+ "yuha": {
+  "name": "Yuha",
+  "village": "Yukarı Kavak",
+  "voice": "Oğlunu yeni evlendirmiş ana",
+  "chosen": {
+   "kurban": "delikanli",
+   "iz": "deri",
+   "tanik": "guzel",
+   "zaman": "dolunay",
+   "yer": "orman",
+   "sebep": "yabanci"
+  },
+  "open": [
+   "kurban",
+   "iz",
+   "zaman"
+  ],
+  "closed": [
+   "tanik",
+   "yer",
+   "sebep"
+  ],
+  "signs": {
+   "kurban": "Bekâr delikanlılar",
+   "iz": "Yılan gömleği",
+   "tanik": "Göz alan bir güzellik",
+   "zaman": "Dolunay",
+   "yer": "Orman",
+   "sebep": "Tanınmayan biri eve alındı"
+  },
+  "weaknesses": [
+   "Ayna",
+   "Ardıç tütsüsü"
+  ],
+  "rivals": [
+   {
+    "name": "Şahmeran",
+    "weaknesses": [
+     "Susmak",
+     "Söz"
+    ],
+    "signs": {
+     "kurban": [
+      "Bekâr delikanlılar"
+     ],
+     "iz": [
+      "Yılan gömleği"
+     ],
+     "tanik": [
+      "Yılan",
+      "Göz alan bir güzellik"
+     ],
+     "zaman": [
+      "Dolunay"
+     ],
+     "yer": [
+      "Mağara",
+      "Kuyu"
+     ],
+     "sebep": [
+      "Bir hayvana kıyıldı"
+     ]
+    }
+   }
+  ],
+  "lore": "Derler ki yüz yıl yaşayan yılan Yuha olur. Gömleğini son kez ormanda bırakır, göz alan güzellikte bir kadına döner. Kimsesi, soyu sopu bilinmeyen bir kız olarak köye gelir; bir delikanlıyı kendine bağlar, evine yerleşir. Dolunay gecelerinde ormana iner, eski gömleğinin yanında yılan olup kıvrılır; o gecelerde delikanlı soluk, uykulu, kuru yaprak gibi hafif kalır. Her ay biraz daha erir, sonunda yatağında ölü bulunur; Yuha onun canını emerek yaşar. Gerçek yüzü aynada görünür; aynaya bakarken gözbebekleri incelir, dili çatallanır. Ardıç dalı yakılıp ev tütsülendiğinde dumana dayanamaz, tıslar, ormandaki eski derisine kaçar. Bu yüzden eskiler, nereden geldiği bilinmeyen kızı eve almadan önce aynanın karşısına oturtur, sonra ardıçla tütsülerdi."
+ },
+ "bakirtirnak": {
+  "name": "Bakırtırnak",
+  "village": "Aşağı Çiftlik",
+  "voice": "İstasyon şefi; telgraf gibi kısa cümleler",
+  "chosen": {
+   "kurban": "yolcu",
+   "iz": "kan",
+   "tanik": "guzel",
+   "zaman": "aksam",
+   "yer": "yol",
+   "sebep": "yabanci"
+  },
+  "open": [
+   "iz",
+   "zaman",
+   "yer"
+  ],
+  "closed": [
+   "kurban",
+   "tanik",
+   "sebep"
+  ],
+  "signs": {
+   "kurban": "Gece yolcuları",
+   "iz": "Kan",
+   "tanik": "Göz alan bir güzellik",
+   "zaman": "Akşam karanlığı",
+   "yer": "Issız yol",
+   "sebep": "Tanınmayan biri eve alındı"
+  },
+  "weaknesses": [
+   "Demir",
+   "Ayna"
+  ],
+  "rivals": [
+   {
+    "name": "Yelmoğuz",
+    "weaknesses": [
+     "Ayna",
+     "Çuvaldız"
+    ],
+    "signs": {
+     "kurban": [
+      "Çocuklar",
+      "Gece yolcuları"
+     ],
+     "iz": [
+      "Kan"
+     ],
+     "tanik": [
+      "İki büklüm bir kocakarı"
+     ],
+     "zaman": [
+      "Akşam karanlığı"
+     ],
+     "yer": [
+      "Orman",
+      "Issız yol"
+     ],
+     "sebep": [
+      "Gece yalnız yola çıkıldı"
+     ]
+    }
+   }
+  ],
+  "lore": "Derler ki Bakırtırnak akşam karanlığında ırmak kıyısında ya da ıssız bir yolun kenarında, göz alan güzellikte bir kadın olarak oturur. Yolcuyu, eve dönen delikanlıyı tatlı sözle durdurur; yorgunsun, gel dinlen, der. Ellerini hep yenlerinin içinde saklar, çünkü tırnakları bakırdandır, uzun ve keskindir. Onu yanına alan, evine buyur eden sabaha çıkmaz. Irmak kıyısında bulunan ölülerin boynunda, göğsünde bakır pası gibi yeşile çalan uzun çizikler olur; yerde kan kalır. Bakırın düşmanı demirdir: cebinde bıçak, eyerinde nal taşıyana tırnağını geçiremez. Güzel yüzü bir örtüdür; aynaya bakan, kadının yerinde bakır pençeli, kuru bir cadı görür. Aynada yüzünü gördüğünü anlayınca Bakırtırnak bağırarak kaçar."
+ },
+ "eviyesi": {
+  "name": "Ev İyesi",
+  "village": "Eskihisar",
+  "voice": "Yeni gelin; gizlice yazıyor, kimse bilmemeli",
+  "chosen": {
+   "kurban": "hane",
+   "iz": "dagin",
+   "tanik": "ufak",
+   "zaman": "ayni_saat",
+   "yer": "ocak",
+   "sebep": "kirlilik"
+  },
+  "open": [
+   "kurban",
+   "iz",
+   "tanik"
+  ],
+  "closed": [
+   "zaman",
+   "yer",
+   "sebep"
+  ],
+  "signs": {
+   "kurban": "Bütün ev halkı",
+   "iz": "Darmadağın eşya",
+   "tanik": "Ufacık bir şey",
+   "zaman": "Her gece aynı saat",
+   "yer": "Ocak başı",
+   "sebep": "Ev kirli bırakıldı"
+  },
+  "weaknesses": [
+   "Adak",
+   "Ters süpürge"
+  ],
+  "rivals": [
+   {
+    "name": "Biçura",
+    "weaknesses": [
+     "Ters süpürge",
+     "Tuz"
+    ],
+    "signs": {
+     "kurban": [
+      "Bütün ev halkı"
+     ],
+     "iz": [
+      "Darmadağın eşya"
+     ],
+     "tanik": [
+      "Ufacık bir şey"
+     ],
+     "zaman": [
+      "Gece yarısı"
+     ],
+     "yer": [
+      "Ocak başı",
+      "Ahır"
+     ],
+     "sebep": [
+      "İzinsiz girildi"
+     ]
+    }
+   }
+  ],
+  "lore": "Derler ki her evin bir iyesi vardır. Ufacık, sakallı bir ihtiyar ya da kedi kadar bir şey olarak görünür; kimi zaman evin büyüğünün kılığına girer, ama boyu bir karıştır. Ocağın arkasında, döşemenin altında, kapısı kapalı tutulan odalarda oturur. Temiz tutulan, ocağı akşamları süpürülen evi korur, malını bereketlendirir. Ev kirli kalır, bulaşık sabaha bırakılırsa küser: her gece aynı saatte kapları, sandıkları karıştırır, yüksüğü, anahtarı saklar, ambarın bereketini çeker. Gönlü, ocak başına bırakılan bir tas süt ya da bir dilim ekmekle alınır; payını alan iye evi yeniden toplar. Ama iyesi iyice hırçınlaşmış bir evde eskiler kapının arkasına ters bir süpürge diker, huysuzluğu evden uğurlardı."
+ },
+ "ahiriyesi": {
+  "name": "Ahır İyesi",
+  "village": "Beşevler",
+  "voice": "Seyis; hayvanların dilinden konuşur",
+  "chosen": {
+   "kurban": "hayvan",
+   "iz": "yele",
+   "tanik": "ufak",
+   "zaman": "gece_yarisi",
+   "yer": "ahir",
+   "sebep": "yabanci"
+  },
+  "open": [
+   "tanik",
+   "zaman",
+   "yer"
+  ],
+  "closed": [
+   "kurban",
+   "iz",
+   "sebep"
+  ],
+  "signs": {
+   "kurban": "Ahırdaki hayvanlar",
+   "iz": "Örülmüş at yelesi",
+   "tanik": "Ufacık bir şey",
+   "zaman": "Gece yarısı",
+   "yer": "Ahır",
+   "sebep": "Tanınmayan biri eve alındı"
+  },
+  "weaknesses": [
+   "Adak",
+   "Kalbur"
+  ],
+  "rivals": [
+   {
+    "name": "Biçura",
+    "weaknesses": [
+     "Ters süpürge",
+     "Tuz"
+    ],
+    "signs": {
+     "kurban": [
+      "Bütün ev halkı"
+     ],
+     "iz": [
+      "Darmadağın eşya"
+     ],
+     "tanik": [
+      "Ufacık bir şey"
+     ],
+     "zaman": [
+      "Gece yarısı"
+     ],
+     "yer": [
+      "Ocak başı",
+      "Ahır"
+     ],
+     "sebep": [
+      "İzinsiz girildi"
+     ]
+    }
+   }
+  ],
+  "lore": "Derler ki her ahırın bir iyesi vardır. Ufacık, sakallı bir ihtiyara benzer, ama çoğu zaman hiç görünmez; yalnızca işi görünür. Sevdiği hayvanın yelesini gece yarısı tel tel örer, tımar eder, yemini önüne çeker; o hayvan semirir, parlar. Sevmediğini sabaha kadar koşturur, yemliğinden uzak tutar; hayvan terler, zayıflar, sonunda ölür. En çok, ahıra ona sorulmadan getirilen yabancı hayvana kızar; renginden, kokusundan hoşlanmazsa yaşatmaz. Bu yüzden eskiler yeni hayvanı ahıra sokmadan önce iyeye bir dilim ekmek, bir kaşık yağ bırakır, adak eder, hayvanı ona emanet ederdi. Kızgın iye için ahır kapısına bir kalbur asılır; iye deliklerini saymaya dalar, sayarken gece biter, hayvana dokunamaz."
+ },
+ "hamamiyesi": {
+  "name": "Hamam İyesi",
+  "village": "Karatepe",
+  "voice": "Köy hamamının natırı, kadın",
+  "chosen": {
+   "kurban": "kadin",
+   "iz": "islak",
+   "tanik": "golge",
+   "zaman": "gece_yarisi",
+   "yer": "hamam",
+   "sebep": "yalniz"
+  },
+  "open": [
+   "tanik",
+   "zaman",
+   "sebep"
+  ],
+  "closed": [
+   "kurban",
+   "iz",
+   "yer"
+  ],
+  "signs": {
+   "kurban": "Gece iş tutan kadınlar",
+   "iz": "Islak ayak izi",
+   "tanik": "Kara bir gölge",
+   "zaman": "Gece yarısı",
+   "yer": "Hamam",
+   "sebep": "Biri yalnız bırakıldı"
+  },
+  "weaknesses": [
+   "Söz",
+   "Ardıç tütsüsü"
+  ],
+  "rivals": [
+   {
+    "name": "Ümmüsıbyan",
+    "weaknesses": [
+     "Kurşun dökmek",
+     "Al kurdele"
+    ],
+    "signs": {
+     "kurban": [
+      "Çocuklar",
+      "Lohusa ve bebeği"
+     ],
+     "iz": [
+      "Tende morluk"
+     ],
+     "tanik": [
+      "Kara bir gölge",
+      "Hayvan kılığı"
+     ],
+     "zaman": [
+      "Gece yarısı"
+     ],
+     "yer": [
+      "Kapalı bir oda"
+     ],
+     "sebep": [
+      "Biri yalnız bırakıldı"
+     ]
+    }
+   }
+  ],
+  "lore": "Derler ki her hamamın bir iyesi vardır; ıslak taşların, kazanın, buharın sahibi odur. Gündüz hamam insanındır, gece yarısından sonra iyenindir. O saatte hamama yalnız giren kadına, tek başına yıkanan delikanlıya buharın içinde kara bir gölge olarak görünür. Kimse girmediği hâlde kurnadan su dökülür, kuru taşın üstünde ıslak ayak izleri belirir. İyenin vaktinde yıkanan çarpılır: ağzı yana kayar, dili tutulur, eli kolu kalkmaz, kimi zaman aklı gider. Hamama girerken selam verilir, izin istenir, çıkarken hamamın sahibine teşekkür edilir; iyeyle söz konuşan rahat yıkanır. Çarpılanın başında ardıç yakılır, hamam ardıç dumanıyla tütsülenir; iye o kokudan çekinir, buharın içinden çekilir."
+ },
+ "degirmeniyesi": {
+  "name": "Değirmen İyesi",
+  "village": "Ilıca",
+  "voice": "Değirmenci",
+  "chosen": {
+   "kurban": "ciftci",
+   "iz": "islak",
+   "tanik": "golge",
+   "zaman": "gece_yarisi",
+   "yer": "degirmen",
+   "sebep": "adak_unutmak"
+  },
+  "open": [
+   "iz",
+   "tanik",
+   "zaman"
+  ],
+  "closed": [
+   "kurban",
+   "yer",
+   "sebep"
+  ],
+  "signs": {
+   "kurban": "Tarlada, harmanda çalışanlar",
+   "iz": "Islak ayak izi",
+   "tanik": "Kara bir gölge",
+   "zaman": "Gece yarısı",
+   "yer": "Değirmen",
+   "sebep": "Adak, pay unutuldu"
+  },
+  "weaknesses": [
+   "Demir",
+   "Ardıç tütsüsü"
+  ],
+  "rivals": [
+   {
+    "name": "Hamam İyesi",
+    "weaknesses": [
+     "Söz",
+     "Ardıç tütsüsü"
+    ],
+    "signs": {
+     "kurban": [
+      "Gece iş tutan kadınlar",
+      "Bekâr delikanlılar"
+     ],
+     "iz": [
+      "Islak ayak izi"
+     ],
+     "tanik": [
+      "Kara bir gölge"
+     ],
+     "zaman": [
+      "Gece yarısı"
+     ],
+     "yer": [
+      "Hamam"
+     ],
+     "sebep": [
+      "Biri yalnız bırakıldı"
+     ]
+    }
+   }
+  ],
+  "lore": "Derler ki her değirmenin görünmeyen bir ortağı vardır. Çarkın altında, bendin dibinde, yosunlu taşların arasında oturur. Suyu döndüren, taşı çeviren odur; karşılığında payını ister. Eski değirmenciler her harmandan sonra ilk unun bir avucunu suya serperdi. Payı unutulan iye bir kez öfkelendi mi artık payla yatışmaz. Gece yarısı değirmende kara bir gölge dolaşır, çarkın sesine ıslak bir kahkaha karışır; sonra un öğütmeye gelen çiftçilerden biri arkta boğulmuş bulunur, saçında yosun, ayağında saz. Değirmenciler çarkın mili altına demir çakar, kapının üstüne demir bir nal asar; iye demirin dokunduğu yere elini uzatamaz. Değirmen ardıç dumanıyla tütsülenirse sudan çıkıp çarka yaklaşamaz, derler."
+ },
+ "agaciyesi": {
+  "name": "Ağaç İyesi",
+  "village": "Kocapınar",
+  "voice": "Ulu ağacı kestiren ağa; suçunu kabul etmiyor",
+  "chosen": {
+   "kurban": "ciftci",
+   "iz": "kuru",
+   "tanik": "gorunmez",
+   "zaman": "ogle",
+   "yer": "agac",
+   "sebep": "agac_kesmek"
+  },
+  "open": [
+   "kurban",
+   "tanik",
+   "zaman"
+  ],
+  "closed": [
+   "iz",
+   "yer",
+   "sebep"
+  ],
+  "signs": {
+   "kurban": "Tarlada, harmanda çalışanlar",
+   "iz": "Bir gecede kuruyan yeşillik",
+   "tanik": "Görünmez; yalnızca etkisi",
+   "zaman": "Öğle sıcağı",
+   "yer": "Ulu ağaç",
+   "sebep": "Dokunulmaz bir ağaç kesildi"
+  },
+  "weaknesses": [
+   "Adak",
+   "Söz"
+  ],
+  "rivals": [
+   {
+    "name": "Yer İyesi",
+    "weaknesses": [
+     "Adak",
+     "Tuz"
+    ],
+    "signs": {
+     "kurban": [
+      "Tarlada, harmanda çalışanlar",
+      "Toprağı kazanlar"
+     ],
+     "iz": [
+      "Bir gecede kuruyan yeşillik"
+     ],
+     "tanik": [
+      "Görünmez; yalnızca etkisi"
+     ],
+     "zaman": [
+      "Öğle sıcağı"
+     ],
+     "yer": [
+      "Tarla"
+     ],
+     "sebep": [
+      "İzinsiz girildi"
+     ]
+    }
+   }
+  ],
+  "lore": "Derler ki köy başındaki ulu ağaçların, dallarına çaput bağlanan dilek ağaçlarının bir iyesi vardır. Görünmez; yalnızca rüzgârsız havada yaprakların birden hışırdamasından, gölgenin bir anda buz kesmesinden bilinir. O ağaca balta vuranı, dalını kırıp ocağına atanı çarpar: ağzı yana kayar, kolu tutmaz, dili bağlanır. Çoğu zaman öğle sıcağında, gölgesine sığınan oduncuya, tarladan dönen çiftçiye dokunur. Çarptığı adamın ekini, bağı bir gecede kurur; sanki ağacın yarası ona geçmiştir. Bu yüzden ulu ağacın altına varan önce destur der, sahibinden izin ister; ağzından çıkan söz ağaca saygıdır. Kırılan dalın yerine adak bırakılır: bir somun ekmek, bir kâse yağ, dibine dökülen bir testi su. Ağaç hakkını alınca öfkesini bırakır, çarptığını da bağışlar."
+ },
+ "odana": {
+  "name": "Od Ana",
+  "village": "Dutluca",
+  "voice": "Ocağı söndüren evin büyük oğlu",
+  "chosen": {
+   "kurban": "hane",
+   "iz": "kul",
+   "tanik": "alev",
+   "zaman": "aksam",
+   "yer": "ocak",
+   "sebep": "ates"
+  },
+  "open": [
+   "kurban",
+   "iz",
+   "yer"
+  ],
+  "closed": [
+   "tanik",
+   "zaman",
+   "sebep"
+  ],
+  "signs": {
+   "kurban": "Bütün ev halkı",
+   "iz": "Kül, is, yanık",
+   "tanik": "Alev, ışık",
+   "zaman": "Akşam karanlığı",
+   "yer": "Ocak başı",
+   "sebep": "Ateşe saygısızlık"
+  },
+  "weaknesses": [
+   "Adak",
+   "Ardıç tütsüsü"
+  ],
+  "rivals": [
+   {
+    "name": "Körmös",
+    "weaknesses": [
+     "Adak",
+     "Ateş"
+    ],
+    "signs": {
+     "kurban": [
+      "Bütün ev halkı"
+     ],
+     "iz": [
+      "Kül, is, yanık"
+     ],
+     "tanik": [
+      "Tanıdık bir ölü"
+     ],
+     "zaman": [
+      "Her gece aynı saat"
+     ],
+     "yer": [
+      "Ocak başı"
+     ],
+     "sebep": [
+      "Ölüler anılmadı"
+     ]
+    }
+   }
+  ],
+  "lore": "Derler ki her ocağın ateşinde bir ana oturur. Od Ana evin bereketini tutar; ateşi saygıyla yanan evin ekmeği kabarır, kazanı boş kalmaz. Ateşe tükürene, öfkeyle üstüne su döküp söndürene, ateşi ayakla tepene küser. Küsünce akşam yakılan ateş tutuşmaz ya da birden harlanıp tencereyi kömüre çevirir; hamur ekşir, ambar küflenir, ocak başında kül, eşyada yanık izleri belirir. Bazen alevin içinde oturan bir kadın, bazen küllerden kalkıp odayı dolaşan kırmızı bir ışık olarak görünür. En çok akşam ocağı yakan kadına, sonra bütün ev halkına darılır. Gönlünü almak için ateşe adak olarak bir kaşık yağ atılır, ekmeğin ilk lokması ona verilir. Ocak başı ardıç tütsüsüyle tütsülenir; ardıcın keskin dumanı kötü sözü, kirli eli ateşin yanından uzaklaştırır."
+ },
+ "yelana": {
+  "name": "Yel Ana",
+  "village": "Armutlu",
+  "voice": "Harman sahibi",
+  "chosen": {
+   "kurban": "ciftci",
+   "iz": "dagin",
+   "tanik": "gorunmez",
+   "zaman": "firtina",
+   "yer": "tarla",
+   "sebep": "ovunmek"
+  },
+  "open": [
+   "tanik",
+   "zaman",
+   "sebep"
+  ],
+  "closed": [
+   "kurban",
+   "iz",
+   "yer"
+  ],
+  "signs": {
+   "kurban": "Tarlada, harmanda çalışanlar",
+   "iz": "Darmadağın eşya",
+   "tanik": "Görünmez; yalnızca etkisi",
+   "zaman": "Fırtına",
+   "yer": "Tarla",
+   "sebep": "Övünme, kötü söz"
+  },
+  "weaknesses": [
+   "Demir",
+   "Adak"
+  ],
+  "rivals": [
+   {
+    "name": "Dağ İyesi",
+    "weaknesses": [
+     "Ardıç tütsüsü",
+     "Al kurdele"
+    ],
+    "signs": {
+     "kurban": [
+      "Çobanlar",
+      "Avcılar"
+     ],
+     "iz": [
+      "Kocaman ayak izi"
+     ],
+     "tanik": [
+      "Görünmez; yalnızca etkisi",
+      "İnsan boyunun iki katı"
+     ],
+     "zaman": [
+      "Fırtına"
+     ],
+     "yer": [
+      "Dağ, yayla"
+     ],
+     "sebep": [
+      "Övünme, kötü söz"
+     ]
+    }
+   }
+  ],
+  "lore": "Derler ki yelin de bir anası vardır. Yel Ana görünmez; geldiği, durgun havada ovanın ortasından birden kalkan toz sütunundan, şeytan kuyruğu denen o dönen hortumdan bilinir. Kendisine söven, yeli lanetleyen, ‘bana yel mi vız gelir’ diye övünen çiftçiye kızar. Fırtınalı bir günde onun tarlasına iner; ekini yatırır, demetleri çözüp savurur, damdaki kiremidi, avludaki kazanı darmadağın eder, yolda gideni yere çalar. Tarlada ve yolda dolanır; evin içine girmez. Bu yüzden yaşlılar yele kötü söz söylemez. Hortum yaklaşınca içine bir bıçak fırlatılır; demir onu yaralar, dönüşünü bozar, bıçağın ucunda kan görüldüğü bile anlatılır. Öfkesi dinsin diye ardından yele bir avuç un serpilir; Yel Ana bu adağı alınca yolunu değiştirir."
+ },
+ "evren": {
+  "name": "Evren",
+  "village": "Kayabaşı",
+  "voice": "Köy yolunu ölçen harita memuru",
+  "chosen": {
+   "kurban": "coban",
+   "iz": "buyuk_iz",
+   "tanik": "yilan",
+   "zaman": "firtina",
+   "yer": "su",
+   "sebep": "adak_unutmak"
+  },
+  "open": [
+   "kurban",
+   "iz",
+   "zaman"
+  ],
+  "closed": [
+   "tanik",
+   "yer",
+   "sebep"
+  ],
+  "signs": {
+   "kurban": "Çobanlar",
+   "iz": "Kocaman ayak izi",
+   "tanik": "Yılan",
+   "zaman": "Fırtına",
+   "yer": "Dere, göl kıyısı",
+   "sebep": "Adak, pay unutuldu"
+  },
+  "weaknesses": [
+   "Ateş",
+   "Tuz"
+  ],
+  "rivals": [
+   {
+    "name": "Dağ İyesi",
+    "weaknesses": [
+     "Ardıç tütsüsü",
+     "Al kurdele"
+    ],
+    "signs": {
+     "kurban": [
+      "Çobanlar",
+      "Avcılar"
+     ],
+     "iz": [
+      "Kocaman ayak izi"
+     ],
+     "tanik": [
+      "Görünmez; yalnızca etkisi",
+      "İnsan boyunun iki katı"
+     ],
+     "zaman": [
+      "Fırtına"
+     ],
+     "yer": [
+      "Dağ, yayla"
+     ],
+     "sebep": [
+      "Övünme, kötü söz"
+     ]
+    }
+   }
+  ],
+  "lore": "Derler ki bir yılan yüz yıl yaşar, kimseye görünmezse evren olur. Gövdesi bir çınar gövdesi kadar kalın, başı bir evin damı kadar yüksektir. Göllerin dibinde, suyu besleyen mağaraların içinde yatar; köyün suyu onun izniyle akar. Suyun hakkı unutulursa, her yıl verilen pay verilmezse uyanır; bir kez uyandı mı geç kalmış pay onu yatıştırmaz. Kara bulutlar onunla gelir, fırtına onun nefesidir. Ağıldaki çobanı, kıyıdaki evin halkını sürükler, sonra kıvrılıp yatar ve suyu keser. Ardında ev büyüklüğünde yılan gömlekleri kalır. Evrenin soğuk kanı ateşten korkar; meşalelerle çevrilen kıyıya çıkamaz. Tuz ona zehir gibi gelir, derler; göle ve mağaranın ağzına serpilen tuz onu dibe kovar."
+ },
+ "sahmeran": {
+  "name": "Şahmeran",
+  "village": "Hacıbey",
+  "voice": "Kaybolan kuyucunun anası",
+  "chosen": {
+   "kurban": "delikanli",
+   "iz": "deri",
+   "tanik": "yilan",
+   "zaman": "dolunay",
+   "yer": "magara",
+   "sebep": "kiymak"
+  },
+  "open": [
+   "iz",
+   "tanik",
+   "sebep"
+  ],
+  "closed": [
+   "kurban",
+   "zaman",
+   "yer"
+  ],
+  "signs": {
+   "kurban": "Bekâr delikanlılar",
+   "iz": "Yılan gömleği",
+   "tanik": "Yılan",
+   "zaman": "Dolunay",
+   "yer": "Mağara",
+   "sebep": "Bir hayvana kıyıldı"
+  },
+  "weaknesses": [
+   "Susmak",
+   "Söz"
+  ],
+  "rivals": [
+   {
+    "name": "Ev Yılanı",
+    "weaknesses": [
+     "Susmak",
+     "Al kurdele"
+    ],
+    "signs": {
+     "kurban": [
+      "Bütün ev halkı"
+     ],
+     "iz": [
+      "Yılan gömleği"
+     ],
+     "tanik": [
+      "Yılan"
+     ],
+     "zaman": [
+      "Öğle sıcağı"
+     ],
+     "yer": [
+      "Ocak başı",
+      "Kapı eşiği"
+     ],
+     "sebep": [
+      "Bir hayvana kıyıldı"
+     ]
+    }
+   }
+  ],
+  "lore": "Derler ki yerin altında, bir mağaranın, bir kuyunun dibinde yılanların bir şahı vardır. Belinden yukarısı göz alıcı güzellikte bir kadın, belinden aşağısı yılandır; başında taç gibi bir pul halkası taşır. Dolunay gecesi kuyunun ağzı aydınlanır; bal toplarken ya da su çekerken eğilen delikanlıyı yerin altına çeker. Orada onu konuk eder, sırlarını ona açar, sonra salar; yeter ki gördüklerini kimseye anlatmayacağına söz versin. Söz tutulursa yılanlar o ocağa dokunmaz. Sırrı söyleyen ya da yılanlarından birini öldüren olursa Şahmeran öcünü alır: köyün delikanlıları birer birer kaybolur, kuyuların başında yılan gömlekleri bulunur. Bu yüzden onu görmüş olan susar, verdiği sözü bozmaz, sırrını mezara götürür."
+ },
+ "evyilani": {
+  "name": "Ev Yılanı",
+  "village": "Salkımlı",
+  "voice": "On yaşında çocuk; okul defterinden yırtılmış kâğıda yazıyor",
+  "chosen": {
+   "kurban": "hane",
+   "iz": "deri",
+   "tanik": "yilan",
+   "zaman": "ogle",
+   "yer": "ocak",
+   "sebep": "kiymak"
+  },
+  "open": [
+   "kurban",
+   "iz",
+   "tanik"
+  ],
+  "closed": [
+   "zaman",
+   "yer",
+   "sebep"
+  ],
+  "signs": {
+   "kurban": "Bütün ev halkı",
+   "iz": "Yılan gömleği",
+   "tanik": "Yılan",
+   "zaman": "Öğle sıcağı",
+   "yer": "Ocak başı",
+   "sebep": "Bir hayvana kıyıldı"
+  },
+  "weaknesses": [
+   "Susmak",
+   "Al kurdele"
+  ],
+  "rivals": [
+   {
+    "name": "Evren",
+    "weaknesses": [
+     "Ateş",
+     "Tuz"
+    ],
+    "signs": {
+     "kurban": [
+      "Çobanlar",
+      "Bütün ev halkı"
+     ],
+     "iz": [
+      "Yılan gömleği",
+      "Kocaman ayak izi"
+     ],
+     "tanik": [
+      "Yılan",
+      "İnsan boyunun iki katı"
+     ],
+     "zaman": [
+      "Fırtına"
+     ],
+     "yer": [
+      "Dere, göl kıyısı",
+      "Mağara"
+     ],
+     "sebep": [
+      "Adak, pay unutuldu"
+     ]
+    }
+   }
+  ],
+  "lore": "Derler ki eski evlerin eşiğinin ya da ocağının altında bir yılan yaşar; evin asıl sahibi odur, bereketi o tutar. Ev halkına dokunmaz, çoğu kimse onu hiç görmez. Yalnızca öğle sıcağında eşiğe uzanıp güneşlenir, ocak taşının dibinde gömleğini bırakır. Ona taş atan, kürekle vuran, yuvasını bozan olursa evden bereket çekilir: ambar boşalır, ekmek kabarmaz, para elde durmaz. Yılan görünmez olunca evin talihi de onunla gider. Bu yüzden ev yılanı görülünce susulur; adı anılmaz, kimseye söylenmez, çünkü sırrı dışarı taşan yılan evi terk eder. Gönlü kırılmışsa yoluna al bir kurdele serilir; üstünden geçip ocağının altına dönerse barıştığına, bereketi de geri getirdiğine inanılır."
+ },
+ "kurtadam": {
+  "name": "Kurtadam",
+  "village": "Kuyucak",
+  "voice": "Avcı arkadaşı; ne gördüğünü yazmaktan kaçınıyor",
+  "chosen": {
+   "kurban": "yolcu",
+   "iz": "kan",
+   "tanik": "killi",
+   "zaman": "dolunay",
+   "yer": "dag",
+   "sebep": "yalniz_yol"
+  },
+  "open": [
+   "kurban",
+   "iz",
+   "sebep"
+  ],
+  "closed": [
+   "tanik",
+   "zaman",
+   "yer"
+  ],
+  "signs": {
+   "kurban": "Gece yolcuları",
+   "iz": "Kan",
+   "tanik": "Kıllı, iri bir şey",
+   "zaman": "Dolunay",
+   "yer": "Dağ, yayla",
+   "sebep": "Gece yalnız yola çıkıldı"
+  },
+  "weaknesses": [
+   "Ateş",
+   "Kurşun dökmek"
+  ],
+  "rivals": [
+   {
+    "name": "Yelmoğuz",
+    "weaknesses": [
+     "Ayna",
+     "Çuvaldız"
+    ],
+    "signs": {
+     "kurban": [
+      "Çocuklar",
+      "Gece yolcuları"
+     ],
+     "iz": [
+      "Kan"
+     ],
+     "tanik": [
+      "İki büklüm bir kocakarı"
+     ],
+     "zaman": [
+      "Akşam karanlığı"
+     ],
+     "yer": [
+      "Orman",
+      "Issız yol"
+     ],
+     "sebep": [
+      "Gece yalnız yola çıkıldı"
+     ]
+    }
+   },
+   {
+    "name": "Abası",
+    "weaknesses": [
+     "Ateş",
+     "Ardıç tütsüsü"
+    ],
+    "signs": {
+     "kurban": [
+      "Bütün ev halkı",
+      "Gece yolcuları"
+     ],
+     "iz": [
+      "Kan"
+     ],
+     "tanik": [
+      "Tek göz",
+      "Kara bir gölge"
+     ],
+     "zaman": [
+      "Zemheri",
+      "Aysız, zifiri gece"
+     ],
+     "yer": [
+      "Orman"
+     ],
+     "sebep": [
+      "Gece yalnız yola çıkıldı"
+     ]
+    }
+   }
+  ],
+  "lore": "Derler ki kimi adamın içinde bir kurt uyur. Dolunay doğunca o adam evinden çıkar, dağa, ormana yürür; sabah ne yaptığını hatırlamaz. Ay ışığında iri, kıllı bir şeye döner: bir kurttan iri, bir insandan kambur. Gece yalnız yola çıkan yolcuyu, sürünün başında yalnız kalan çobanı kokusundan bulur. Ardında pençe izleri, kan bırakır. Köpekler onu görünce havlamaz, kuyruklarını kısıp ağıla siner. Kurt soyu ateşten korkar; dolunay gecesi yakılan büyük ateşin çevresine giremez. İçindeki kurdu dökmek için de kurşun dökülür: eritilen kurşun başının üstünde suya döküldüğünde cız eder, kurt başı biçiminde donar; o adam o gece insan kalır."
+ },
+ "ummusibyan": {
+  "name": "Ümmüsıbyan",
+  "village": "Ardıçlı",
+  "voice": "Bir bebeğini yitirmiş, ikincisi için yazan ana",
+  "chosen": {
+   "kurban": "cocuk",
+   "iz": "morluk",
+   "tanik": "golge",
+   "zaman": "gece_yarisi",
+   "yer": "oda",
+   "sebep": "yalniz"
+  },
+  "open": [
+   "zaman",
+   "yer",
+   "sebep"
+  ],
+  "closed": [
+   "kurban",
+   "iz",
+   "tanik"
+  ],
+  "signs": {
+   "kurban": "Çocuklar",
+   "iz": "Tende morluk",
+   "tanik": "Kara bir gölge",
+   "zaman": "Gece yarısı",
+   "yer": "Kapalı bir oda",
+   "sebep": "Biri yalnız bırakıldı"
+  },
+  "weaknesses": [
+   "Kurşun dökmek",
+   "Al kurdele"
+  ],
+  "rivals": [
+   {
+    "name": "Albastı",
+    "weaknesses": [
+     "Demir",
+     "Al kurdele"
+    ],
+    "signs": {
+     "kurban": [
+      "Lohusa ve bebeği"
+     ],
+     "iz": [
+      "Islak ayak izi",
+      "Upuzun saç telleri"
+     ],
+     "tanik": [
+      "Saçları yerlere inen bir kadın"
+     ],
+     "zaman": [
+      "Kırk gün dolmadan",
+      "Gece yarısı"
+     ],
+     "yer": [
+      "Kapalı bir oda",
+      "Dere, göl kıyısı"
+     ],
+     "sebep": [
+      "Biri yalnız bırakıldı"
+     ]
+    }
+   }
+  ],
+  "lore": "Derler ki Ümmüsıbyan küçük çocukların düşmanıdır; adı “çocukların anası” demektir ama ana değildir. Gece yarısı, kapısı kapalı odada ana ile bebek yalnız kaldığında gelir. Kimi onu beşiğin üstüne eğilen kara bir gölge olarak görür, kimi beşiğin dibinde dolaşan bir kedi, bir köpek, bir kara kuş kılığında. Dokunduğu bebek havaleye düşer: gözleri kayar, eli ayağı kasılır, dudakları morarır. Sabah çocuğun kollarında, sırtında parmak izi gibi morluklar bulunur. Bazen lohusanın kendisine de çöker, onu da sayıklatır, eli kolu tutmaz eder. Beşiğe al bir kurdele bağlanır; al renk onun gözünü alır, beşiği göremez olur. Havaleye düşen çocuğun başı üstünde kurşun dökülür; kurşun soğuk suda cızırdayıp çatlarken onun gücü de çatlar, çocuktan ayrılır."
+ },
+ "kayberen": {
+  "name": "Kayberen",
+  "village": "Çalıköy",
+  "voice": "Avcının karısı",
+  "chosen": {
+   "kurban": "avci",
+   "iz": "kan",
+   "tanik": "hayvan",
+   "zaman": "safak",
+   "yer": "dag",
+   "sebep": "fazla_av"
+  },
+  "open": [
+   "iz",
+   "tanik",
+   "yer"
+  ],
+  "closed": [
+   "kurban",
+   "zaman",
+   "sebep"
+  ],
+  "signs": {
+   "kurban": "Avcılar",
+   "iz": "Kan",
+   "tanik": "Hayvan kılığı",
+   "zaman": "Şafaktan hemen önce",
+   "yer": "Dağ, yayla",
+   "sebep": "Gereğinden fazla av"
+  },
+  "weaknesses": [
+   "Adak",
+   "Şafağı beklemek"
+  ],
+  "rivals": [
+   {
+    "name": "Kurtadam",
+    "weaknesses": [
+     "Ateş",
+     "Kurşun dökmek"
+    ],
+    "signs": {
+     "kurban": [
+      "Çobanlar",
+      "Gece yolcuları"
+     ],
+     "iz": [
+      "Pençe izi",
+      "Kan"
+     ],
+     "tanik": [
+      "Kıllı, iri bir şey",
+      "Hayvan kılığı"
+     ],
+     "zaman": [
+      "Dolunay"
+     ],
+     "yer": [
+      "Dağ, yayla",
+      "Orman"
+     ],
+     "sebep": [
+      "Gece yalnız yola çıkıldı"
+     ]
+    }
+   }
+  ],
+  "lore": "Derler ki dağdaki yaban keçisinin, geyiğin, arkarın bir sahibi vardır; adı Kayberen’dir. Avcı hakkı kadar avlarsa ses çıkarmaz. Ama sürüyü kırıp geçiren, yavrulu dişiyi vuran, taşıyamadığı eti kurtlara bırakan avcıyı cezalandırır. Bembeyaz bir dağ keçisi ya da ak bir geyik olarak görünür; avcı onu vurmak ister, peşine düşer. Ak keçi onu şafaktan önce en sarp kayalığa çeker; avcı inemeyeceği bir yerde kalır, ya da hiç dönmez. Kırgızların Kocacaş destanında avcı böyle bir kayalıkta kalır. Kayberen’in gönlünü almak isteyen avının ilk payını, yağını dağa adak olarak bırakır; adağını alan sahip öfkesini yatıştırır. Kayalıkta kalan kıpırdamadan şafağı beklerse kurtulabilir; gün ışıyınca ak keçinin büyüsü dağılır, yol görünür."
+ },
+ "uor": {
+  "name": "Üör",
+  "village": "Tepecik",
+  "voice": "Köyün mezarcısı",
+  "chosen": {
+   "kurban": "hane",
+   "iz": "dagin",
+   "tanik": "olu",
+   "zaman": "ayni_saat",
+   "yer": "yol",
+   "sebep": "haksiz_olum"
+  },
+  "open": [
+   "kurban",
+   "tanik",
+   "zaman"
+  ],
+  "closed": [
+   "iz",
+   "yer",
+   "sebep"
+  ],
+  "signs": {
+   "kurban": "Bütün ev halkı",
+   "iz": "Darmadağın eşya",
+   "tanik": "Tanıdık bir ölü",
+   "zaman": "Her gece aynı saat",
+   "yer": "Issız yol",
+   "sebep": "Haksız bir ölüm"
+  },
+  "weaknesses": [
+   "Ardıç tütsüsü",
+   "Tuz"
+  ],
+  "rivals": [
+   {
+    "name": "Körmös",
+    "weaknesses": [
+     "Adak",
+     "Ateş"
+    ],
+    "signs": {
+     "kurban": [
+      "Bütün ev halkı"
+     ],
+     "iz": [
+      "Kül, is, yanık"
+     ],
+     "tanik": [
+      "Tanıdık bir ölü"
+     ],
+     "zaman": [
+      "Her gece aynı saat"
+     ],
+     "yer": [
+      "Ocak başı"
+     ],
+     "sebep": [
+      "Ölüler anılmadı"
+     ]
+    }
+   }
+  ],
+  "lore": "Derler ki haksız yere öldürülen, vakitsiz ve kötü bir ölümle giden kişinin ruhu yerine varamaz; Üör olur. Öldüğü yolda dolaşır, her gece aynı saatte, ölümünün saatinde, eski evinin kapısına gelir. Eşikte durur; ev halkını, en çok da yasını tutanları adlarıyla çağırır. Sesi tanıdıktır; bakan onu son görüldüğü gibi, sağ hâliyle görür. İçeri giremediği gecelerde evin eşyasını yerinden oynatır, sandıkları açar, kapları devirir. Ev halkı ne hasta olur ne ölür, ama bir daha rahat uyuyamaz. Bunu bilenler evi ve yolu ardıç dumanıyla tütsüler; eşiğe ve öldüğü yere tuz serperler ki tuzun ötesine geçemesin. Ruhun öfkesi, ölümünün hakkı aranana dek tam dinmez, derler."
+ },
+ "abasi": {
+  "name": "Abası",
+  "village": "Yenice",
+  "voice": "Gezgin tüccar",
+  "chosen": {
+   "kurban": "yolcu",
+   "iz": "kan",
+   "tanik": "tek_goz",
+   "zaman": "aysiz",
+   "yer": "orman",
+   "sebep": "yalniz_yol"
+  },
+  "open": [
+   "kurban",
+   "zaman",
+   "sebep"
+  ],
+  "closed": [
+   "iz",
+   "tanik",
+   "yer"
+  ],
+  "signs": {
+   "kurban": "Gece yolcuları",
+   "iz": "Kan",
+   "tanik": "Tek göz",
+   "zaman": "Aysız, zifiri gece",
+   "yer": "Orman",
+   "sebep": "Gece yalnız yola çıkıldı"
+  },
+  "weaknesses": [
+   "Ateş",
+   "Ardıç tütsüsü"
+  ],
+  "rivals": [
+   {
+    "name": "Gulyabani",
+    "weaknesses": [
+     "Çuvaldız",
+     "Şafağı beklemek"
+    ],
+    "signs": {
+     "kurban": [
+      "Gece yolcuları",
+      "Çobanlar"
+     ],
+     "iz": [
+      "Uzun tırnak çizikleri",
+      "Keçeleşmiş kıl"
+     ],
+     "tanik": [
+      "Kıllı, iri bir şey",
+      "İnsan boyunun iki katı"
+     ],
+     "zaman": [
+      "Aysız, zifiri gece"
+     ],
+     "yer": [
+      "Harabe, yıkık han",
+      "Mezarlık"
+     ],
+     "sebep": [
+      "Gece yalnız yola çıkıldı"
+     ]
+    }
+   },
+   {
+    "name": "Sırtlan",
+    "weaknesses": [
+     "Ateş",
+     "Demir"
+    ],
+    "signs": {
+     "kurban": [
+      "Uykudakiler",
+      "Gece yolcuları"
+     ],
+     "iz": [
+      "Pençe izi"
+     ],
+     "tanik": [
+      "Hayvan kılığı"
+     ],
+     "zaman": [
+      "Aysız, zifiri gece"
+     ],
+     "yer": [
+      "Mağara",
+      "Issız yol"
+     ],
+     "sebep": [
+      "Gece yalnız yola çıkıldı"
+     ]
+    }
+   }
+  ],
+  "lore": "Derler ki Abası alt dünyanın halkındandır. Tek gözü alnının ortasındadır; tek kolu, tek bacağı vardır, sekerek yürür. Zemheri gecelerinde, ayın hiç görünmediği karanlıkta yer üstüne çıkar; ormanın içinden yalnız geçen yolcunun ardına bir gölge gibi takılır, onunla eve kadar gelir. Dokunduğu kişinin canını yer: kurban gün gün erir, öksürdüğünde kan gelir, rengi balmumu gibi solar; sonra hastalık ev halkının öbürlerine geçer. Ateşin ışığına giremez; bu yüzden zemheride ocak gece boyu söndürülmez, yolcu yanında ateş taşır, ocağın iyesi evi korur. Hastanın başında ardıç yakılır, ev ardıç dumanıyla tütsülenir; Abası o kokudan kaçar, ormana, oradan da yerin altına döner."
+ },
+ "yeriyesi": {
+  "name": "Yer İyesi",
+  "village": "Alacahan",
+  "voice": "Yeni yerleşmiş göçmen aile",
+  "chosen": {
+   "kurban": "ciftci",
+   "iz": "kuru",
+   "tanik": "gorunmez",
+   "zaman": "ogle",
+   "yer": "tarla",
+   "sebep": "izinsiz"
+  },
+  "open": [
+   "kurban",
+   "tanik",
+   "yer"
+  ],
+  "closed": [
+   "iz",
+   "zaman",
+   "sebep"
+  ],
+  "signs": {
+   "kurban": "Tarlada, harmanda çalışanlar",
+   "iz": "Bir gecede kuruyan yeşillik",
+   "tanik": "Görünmez; yalnızca etkisi",
+   "zaman": "Öğle sıcağı",
+   "yer": "Tarla",
+   "sebep": "İzinsiz girildi"
+  },
+  "weaknesses": [
+   "Adak",
+   "Tuz"
+  ],
+  "rivals": [
+   {
+    "name": "Yel Ana",
+    "weaknesses": [
+     "Demir",
+     "Adak"
+    ],
+    "signs": {
+     "kurban": [
+      "Tarlada, harmanda çalışanlar"
+     ],
+     "iz": [
+      "Darmadağın eşya"
+     ],
+     "tanik": [
+      "Görünmez; yalnızca etkisi"
+     ],
+     "zaman": [
+      "Fırtına"
+     ],
+     "yer": [
+      "Tarla",
+      "Issız yol"
+     ],
+     "sebep": [
+      "Övünme, kötü söz"
+     ]
+    }
+   },
+   {
+    "name": "Ekin İyesi",
+    "weaknesses": [
+     "Adak",
+     "Al kurdele"
+    ],
+    "signs": {
+     "kurban": [
+      "Tarlada, harmanda çalışanlar"
+     ],
+     "iz": [
+      "Bir gecede kuruyan yeşillik"
+     ],
+     "tanik": [
+      "İki büklüm bir kocakarı",
+      "Görünmez; yalnızca etkisi"
+     ],
+     "zaman": [
+      "Harman vakti"
+     ],
+     "yer": [
+      "Tarla"
+     ],
+     "sebep": [
+      "Adak, pay unutuldu"
+     ]
+    }
+   }
+  ],
+  "lore": "Derler ki yerin de sahibi vardır. Yer İyesi görünmez; toprağın altında, en çok hiç sürülmemiş yerlerde oturur. Ondan izin almadan yeni bir tarla açan, sınır taşını söken, tarlanın ortasına ark ya da hendek kazan adamı çarpar: öğle sıcağında kazdığı çukurun başında yığılır kalır, ağzı yana kayar, eli kolu tutmaz. Kazmanın vurduğu yerde ot bir gecede kurur; o tarlaya ne ekilse bitmez. Bu yüzden yaşlılar yeni toprağı açmadan önce yere adak verir: bir somun ekmek, bir kâse yağ toprağa gömülür, yerin hakkı önce ona ödenir. Kazının dört köşesine de tuz serpilir; tuz, yerin sahibiyle ekmek tuz hakkı kurmanın yoludur. Tuzu yalayan iye artık o toprağı açana el kaldırmaz."
+ },
+ "dagiyesi": {
+  "name": "Dağ İyesi",
+  "village": "Karaköprü",
+  "voice": "Yörük obası büyüğü",
+  "chosen": {
+   "kurban": "coban",
+   "iz": "buyuk_iz",
+   "tanik": "gorunmez",
+   "zaman": "firtina",
+   "yer": "dag",
+   "sebep": "ovunmek"
+  },
+  "open": [
+   "tanik",
+   "zaman",
+   "sebep"
+  ],
+  "closed": [
+   "kurban",
+   "iz",
+   "yer"
+  ],
+  "signs": {
+   "kurban": "Çobanlar",
+   "iz": "Kocaman ayak izi",
+   "tanik": "Görünmez; yalnızca etkisi",
+   "zaman": "Fırtına",
+   "yer": "Dağ, yayla",
+   "sebep": "Övünme, kötü söz"
+  },
+  "weaknesses": [
+   "Ardıç tütsüsü",
+   "Al kurdele"
+  ],
+  "rivals": [
+   {
+    "name": "Yel Ana",
+    "weaknesses": [
+     "Demir",
+     "Adak"
+    ],
+    "signs": {
+     "kurban": [
+      "Tarlada, harmanda çalışanlar"
+     ],
+     "iz": [
+      "Darmadağın eşya"
+     ],
+     "tanik": [
+      "Görünmez; yalnızca etkisi"
+     ],
+     "zaman": [
+      "Fırtına"
+     ],
+     "yer": [
+      "Tarla",
+      "Issız yol"
+     ],
+     "sebep": [
+      "Övünme, kötü söz"
+     ]
+    }
+   }
+  ],
+  "lore": "Derler ki her dağın bir iyesi vardır; dağ onun evi, otlayan sürüler ve av onun malıdır. Çoğu zaman görünmez; varlığı birden çöken sisten, yazın ortasında savrulan kardan, gök gürültüsünden bilinir. Bazen de bulutların arasında insan boyunun iki katı bir adam olup geçer. Dağa karşı övünen, ‘Bu dağı bir günde aşarım, dağ dediğin bir taş yığını’ diyen çobanı ve avcıyı fırtınayla karşılar; yolunu şaşırtır, sürüsünü dağıtır, kendisini bulunmamak üzere alır. Ardından karda, çamurda kocaman ayak izleri kalır. Bu yüzden yaylaya çıkan ardıç dalı yakıp kendini ve sürüsünü tütsüler; dağ ardıç dumanını sever, dumanla gelenin saygısını tanır. Geçitteki taş yığınına ya da yalnız ağaca al bir bez bağlanır; dağın iyesi bu payı görünce yolu açar."
+ },
+ "almasti": {
+  "name": "Almastı",
+  "village": "Yazılı",
+  "voice": "Nalbant",
+  "chosen": {
+   "kurban": "hayvan",
+   "iz": "kil",
+   "tanik": "killi",
+   "zaman": "aksam",
+   "yer": "orman",
+   "sebep": "izinsiz"
+  },
+  "open": [
+   "iz",
+   "zaman",
+   "yer"
+  ],
+  "closed": [
+   "kurban",
+   "tanik",
+   "sebep"
+  ],
+  "signs": {
+   "kurban": "Ahırdaki hayvanlar",
+   "iz": "Keçeleşmiş kıl",
+   "tanik": "Kıllı, iri bir şey",
+   "zaman": "Akşam karanlığı",
+   "yer": "Orman",
+   "sebep": "İzinsiz girildi"
+  },
+  "weaknesses": [
+   "Çuvaldız",
+   "Kalbur"
+  ],
+  "rivals": [
+   {
+    "name": "Şürale",
+    "weaknesses": [
+     "Demir",
+     "Susmak"
+    ],
+    "signs": {
+     "kurban": [
+      "Gece yolcuları",
+      "Tarlada, harmanda çalışanlar"
+     ],
+     "iz": [
+      "Keçeleşmiş kıl"
+     ],
+     "tanik": [
+      "Kıllı, iri bir şey",
+      "Kahkaha"
+     ],
+     "zaman": [
+      "Akşam karanlığı"
+     ],
+     "yer": [
+      "Orman"
+     ],
+     "sebep": [
+      "Dokunulmaz bir ağaç kesildi",
+      "Gece yalnız yola çıkıldı"
+     ]
+    }
+   }
+  ],
+  "lore": "Derler ki Almastı ormanın ve dağ eteğinin yaban kadınıdır. İnsana benzer ama her yeri sık, kızıl kahverengi kıllarla örtülüdür; saçı topuklarına iner, uzun göğüslerini omuzlarının üstünden arkaya atar. Akşam karanlığı çökünce ormandan çıkar, ahırlara girer, atları eyersiz sürer; sabah hayvanlar köpük içinde, yeleleri sıkı sıkı örülmüş bulunur. Sürdüğü at gün gün zayıflar, ahırın bereketi kaçar. Kendi toprağına, oturduğu koruya izinsiz giren köyün ahırına dadanır. Yakasına ya da eteğine bir çuvaldız, bir iğne batıran olursa yerinden kıpırdayamaz; iğne çekilene dek o evin hizmetçisi olur. Ahır kapısına asılan kalburun deliklerini saymaya dalar, sayarken gün doğar, atlara dokunamaz."
+ },
+ "sulmus": {
+  "name": "Şulmus",
+  "village": "Meşeli",
+  "voice": "Yetim kız; okuma yazmayı yeni söküyor",
+  "chosen": {
+   "kurban": "yolcu",
+   "iz": "kul",
+   "tanik": "golge",
+   "zaman": "aksam",
+   "yer": "yol",
+   "sebep": "yalniz_yol"
+  },
+  "open": [
+   "kurban",
+   "zaman",
+   "sebep"
+  ],
+  "closed": [
+   "iz",
+   "tanik",
+   "yer"
+  ],
+  "signs": {
+   "kurban": "Gece yolcuları",
+   "iz": "Kül, is, yanık",
+   "tanik": "Kara bir gölge",
+   "zaman": "Akşam karanlığı",
+   "yer": "Issız yol",
+   "sebep": "Gece yalnız yola çıkıldı"
+  },
+  "weaknesses": [
+   "Kurşun dökmek",
+   "Ardıç tütsüsü"
+  ],
+  "rivals": [
+   {
+    "name": "Yelmoğuz",
+    "weaknesses": [
+     "Ayna",
+     "Çuvaldız"
+    ],
+    "signs": {
+     "kurban": [
+      "Çocuklar",
+      "Gece yolcuları"
+     ],
+     "iz": [
+      "Kan"
+     ],
+     "tanik": [
+      "İki büklüm bir kocakarı"
+     ],
+     "zaman": [
+      "Akşam karanlığı"
+     ],
+     "yer": [
+      "Orman",
+      "Issız yol"
+     ],
+     "sebep": [
+      "Gece yalnız yola çıkıldı"
+     ]
+    }
+   },
+   {
+    "name": "Şürale",
+    "weaknesses": [
+     "Demir",
+     "Susmak"
+    ],
+    "signs": {
+     "kurban": [
+      "Gece yolcuları",
+      "Tarlada, harmanda çalışanlar"
+     ],
+     "iz": [
+      "Keçeleşmiş kıl"
+     ],
+     "tanik": [
+      "Kıllı, iri bir şey",
+      "Kahkaha"
+     ],
+     "zaman": [
+      "Akşam karanlığı"
+     ],
+     "yer": [
+      "Orman"
+     ],
+     "sebep": [
+      "Dokunulmaz bir ağaç kesildi",
+      "Gece yalnız yola çıkıldı"
+     ]
+    }
+   }
+  ],
+  "lore": "Derler ki Şulmus yolların ve yıkıntıların kötü ruhudur. Akşam karanlığı çökerken yol ayrımlarında, yıkık hanların, terk edilmiş köy yerlerinin çevresinde dolaşır. Yalnız yola çıkan yolcunun önüne bir gölge gibi düşer, onu yolundan saptırır; yolcu bildiği yolu tanıyamaz olur, aynı kavşağa üç kez döner. Sonunda Şulmus onu çarpar: yolcu yüzü yana kaymış, dili tutulmuş, aklı karışmış bulunur. Geçtiği yerde avuç avuç kül, yanık ot kokusu kalır. Çarpılanın korkusu kurşunla dökülür: erimiş kurşun başının üstünde bir kap suya dökülür, kurşun cızırdayıp Şulmus’un biçimini alır, çarpıntı açılır. Hastanın çevresinde ve yol ayrımında ardıç yakılır; Şulmus dumanın girdiği yere bir daha uğramaz."
+ },
+ "ifrit": {
+  "name": "İfrit",
+  "village": "Sazlıdere",
+  "voice": "Kaybolan kaçakçının kardeşi",
+  "chosen": {
+   "kurban": "defineci",
+   "iz": "kul",
+   "tanik": "alev",
+   "zaman": "aysiz",
+   "yer": "harabe",
+   "sebep": "define"
+  },
+  "open": [
+   "iz",
+   "yer",
+   "sebep"
+  ],
+  "closed": [
+   "kurban",
+   "tanik",
+   "zaman"
+  ],
+  "signs": {
+   "kurban": "Toprağı kazanlar",
+   "iz": "Kül, is, yanık",
+   "tanik": "Alev, ışık",
+   "zaman": "Aysız, zifiri gece",
+   "yer": "Harabe, yıkık han",
+   "sebep": "Yerin altındakine el uzatıldı"
+  },
+  "weaknesses": [
+   "Söz",
+   "Ayna"
+  ],
+  "rivals": [
+   {
+    "name": "Define Bekçisi",
+    "weaknesses": [
+     "Kurşun dökmek",
+     "Tuz"
+    ],
+    "signs": {
+     "kurban": [
+      "Toprağı kazanlar"
+     ],
+     "iz": [
+      "Eşilmiş toprak",
+      "Kül, is, yanık"
+     ],
+     "tanik": [
+      "Kara bir gölge",
+      "Ufacık bir şey"
+     ],
+     "zaman": [
+      "Gece yarısı"
+     ],
+     "yer": [
+      "Harabe, yıkık han",
+      "Mezarlık"
+     ],
+     "sebep": [
+      "Yerin altındakine el uzatıldı"
+     ]
+    }
+   }
+  ],
+  "lore": "Derler ki İfrit cinlerin en güçlüsüdür; dumansız ateşten yaratılmıştır. Yıkık hanlarda, eski kale ve manastır harabelerinde, yerin altındaki gömülerin başında bekler. Ayın hiç görünmediği zifiri gecelerde kazmaya girişen defineciye görünür: önce taşların arasından bir alev, sonra o alevden doğrulan, başı kemere değen bir gövde. Yerin altındakine el uzatanı yakar, öldürür; çukurun başında yalnız kül, is ve sapı kömür olmuş bir kazma kalır. Ondan kurtulan pek azdır. Harabeye girerken besmele çeken, ağzından duayı eksik etmeyen ona kolay yakalanmaz; söz, ateşini söndürmese de onu bağlar. Elinde ayna taşıyan da kurtulur derler: İfrit aynada kendi gerçek yüzünü görünce donakalır, o arada kaçana bakamaz."
+ },
+ "karakedi": {
+  "name": "Kara Kedi",
+  "village": "Köprübaşı",
+  "voice": "Köy terzisi",
+  "chosen": {
+   "kurban": "hane",
+   "iz": "pence",
+   "tanik": "hayvan",
+   "zaman": "gece_yarisi",
+   "yer": "ocak",
+   "sebep": "kiymak"
+  },
+  "open": [
+   "kurban",
+   "zaman",
+   "yer"
+  ],
+  "closed": [
+   "iz",
+   "tanik",
+   "sebep"
+  ],
+  "signs": {
+   "kurban": "Bütün ev halkı",
+   "iz": "Pençe izi",
+   "tanik": "Hayvan kılığı",
+   "zaman": "Gece yarısı",
+   "yer": "Ocak başı",
+   "sebep": "Bir hayvana kıyıldı"
+  },
+  "weaknesses": [
+   "Söz",
+   "Ters süpürge"
+  ],
+  "rivals": [
+   {
+    "name": "Ecinni",
+    "weaknesses": [
+     "Söz",
+     "Şafağı beklemek"
+    ],
+    "signs": {
+     "kurban": [
+      "Bütün ev halkı",
+      "Gece iş tutan kadınlar"
+     ],
+     "iz": [
+      "Örülmüş at yelesi",
+      "Ters basılmış izler"
+     ],
+     "tanik": [
+      "Kalabalık, düğün sesi"
+     ],
+     "zaman": [
+      "Gece yarısı"
+     ],
+     "yer": [
+      "Hamam",
+      "Ocak başı"
+     ],
+     "sebep": [
+      "Destur, besmele denmedi"
+     ]
+    }
+   },
+   {
+    "name": "Biçura",
+    "weaknesses": [
+     "Ters süpürge",
+     "Tuz"
+    ],
+    "signs": {
+     "kurban": [
+      "Bütün ev halkı"
+     ],
+     "iz": [
+      "Darmadağın eşya"
+     ],
+     "tanik": [
+      "Ufacık bir şey"
+     ],
+     "zaman": [
+      "Gece yarısı"
+     ],
+     "yer": [
+      "Ocak başı",
+      "Ahır"
+     ],
+     "sebep": [
+      "İzinsiz girildi"
+     ]
+    }
+   }
+  ],
+  "lore": "Derler ki gece ocak başında, kapı eşiğinde görülen kara kedi her zaman kedi değildir; cinler en çok kara kedi kılığına girer. Gece yarısı ev uyurken ocağın sıcak taşına kıvrılır, eşikte bekler, gözleri kömür gibi yanar. Ona vuran, üstüne kaynar su döken, kuyruğuna basan çarpılır: eli kolu tutmaz, ağzı yana kayar, dili bağlanır. Bazen yalnız vuran değil bütün ev halkı çarpılır, çünkü cinin de bir ev halkı vardır. Gece su dökerken, eşikten geçerken besmele çekilir, destur denir; söz söylenen yerde cin kılığından çıkar, yoluna gider. Kara kedisi bir türlü gitmeyen evde kapının arkasına ters bir süpürge dikilir; istenmeyen misafir nasıl kalkıp giderse o da öyle gider."
+ },
+ "suaygiri": {
+  "name": "Su Aygırı",
+  "village": "Taşkesen",
+  "voice": "Balıkçı",
+  "chosen": {
+   "kurban": "delikanli",
+   "iz": "islak",
+   "tanik": "at",
+   "zaman": "dolunay",
+   "yer": "su",
+   "sebep": "yabanci"
+  },
+  "open": [
+   "kurban",
+   "zaman",
+   "sebep"
+  ],
+  "closed": [
+   "iz",
+   "tanik",
+   "yer"
+  ],
+  "signs": {
+   "kurban": "Bekâr delikanlılar",
+   "iz": "Islak ayak izi",
+   "tanik": "Bir at",
+   "zaman": "Dolunay",
+   "yer": "Dere, göl kıyısı",
+   "sebep": "Tanınmayan biri eve alındı"
+  },
+  "weaknesses": [
+   "Demir",
+   "Kalbur"
+  ],
+  "rivals": [
+   {
+    "name": "Yuha",
+    "weaknesses": [
+     "Ayna",
+     "Ardıç tütsüsü"
+    ],
+    "signs": {
+     "kurban": [
+      "Bekâr delikanlılar"
+     ],
+     "iz": [
+      "Yılan gömleği"
+     ],
+     "tanik": [
+      "Göz alan bir güzellik",
+      "Yılan"
+     ],
+     "zaman": [
+      "Dolunay"
+     ],
+     "yer": [
+      "Orman"
+     ],
+     "sebep": [
+      "Tanınmayan biri eve alındı"
+     ]
+    }
+   }
+  ],
+  "lore": "Derler ki bazı derin göllerin dibinde bir aygır yaşar. Dolunay gecelerinde sudan çıkar; kapkara, yelesi hep ıslak, gözleri suyun rengindedir. Kıyıda otlayan kısraklara karışır; ondan doğan taylar rüzgâr gibi koşar, ama günün birinde göle dönüp kaybolur, kısrakları da peşine takar. Delikanlılara uysal görünür; sırtına binen bir daha inemez, at onu dörtnala göle taşır, sudan geriye yalnız yosun çıkar. En çok sahibi belirsiz bir atı ahırına alan köye dadanır; çünkü o yabancı at çoğu zaman kendisidir. Onu tutmanın yolu demirdir: ağzına demir gem vuran, toynağına nal çakan, aygırı karada bağlar. Ahırın kapısına da kalbur asılır; su kalburda durmaz, sudan gelen de kalburun altından geçemez."
+ },
+ "kuyuanasi": {
+  "name": "Kuyu Anası",
+  "village": "Elmacık",
+  "voice": "Köy heyeti adına üç kişinin imzaladığı yazı",
+  "chosen": {
+   "kurban": "cocuk",
+   "iz": "yosun",
+   "tanik": "cagiran",
+   "zaman": "ogle",
+   "yer": "kuyu",
+   "sebep": "yalniz"
+  },
+  "open": [
+   "kurban",
+   "tanik"
+  ],
+  "closed": [
+   "iz",
+   "zaman",
+   "yer",
+   "sebep"
+  ],
+  "signs": {
+   "kurban": "Çocuklar",
+   "iz": "Yosun ve saz",
+   "tanik": "Adıyla çağıran ses",
+   "zaman": "Öğle sıcağı",
+   "yer": "Kuyu",
+   "sebep": "Biri yalnız bırakıldı"
+  },
+  "weaknesses": [
+   "Kalbur",
+   "Tuz"
+  ],
+  "rivals": [
+   {
+    "name": "Su Anası",
+    "weaknesses": [
+     "Adak",
+     "Susmak"
+    ],
+    "signs": {
+     "kurban": [
+      "Çocuklar"
+     ],
+     "iz": [
+      "Islak ayak izi",
+      "Upuzun saç telleri"
+     ],
+     "tanik": [
+      "Saçları yerlere inen bir kadın",
+      "Adıyla çağıran ses"
+     ],
+     "zaman": [
+      "Akşam karanlığı"
+     ],
+     "yer": [
+      "Dere, göl kıyısı"
+     ],
+     "sebep": [
+      "Destur, besmele denmedi"
+     ]
+    }
+   }
+  ],
+  "lore": "Derler ki her eski kuyunun dibinde bir ana oturur. Kuyu Anası öğle sıcağında, güneş kuyunun dibine kadar indiği saatte uyanır. Saçları upuzundur; suyun yüzüne yayılır, yosunla karışır. Kuyunun başında yalnız kalmış çocuğu tatlı bir sesle, adıyla çağırır; çocuk sesi anasının sesi sanıp eğilir, saçlar bileğine dolanır, bir daha görülmez. Kuyunun ağzında, çocuğun durduğu yerde yalnızca ıslak yosun kalır. Bu yüzden analar çocuğu kuyu başında yalnız bırakmaz. Kuyunun ağzına bir kalbur kapatılır; Kuyu Anası kalburun deliklerinden bakarken çocuğun yüzünü seçemez, sesi de deliklerde dağılır. Kuyunun taş bileziğine tuz serpilir; tuzu geçip yukarı uzanamaz, saçlarını dibe çeker."
+ },
+ "ekiniyesi": {
+  "name": "Ekin İyesi",
+  "village": "Gökçeli",
+  "voice": "Harmancı kadın",
+  "chosen": {
+   "kurban": "ciftci",
+   "iz": "kuru",
+   "tanik": "kocakari",
+   "zaman": "harman",
+   "yer": "tarla",
+   "sebep": "adak_unutmak"
+  },
+  "open": [
+   "kurban",
+   "iz",
+   "sebep"
+  ],
+  "closed": [
+   "tanik",
+   "zaman",
+   "yer"
+  ],
+  "signs": {
+   "kurban": "Tarlada, harmanda çalışanlar",
+   "iz": "Bir gecede kuruyan yeşillik",
+   "tanik": "İki büklüm bir kocakarı",
+   "zaman": "Harman vakti",
+   "yer": "Tarla",
+   "sebep": "Adak, pay unutuldu"
+  },
+  "weaknesses": [
+   "Adak",
+   "Al kurdele"
+  ],
+  "rivals": [
+   {
+    "name": "Kiremet",
+    "weaknesses": [
+     "Al kurdele",
+     "Ateş"
+    ],
+    "signs": {
+     "kurban": [
+      "Tarlada, harmanda çalışanlar",
+      "Bütün ev halkı"
+     ],
+     "iz": [
+      "Kan",
+      "Bir gecede kuruyan yeşillik"
+     ],
+     "tanik": [
+      "Görünmez; yalnızca etkisi"
+     ],
+     "zaman": [
+      "Bahar, Hıdırellez"
+     ],
+     "yer": [
+      "Ulu ağaç",
+      "Orman"
+     ],
+     "sebep": [
+      "Adak, pay unutuldu"
+     ]
+    }
+   }
+  ],
+  "lore": "Derler ki her tarlanın ekininde bir iye yaşar. Orak indikçe tarlanın ortasına çekilir, sonunda son kalan başakların içine sığınır. O son demete orak vurulmaz; bir avuç başak ayakta bırakılır, örülür, dede sakalı diye ona ayrılır. Hakkı verilmeyen Ekin İyesi kendini harman vaktinde gösterir: kimi zaman samandan örülmüş, iki büklüm bir kocakarı olarak tarlanın kıyısında belirir, kimi zaman hiç görünmez de demetler kendi kendine çözülür. Sonra tarlada ne kaldıysa bir gecede kurur; ambara giren buğdaydan ekmek çıkmaz, ertesi yılın tohumu çimlenmez. Gönlü, son demet ona adak olarak geri bırakılarak alınır. Demetin ucuna al bir kurdele bağlanır ki iyesi payının ayrıldığını görsün, kimse de bilmeden ona orak sallamasın."
+ },
+ "karakopek": {
+  "name": "Kara Köpek",
+  "village": "Yaylacık",
+  "voice": "Köyün gece bekçisi",
+  "chosen": {
+   "kurban": "yolcu",
+   "iz": "pence",
+   "tanik": "hayvan",
+   "zaman": "aysiz",
+   "yer": "yol",
+   "sebep": "haksiz_olum"
+  },
+  "open": [
+   "iz",
+   "tanik",
+   "zaman"
+  ],
+  "closed": [
+   "kurban",
+   "yer",
+   "sebep"
+  ],
+  "signs": {
+   "kurban": "Gece yolcuları",
+   "iz": "Pençe izi",
+   "tanik": "Hayvan kılığı",
+   "zaman": "Aysız, zifiri gece",
+   "yer": "Issız yol",
+   "sebep": "Haksız bir ölüm"
+  },
+  "weaknesses": [
+   "Ateş",
+   "Şafağı beklemek"
+  ],
+  "rivals": [
+   {
+    "name": "Sırtlan",
+    "weaknesses": [
+     "Ateş",
+     "Demir"
+    ],
+    "signs": {
+     "kurban": [
+      "Uykudakiler",
+      "Gece yolcuları"
+     ],
+     "iz": [
+      "Pençe izi"
+     ],
+     "tanik": [
+      "Hayvan kılığı"
+     ],
+     "zaman": [
+      "Aysız, zifiri gece"
+     ],
+     "yer": [
+      "Mağara",
+      "Issız yol"
+     ],
+     "sebep": [
+      "Gece yalnız yola çıkıldı"
+     ]
+    }
+   }
+  ],
+  "lore": "Derler ki haksız yere öldürülen birinin hesabı sorulmazsa, kanının döküldüğü yerde bir kara köpek peyda olur. Sırık gibi zayıftır, kaburgaları sayılır; gözlerinin yerinde iki boşluk vardır ama yine görür. Ay olmayan zifiri gecelerde ıssız yollarda yolcunun önüne düşer, mezarlıkların duvarı dibinde oturur. Kimin evinin önünde ulursa o evden ölü çıkar. Yolcuyu peşinden yürütür, yolunu şaşırtır, sabaha sağ çıkarmaz. Yas evinin kapısına üç gece üst üste gelir, her gece bir can daha ister. Yalnız iki şeyden çekinir: ateşten, bir de sabahtan. Elinde ateş olana yaklaşamaz; horoz ötüp ezan okunduğunda nereye gittiği bilinmez. Onu görenin işi, şafak sökene kadar ateşin başında dayanmaktır."
+ },
+ "kormos": {
+  "name": "Körmös",
+  "village": "Ballıca",
+  "voice": "Ölüm döşeğindeki yaşlı adam; son mektubu",
+  "chosen": {
+   "kurban": "hane",
+   "iz": "kul",
+   "tanik": "olu",
+   "zaman": "ayni_saat",
+   "yer": "ocak",
+   "sebep": "olu_unutmak"
+  },
+  "open": [
+   "kurban",
+   "iz",
+   "yer"
+  ],
+  "closed": [
+   "tanik",
+   "zaman",
+   "sebep"
+  ],
+  "signs": {
+   "kurban": "Bütün ev halkı",
+   "iz": "Kül, is, yanık",
+   "tanik": "Tanıdık bir ölü",
+   "zaman": "Her gece aynı saat",
+   "yer": "Ocak başı",
+   "sebep": "Ölüler anılmadı"
+  },
+  "weaknesses": [
+   "Adak",
+   "Ateş"
+  ],
+  "rivals": [
+   {
+    "name": "Od Ana",
+    "weaknesses": [
+     "Adak",
+     "Ardıç tütsüsü"
+    ],
+    "signs": {
+     "kurban": [
+      "Gece iş tutan kadınlar",
+      "Bütün ev halkı"
+     ],
+     "iz": [
+      "Kül, is, yanık"
+     ],
+     "tanik": [
+      "Alev, ışık"
+     ],
+     "zaman": [
+      "Akşam karanlığı"
+     ],
+     "yer": [
+      "Ocak başı"
+     ],
+     "sebep": [
+      "Ateşe saygısızlık"
+     ]
+    }
+   }
+  ],
+  "lore": "Derler ki Altay’da ölen kişinin ruhu bir süre evinin çevresinde dolaşır. Yakınları onu anar, ocağa yemek atıp doyurursa yoluna gider; unutulursa körmös olur, eve döner. Hep aynı saatte, öldüğü saatte gelir; ocağın başına oturur, ev halkı onu tanıdık bir yüz olarak görür. Gelişini ocaktaki külden bilirler: sabahları kül odaya savrulmuş, ocak taşında taze is. Dadandığı evde insanlar gün gün erir; iştahları kesilir, düşlerinde ölüyü sofrada görürler. Çünkü aç olan odur; yediklerini o yer. Onu yatıştırmanın yolu adaktır: ateşe yağ, et, bir parça ekmek atılır, ölünün adı yüksek sesle söylenir. Ocak o gece söndürülmez; ateş adağı ölüye ulaştırır, sabaha kadar yanan ateşin yanında körmös uzun kalamaz."
+ },
+ "kiremet": {
+  "name": "Kiremet",
+  "village": "Korucuk",
+  "voice": "Köy hocası; inancıyla köylünün inancı arasında",
+  "chosen": {
+   "kurban": "ciftci",
+   "iz": "kuru",
+   "tanik": "gorunmez",
+   "zaman": "bahar",
+   "yer": "agac",
+   "sebep": "adak_unutmak"
+  },
+  "open": [
+   "iz",
+   "tanik",
+   "sebep"
+  ],
+  "closed": [
+   "kurban",
+   "zaman",
+   "yer"
+  ],
+  "signs": {
+   "kurban": "Tarlada, harmanda çalışanlar",
+   "iz": "Bir gecede kuruyan yeşillik",
+   "tanik": "Görünmez; yalnızca etkisi",
+   "zaman": "Bahar, Hıdırellez",
+   "yer": "Ulu ağaç",
+   "sebep": "Adak, pay unutuldu"
+  },
+  "weaknesses": [
+   "Al kurdele",
+   "Ateş"
+  ],
+  "rivals": [
+   {
+    "name": "Ekin İyesi",
+    "weaknesses": [
+     "Adak",
+     "Al kurdele"
+    ],
+    "signs": {
+     "kurban": [
+      "Tarlada, harmanda çalışanlar"
+     ],
+     "iz": [
+      "Bir gecede kuruyan yeşillik"
+     ],
+     "tanik": [
+      "İki büklüm bir kocakarı",
+      "Görünmez; yalnızca etkisi"
+     ],
+     "zaman": [
+      "Harman vakti"
+     ],
+     "yer": [
+      "Tarla"
+     ],
+     "sebep": [
+      "Adak, pay unutuldu"
+     ]
+    }
+   }
+  ],
+  "lore": "Derler ki köyün dışındaki kutlu koruda, kimsenin dal kırmadığı ulu ağaçların altında Kiremet oturur. Görünmez; varlığı ağaçlar arasındaki ağır sessizlikten, kuşların o koruya konmamasından bilinir. Baharda, kar kalkıp toprak açılınca payını bekler. Ona adanan kurban getirilmezse önce koru, sonra tarla kurur; ekin bitmez, evlerde nereden geldiği bilinmeyen kan görülür. En çok tarladaki çiftçiye ve bütün haneye dokunur. Bu yüzden borcu geciken köy koruda büyük bir ateş yakar; Kiremet payını ateşten, göğe yükselen dumandan alır, sönmeyen ateşin başına gelenleri tanır. Ulu ağaçların dallarına al bezler bağlanır; al, borcun unutulmadığını, korunun hakkının tanındığını bildirir. Ateşi yakılan, dalına al bağlanan koru yatışır, tarlayı ve evi bırakır."
+ },
+ "sirtlan": {
+  "name": "Sırtlan",
+  "village": "Kumluca",
+  "voice": "Cenaze yıkayıcısı kadın",
+  "chosen": {
+   "kurban": "uyuyan",
+   "iz": "pence",
+   "tanik": "hayvan",
+   "zaman": "aysiz",
+   "yer": "yol",
+   "sebep": "yalniz_yol"
+  },
+  "open": [
+   "tanik",
+   "zaman",
+   "yer"
+  ],
+  "closed": [
+   "kurban",
+   "iz",
+   "sebep"
+  ],
+  "signs": {
+   "kurban": "Uykudakiler",
+   "iz": "Pençe izi",
+   "tanik": "Hayvan kılığı",
+   "zaman": "Aysız, zifiri gece",
+   "yer": "Issız yol",
+   "sebep": "Gece yalnız yola çıkıldı"
+  },
+  "weaknesses": [
+   "Ateş",
+   "Demir"
+  ],
+  "rivals": [
+   {
+    "name": "Kara Köpek",
+    "weaknesses": [
+     "Ateş",
+     "Şafağı beklemek"
+    ],
+    "signs": {
+     "kurban": [
+      "Gece yolcuları",
+      "Yas evindekiler"
+     ],
+     "iz": [
+      "Pençe izi"
+     ],
+     "tanik": [
+      "Hayvan kılığı"
+     ],
+     "zaman": [
+      "Aysız, zifiri gece"
+     ],
+     "yer": [
+      "Issız yol",
+      "Mezarlık"
+     ],
+     "sebep": [
+      "Haksız bir ölüm"
+     ]
+    }
+   }
+  ],
+  "lore": "Derler ki sırtlan uyuyan insanı uzaktan, kokusundan bulur. Ay olmayan gecelerde köyün kıyısına, yol kenarında uyuyakalan yolcunun yanına sokulur; kuyruğunu yüzüne sürer ya da çevresinde üç kez döner. Büyülenen kişi uyanır ama kendinde değildir. Sırtlanı anası sanır, “anam, anam” diye peşinden yürür, ta mağarasına kadar gider. Yolda başını bir taşa çarpıp kanatan kendine gelir, derler; yoksa o mağaradan dönen olmaz, ardında yalnız çarığı, kuşağı kalır. Sırtlan ateşten korkar; ocağı yanan eve, yolda meşale taşıyana yanaşmaz. Demirin soğuğu da büyüsünü bozar: yastığının altında bıçak olanı büyüleyemez, eline demir alan yolcu uyanır, yürüdüğü yolu görür."
+ },
+ "denizkizi": {
+  "name": "Deniz Kızı",
+  "village": "Demirciler",
+  "voice": "Deniz feneri bekçisi",
+  "chosen": {
+   "kurban": "denizci",
+   "iz": "yosun",
+   "tanik": "guzel",
+   "zaman": "dolunay",
+   "yer": "deniz",
+   "sebep": "ovunmek"
+  },
+  "open": [
+   "tanik",
+   "zaman"
+  ],
+  "closed": [
+   "kurban",
+   "iz",
+   "yer",
+   "sebep"
+  ],
+  "signs": {
+   "kurban": "Balıkçılar, kayıkçılar",
+   "iz": "Yosun ve saz",
+   "tanik": "Göz alan bir güzellik",
+   "zaman": "Dolunay",
+   "yer": "Deniz",
+   "sebep": "Övünme, kötü söz"
+  },
+  "weaknesses": [
+   "Al kurdele",
+   "Tuz"
+  ],
+  "rivals": [
+   {
+    "name": "Yuha",
+    "weaknesses": [
+     "Ayna",
+     "Ardıç tütsüsü"
+    ],
+    "signs": {
+     "kurban": [
+      "Bekâr delikanlılar"
+     ],
+     "iz": [
+      "Yılan gömleği"
+     ],
+     "tanik": [
+      "Göz alan bir güzellik",
+      "Yılan"
+     ],
+     "zaman": [
+      "Dolunay"
+     ],
+     "yer": [
+      "Orman"
+     ],
+     "sebep": [
+      "Tanınmayan biri eve alındı"
+     ]
+    }
+   },
+   {
+    "name": "Şahmeran",
+    "weaknesses": [
+     "Susmak",
+     "Söz"
+    ],
+    "signs": {
+     "kurban": [
+      "Bekâr delikanlılar"
+     ],
+     "iz": [
+      "Yılan gömleği"
+     ],
+     "tanik": [
+      "Yılan",
+      "Göz alan bir güzellik"
+     ],
+     "zaman": [
+      "Dolunay"
+     ],
+     "yer": [
+      "Mağara",
+      "Kuyu"
+     ],
+     "sebep": [
+      "Bir hayvana kıyıldı"
+     ]
+    }
+   }
+  ],
+  "lore": "Derler ki denizin bir kızı vardır. Belinden yukarısı göz alıcı güzellikte bir kız, aşağısı balıktır. Fırtına gecelerinde, bir de dolunayda dalgaların arasından görünür; kayıkçıyı adıyla çağırır, türkü söyler. Sesine dönen dümeni bırakır, kayığı kayaya bindirir ya da kendini denize atar. Ardından ağlara, kayığın küpeştesine yosun dolanır. Denize küfreden, “bu deniz bana vız gelir” diye övünen balıkçının adını unutmaz, ilk fırtınada onu çağırır. Eski balıkçılar kayığın burnuna al bir kurdele bağlar; deniz kızı alı görünce o kayığı kendinden sayar, dokunmaz. Bir de kayığa tuz serperler: tuz karanın, sofranın tuzudur; kayık karanın malı sayılır, deniz kızı karanın malına el uzatamaz."
+ },
+ "definebekcisi": {
+  "name": "Define Bekçisi",
+  "village": "Çukurhan",
+  "voice": "Köy bakkalı, bir şey saklıyor",
+  "chosen": {
+   "kurban": "defineci",
+   "iz": "mezar",
+   "tanik": "golge",
+   "zaman": "gece_yarisi",
+   "yer": "harabe",
+   "sebep": "define"
+  },
+  "open": [
+   "kurban",
+   "yer",
+   "sebep"
+  ],
+  "closed": [
+   "iz",
+   "tanik",
+   "zaman"
+  ],
+  "signs": {
+   "kurban": "Toprağı kazanlar",
+   "iz": "Eşilmiş toprak",
+   "tanik": "Kara bir gölge",
+   "zaman": "Gece yarısı",
+   "yer": "Harabe, yıkık han",
+   "sebep": "Yerin altındakine el uzatıldı"
+  },
+  "weaknesses": [
+   "Kurşun dökmek",
+   "Tuz"
+  ],
+  "rivals": [
+   {
+    "name": "İfrit",
+    "weaknesses": [
+     "Söz",
+     "Ayna"
+    ],
+    "signs": {
+     "kurban": [
+      "Toprağı kazanlar"
+     ],
+     "iz": [
+      "Kül, is, yanık"
+     ],
+     "tanik": [
+      "Alev, ışık",
+      "İnsan boyunun iki katı"
+     ],
+     "zaman": [
+      "Aysız, zifiri gece"
+     ],
+     "yer": [
+      "Harabe, yıkık han"
+     ],
+     "sebep": [
+      "Yerin altındakine el uzatıldı"
+     ]
+    }
+   }
+  ],
+  "lore": "Derler ki yere gömülen her hazinenin bir bekçisi vardır. Eski hanların yıkıntılarında, terk edilmiş mezarlıklarda, küplerin başında bekler. Kimi kara bir gölge olarak görünür, kimi bir karış boyunda, ufacık bir ihtiyar olarak. Gece yarısı toprağı kazana önce taş atar, sonra fenerini söndürür, kazdığı çukura kül savurur. Yine de dönmeyeni çarpar: eli kazmanın sapında kaskatı kalır, dili tutulur, aklı gider. Çarpılanın başında kurşun dökülür; kurşun suya düşüp cızırdayınca cinin korkusu kurşuna geçer, adam kendine gelir. Kazılan yerin dört bir yanına da tuz serpilir; bekçi tuzlu toprağı geçemez, çukurun başından çekilir. Bu yüzden eskiler, toprağın altındakine el uzatanın cebinde bir avuç tuz olmalı der."
+ }
+}

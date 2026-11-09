@@ -1,39 +1,28 @@
 # Kara Defter
 
-Her gün herkes aynı vakayı oynar. Bir köyden mektup gelir. Altı mumla soruşturma yapılır: açık kaynaklardan ipucu toplanır, geceye sınama bırakılır, notlar 50 sayfalık defterle karşılaştırılıp hüküm yazılır. Sonuç, spoiler içermeyen 1080×1920 bir kartla paylaşılır.
+Her gün herkes aynı vakayı oynar. Bir köyden mektup gelir. Altı mumla soruşturma yapılır: açık kaynaklardan ipucu toplanır, geceye sınama bırakılır, köyde biriyle yüzleşilir. Sonunda hüküm yazılır: gelen neydi, köy neyi saklıyordu. Haftalar sonra köyden bir cevap mektubu gelir. Sonuç, spoiler içermeyen 1080×1920 bir kartla paylaşılır.
 
 ## Nasıl çalışıyor
 
-İçerik elle yazılmış vaka listelerinden değil, bir **özellik sisteminden** üretilir:
+Her vaka **elle yazılmış tek parça bir hikâyedir**: yaratık başına bir tane, toplam 50. Kurallar `HIKAYE_REHBERI.md` dosyasında, metinler `js/content/stories/batch-*.js` dosyalarında.
 
-- `js/traits.js` iki şeyi tanımlar:
-  - **Altı soruşturma boyutu:** kurban, iz, tanık, vakit, olay yeri ve sebep. Her boyutta 13–18 özellik vardır ve bunlar 5–8 **aileye** ayrılır.
-  - **14 araç.** Her yaratık ikisinden çekinir; oyuncu bunları sınama olarak kullanır.
-- `js/content/roster.js` her yaratığın her boyuttaki özelliklerini ve iki aracını tek satırda tutar. Hangi ipucunun hangi yaratığa uyduğu buradan hesaplanır; elle liste tutulmaz.
-- `js/content/bestiary-*.js` dosyalarında her yaratığın şunları bulunur:
-  - Diğer adları, yöresi ve defter metni (lore).
-  - Her özelliği için en az 3 yaratığa özel ipucu.
-  - Av sahneleri.
-- `js/content/clues-generic.js` iki tür ortak metin tutar:
-  - Her özellik için, o özelliği taşıyan her yaratığa uyan genel ipuçları.
-  - Mektup parçaları.
-- `js/cases.js` vakayı İstanbul tarihinden üretir. 1 Kasım 2026 Vaka #1'dir. Adımlar:
-  - Takvim, 50 yaratığı karışık bir deste gibi dağıtır: her yaratık 50 günde bir gelir ve bir hafta içinde tekrar etmez.
-  - Her boyut için yaratığın özelliklerinden biri seçilir.
-  - O özellik için yaratığa özel ya da ortak bir metin seçilir.
-  - Altı kaynaktan genelde üçü açık kalır. Açık kaynaklar, tam okunduğunda 2–4 sayfa bırakacak şekilde seçilir; kalanı sınama ayırır ve bu her zaman altı mumla bitirilebilir.
-- **Oyunda:**
-  - Her ipucu **ailesiyle** işaretlenir (ör. "İz · Su izi") ve defter bu aileye göre eler.
-  - Asıl özellik (ör. "Yosun ve saz" mı, "Islak ayak izi" mi) yalnızca metinde ve sayfada yazar. Dikkatli okuyan oyuncu kalan sayfaları kendisi eler.
-  - **Sınama** bir mum yakar ve seçilen aracın işleyip işlemediğini söyler (`js/content/tests.js`). Araçlar her sayfada yazılıdır.
-  - **Hüküm:** sayfa seçilir. Okunmamış açık kaynaklarda sayfanın birden çok değeri varsa oyuncu bu köyde hangisi olduğunu seçer. Yaratık doğru, boşluk yanlışsa sonuç "hüküm eksik" olur; seri bozulmaz.
-  - **Usta avcı** değeri, her adımda en çok eleyen adımı (ipucu ya da sınama) seçen ve metni tam okuyan bir oyuncunun kaç mumda kesinleştireceğidir.
+- `js/traits.js`: altı soruşturma boyutu, her birinde özellikler ve 5–8 aile, 14 araç.
+- `js/content/roster.js`: her yaratığın özellikleri ve iki aracı.
+- `js/content/bestiary-*.js`: defter sayfaları (diğer adlar, yöre, lore). Buradaki eski parça ipuçları ve `clues-generic.js` artık vakalarda kullanılmıyor.
+- `tools/story-plan.mjs`: her vakanın işaretlerini, açık kaynaklarını, köyünü ve mektup sesini belirler (`tools/story-plan.json`).
+- `js/cases.js`: İstanbul tarihinden vakayı seçer. 1 Kasım 2026 Vaka #1'dir. Takvim 50 yaratığı karışık bir deste gibi dağıtır; her yaratık 50 günde bir gelir ve bir hafta içinde tekrar etmez.
 
-Simülasyon sonuçları:
+Bir vakada:
 
-- Aile filtresine güvenen oyuncu ortalama ~3,7–4,3 mum yakar, vaka başına ~1,4 sınama yapar.
-- Metni tam okuyan oyuncu ~3,1–3,9 mum yakar.
-- Usta avcı çoğunlukla 3 mumda kesinleştirir.
+- Altı kaynaktan genelde üçü açıktır. Kapalı olanların nedeni hikâyenin parçasıdır. Açık kaynaklar tam okunduğunda 2–3 sayfa bırakır; son ayrımı **Sınama** yapar (`js/content/tests.js`).
+- Her ipucu **ailesiyle** işaretlenir ve defter bu aileye göre eler. Asıl özellik yalnızca metinde ve sayfada yazar.
+- **Gidişat:** ikinci, dördüncü ve beşinci mumda köyde işler kötüleşir.
+- **Yüzleşme:** bir kaynak okununca açılır, mum yakmaz.
+- **Hüküm:** yaratık ve insan sırrı. Yaratık yanlışsa vaka kaybedilir. Yaratık doğru, sır yanlışsa cevap mektubunun eksik hali gelir; seri bozulmaz.
+- Beş ya da altı mum yakılırsa cevap mektubuna bir "geç kalma" satırı eklenir.
+- **Kenar notları** ve defterin arkasındaki notlar (`js/content/nazire.js`, 10/20/30/40/50 sayfada) önceki sahibin hikâyesini anlatır.
+
+Vaka başına ortalama 3–4 mum yanar, Usta avcı değeri çoğunlukla 3'tür.
 
 ## Çizimler
 
@@ -62,11 +51,12 @@ Sonra `http://localhost:8765/kara-defter/` adresini aç. Bütün yollar göreli,
 
 ## Denetimler
 
+- `node tools/check-stories.mjs`: 50 hikâyenin yapısını, roster'a uyumunu, kısa listesini, ad sızıntılarını, yasak kalıpları ve uzunlukları denetler.
 - `node tools/check-roster.mjs`: olası her vakanın (244) tam okunduğunda tek bir yaratığa indiğini kanıtlar. Ayrıca araç çiftlerinin benzersizliğini ve özellik dağılımını denetler.
 - `node tools/check-content.mjs`: metinlerin biçimini, yer tutucularını, roster'a uyumunu ve sayılarını denetler.
 - `node tools/check-cases.mjs`: ilk 500 vakanın eksiksiz üretildiğini, takvimi ve zorluk dağılımını denetler.
 
-İçerik yazım kuralları `CONTENT_GUIDE.md` dosyasında.
+Hikâye yazım kuralları `HIKAYE_REHBERI.md`, defter sayfası kuralları `CONTENT_GUIDE.md` dosyasında.
 
 ## Geliştirici parametreleri
 

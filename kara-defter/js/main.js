@@ -1,6 +1,7 @@
 import { CREATURES, BY_ID } from './bestiary.js';
 import { CLUE_DIMS, DIMS, TOOLS, TOOL_BY_ID, MAX_CANDLES } from './traits.js';
-import { generateCase, fillText, candidates, famLabel, traitLabel, testResult, fitsTests, verdictBlanks } from './cases.js';
+import { generateCase, candidates, famLabel, traitLabel, testResult, fitsTests } from './cases.js';
+import { BACK_NOTES } from './content/nazire.js';
 import { istanbulToday, caseNoForDate, formatDateTR, msUntilNextCase, formatCountdown } from './util.js';
 import * as store from './store.js';
 import { silhouette, plate, candleRow } from './art.js';
@@ -135,7 +136,8 @@ function howtoList() {
     <li>Altı mumun var. Her soruşturma bir mum yakar. Her vakada yalnızca bazı kaynaklar açıktır; yağmur izi siler, tanık susar.</li>
     <li>Her not defterde bir işarete karşılık gelir. Defter, notlarına kabaca uyan sayfaları ayırır; ayrıntıyı okuyup kalanları sen elersin.</li>
     <li>Sayfalar arasında kaldıysan <b>Sınama</b> yap: geceye tuz, demir, ateş gibi bir şey bırak. İşleyip işlemediği, hangi sayfanın doğru olduğunu ele verir. Bir sınama da bir mumdur.</li>
-    <li>Emin olunca hükmünü yaz. Kalan her mum puanındır. Bulduğun yaratığın çizimi ve av notları defterine işlenir.</li>
+    <li>Her köyde biri bir şey saklıyor. Bir şey bulunca yüzleşebilirsin; bunun mumu yanmaz.</li>
+    <li>Emin olunca hükmünü yaz: gelen neydi, köy neyi saklıyordu. Oyalandıkça köyde işler kötüleşir. Haftalar sonra köyden bir mektup gelir.</li>
   </ol>`;
 }
 
@@ -143,7 +145,7 @@ function letterHTML(c) {
   const foldable = spent() > 0;
   const folded = foldable && !play.letterOpen;
   return `<article class="letter${folded ? ' folded' : ''}">
-    <p class="letter-head">${esc(c.village)} köyünden, Kara Defter’in sahibine</p>
+    <p class="letter-head">${esc(c.village)} köyünden bir mektup</p>
     <p class="letter-body">${esc(c.letter.body)}</p>
     <p class="letter-sign">${esc(c.letter.sign)}</p>
     ${foldable ? `<button class="letter-fold" data-act="letter" aria-expanded="${!folded}">${folded ? 'Mektubu aç' : 'Mektubu katla'}</button>` : ''}
@@ -200,6 +202,31 @@ function poolLine() {
   return `Defterde uyan sayfa: <b>${live}</b>${struck ? ` <span class="muted">(${struck} sayfayı eledin)</span>` : ''}`;
 }
 
+// The notes in the order they were taken, with what happened in the village as candles burned.
+function logHTML() {
+  const { c, order } = play;
+  const out = [];
+  let burned = 0;
+  order.forEach((o) => {
+    const fresh = o === play.fresh;
+    if (o === 'y') {
+      out.push(`<li class="clue confront${fresh ? ' fresh' : ''}"><p class="clue-head"><span class="clue-cat">Yüzleşme</span></p><p>${esc(c.story.yuzlesme.text)}</p></li>`);
+      return;
+    }
+    out.push(o.startsWith('t:') ? testHTML(o.slice(2), fresh) : clueHTML(o, fresh));
+    burned++;
+    const turn = c.story.gidisat[[2, 4, 5].indexOf(burned)];
+    if ([2, 4, 5].includes(burned) && turn) out.push(`<li class="turn${fresh ? ' fresh' : ''}">${esc(turn)}</li>`);
+  });
+  return out.join('');
+}
+
+function confrontHTML() {
+  const { c, used, order } = play;
+  if (!used.includes(c.story.yuzlesme.after) || order.includes('y')) return '';
+  return `<button class="ask ask-confront" data-act="confront"><span class="ask-act">${esc(c.story.yuzlesme.ask)}</span><span class="ask-cost">mum yakmaz</span></button>`;
+}
+
 function trayHTML() {
   const inPool = pool();
   const live = livePool();
@@ -228,7 +255,8 @@ function renderCase() {
     <div class="desk">
     <section class="desk-notes">
     ${letterHTML(c)}
-    ${order.length ? `<ol class="inquiry">${order.map((o) => (o.startsWith('t:') ? testHTML(o.slice(2), o === play.fresh) : clueHTML(o, o === play.fresh))).join('')}</ol>` : ''}
+    ${order.length ? `<ol class="inquiry">${logHTML()}</ol>` : ''}
+    ${confrontHTML()}
     ${left > 0 ? `<div class="moves">
       ${unread.map((d) => `<button class="ask" data-act="ask" data-dim="${d.id}"><span class="ask-act">${d.action}</span><span class="ask-cost">1 mum</span></button>`).join('')}
       <button class="ask ask-trap" data-act="trap"><span class="ask-act">Geceye bir şey bırak</span><span class="ask-cost">1 mum</span></button>
@@ -306,8 +334,7 @@ function renderDiagnose() {
 function renderVerdict() {
   const { c, used, diagnosis, verdict } = play;
   const cr = BY_ID[diagnosis];
-  const blanks = verdictBlanks(cr, c, used);
-  const ready = blanks.every((d) => verdict[d]);
+  const ready = verdict.sir !== undefined;
   app.innerHTML = `
     ${caseBar('back-case', 'Soruşturma')}
     <p class="kicker">${esc(c.village)} köyü · Vaka #${c.no}</p>
@@ -317,13 +344,13 @@ function renderVerdict() {
       ${CLUE_DIMS.filter((d) => used.includes(d.id)).map((d) => `<div><dt>${d.page}</dt><dd>${famLabel(d.id, c.clues[d.id].fam)}</dd></div>`).join('')}
       <div><dt>Neyden çekinir</dt><dd>${toolNames(cr.tools)}</dd></div>
     </dl>
-    ${blanks.length ? `<p class="section-note">${blanks.length > 1 ? 'Bunların' : 'Bunun'} mumunu yakmadın. Sayfada birden çok ihtimal var; bu köyde hangisi?</p>` : ''}
-    ${blanks.map((d) => `<div class="blank">
-      <p class="blank-q">${DIM[d].page}</p>
-      <div class="blank-opts">${cr.traits[d].map((t) => `<button class="blank-opt${verdict[d] === t ? ' on' : ''}" data-act="blank" data-dim="${d}" data-val="${t}" aria-pressed="${verdict[d] === t}">${traitLabel(d, t)}</button>`).join('')}</div>
-    </div>`).join('')}
+    <p class="section-note">Köyde biri bir şey saklıyor.</p>
+    <div class="blank">
+      <p class="blank-q">${esc(c.story.sir.q)}</p>
+      <div class="blank-opts">${c.sirOptions.map((t, i) => `<button class="blank-opt${verdict.sir === i ? ' on' : ''}" data-act="sir" data-i="${i}" aria-pressed="${verdict.sir === i}">${esc(t)}</button>`).join('')}</div>
+    </div>
     <div class="actions sticky-actions">
-      <button class="btn btn-blood" data-act="seal" ${ready ? '' : 'disabled'}>${ready ? 'Mühürle' : 'Boşlukları doldur'}</button>
+      <button class="btn btn-blood" data-act="seal" ${ready ? '' : 'disabled'}>${ready ? 'Mühürle' : 'Birini seç'}</button>
     </div>`;
 }
 
@@ -331,7 +358,7 @@ function renderResult() {
   const res = lastResult;
   const cr = BY_ID[res.creature];
   const right = res.diagnosis === res.creature;
-  const title = res.outcome === 'success' ? 'Hüküm tamam' : res.outcome === 'partial' ? 'Yaratık doğru, hüküm eksik' : 'Yanlış teşhis';
+  const title = res.outcome === 'success' ? 'Hüküm tamam' : res.outcome === 'partial' ? 'Yaratık doğru, sır çözülmedi' : 'Yanlış teşhis';
   const used = MAX_CANDLES - res.candlesLeft;
   app.innerHTML = `
     <header class="casebar">
@@ -345,7 +372,7 @@ function renderResult() {
     <p class="aka center">${cr.aka.join(' · ')}</p>
     <dl class="facts">
       <div><dt>Teşhisin</dt><dd>${BY_ID[res.diagnosis].name}${right ? '' : ' <span class="wrong">(yanlış)</span>'}</dd></div>
-      ${(res.missed || []).map((m) => `<div><dt>${DIM[m.dim].page}</dt><dd>${traitLabel(m.dim, m.trait)} <span class="wrong">(doğrusu)</span></dd></div>`).join('')}
+      <div><dt>Köyün sırrı</dt><dd>${esc(res.sir.right)}${res.sir.ok ? '' : ' <span class="wrong">(doğrusu)</span>'}</dd></div>
       <div><dt>Sınaman</dt><dd>${res.tests.length ? toolNames(res.tests) : 'Yapmadın'}</dd></div>
       <div><dt>Neyden çekinir</dt><dd>${toolNames(cr.tools)}</dd></div>
       <div><dt>Mum</dt><dd>${used === 0 ? 'Hiç yanmadı' : `${used} tane yandı`}, ${res.candlesLeft} tane kaldı</dd></div>
@@ -631,6 +658,8 @@ function bindSwipe(card) {
 }
 
 function onDrawerClick(e) {
+  const quote = e.target.closest('.note-quote');
+  if (quote) { quote.classList.toggle('open'); return; }
   const b = e.target.closest('[data-dr]');
   if (!b) return;
   const act = b.dataset.dr;
@@ -684,11 +713,21 @@ function sheetListHTML() {
   const caught = caughtCount();
   return `<div class="sheet-head"><p class="mast-title">Defter</p><button class="link" data-sheet="close">Kapat</button></div>
     <p class="lede">${caught}/${CREATURES.length} sayfa avlandı. Her sayfada köylerde anlatılanlar yazılı; avladığın yaratığın çizimi ve av notları sayfasına işlenir.</p>
+    ${backNotesHTML(caught)}
     <ul class="pages">${CREATURES.map((cr) => `<li><button class="page-tile${data.caught[cr.id] ? ' caught' : ''}" data-sheet="page" data-id="${cr.id}">
         <span class="tile-fig">${silhouette(cr.id, known(cr.id) ? 'full' : 'veiled')}</span>
         <span class="tile-name">${cr.name}</span>
         <span class="tile-state">${data.caught[cr.id] ? 'Avlandı' : data.seen[cr.id] ? 'İzi sürüldü' : 'Avlanmadı'}</span>
       </button></li>`).join('')}</ul>`;
+}
+
+function backNotesHTML(caught) {
+  const notes = BACK_NOTES.filter((n) => caught >= n.at);
+  if (!notes.length) return '';
+  return `<details class="back-notes"${notes.length === BACK_NOTES.length ? ' open' : ''}>
+    <summary>Defterin arkasında yazılanlar</summary>
+    ${notes.map((n) => `<p class="hand">${esc(n.text)}</p>`).join('')}
+  </details>`;
 }
 
 function sheetPageHTML(id) {
@@ -707,7 +746,9 @@ function sheetPageHTML(id) {
       ${caught ? `<section class="av-notes">
           <h3>Av notları</h3>
           <p>Vaka #${caught.no}, ${formatDateTR(caught.date)} · ${caught.candlesLeft} mum artırarak avlandı${caught.mode && caught.mode !== 'daily' ? ` (${caught.mode === 'dev' ? 'deneme' : 'arşiv'})` : ''}</p>
-        </section>`
+        </section>
+        <p class="hand kenar">${esc(generateCase(caught.no).story.kenar)}</p>
+        ${caught.outcome ? `<details class="dp-lore"><summary>Köyden gelen mektup</summary><p class="letter-body">${esc(codaText(generateCase(caught.no).story, caught.outcome, caught.late))}</p></details>` : ''}`
     : `<p class="locked-note">Çizimi ve av notları, onu avladığında bu sayfaya işlenir.</p>`}
     </article>`;
 }
@@ -745,7 +786,7 @@ function startCase(no, mode) {
   const steps = new Set([...used, ...tests.map((t) => `t:${t}`)]);
   play = {
     c, mode, used, tests, struck: saved ? [...(saved.struck || [])] : [],
-    order: saved?.order ? saved.order.filter((o) => steps.has(o)) : [...steps],
+    order: saved?.order ? saved.order.filter((o) => o === 'y' || steps.has(o)) : [...steps],
     diagnosis: null, verdict: {}, fresh: null, showRest: false, letterOpen: false,
   };
   saveProgress();
@@ -765,7 +806,7 @@ function afterStep() {
   saveProgress();
   rerenderKeepScroll(renderCase);
   setDusk();
-  app.querySelector('.clue.fresh')?.scrollIntoView({ block: 'center', behavior: 'smooth' });
+  [...app.querySelectorAll('.fresh')].pop()?.scrollIntoView({ block: 'center', behavior: 'smooth' });
 }
 
 function ask(dimId) {
@@ -784,23 +825,27 @@ function runTest(toolId) {
   afterStep();
 }
 
+function codaText(story, outcome, late) {
+  const base = outcome === 'success' ? story.cevap.tam : story.cevap.eksik;
+  return late ? `${base}\n\nNot: ${story.cevap.gec}` : base;
+}
+
 function finishVerdict() {
-  const { c, diagnosis, verdict, used, tests, mode } = play;
+  const { c, diagnosis, verdict, tests, mode } = play;
   const cr = BY_ID[c.creatureId];
-  const missed = diagnosis === cr.id
-    ? verdictBlanks(cr, c, used).filter((d) => verdict[d] !== c.chosen[d]).map((d) => ({ dim: d, trait: c.chosen[d] }))
-    : [];
-  const outcome = diagnosis !== cr.id ? 'fail' : missed.length ? 'partial' : 'success';
+  const sirOk = c.sirOptions[verdict.sir] === c.story.sir.right;
+  const outcome = diagnosis !== cr.id ? 'fail' : sirOk ? 'success' : 'partial';
   const res = {
-    no: c.no, date: c.date, village: c.village, creature: cr.id, diagnosis, tests: [...tests], missed, outcome,
+    no: c.no, date: c.date, village: c.village, creature: cr.id, diagnosis, tests: [...tests], outcome,
+    sir: { right: c.story.sir.right, ok: sirOk }, late: spent() >= 5,
     candlesLeft: MAX_CANDLES - spent(), par: c.par, place: c.place, time: c.time, mode,
   };
   bucket(mode)[c.no] = res;
   if (outcome !== 'fail') {
     const prev = data.caught[cr.id];
     const rank = (m) => (m === 'daily' ? 2 : m === 'archive' ? 1 : 0);
-    if (!prev || rank(mode) > rank(prev.mode) || (rank(mode) === rank(prev.mode) && prev.candlesLeft < res.candlesLeft)) {
-      data.caught[cr.id] = { no: c.no, date: c.date, candlesLeft: res.candlesLeft, mode };
+    if (!prev || (outcome === 'success' && prev.outcome !== 'success') || rank(mode) > rank(prev.mode) || (rank(mode) === rank(prev.mode) && prev.candlesLeft < res.candlesLeft)) {
+      data.caught[cr.id] = { no: c.no, date: c.date, candlesLeft: res.candlesLeft, mode, outcome, late: res.late };
     }
   } else {
     data.seen[cr.id] = true;
@@ -811,59 +856,69 @@ function finishVerdict() {
   return res;
 }
 
+const sentences = (text) => text.match(/[^.?…]+[.?…]+[”’]*\s*|[^.?…]+$/g) || [text];
+
 function runScene() {
   const res = finishVerdict();
   const { c } = play;
   const cr = BY_ID[res.creature];
-  const f = (s) => fillText(s, c);
-  let tail;
-  if (res.outcome === 'success') tail = cr.hunt.success.map(f);
-  else if (res.outcome === 'partial') tail = cr.hunt.partial.map(f);
-  else tail = [`Hükmün ${BY_ID[res.diagnosis].name} içindi. Gelen o değildi.`, `Sabah köyün yaşlıları başka bir ad fısıldıyordu: ${cr.name}.`];
-  const lines = [...cr.hunt.intro.map(f), ...tail];
-  const revealAt = cr.hunt.intro.length;
+  const good = res.outcome !== 'fail';
+  const blocks = [c.story.sahne, good ? c.story.kovma : c.story.yanlis];
+  const revealAt = sentences(blocks[0]).length;
+  const coda = good ? codaText(c.story, res.outcome, res.late) : null;
 
   huntEl.innerHTML = `<div class="hunt-inner">
       <div class="hunt-fig">${plate(cr.id, { place: c.place, time: c.time })}</div>
-      <div class="hunt-lines">${lines.map((l) => `<p>${esc(l)}</p>`).join('')}</div>
-      <button class="btn btn-paper hunt-done" data-act="hunt-done">Sonucu gör</button>
+      <div class="hunt-lines">${blocks.map((b) => `<p>${sentences(b).map((s) => `<span class="s">${esc(s)}</span>`).join('')}</p>`).join('')}</div>
+      <button class="btn btn-paper hunt-done" data-act="hunt-next">${coda ? 'Haftalar sonra' : 'Sonucu gör'}</button>
       <p class="hunt-skip">Geçmek için ${window.matchMedia('(hover: hover)').matches ? 'tıkla' : 'dokun'}</p>
     </div>`;
   huntEl.hidden = false;
   document.body.classList.add('locked');
   huntEl.scrollTop = 0;
-  const ps = [...huntEl.querySelectorAll('.hunt-lines p')];
+  const spans = [...huntEl.querySelectorAll('.hunt-lines .s')];
   const fig = huntEl.querySelector('.hunt-fig');
   let i = 0;
   let timer = 0;
+  let onLetter = false;
   const step = () => {
-    if (i < ps.length) {
-      ps[i].classList.add('on');
-      if (i === revealAt - 1) setTimeout(() => fig.classList.add('on'), 700);
-      i++;
-      timer = setTimeout(step, i === revealAt ? 2400 : 1900);
-    } else {
-      huntEl.classList.add('done');
-    }
+    if (i >= spans.length) { huntEl.classList.add('done'); return; }
+    spans[i].classList.add('on');
+    if (i === revealAt - 1) setTimeout(() => fig.classList.add('on'), 700);
+    const wait = Math.max(1000, spans[i].textContent.length * 46) + (i === revealAt - 1 ? 1400 : 0);
+    i++;
+    timer = setTimeout(step, wait);
   };
-  huntEl.classList.remove('done');
+  const finish = () => {
+    clearTimeout(timer);
+    huntEl.hidden = true;
+    huntEl.innerHTML = '';
+    huntEl.onclick = null;
+    huntEl.classList.remove('done', 'letter-up');
+    document.body.classList.remove('locked');
+    go('result');
+  };
+  const showLetter = () => {
+    onLetter = true;
+    huntEl.classList.add('letter-up');
+    huntEl.innerHTML = `<div class="hunt-inner hunt-letter">
+        <p class="coda-when">Haftalar sonra postadan bir zarf çıktı. ${esc(c.village)} köyünden.</p>
+        <article class="letter"><p class="letter-body">${esc(coda)}</p></article>
+        <button class="btn btn-paper" data-act="hunt-done">Sonucu gör</button>
+      </div>`;
+    huntEl.scrollTop = 0;
+  };
+  huntEl.classList.remove('done', 'letter-up');
   timer = setTimeout(step, 500);
   huntEl.onclick = (e) => {
-    if (e.target.closest('[data-act="hunt-done"]')) {
-      clearTimeout(timer);
-      huntEl.hidden = true;
-      huntEl.innerHTML = '';
-      huntEl.onclick = null;
-      document.body.classList.remove('locked');
-      go('result');
-      return;
-    }
-    if (!huntEl.classList.contains('done')) {
-      clearTimeout(timer);
-      ps.forEach((p) => p.classList.add('on'));
-      fig.classList.add('on');
-      huntEl.classList.add('done');
-    }
+    const act = e.target.closest('[data-act]')?.dataset.act;
+    if (act === 'hunt-done') return finish();
+    if (act === 'hunt-next') return coda ? showLetter() : finish();
+    if (onLetter || huntEl.classList.contains('done')) return;
+    clearTimeout(timer);
+    spans.forEach((sp) => sp.classList.add('on'));
+    fig.classList.add('on');
+    huntEl.classList.add('done');
   };
 }
 
@@ -908,9 +963,15 @@ app.addEventListener('click', async (e) => {
     play.diagnosis = b.dataset.id;
     play.verdict = {};
     go('verdict');
-  } else if (act === 'blank') {
-    play.verdict[b.dataset.dim] = b.dataset.val;
+  } else if (act === 'sir') {
+    play.verdict.sir = parseInt(b.dataset.i, 10);
     rerenderKeepScroll(renderVerdict);
+  } else if (act === 'confront') {
+    play.order.push('y');
+    play.fresh = 'y';
+    saveProgress();
+    rerenderKeepScroll(renderCase);
+    [...app.querySelectorAll('.fresh')].pop()?.scrollIntoView({ block: 'center', behavior: 'smooth' });
   } else if (act === 'seal') {
     if (b.disabled) return;
     runScene();

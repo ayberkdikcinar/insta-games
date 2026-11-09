@@ -26,7 +26,7 @@ export function outcomeLine(info) {
     const used = MAX_CANDLES - info.candlesLeft;
     return used === 0 ? 'Tek mum yakmadan çözdüm' : `${used} mumla çözdüm`;
   }
-  if (info.outcome === 'partial') return 'Yaratığı buldum, hüküm eksik';
+  if (info.outcome === 'partial') return 'Yaratığı buldum, sırrı kaçırdım';
   return 'Bu gece kaçırdım';
 }
 

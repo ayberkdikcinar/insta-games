@@ -1,14 +1,11 @@
 // Daily case generation. Same case number → same case for everyone. No DOM (node imports it).
-import { CREATURES, BY_ID, GENERIC, NAMES, ELDERS, SIGNERS, VILLAGES } from './bestiary.js';
+import { CREATURES, BY_ID } from './bestiary.js';
+import STORIES from './content/stories/index.js';
 import { CLUE_DIMS, FAMILY_OF, FAMILIES, TRAIT, TOOLS } from './traits.js';
-import { TESTS, CLOSED } from './content/tests.js';
-import { rngFor, pick, dateForCaseNo, genitive } from './util.js';
+import { TESTS } from './content/tests.js';
+import { rngFor, pick, dateForCaseNo } from './util.js';
 
 const NO_REPEAT = 7; // a creature never returns within a week, even across deck boundaries
-const OPEN_SOURCES = 3; // of the six clue sources, a case leaves this many open
-const EXACT_MIN = 2; // read exactly, the open sources must leave this many pages at least, so a test is always needed…
-const EXACT_MAX = 4; // …and at most this many, so three tests can always finish it
-const FAMILY_MAX = 8; // what the defter's own filter may still show
 const decks = [];
 
 // The calendar deals the 50 creatures as a shuffled deck: every creature once per 50 days.
@@ -37,84 +34,33 @@ export function creatureIdForCase(n) {
   return deck(Math.floor(i / CREATURES.length))[i % CREATURES.length];
 }
 
-export function fillText(text, c) {
-  const names = c.names;
-  return text
-    .replace(/\{(K|T|Y|D)(:gen)?\}/g, (_, key, gen) => (gen ? genitive(names[key]) : names[key]))
-    .replace(/\{koy\}/g, c.village);
-}
+// Test texts can name the village.
+const fillText = (text, c) => text.replace(/\{koy\}/g, c.village);
 
-function clueText(rng, creature, dim, trait) {
-  const own = (creature.clues?.[dim] || []).filter((x) => x.trait === trait).map((x) => x.t);
-  const generic = GENERIC[dim]?.[trait] || [];
-  if (own.length && (!generic.length || rng() < 0.7)) return pick(rng, own);
-  return pick(rng, generic.length ? generic : own);
-}
-
+// A case is the creature's hand-written story; the calendar only decides which one comes today.
 export function generateCase(n) {
   const date = dateForCaseNo(n);
   const rng = rngFor(`kara-defter:vaka:${date}`);
-  const creature = BY_ID[creatureIdForCase(n)];
-  const village = pick(rng, VILLAGES);
-
-  const chosen = {};
-  for (const d of CLUE_DIMS) chosen[d.id] = pick(rng, creature.traits[d.id]);
-
-  const who = TRAIT.kurban[chosen.kurban].who;
-  const pool = who === 'any' ? (rng() < 0.5 ? NAMES.f : NAMES.m) : NAMES[who];
-  const K = pick(rng, pool);
-  const others = (list) => list.filter((x) => x !== K);
-  const T = pick(rng, others([...NAMES.f, ...NAMES.m]));
-  const D = pick(rng, NAMES.m.filter((x) => x !== K && x !== T));
-  const Y = pick(rng, ELDERS);
-  const role = pick(rng, SIGNERS);
-  const signerName = pick(rng, (role === 'ebesi' ? NAMES.f : NAMES.m).filter((x) => x !== K && x !== T && x !== D));
-
-  const c = { no: n, date, creatureId: creature.id, village, names: { K, T, Y, D }, chosen };
-  const L = GENERIC.letters;
-  c.letter = {
-    body: [pick(rng, L.opening), pick(rng, L.dert[creature.traits.dert[0]]), pick(rng, L.closing)].map((s) => fillText(s, c)).join(' '),
-    sign: `${village} ${role} ${signerName}`,
-  };
+  const creatureId = creatureIdForCase(n);
+  const story = STORIES[creatureId];
+  const c = { no: n, date, creatureId, village: story.village, chosen: story.chosen, story, letter: story.letter };
   c.clues = {};
   for (const d of CLUE_DIMS) {
-    const trait = chosen[d.id];
-    c.clues[d.id] = { trait, fam: FAMILY_OF[d.id][trait], text: fillText(clueText(rng, creature, d.id, trait), c) };
+    const trait = story.chosen[d.id];
+    c.clues[d.id] = { trait, fam: FAMILY_OF[d.id][trait], text: story.clues[d.id] ?? null };
   }
-  c.place = chosen.yer;
-  c.time = chosen.zaman;
-  // a separate random stream, so the letter and clue texts above don't change with the sources
-  const srcRng = rngFor(`kara-defter:kaynak:${date}`);
-  c.sources = pickSources(c, srcRng);
-  c.closed = {};
-  for (const d of CLUE_DIMS) if (!c.sources.includes(d.id)) c.closed[d.id] = pick(srcRng, CLOSED[d.id]);
+  c.place = story.chosen.yer;
+  c.time = story.chosen.zaman;
+  c.sources = CLUE_DIMS.map((d) => d.id).filter((d) => story.open.includes(d));
+  c.closed = story.closed;
+  const options = [story.sir.right, ...story.sir.wrong];
+  for (let i = options.length - 1; i > 0; i--) {
+    const j = Math.floor(rng() * (i + 1));
+    [options[i], options[j]] = [options[j], options[i]];
+  }
+  c.sirOptions = options;
   c.par = parFor(c);
   return c;
-}
-
-function subsets(items, k) {
-  if (k === 0) return [[]];
-  if (items.length < k) return [];
-  const [head, ...rest] = items;
-  return [...subsets(rest, k - 1).map((s) => [head, ...s]), ...subsets(rest, k)];
-}
-
-const exactPool = (c, dims) => CREATURES.filter((cr) => dims.every((d) => cr.traits[d].includes(c.chosen[d])));
-const familyPool = (c, dims) => CREATURES.filter((cr) => dims.every((d) => cr.traits[d].some((t) => FAMILY_OF[d][t] === c.clues[d].fam)));
-
-// Which clue sources stay open today. Chosen so that perfect reading of all of them still leaves 2–4 pages:
-// the clues build the shortlist and a test has to settle it.
-function pickSources(c, rng) {
-  const all = CLUE_DIMS.map((d) => d.id);
-  const scored = [OPEN_SOURCES, OPEN_SOURCES - 1, OPEN_SOURCES + 1]
-    .flatMap((k, tier) => subsets(all, k).map((dims) => {
-      const exact = exactPool(c, dims).length;
-      const fam = familyPool(c, dims).length;
-      const off = Math.max(0, EXACT_MIN - exact) + Math.max(0, exact - EXACT_MAX) + Math.max(0, fam - FAMILY_MAX);
-      return { dims, off, tier };
-    }));
-  const best = Math.min(...scored.map((s) => s.off * 10 + s.tier));
-  return pick(rng, scored.filter((s) => s.off * 10 + s.tier === best).map((s) => s.dims));
 }
 
 // The result of leaving a tool out for a night. Same case and tool → same text for everyone.
@@ -126,12 +72,6 @@ export function testResult(c, toolId) {
 }
 
 export const fitsTests = (cr, c, tests) => tests.every((t) => cr.tools.includes(t) === BY_ID[c.creatureId].tools.includes(t));
-
-// What the verdict still asks: sources left unread today on which this page lists more than one value.
-// Depends only on the chosen page and what's open, so opening the verdict reveals nothing about the answer.
-export function verdictBlanks(cr, c, used) {
-  return c.sources.filter((d) => !used.includes(d) && cr.traits[d].length > 1).slice(0, 2);
-}
 
 export const famLabel = (dim, fam) => FAMILIES[dim][fam].label;
 export const traitLabel = (dim, trait) => TRAIT[dim][trait].label;

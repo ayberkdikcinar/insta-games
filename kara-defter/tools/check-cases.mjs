@@ -7,9 +7,9 @@
 // 5. every tool has complete test texts, every source a closed-reason
 // 6. difficulty: par and the family-filter pool sizes across the first 500 cases
 import { CREATURES } from '../js/bestiary.js';
-import { generateCase, candidates, parFor, testResult, verdictBlanks } from '../js/cases.js';
+import { generateCase, candidates, parFor, testResult } from '../js/cases.js';
 import { CLUE_DIMS, TOOLS, MAX_CANDLES } from '../js/traits.js';
-import { TESTS, CLOSED } from '../js/content/tests.js';
+import { TESTS } from '../js/content/tests.js';
 
 let failures = 0;
 const fail = (m) => { failures++; console.error('FAIL', m); };
@@ -17,7 +17,6 @@ for (const t of TOOLS) {
   const x = TESTS[t.id];
   if (!x || !x.set || x.yes?.length < 2 || x.no?.length < 2) fail(`test texts incomplete: ${t.id}`);
 }
-for (const d of CLUE_DIMS) if (!CLOSED[d.id]?.length) fail(`no closed reason: ${d.id}`);
 
 // fewest tests that are guaranteed to single out one page, whatever the answers
 function worstTests(set) {
@@ -35,7 +34,6 @@ function worstTests(set) {
 const N = 500;
 const shortlist = {};
 const worst = {};
-const blanks = {};
 const seq = [];
 const parHist = {};
 const poolAll = {};
@@ -43,7 +41,7 @@ for (let n = 1; n <= N; n++) {
   const c = generateCase(n);
   seq.push(c.creatureId);
   const cr = CREATURES.find((x) => x.id === c.creatureId);
-  for (const s of [c.letter.body, c.letter.sign, ...CLUE_DIMS.map((d) => c.clues[d.id].text)]) {
+  for (const s of [c.letter.body, c.letter.sign, ...c.sources.map((d) => c.clues[d].text)]) {
     if (!s || /[{}]/.test(s)) fail(`case ${n}: empty or unfilled text: ${s}`);
   }
   for (const d of CLUE_DIMS) if (!cr.traits[d.id].includes(c.clues[d.id].trait)) fail(`case ${n}: ${d.id} trait not the creature's`);
@@ -64,9 +62,6 @@ for (let n = 1; n <= N; n++) {
   worst[w] = (worst[w] || 0) + 1;
   if (c.sources.length + w > MAX_CANDLES) fail(`case ${n}: cannot be settled within ${MAX_CANDLES} candles`);
   for (const t of TOOLS) if (/[{}]/.test(testResult(c, t.id).text)) fail(`case ${n}: unfilled test text ${t.id}`);
-  const bl = verdictBlanks(cr, c, []);
-  blanks[bl.length] = (blanks[bl.length] || 0) + 1;
-  if (bl.some((d) => !c.sources.includes(d))) fail(`case ${n}: verdict asks about a closed source`);
 }
 for (let i = 0; i < seq.length; i++) {
   const recent = seq.slice(Math.max(0, i - 7), i);
@@ -81,7 +76,6 @@ console.log('par:', Object.entries(parHist).map(([k, v]) => `${k}→${v}`).join(
 console.log('pages left after all six clues (family filter only):', Object.entries(poolAll).map(([k, v]) => `${k}→${v}`).join('  '));
 console.log('pages left after all open clues, read exactly:', Object.entries(shortlist).map(([k, v]) => `${k}→${v}`).join('  '));
 console.log('tests guaranteed to settle that shortlist:', Object.entries(worst).map(([k, v]) => `${k}→${v}`).join('  '));
-console.log('verdict blanks if nothing was read:', Object.entries(blanks).map(([k, v]) => `${k}→${v}`).join('  '));
 if ((shortlist[1] || 0) > N * 0.01) fail(`${shortlist[1]} cases need no test at all`);
 console.log('first 14:', seq.slice(0, 14).join(' '));
 if (failures) { console.error(`\n${failures} failure(s)`); process.exit(1); }

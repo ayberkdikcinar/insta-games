@@ -610,3 +610,28 @@ body.low-light { --ink-2: #463B30; --ink-3: #5F5345; }
   .page .page-name, .page .aka, .page .epithet, .page .region { text-align: left; }
   .page-name { margin-top: 0; font-size: 52px; }
 }
+
+/* ---------- hand-written stories ---------- */
+.letter-body { white-space: pre-line; font-style: normal; font-size: 19px; line-height: 1.58; }
+.letter.folded .letter-body { white-space: normal; }
+.turn { margin: 2px 0 16px; padding: 0 0 0 18px; font-style: italic; font-size: 17.5px; line-height: 1.45; color: var(--blood); }
+.turn.fresh { animation: ink-in 1.2s ease-out; }
+.confront { border-left-width: 4px; }
+.ask-confront { width: 100%; margin: 2px 0 10px; border-style: dashed; }
+.hunt-lines p { opacity: 1; transform: none; }
+.hunt-lines .s { opacity: 0; transition: opacity 1s ease; }
+.hunt-lines .s.on { opacity: 1; }
+.hunt-letter { color: var(--ink); }
+.hunt-letter .btn { margin-top: 22px; }
+.hunt.letter-up { cursor: default; }
+.coda-when { margin: 0 0 16px; text-align: center; font-style: italic; color: #CDBF9F; }
+.hunt-letter .letter { margin: 0; }
+.hand { margin: 8px 0; font-family: var(--display); font-style: italic; font-weight: 500; font-size: 20px; line-height: 1.38; white-space: pre-line; }
+.kenar { margin-top: 18px; padding-left: 14px; border-left: 1px solid var(--ink-3); color: var(--ink-2); }
+.back-notes { margin: 12px 0 4px; padding: 2px 14px 8px; background-color: var(--paper-hi); border: 1px solid var(--rule); }
+.back-notes summary { padding: 8px 0; cursor: pointer; font-family: var(--display); font-weight: 700; font-size: 19px; list-style: none; }
+.back-notes summary::-webkit-details-marker { display: none; }
+@media (prefers-reduced-motion: reduce) { .hunt-lines .s { transition: none; } }
+@media (min-width: 980px) { .hunt-letter { display: block; max-width: 620px; padding-top: 10vh; } }
+.note-quote { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 4; overflow: hidden; cursor: pointer; }
+.note-quote.open { display: block; }
