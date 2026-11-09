@@ -1,6 +1,6 @@
 // The deduction system. Every creature has, in each dimension, one or more trait values.
-// A case picks one value per dimension; the letter reveals `dert` for free, each candle reveals one more
-// dimension as a clue. A clue "fits" every creature that shares its trait, so the candidate pool is computed,
+// A case picks one value per dimension; the letter reveals `dert` for free, and only some sources are open in a
+// case. A candle reveals one open dimension as a clue, or tests one tool (does it work on what came?). A clue "fits" every creature that shares its trait, so the candidate pool is computed,
 // never hand-listed. tools/check-cases.mjs proves every possible case narrows to exactly one creature.
 
 export const MAX_CANDLES = 6;

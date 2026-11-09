@@ -1,6 +1,6 @@
 import { CREATURES, BY_ID } from './bestiary.js';
 import { CLUE_DIMS, DIMS, TOOLS, TOOL_BY_ID, MAX_CANDLES } from './traits.js';
-import { generateCase, fillText, candidates, famLabel, traitLabel } from './cases.js';
+import { generateCase, fillText, candidates, famLabel, traitLabel, testResult, fitsTests, verdictBlanks } from './cases.js';
 import { istanbulToday, caseNoForDate, formatDateTR, msUntilNextCase, formatCountdown } from './util.js';
 import * as store from './store.js';
 import { silhouette, plate, candleRow } from './art.js';
@@ -10,6 +10,8 @@ const app = document.getElementById('app');
 const sheet = document.getElementById('sheet');
 const huntEl = document.getElementById('hunt');
 const modal = document.getElementById('modal');
+const drawerEl = document.getElementById('drawer');
+const duskEl = document.getElementById('dusk');
 
 const params = new URLSearchParams(location.search);
 if (params.has('reset')) {
@@ -27,7 +29,9 @@ const devNo = (() => {
 
 let data = store.load();
 let view = 'home';
-let play = null; // { c, mode, used, struck, diagnosis, tools, open, fresh, showRest }
+let play = null; // { c, mode, used, tests, order, struck, diagnosis, verdict, fresh, showRest, letterOpen }
+let drawerState = null; // { kind: 'page', ids, i } or { kind: 'tools' }
+const wide = window.matchMedia('(min-width: 980px)');
 let burning = -1;
 let lastResult = null;
 
@@ -42,7 +46,7 @@ const bucket = (mode) => (mode === 'archive' ? data.archive : mode === 'dev' ? d
 const resultFor = (no) => data.results[no] || data.archive[no] || null;
 
 function currentStreak() {
-  const ok = (n) => data.results[n] && data.results[n].outcome === 'success';
+  const ok = (n) => data.results[n] && data.results[n].outcome !== 'fail'; // finding the creature keeps the streak
   let n = data.results[todayNo] ? todayNo : todayNo - 1;
   let s = 0;
   while (n >= 1 && ok(n)) { s++; n--; }
@@ -54,7 +58,7 @@ function stats() {
   let best = 0;
   let run = 0;
   for (let n = 1; n <= todayNo; n++) {
-    if (data.results[n]?.outcome === 'success') { run++; best = Math.max(best, run); } else run = 0;
+    if (data.results[n] && data.results[n].outcome !== 'fail') { run++; best = Math.max(best, run); } else run = 0;
   }
   const hist = Array(MAX_CANDLES + 1).fill(0);
   rs.filter((r) => r.outcome === 'success').forEach((r) => { hist[r.candlesLeft]++; });
@@ -72,7 +76,7 @@ function shareInfo(res) {
   return {
     no: res.no, date: res.date, village: res.village, outcome: res.outcome, candlesLeft: res.candlesLeft,
     streak: res.mode === 'daily' ? currentStreak() : 0, pages: caughtCount(), total: CREATURES.length,
-    url: returnUrl(), mode: res.mode,
+    url: returnUrl(), mode: res.mode, tests: (res.tests || []).length,
   };
 }
 
@@ -106,7 +110,7 @@ function renderHome() {
     today = `
       <p class="kicker">Vaka #${todayNo} · ${formatDateTR(todayISO)}</p>
       <h1 class="title">${esc(c.village)} köyünden bir mektup var.</h1>
-      <p class="lede">Altı mumun var. Her soruşturma bir mum yakar. Defterdeki elli sayfadan doğrusunu bul, iki şeyle hazırlan, ava çık.</p>
+      <p class="lede">Altı mumun var. Köyde bakabildiğin yerlere bak, geceye bir sınama bırak. Defterdeki elli sayfadan doğrusunu bul, hükmünü yaz.</p>
       <button class="btn btn-blood" data-act="start">${inProgress ? 'Vakaya dön' : 'Mektubu aç'}</button>`;
   }
   app.innerHTML = `
@@ -128,17 +132,21 @@ function renderHome() {
 function howtoList() {
   return `<ol>
     <li>Her gün herkes aynı vakayı oynar. Yeni vaka İstanbul saatiyle gece yarısı gelir.</li>
-    <li>Altı mumun var. Kurbanı görmek, izlere bakmak, tanığı dinlemek: her soruşturma bir mum yakar.</li>
+    <li>Altı mumun var. Her soruşturma bir mum yakar. Her vakada yalnızca bazı kaynaklar açıktır; yağmur izi siler, tanık susar.</li>
     <li>Her not defterde bir işarete karşılık gelir. Defter, notlarına kabaca uyan sayfaları ayırır; ayrıntıyı okuyup kalanları sen elersin.</li>
-    <li>Teşhisini koy, zaafı olan iki şeyi seçip ava çık. Kalan her mum puanındır. Avladığın yaratığın çizimi ve av notları defterine işlenir.</li>
+    <li>Sayfalar arasında kaldıysan <b>Sınama</b> yap: geceye tuz, demir, ateş gibi bir şey bırak. İşleyip işlemediği, hangi sayfanın doğru olduğunu ele verir. Bir sınama da bir mumdur.</li>
+    <li>Emin olunca hükmünü yaz. Kalan her mum puanındır. Bulduğun yaratığın çizimi ve av notları defterine işlenir.</li>
   </ol>`;
 }
 
 function letterHTML(c) {
-  return `<article class="letter">
+  const foldable = spent() > 0;
+  const folded = foldable && !play.letterOpen;
+  return `<article class="letter${folded ? ' folded' : ''}">
     <p class="letter-head">${esc(c.village)} köyünden, Kara Defter’in sahibine</p>
     <p class="letter-body">${esc(c.letter.body)}</p>
     <p class="letter-sign">${esc(c.letter.sign)}</p>
+    ${foldable ? `<button class="letter-fold" data-act="letter" aria-expanded="${!folded}">${folded ? 'Mektubu aç' : 'Mektubu katla'}</button>` : ''}
   </article>`;
 }
 
@@ -151,7 +159,8 @@ function caseBar(back, label) {
   </header>`;
 }
 
-const pool = () => candidates(play.c, play.used);
+const spent = () => play.used.length + play.tests.length;
+const pool = () => candidates(play.c, play.used).filter((cr) => fitsTests(cr, play.c, play.tests));
 const livePool = () => pool().filter((cr) => !play.struck.includes(cr.id));
 
 function clueHTML(dimId, fresh) {
@@ -159,6 +168,28 @@ function clueHTML(dimId, fresh) {
   return `<li class="clue${fresh ? ' fresh' : ''}">
     <p class="clue-head"><span class="clue-cat">${DIM[dimId].name}</span><span class="tag">${famLabel(dimId, clue.fam)}</span></p>
     <p>${esc(clue.text)}</p></li>`;
+}
+
+function testHTML(toolId, fresh) {
+  const r = testResult(play.c, toolId);
+  return `<li class="clue${fresh ? ' fresh' : ''}">
+    <p class="clue-head"><span class="clue-cat">Sınama: ${TOOL_BY_ID[toolId].name}</span><span class="tag${r.works ? ' tag-yes' : ''}">${r.works ? 'İşledi' : 'İşlemedi'}</span></p>
+    <p>${esc(r.text)}</p></li>`;
+}
+
+function toolsDrawerHTML() {
+  const live = livePool();
+  const rows = TOOLS.filter((t) => !play.tests.includes(t.id))
+    .map((t) => ({ t, holders: live.filter((cr) => cr.tools.includes(t.id)) }))
+    .filter((x) => x.holders.length)
+    .sort((a, b) => b.holders.length - a.holders.length);
+  return `<div class="drawer-bar"><span></span><button class="link" data-dr="close">Kapat</button></div>
+    <h2 class="dp-title">Geceye ne bırakacaksın?</h2>
+    <p class="section-note">Bir mum yanar. Yanında, kalan sayfalardan hangilerinin ondan çekindiği yazıyor.</p>
+    <ul class="tool-rows">${rows.map(({ t, holders }) => `<li><button class="tool-row" data-dr="test" data-id="${t.id}">
+      <span class="tool-name">${t.name}</span>
+      <span class="tool-who">${holders.length <= 6 ? holders.map((cr) => cr.name).join(', ') : `${holders.length} sayfada yazılı`}</span>
+    </button></li>`).join('')}</ul>`;
 }
 
 function poolLine() {
@@ -169,65 +200,87 @@ function poolLine() {
   return `Defterde uyan sayfa: <b>${live}</b>${struck ? ` <span class="muted">(${struck} sayfayı eledin)</span>` : ''}`;
 }
 
+function trayHTML() {
+  const inPool = pool();
+  const live = livePool();
+  const struck = inPool.filter((cr) => play.struck.includes(cr.id));
+  const slip = (cr) => `<li><button class="slip${play.struck.includes(cr.id) ? ' struck' : ''}" data-act="page-open" data-id="${cr.id}" title="${cr.name}">
+      <span class="slip-fig">${silhouette(cr.id, known(cr.id) ? 'full' : 'veiled')}</span>
+      <span class="slip-name">${cr.name}</span>
+    </button></li>`;
+  const line = live.length === 1 ? 'Tek sayfa kaldı' : live.length ? (spent() ? `<b>${live.length}</b> sayfa kaldı` : 'Defterde elli sayfa var') : 'Bütün sayfaları eledin';
+  return `<div class="tray">
+    <div class="tray-head"><p class="pool">${line}</p><button class="link" data-act="diagnose">Bütün sayfalar</button></div>
+    ${inPool.length <= 8 || wide.matches ? `<ul class="slips">${[...live, ...struck].map(slip).join('')}</ul>` : ''}
+    ${live.length === 1 ? `<button class="btn btn-blood" data-act="choose" data-id="${live[0].id}">Hükmü yaz: ${live[0].name}</button>` : ''}
+  </div>`;
+}
+
 function renderCase() {
-  const { c, used } = play;
-  const left = MAX_CANDLES - used.length;
+  const { c, used, order } = play;
+  const left = MAX_CANDLES - spent();
+  const unread = CLUE_DIMS.filter((d) => c.sources.includes(d.id) && !used.includes(d.id));
+  const shut = CLUE_DIMS.filter((d) => !c.sources.includes(d.id));
   app.innerHTML = `
     ${caseBar('home', 'Masa')}
     <div class="candles" role="img" aria-label="${left} mum yanıyor">${candleRow(MAX_CANDLES, left, burning)}</div>
     <p class="candle-count">${left === 0 ? 'Mumların bitti' : `${left} mum yanıyor`}</p>
+    <div class="desk">
+    <section class="desk-notes">
     ${letterHTML(c)}
-    <h2 class="section">Soruşturma</h2>
-    <ol class="inquiry">
-      ${CLUE_DIMS.map((d) => used.includes(d.id)
-        ? clueHTML(d.id, d.id === play.fresh)
-        : `<li><button class="ask" data-act="ask" data-dim="${d.id}" ${left === 0 ? 'disabled' : ''}>
-            <span class="ask-cat">${d.name}</span><span class="ask-act">${d.action}</span><span class="ask-cost">1 mum</span>
-          </button></li>`).join('')}
-    </ol>
-    <div class="dock">
-      <p class="pool">${poolLine()}</p>
-      <button class="btn btn-ink" data-act="diagnose">Deftere bak, teşhis koy</button>
+    ${order.length ? `<ol class="inquiry">${order.map((o) => (o.startsWith('t:') ? testHTML(o.slice(2), o === play.fresh) : clueHTML(o, o === play.fresh))).join('')}</ol>` : ''}
+    ${left > 0 ? `<div class="moves">
+      ${unread.map((d) => `<button class="ask" data-act="ask" data-dim="${d.id}"><span class="ask-act">${d.action}</span><span class="ask-cost">1 mum</span></button>`).join('')}
+      <button class="ask ask-trap" data-act="trap"><span class="ask-act">Geceye bir şey bırak</span><span class="ask-cost">1 mum</span></button>
+    </div>` : '<p class="section-note">Mumların bitti. Elindeki notlarla hükmünü yaz.</p>'}
+    <ul class="shut-list">${shut.map((d) => `<li>${esc(c.closed[d.id])}</li>`).join('')}</ul>
+    </section>
+    <aside class="desk-book">${trayHTML()}<div id="desk-page" class="desk-page"></div></aside>
     </div>`;
   play.fresh = null;
+  syncDesk();
   if (burning >= 0) {
     const was = burning;
     setTimeout(() => {
       if (burning !== was || view !== 'case') return;
       burning = -1;
       const row = app.querySelector('.candles');
-      if (row) row.innerHTML = candleRow(MAX_CANDLES, MAX_CANDLES - play.used.length);
+      if (row) row.innerHTML = candleRow(MAX_CANDLES, MAX_CANDLES - spent());
     }, 900);
   }
 }
 
 function notesHTML() {
-  const { used } = play;
-  if (!used.length) return '<p class="notes-empty">Not almadın. Elinde yalnızca mektup var.</p>';
-  return `<ul class="notes-list">${CLUE_DIMS.filter((d) => used.includes(d.id)).map((d) => clueHTML(d.id, false)).join('')}</ul>`;
+  const { used, tests } = play;
+  if (!used.length && !tests.length) return '<p class="notes-empty">Not almadın. Elinde yalnızca mektup var.</p>';
+  return `<ul class="notes-list">${CLUE_DIMS.filter((d) => used.includes(d.id)).map((d) => clueHTML(d.id, false)).join('')}${tests.map((t) => testHTML(t, false)).join('')}</ul>`;
 }
 
-function traitsTable(cr, highlight = []) {
-  return `<dl class="signs">${CLUE_DIMS.map((d) => `<div class="${highlight.includes(d.id) ? 'hl' : ''}">
-      <dt>${d.page}</dt><dd>${cr.traits[d.id].map((t) => traitLabel(d.id, t)).join(' · ')}</dd></div>`).join('')}</dl>`;
+function traitsTable(cr) {
+  return `<dl class="signs">${CLUE_DIMS.map((d) => `<div>
+      <dt>${d.page}</dt><dd>${cr.traits[d.id].map((t) => traitLabel(d.id, t)).join(', ')}</dd></div>`).join('')}
+      <div><dt>Neyden çekinir</dt><dd>${toolNames(cr.tools)}</dd></div></dl>`;
+}
+
+// A defter page next to the player's own notes, one row per sign.
+function compareTable(cr) {
+  const { used, tests, c } = play;
+  const testNote = tests.map((t) => `${TOOL_BY_ID[t].name} ${testResult(c, t).works ? 'işledi' : 'işlemedi'}`).join(', ');
+  return `<dl class="signs">${CLUE_DIMS.map((d) => {
+    const read = used.includes(d.id);
+    return `<div class="${read ? 'hl' : ''}"><dt>${d.page}</dt><dd>${cr.traits[d.id].map((t) => traitLabel(d.id, t)).join(', ')}
+      ${read ? `<span class="note-quote">${esc(c.clues[d.id].text)}</span>` : ''}</dd></div>`;
+  }).join('')}
+    <div class="${tests.length ? 'hl' : ''}"><dt>Neyden çekinir</dt><dd>${toolNames(cr.tools)}${tests.length ? `<span class="note-quote">${testNote}</span>` : ''}</dd></div></dl>`;
 }
 
 function dxItem(cr, inPool) {
-  const open = play.open === cr.id;
   const struck = play.struck.includes(cr.id);
-  return `<li class="dx-item${open ? ' open' : ''}${struck ? ' struck' : ''}${inPool ? '' : ' out'}">
-    <button class="dx-head" data-act="expand" data-id="${cr.id}" aria-expanded="${open}">
+  return `<li class="dx-item${struck ? ' struck' : ''}${inPool ? '' : ' out'}">
+    <button class="dx-head" data-act="page-open" data-id="${cr.id}">
       <span class="dx-fig">${silhouette(cr.id, known(cr.id) ? 'full' : 'veiled')}</span>
       <span class="dx-text"><span class="dx-name">${cr.name}</span><span class="dx-epi">${cr.epithet}</span></span>
     </button>
-    ${open ? `<div class="dx-body">
-      ${traitsTable(cr, play.used)}
-      <p class="lore">${esc(cr.lore)}</p>
-      <div class="dx-actions">
-        <button class="btn btn-blood" data-act="choose" data-id="${cr.id}">Teşhisim: ${cr.name}</button>
-        ${inPool ? `<button class="btn btn-ghost" data-act="strike" data-id="${cr.id}">${struck ? 'Elemeyi geri al' : 'Bu değil, ele'}</button>` : ''}
-      </div>
-    </div>` : ''}
   </li>`;
 }
 
@@ -239,11 +292,8 @@ function renderDiagnose() {
   const rest = CREATURES.filter((c) => !ids.has(c.id));
   app.innerHTML = `
     ${caseBar('back-case', 'Soruşturma')}
-    <h1 class="title">Teşhis</h1>
-    <p class="lede">${play.used.length
-      ? `Notlarına kabaca uyan ${inPool.length} sayfa var. Sayfaları notlarınla karşılaştır; uymayanı ele.`
-      : 'Henüz not almadın; defterin elli sayfası da açık. Soruşturmaya dönüp mum yakabilirsin.'}</p>
-    <details class="notes"${play.used.length ? ' open' : ''}><summary>Notların</summary>${notesHTML()}</details>
+    <h1 class="title">Bütün sayfalar</h1>
+    <p class="lede">${spent() ? 'Notlarına uyan sayfalar üstte. Bir sayfaya dokun, notlarınla yan yana gör.' : 'Henüz not almadın; defterin elli sayfası da açık.'}</p>
     <p class="pool">${poolLine()}</p>
     <ul class="dx">${live.map((c) => dxItem(c, true)).join('')}${struck.map((c) => dxItem(c, true)).join('')}</ul>
     ${rest.length ? `<details class="rest"${play.showRest ? ' open' : ''}>
@@ -253,25 +303,27 @@ function renderDiagnose() {
     <div class="dock"><button class="btn btn-ghost" data-act="back-case">Soruşturmaya dön</button></div>`;
 }
 
-function renderPrepare() {
-  const cr = BY_ID[play.diagnosis];
-  const n = play.tools.length;
+function renderVerdict() {
+  const { c, used, diagnosis, verdict } = play;
+  const cr = BY_ID[diagnosis];
+  const blanks = verdictBlanks(cr, c, used);
+  const ready = blanks.every((d) => verdict[d]);
   app.innerHTML = `
-    ${caseBar('back-diagnose', 'Teşhis')}
-    <p class="kicker">Teşhisin: ${cr.name}</p>
-    <h1 class="title">Hazırlık</h1>
-    <p class="lede">Yanına yalnızca iki şey alabilirsin. Defterde ${cr.name} için ne yazıyordu?</p>
-    <details class="notes"><summary>${cr.name} sayfası</summary><p class="lore">${esc(cr.lore)}</p></details>
-    <ul class="tools">
-      ${TOOLS.map((t) => {
-        const on = play.tools.includes(t.id);
-        return `<li><button class="tool${on ? ' on' : ''}" data-act="tool" data-id="${t.id}" aria-pressed="${on}">
-          <span class="tool-name">${t.name}</span><span class="tool-note">${t.note}</span>
-        </button></li>`;
-      }).join('')}
-    </ul>
+    ${caseBar('back-case', 'Soruşturma')}
+    <p class="kicker">${esc(c.village)} köyü · Vaka #${c.no}</p>
+    <h1 class="title">Hüküm</h1>
+    <dl class="tutanak">
+      <div class="tutanak-main"><dt>Bunu yapan</dt><dd>${cr.name}</dd></div>
+      ${CLUE_DIMS.filter((d) => used.includes(d.id)).map((d) => `<div><dt>${d.page}</dt><dd>${famLabel(d.id, c.clues[d.id].fam)}</dd></div>`).join('')}
+      <div><dt>Neyden çekinir</dt><dd>${toolNames(cr.tools)}</dd></div>
+    </dl>
+    ${blanks.length ? `<p class="section-note">${blanks.length > 1 ? 'Bunların' : 'Bunun'} mumunu yakmadın. Sayfada birden çok ihtimal var; bu köyde hangisi?</p>` : ''}
+    ${blanks.map((d) => `<div class="blank">
+      <p class="blank-q">${DIM[d].page}</p>
+      <div class="blank-opts">${cr.traits[d].map((t) => `<button class="blank-opt${verdict[d] === t ? ' on' : ''}" data-act="blank" data-dim="${d}" data-val="${t}" aria-pressed="${verdict[d] === t}">${traitLabel(d, t)}</button>`).join('')}</div>
+    </div>`).join('')}
     <div class="actions sticky-actions">
-      <button class="btn btn-blood" data-act="hunt" ${n === 2 ? '' : 'disabled'}>${n === 2 ? 'Ava çık' : `${2 - n} şey daha seç`}</button>
+      <button class="btn btn-blood" data-act="seal" ${ready ? '' : 'disabled'}>${ready ? 'Mühürle' : 'Boşlukları doldur'}</button>
     </div>`;
 }
 
@@ -279,9 +331,7 @@ function renderResult() {
   const res = lastResult;
   const cr = BY_ID[res.creature];
   const right = res.diagnosis === res.creature;
-  const title = res.outcome === 'success' ? 'Av tamam'
-    : res.outcome === 'partial' ? 'Kaçtı ama köy kurtuldu'
-      : right ? 'Hazırlık eksikti' : 'Yanlış teşhis';
+  const title = res.outcome === 'success' ? 'Hüküm tamam' : res.outcome === 'partial' ? 'Yaratık doğru, hüküm eksik' : 'Yanlış teşhis';
   const used = MAX_CANDLES - res.candlesLeft;
   app.innerHTML = `
     <header class="casebar">
@@ -295,8 +345,9 @@ function renderResult() {
     <p class="aka center">${cr.aka.join(' · ')}</p>
     <dl class="facts">
       <div><dt>Teşhisin</dt><dd>${BY_ID[res.diagnosis].name}${right ? '' : ' <span class="wrong">(yanlış)</span>'}</dd></div>
-      <div><dt>Hazırlığın</dt><dd>${toolNames(res.tools)}</dd></div>
-      <div><dt>Zaafları</dt><dd>${toolNames(cr.tools)}</dd></div>
+      ${(res.missed || []).map((m) => `<div><dt>${DIM[m.dim].page}</dt><dd>${traitLabel(m.dim, m.trait)} <span class="wrong">(doğrusu)</span></dd></div>`).join('')}
+      <div><dt>Sınaman</dt><dd>${res.tests.length ? toolNames(res.tests) : 'Yapmadın'}</dd></div>
+      <div><dt>Neyden çekinir</dt><dd>${toolNames(cr.tools)}</dd></div>
       <div><dt>Mum</dt><dd>${used === 0 ? 'Hiç yanmadı' : `${used} tane yandı`}, ${res.candlesLeft} tane kaldı</dd></div>
       <div><dt>Usta avcı</dt><dd>${res.par} mumla kesinleştirirdi</dd></div>
     </dl>
@@ -306,7 +357,7 @@ function renderResult() {
       <button class="btn btn-blood" data-act="share-result">Sonucu paylaş</button>
       <button class="btn btn-ghost" data-act="page" data-id="${cr.id}">Defterde aç</button>
       ${res.mode === 'dev' ? '<p class="hint">Deneme vakası: sonuç seriye ve günlük kilide yazılmadı.</p>'
-        : res.mode === 'archive' ? '<p class="hint">Arşiv vakası: seriyi etkilemez; av defterine işlendi.</p>'
+        : res.mode === 'archive' ? '<p class="hint">Arşiv vakası: seriyi etkilemez; sonuç defterine işlendi.</p>'
           : `<p class="next">Yeni vaka <span data-countdown>${formatCountdown(msUntilNextCase())}</span> sonra.</p>`}
     </div>`;
   prepareCard(shareInfo(res)).catch(() => {});
@@ -336,15 +387,26 @@ function render() {
   if (view === 'home') renderHome();
   else if (view === 'case') renderCase();
   else if (view === 'diagnose') renderDiagnose();
-  else if (view === 'prepare') renderPrepare();
+  else if (view === 'verdict') renderVerdict();
   else if (view === 'result') renderResult();
   else if (view === 'archive') renderArchive();
 }
 
 function go(next) {
   view = next;
+  if (next !== 'case') drawerState = null;
+  app.dataset.view = next;
   render();
+  setDusk();
   window.scrollTo(0, 0);
+}
+
+// The room darkens as candles burn; the candles sit at the top, so the light falls off away from them.
+function setDusk() {
+  const on = play && ['case', 'diagnose', 'verdict'].includes(view);
+  const burnt = on ? spent() / MAX_CANDLES : 0;
+  duskEl.style.opacity = burnt;
+  document.body.classList.toggle('low-light', burnt >= 0.5);
 }
 
 function rerenderKeepScroll(fn) {
@@ -391,17 +453,230 @@ function showStats() {
     <h2 class="title">Avcının defteri</h2>
     <div class="stat-row">
       <div><b>${s.played}</b><span>vaka</span></div>
-      <div><b>${s.played ? Math.round((s.won / s.played) * 100) : 0}%</b><span>tam av</span></div>
+      <div><b>${s.played ? Math.round((s.won / s.played) * 100) : 0}%</b><span>tam hüküm</span></div>
       <div><b>${s.streak}</b><span>seri</span></div>
       <div><b>${s.best}</b><span>en uzun</span></div>
     </div>
-    <p class="section-s">Tam avlarda kalan mum</p>
+    <p class="section-s">Tam hükümlerde kalan mum</p>
     <div class="bars">${bars}</div>
     <p class="section-s">Defter</p>
     <p class="lede">${caughtCount()} / ${CREATURES.length} sayfa avlandı, ${Object.keys(data.seen).filter((id) => !data.caught[id]).length} sayfanın izi sürüldü.</p>
     <p class="hint">Kayıt yalnızca bu tarayıcıda tutuluyor.</p>
     <button class="btn btn-ghost" data-modal="close">Kapat</button>`, 'Sicil');
 }
+
+/* ---------- drawer: a defter page beside the notes, or the tools to test ---------- */
+
+function pageDrawerHTML() {
+  const { ids, i } = drawerState;
+  const cr = BY_ID[ids[i]];
+  const struck = play.struck.includes(cr.id);
+  const inPool = pool().some((x) => x.id === cr.id);
+  return `<div class="drawer-bar">
+      <span class="dp-nav">${ids.length > 1 ? `<button class="link" data-dr="prev" aria-label="Önceki sayfa">‹</button><span>${i + 1} / ${ids.length}</span><button class="link" data-dr="next" aria-label="Sonraki sayfa">›</button>` : ''}</span>
+      ${slot() ? '' : '<button class="link" data-dr="close">Kapat</button>'}
+    </div>
+    <header class="dp-head">
+      <span class="dp-fig">${silhouette(cr.id, known(cr.id) ? 'full' : 'veiled')}</span>
+      <div class="dp-titles">
+        <h2 class="dp-name${struck ? ' struck' : ''}"${inPool && !struck ? ' data-strike' : ''}><span>${cr.name}</span><svg class="strike-ink" aria-hidden="true"><path/></svg></h2>
+        <p class="dp-epi">${cr.epithet}</p>
+      </div>
+    </header>
+    ${inPool && !struck && !data.strikeTaught ? `<p class="dp-hint">Uymuyorsa adının üstünü çiz${wide.matches ? ' ya da X tuşuna bas' : ''}.</p>` : ''}
+    ${compareTable(cr)}
+    <details class="dp-lore"><summary>Köylerde anlatılanlar</summary><p class="lore">${esc(cr.lore)}</p></details>
+    <div class="dp-actions">
+      <button class="btn btn-blood" data-dr="choose" data-id="${cr.id}">Hükmü yaz: ${cr.name}</button>
+      ${inPool ? `<button class="btn btn-ghost" data-dr="strike" data-id="${cr.id}">${struck ? 'Elemeyi geri al' : 'Bu değil, ele'}</button>` : ''}
+    </div>`;
+}
+
+// On a wide screen the drawer's content sits on the right-hand page of the open defter instead of over the table.
+const slot = () => (wide.matches ? document.getElementById('desk-page') : null);
+
+function paintDrawer(dir = 0) {
+  const isPage = drawerState.kind === 'page';
+  const host = slot();
+  const html = `<div class="drawer-card${host ? ' in-slot' : ''}${dir ? (dir > 0 ? ' from-right' : ' from-left') : ''}" role="${host ? 'region' : 'dialog'}"${host ? '' : ' aria-modal="true"'} tabindex="-1" aria-label="${isPage ? BY_ID[drawerState.ids[drawerState.i]].name : 'Sınama'}">
+    ${isPage ? pageDrawerHTML() : toolsDrawerHTML()}</div>`;
+  if (host) {
+    host.innerHTML = html;
+    app.querySelectorAll('.slip').forEach((x) => x.classList.toggle('on', isPage && x.dataset.id === drawerState.ids[drawerState.i]));
+  } else {
+    drawerEl.innerHTML = html;
+    drawerEl.hidden = false;
+    document.body.classList.add('locked');
+    drawerEl.firstElementChild.focus({ preventScroll: true });
+  }
+  const card = (host || drawerEl).firstElementChild;
+  if (isPage) {
+    const nameEl = card.querySelector('[data-strike]');
+    if (nameEl) bindStrike(nameEl, drawerState.ids[drawerState.i]);
+    bindSwipe(card);
+  }
+}
+
+const poolOrder = () => {
+  const inPool = pool();
+  return [...inPool.filter((c) => !play.struck.includes(c.id)), ...inPool.filter((c) => play.struck.includes(c.id))].map((c) => c.id);
+};
+
+// Keeps the right-hand page in step after the table is redrawn: follows the open page, or opens the first candidate
+// once the shortlist is short enough to compare.
+function syncDesk() {
+  const host = slot();
+  if (!host || view !== 'case') return;
+  const ids = poolOrder();
+  if (drawerState?.kind === 'page') {
+    const id = drawerState.ids[drawerState.i];
+    if (ids.includes(id)) drawerState = { kind: 'page', ids, i: ids.indexOf(id) };
+    else drawerState = null;
+  }
+  const liveFirst = ids.find((id) => !play.struck.includes(id));
+  if (!drawerState && ids.length <= 8 && liveFirst) drawerState = { kind: 'page', ids, i: ids.indexOf(liveFirst) };
+  if (drawerState) paintDrawer();
+  else host.innerHTML = '<p class="desk-empty">Bir sayfa seç, notlarınla yan yana görürsün.</p>';
+}
+
+function openPage(id) {
+  const ordered = poolOrder();
+  const ids = ordered.includes(id) ? ordered : [id];
+  drawerState = { kind: 'page', ids, i: ids.indexOf(id) };
+  paintDrawer();
+}
+
+function closeDrawer() {
+  drawerState = null;
+  drawerEl.hidden = true;
+  drawerEl.innerHTML = '';
+  document.body.classList.remove('locked');
+  syncDesk();
+}
+
+function turnPage(dir) {
+  const st = drawerState;
+  if (st?.kind !== 'page' || st.ids.length < 2) return;
+  st.i = (st.i + dir + st.ids.length) % st.ids.length;
+  paintDrawer(dir);
+}
+
+function setStruck(id, on) {
+  play.struck = on ? [...new Set([...play.struck, id])] : play.struck.filter((x) => x !== id);
+  saveProgress();
+  rerenderKeepScroll(render);
+}
+
+function strikeAndMoveOn(id) {
+  setStruck(id, true);
+  navigator.vibrate?.(14);
+  if (!data.strikeTaught) { data.strikeTaught = true; persist(); }
+  drawerEl.querySelector('.dp-name')?.classList.add('struck');
+  setTimeout(() => {
+    const st = drawerState;
+    if (st?.kind !== 'page' || st.ids[st.i] !== id) return;
+    const live = st.ids.filter((x) => !play.struck.includes(x));
+    if (live.length < 2) { closeDrawer(); return; }
+    for (let k = 1; k < st.ids.length; k++) {
+      const j = (st.i + k) % st.ids.length;
+      if (!play.struck.includes(st.ids[j])) { st.i = j; break; }
+    }
+    paintDrawer(1);
+  }, 460);
+}
+
+// Crossing out a name with a finger: the line follows the pointer, and covering most of the name commits it.
+function bindStrike(nameEl, id) {
+  const path = nameEl.querySelector('path');
+  let pts = null;
+  let box = null;
+  const add = (e) => {
+    pts.push([e.clientX - box.left, e.clientY - box.top]);
+    path.setAttribute('d', pts.map(([x, y], k) => `${k ? 'L' : 'M'}${x.toFixed(1)} ${y.toFixed(1)}`).join(' '));
+  };
+  nameEl.addEventListener('pointerdown', (e) => {
+    box = nameEl.getBoundingClientRect();
+    nameEl.setPointerCapture(e.pointerId);
+    pts = [];
+    path.style.opacity = 1;
+    add(e);
+  });
+  nameEl.addEventListener('pointermove', (e) => { if (pts) add(e); });
+  const finish = () => {
+    if (!pts) return;
+    const xs = pts.map(([x]) => x);
+    const text = nameEl.querySelector('span').getBoundingClientRect().width;
+    const covered = Math.min(text, Math.max(...xs)) - Math.max(0, Math.min(...xs));
+    pts = null;
+    if (covered >= text * 0.6) strikeAndMoveOn(id);
+    else path.style.opacity = 0;
+  };
+  nameEl.addEventListener('pointerup', finish);
+  nameEl.addEventListener('pointercancel', () => { pts = null; path.style.opacity = 0; });
+}
+
+// A sideways swipe anywhere on the page, except on the name, turns to the next page.
+function bindSwipe(card) {
+  let start = null;
+  card.addEventListener('touchstart', (e) => {
+    start = e.target.closest('[data-strike]') ? null : { x: e.touches[0].clientX, y: e.touches[0].clientY };
+  }, { passive: true });
+  card.addEventListener('touchend', (e) => {
+    if (!start) return;
+    const dx = e.changedTouches[0].clientX - start.x;
+    const dy = e.changedTouches[0].clientY - start.y;
+    start = null;
+    if (Math.abs(dx) > 56 && Math.abs(dy) < 44) turnPage(dx < 0 ? 1 : -1);
+  }, { passive: true });
+}
+
+function onDrawerClick(e) {
+  const b = e.target.closest('[data-dr]');
+  if (!b) return;
+  const act = b.dataset.dr;
+  if (act === 'close') closeDrawer();
+  else if (act === 'prev') turnPage(-1);
+  else if (act === 'next') turnPage(1);
+  else if (act === 'test') { const id = b.dataset.id; closeDrawer(); runTest(id); }
+  else if (act === 'choose') {
+    const id = b.dataset.id;
+    closeDrawer();
+    play.diagnosis = id;
+    play.verdict = {};
+    go('verdict');
+  } else if (act === 'strike') {
+    const id = b.dataset.id;
+    if (play.struck.includes(id)) { setStruck(id, false); paintDrawer(); } else strikeAndMoveOn(id);
+  }
+}
+
+drawerEl.addEventListener('click', (e) => {
+  if (e.target === drawerEl) return closeDrawer();
+  onDrawerClick(e);
+});
+app.addEventListener('click', (e) => { if (e.target.closest('#desk-page')) onDrawerClick(e); });
+
+document.addEventListener('keydown', (e) => {
+  if (!drawerState || !sheet.hidden || !modal.hidden || e.metaKey || e.ctrlKey || e.altKey) return;
+  const onPage = drawerState.kind === 'page';
+  if (e.key === 'Escape') {
+    if (!slot() || !onPage) closeDrawer();
+  } else if (onPage && e.key === 'ArrowLeft') turnPage(-1);
+  else if (onPage && e.key === 'ArrowRight') turnPage(1);
+  else if (onPage && (e.key === 'x' || e.key === 'X')) {
+    const id = drawerState.ids[drawerState.i];
+    if (pool().some((c) => c.id === id) && !play.struck.includes(id)) strikeAndMoveOn(id);
+  }
+});
+
+// Crossing the 980px line swaps drawer and right-hand page, so redraw the screen in the new layout.
+wide.addEventListener('change', () => {
+  drawerState = null;
+  drawerEl.hidden = true;
+  drawerEl.innerHTML = '';
+  document.body.classList.remove('locked');
+  render();
+});
 
 /* ---------- defter sheet ---------- */
 
@@ -431,7 +706,6 @@ function sheetPageHTML(id) {
       ${traitsTable(cr)}
       ${caught ? `<section class="av-notes">
           <h3>Av notları</h3>
-          <p>Zaafları: <b>${toolNames(cr.tools)}</b></p>
           <p>Vaka #${caught.no}, ${formatDateTR(caught.date)} · ${caught.candlesLeft} mum artırarak avlandı${caught.mode && caught.mode !== 'daily' ? ` (${caught.mode === 'dev' ? 'deneme' : 'arşiv'})` : ''}</p>
         </section>`
     : `<p class="locked-note">Çizimi ve av notları, onu avladığında bu sayfaya işlenir.</p>`}
@@ -466,49 +740,69 @@ sheet.addEventListener('click', (e) => {
 function startCase(no, mode) {
   const c = generateCase(no);
   const saved = data.inProgress && data.inProgress.no === no && data.inProgress.mode === mode ? data.inProgress : null;
+  const used = saved ? saved.used.filter((d) => c.sources.includes(d)) : [];
+  const tests = saved ? [...(saved.tests || [])] : [];
+  const steps = new Set([...used, ...tests.map((t) => `t:${t}`)]);
   play = {
-    c, mode, used: saved ? [...saved.used] : [], struck: saved ? [...(saved.struck || [])] : [],
-    diagnosis: null, tools: [], open: null, fresh: null, showRest: false,
+    c, mode, used, tests, struck: saved ? [...(saved.struck || [])] : [],
+    order: saved?.order ? saved.order.filter((o) => steps.has(o)) : [...steps],
+    diagnosis: null, verdict: {}, fresh: null, showRest: false, letterOpen: false,
   };
   saveProgress();
   go('case');
 }
 
 function saveProgress() {
-  data.inProgress = { no: play.c.no, mode: play.mode, used: play.used, struck: play.struck };
+  data.inProgress = { no: play.c.no, mode: play.mode, used: play.used, tests: play.tests, order: play.order, struck: play.struck };
   persist();
 }
 
-function ask(dimId) {
-  if (play.used.includes(dimId) || play.used.length >= MAX_CANDLES) return;
-  play.used.push(dimId);
-  play.fresh = dimId;
-  burning = MAX_CANDLES - play.used.length;
-  // pages ruled out by the new clue no longer need striking
+function afterStep() {
+  burning = MAX_CANDLES - spent();
+  // pages ruled out by the new note no longer need striking
   const ids = new Set(pool().map((c) => c.id));
   play.struck = play.struck.filter((id) => ids.has(id));
   saveProgress();
   rerenderKeepScroll(renderCase);
+  setDusk();
+  app.querySelector('.clue.fresh')?.scrollIntoView({ block: 'center', behavior: 'smooth' });
 }
 
-function finishHunt() {
-  const { c, diagnosis, tools, used, mode } = play;
+function ask(dimId) {
+  if (play.used.includes(dimId) || spent() >= MAX_CANDLES || !play.c.sources.includes(dimId)) return;
+  play.used.push(dimId);
+  play.order.push(dimId);
+  play.fresh = dimId;
+  afterStep();
+}
+
+function runTest(toolId) {
+  if (play.tests.includes(toolId) || spent() >= MAX_CANDLES) return;
+  play.tests.push(toolId);
+  play.order.push(`t:${toolId}`);
+  play.fresh = `t:${toolId}`;
+  afterStep();
+}
+
+function finishVerdict() {
+  const { c, diagnosis, verdict, used, tests, mode } = play;
   const cr = BY_ID[c.creatureId];
-  const right = diagnosis === cr.id;
-  const hits = tools.filter((t) => cr.tools.includes(t)).length;
-  const outcome = right ? (hits === 2 ? 'success' : hits === 1 ? 'partial' : 'fail') : 'fail';
+  const missed = diagnosis === cr.id
+    ? verdictBlanks(cr, c, used).filter((d) => verdict[d] !== c.chosen[d]).map((d) => ({ dim: d, trait: c.chosen[d] }))
+    : [];
+  const outcome = diagnosis !== cr.id ? 'fail' : missed.length ? 'partial' : 'success';
   const res = {
-    no: c.no, date: c.date, village: c.village, creature: cr.id, diagnosis, tools: [...tools], outcome,
-    candlesLeft: MAX_CANDLES - used.length, par: c.par, place: c.place, time: c.time, mode,
+    no: c.no, date: c.date, village: c.village, creature: cr.id, diagnosis, tests: [...tests], missed, outcome,
+    candlesLeft: MAX_CANDLES - spent(), par: c.par, place: c.place, time: c.time, mode,
   };
   bucket(mode)[c.no] = res;
-  if (outcome === 'success') {
+  if (outcome !== 'fail') {
     const prev = data.caught[cr.id];
     const rank = (m) => (m === 'daily' ? 2 : m === 'archive' ? 1 : 0);
     if (!prev || rank(mode) > rank(prev.mode) || (rank(mode) === rank(prev.mode) && prev.candlesLeft < res.candlesLeft)) {
       data.caught[cr.id] = { no: c.no, date: c.date, candlesLeft: res.candlesLeft, mode };
     }
-  } else if (outcome === 'partial') {
+  } else {
     data.seen[cr.id] = true;
   }
   data.inProgress = null;
@@ -517,19 +811,15 @@ function finishHunt() {
   return res;
 }
 
-function runHunt() {
-  const res = finishHunt();
+function runScene() {
+  const res = finishVerdict();
   const { c } = play;
   const cr = BY_ID[res.creature];
   const f = (s) => fillText(s, c);
   let tail;
   if (res.outcome === 'success') tail = cr.hunt.success.map(f);
   else if (res.outcome === 'partial') tail = cr.hunt.partial.map(f);
-  else if (res.diagnosis === res.creature) {
-    tail = ['Teşhisin doğruydu, ama yanındakiler ona işlemedi.', 'Kapıya kadar geldi, kimse onu durduramadı. Köy bir gece daha korkuyla bekledi.'];
-  } else {
-    tail = [`Hazırlığın ${BY_ID[res.diagnosis].name} içindi. Gelen o değildi.`, `Sabah köyün yaşlıları başka bir ad fısıldıyordu: ${cr.name}.`];
-  }
+  else tail = [`Hükmün ${BY_ID[res.diagnosis].name} içindi. Gelen o değildi.`, `Sabah köyün yaşlıları başka bir ad fısıldıyordu: ${cr.name}.`];
   const lines = [...cr.hunt.intro.map(f), ...tail];
   const revealAt = cr.hunt.intro.length;
 
@@ -537,7 +827,7 @@ function runHunt() {
       <div class="hunt-fig">${plate(cr.id, { place: c.place, time: c.time })}</div>
       <div class="hunt-lines">${lines.map((l) => `<p>${esc(l)}</p>`).join('')}</div>
       <button class="btn btn-paper hunt-done" data-act="hunt-done">Sonucu gör</button>
-      <p class="hunt-skip">Geçmek için dokun</p>
+      <p class="hunt-skip">Geçmek için ${window.matchMedia('(hover: hover)').matches ? 'tıkla' : 'dokun'}</p>
     </div>`;
   huntEl.hidden = false;
   document.body.classList.add('locked');
@@ -600,37 +890,30 @@ app.addEventListener('click', async (e) => {
     showStats();
   } else if (act === 'ask') {
     ask(b.dataset.dim);
+  } else if (act === 'trap') {
+    drawerState = { kind: 'tools' };
+    paintDrawer();
+  } else if (act === 'letter') {
+    play.letterOpen = !play.letterOpen;
+    rerenderKeepScroll(renderCase);
+  } else if (act === 'page-open') {
+    openPage(b.dataset.id);
   } else if (act === 'diagnose') {
-    play.open = null;
     go('diagnose');
   } else if (act === 'back-case') {
     go('case');
   } else if (act === 'toggle-rest') {
     play.showRest = !play.showRest;
-  } else if (act === 'expand') {
-    play.open = play.open === b.dataset.id ? null : b.dataset.id;
-    rerenderKeepScroll(renderDiagnose);
-    app.querySelector('.dx-item.open')?.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
-  } else if (act === 'strike') {
-    const id = b.dataset.id;
-    play.struck = play.struck.includes(id) ? play.struck.filter((x) => x !== id) : [...play.struck, id];
-    if (play.struck.includes(id)) play.open = null;
-    saveProgress();
-    rerenderKeepScroll(renderDiagnose);
   } else if (act === 'choose') {
     play.diagnosis = b.dataset.id;
-    play.tools = [];
-    go('prepare');
-  } else if (act === 'back-diagnose') {
-    go('diagnose');
-  } else if (act === 'tool') {
-    const id = b.dataset.id;
-    if (play.tools.includes(id)) play.tools = play.tools.filter((t) => t !== id);
-    else if (play.tools.length < 2) play.tools.push(id);
-    else { play.tools.shift(); play.tools.push(id); }
-    rerenderKeepScroll(renderPrepare);
-  } else if (act === 'hunt') {
-    if (play.tools.length === 2) runHunt();
+    play.verdict = {};
+    go('verdict');
+  } else if (act === 'blank') {
+    play.verdict[b.dataset.dim] = b.dataset.val;
+    rerenderKeepScroll(renderVerdict);
+  } else if (act === 'seal') {
+    if (b.disabled) return;
+    runScene();
   } else if (act === 'share-result' || act === 'share-today') {
     const res = act === 'share-today' ? data.results[todayNo] : lastResult;
     if (!res) return;

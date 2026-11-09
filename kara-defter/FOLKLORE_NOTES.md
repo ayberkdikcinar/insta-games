@@ -527,3 +527,7 @@ Gelenek: Çuvaş inancı (Kirämet); Mari ve Udmurt “keremet” kutlu korular�
 - Dallara al bez bağlamak — [kısmi]; Çuvaş ve Mari korularında ağaçlara bez/havlu asıldığı anlatılır, rengin al olması [oyun]
 - Evlerde kan görülmesi, korunun kurutması — [oyun]
 - Not: “Kiremet” sözcüğü Arapça keramet’ten gelir ve Çuvaşçada hem yeri hem varlığı anlatır; bazı kaynaklarda kötü ruh, bazılarında ölmüş bir ermişin ruhu olarak geçer
+
+## Sınama metinleri
+
+`js/content/tests.js` içindeki sabah tepkileri (tuzun kararması, aynanın çatlaması gibi) tamamen **[oyun]** icadıdır; halk inancından alınmadı.

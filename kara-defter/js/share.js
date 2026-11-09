@@ -26,12 +26,12 @@ export function outcomeLine(info) {
     const used = MAX_CANDLES - info.candlesLeft;
     return used === 0 ? 'Tek mum yakmadan çözdüm' : `${used} mumla çözdüm`;
   }
-  if (info.outcome === 'partial') return 'Kaçtı ama köy kurtuldu';
+  if (info.outcome === 'partial') return 'Yaratığı buldum, hüküm eksik';
   return 'Bu gece kaçırdım';
 }
 
 export function shareText(info) {
-  const streak = info.streak > 0 ? ` · Seri ${info.streak}` : '';
+  const streak = `${info.tests ? ` · ${info.tests} sınama` : ''}${info.streak > 0 ? ` · Seri ${info.streak}` : ''}`;
   const candles = '🕯️'.repeat(info.candlesLeft) + '▫️'.repeat(MAX_CANDLES - info.candlesLeft);
   return `Kara Defter · Vaka #${info.no}\n${candles} ${outcomeLine(info)}${streak}\nBugünün vakasını sen çöz: ${info.url}`;
 }
@@ -230,7 +230,7 @@ export async function drawCard(info) {
 }
 
 let cached = { key: '', blob: null, url: '' };
-const keyOf = (info) => JSON.stringify([info.no, info.outcome, info.candlesLeft, info.streak, info.pages, info.url]);
+const keyOf = (info) => JSON.stringify([info.no, info.outcome, info.candlesLeft, info.tests, info.streak, info.pages, info.url]);
 
 export async function prepareCard(info) {
   const key = keyOf(info);
