@@ -2,16 +2,22 @@
 import { mulberry32, formatDateTR } from './util.js';
 import { MAX_CANDLES } from './traits.js';
 
-const INK = '#1A1714';
-const INK_2 = '#5B4F43';
-const PAPER = '#E9DFC8';
-const BLOOD = '#6B1E1E';
-const FLAME = '#E3A23B';
-const FLAME_CORE = '#F4D08A';
-const WAX = '#F3EBDA';
+const COVER = '#1B1916';
+const BORDO = '#7B1E26';
+const BORDO_DEEP = '#571319';
+const SHEET = '#F4ECCF';
+const INK = '#1C2946';
+const INK_2 = '#455170';
+const MOR = '#5B3B8F';
+const ON_DARK = '#E9DEB6';
+const ON_DARK_2 = '#A99F83';
+const FLAME = '#F2A93B';
+const FLAME_CORE = '#FBE3A6';
+const WAX = '#F1E9D2';
 
-const SERIF_DISPLAY = '"Cormorant Garamond", Georgia, serif';
-const SERIF_TEXT = '"EB Garamond", Georgia, serif';
+const DISPLAY = '"Besley", Georgia, serif';
+const READ = '"Literata", Georgia, serif';
+const FORM = '"Barlow Condensed", "Arial Narrow", sans-serif';
 
 export function returnUrl() {
   return location.origin + location.pathname;
@@ -37,51 +43,25 @@ export function shareText(info) {
   return `Kara Defter · Vaka #${info.no}\n${candles} ${outcomeLine(info)}${streak}\nAynı vakayı sen çöz: ${info.link || info.url}`;
 }
 
-function spaced(g, text, x, y, spacing) {
-  if ('letterSpacing' in g) {
-    g.letterSpacing = `${spacing}px`;
-    // letterSpacing adds trailing space after the last glyph; shift to keep the text centred
-    g.fillText(text, x + spacing / 2, y);
-    g.letterSpacing = '0px';
-    return;
-  }
-  const chars = [...text];
-  const widths = chars.map((ch) => g.measureText(ch).width);
-  const total = widths.reduce((a, b) => a + b, 0) + spacing * (chars.length - 1);
-  let cx = x - total / 2;
-  const align = g.textAlign;
-  g.textAlign = 'left';
-  chars.forEach((ch, i) => { g.fillText(ch, cx, y); cx += widths[i] + spacing; });
-  g.textAlign = align;
-}
-
+// A candle on the dark cover: no outline, and a halo when lit.
 function drawCandle(g, x, base, lit, s) {
   const top = lit ? 30 : 54;
   const X = (v) => x + v * s;
   const Y = (v) => base - (80 - v) * s;
-  g.lineWidth = 2.2 * s / 2.4;
-  g.strokeStyle = INK;
-  g.fillStyle = WAX;
-  g.beginPath();
-  g.rect(X(8), Y(top), 14 * s, (80 - top) * s);
-  g.fill(); g.stroke();
-  // drips
-  g.beginPath();
-  g.moveTo(X(8), Y(top));
-  g.lineTo(X(22), Y(top));
-  g.lineTo(X(22), Y(top + 5));
-  g.bezierCurveTo(X(22), Y(top + 9), X(19), Y(top + 9), X(19), Y(top + 5));
-  g.bezierCurveTo(X(19), Y(top + 3), X(17), Y(top + 3), X(17), Y(top + 6));
-  g.bezierCurveTo(X(17), Y(top + 13), X(13), Y(top + 13), X(13), Y(top + 6));
-  g.bezierCurveTo(X(13), Y(top + 3), X(11), Y(top + 3), X(11), Y(top + 5));
-  g.bezierCurveTo(X(11), Y(top + 8), X(8), Y(top + 8), X(8), Y(top + 4));
-  g.closePath();
-  g.fill(); g.stroke();
-  // wick
+  if (lit) {
+    const glow = g.createRadialGradient(X(15), Y(18), 0, X(15), Y(18), 110);
+    glow.addColorStop(0, 'rgba(242,169,59,0.5)');
+    glow.addColorStop(1, 'rgba(242,169,59,0)');
+    g.fillStyle = glow;
+    g.fillRect(X(15) - 120, Y(18) - 120, 240, 240);
+  }
+  g.fillStyle = lit ? WAX : '#8F886F';
+  g.fillRect(X(8), Y(top), 14 * s, (80 - top) * s);
+  g.strokeStyle = '#3A342A';
+  g.lineWidth = 2.6 * s / 2.4;
   g.beginPath();
   g.moveTo(X(15), Y(top));
   g.lineTo(X(15), Y(top - 6));
-  g.lineWidth = 2.6 * s / 2.4;
   g.stroke();
   if (!lit) return;
   g.fillStyle = FLAME;
@@ -102,45 +82,41 @@ function drawCandle(g, x, base, lit, s) {
   g.fill();
 }
 
-function drawSeal(g, cx, cy, r, seed) {
-  const rng = mulberry32(seed);
-  // wax blob with an uneven rim
-  g.fillStyle = BLOOD;
-  g.beginPath();
-  const steps = 64;
-  for (let i = 0; i <= steps; i++) {
-    const a = (i / steps) * Math.PI * 2;
-    const rr = r * (1 + (rng() - 0.5) * 0.07 + Math.sin(a * 5 + seed) * 0.02);
-    const px = cx + Math.cos(a) * rr;
-    const py = cy + Math.sin(a) * rr;
-    if (i === 0) g.moveTo(px, py); else g.lineTo(px, py);
+function paperGrain(g, rng, x, y, w, h, n) {
+  for (let i = 0; i < n; i++) {
+    g.fillStyle = `rgba(82,66,26,${(rng() * 0.09).toFixed(3)})`;
+    g.fillRect(x + rng() * w, y + rng() * h, rng() * 2.2 + 0.4, rng() * 2.2 + 0.4);
   }
-  g.closePath();
-  g.fill();
-  // pressed ring
-  g.strokeStyle = '#4E1414';
-  g.lineWidth = 6;
-  g.beginPath();
-  g.arc(cx, cy, r * 0.74, 0, Math.PI * 2);
-  g.stroke();
-  // monogram pressed into the wax
-  g.fillStyle = '#8E3A2F';
-  g.textAlign = 'center';
-  g.textBaseline = 'middle';
-  g.font = `700 ${Math.round(r * 0.78)}px ${SERIF_DISPLAY}`;
-  g.fillText('KD', cx, cy + r * 0.02);
-  g.textBaseline = 'alphabetic';
 }
 
+// A rectangle with its corners cut, like the label on a ledger.
+function cutRect(g, x, y, w, h, c) {
+  g.beginPath();
+  g.moveTo(x + c, y); g.lineTo(x + w - c, y); g.lineTo(x + w, y + c); g.lineTo(x + w, y + h - c);
+  g.lineTo(x + w - c, y + h); g.lineTo(x + c, y + h); g.lineTo(x, y + h - c); g.lineTo(x, y + c);
+  g.closePath();
+}
+
+function fitText(g, text, font, size, min, max) {
+  let px = size;
+  g.font = font(px);
+  while (px > min && g.measureText(text).width > max) { px -= 2; g.font = font(px); }
+}
+
+const STAMP = { success: ['HÜKÜM TAMAM', MOR], partial: ['SIR ÇÖZÜLMEDİ', INK_2], fail: ['YANLIŞ TEŞHİS', BORDO] };
+
+// The card is the ledger itself: black cloth, bordo spine and corners, the label, a slip for the case, the candles.
 export async function drawCard(info) {
   try {
     await Promise.all([
-      document.fonts.load(`600 120px ${SERIF_DISPLAY}`),
-      document.fonts.load(`italic 500 60px ${SERIF_DISPLAY}`),
-      document.fonts.load(`400 40px ${SERIF_TEXT}`),
-      document.fonts.load(`italic 400 40px ${SERIF_TEXT}`),
+      document.fonts.load(`700 80px ${DISPLAY}`),
+      document.fonts.load(`600 60px ${DISPLAY}`),
+      document.fonts.load(`700 120px ${FORM}`),
+      document.fonts.load(`500 40px ${FORM}`),
+      document.fonts.load(`400 40px ${READ}`),
+      document.fonts.load(`italic 400 40px ${READ}`),
     ]);
-  } catch { /* fall back to Georgia */ }
+  } catch { /* fall back to system faces */ }
 
   const W = 1080;
   const H = 1920;
@@ -150,87 +126,111 @@ export async function drawCard(info) {
   const g = canvas.getContext('2d');
   const rng = mulberry32(info.no * 7919 + 17);
 
-  g.fillStyle = PAPER;
+  // cloth
+  g.fillStyle = COVER;
   g.fillRect(0, 0, W, H);
-  for (let i = 0; i < 14000; i++) {
-    g.fillStyle = `rgba(26,23,20,${(rng() * 0.07).toFixed(3)})`;
-    g.fillRect(rng() * W, rng() * H, rng() * 2.2 + 0.4, rng() * 2.2 + 0.4);
-  }
-  g.strokeStyle = 'rgba(26,23,20,0.05)';
-  g.lineWidth = 1;
-  for (let i = 0; i < 260; i++) {
-    const x = rng() * W;
-    const y = rng() * H;
-    const a = rng() * Math.PI;
-    const l = 8 + rng() * 26;
-    g.beginPath();
-    g.moveTo(x, y);
-    g.lineTo(x + Math.cos(a) * l, y + Math.sin(a) * l);
-    g.stroke();
-  }
+  g.fillStyle = 'rgba(255,244,214,0.03)';
+  for (let y = 0; y < H; y += 6) g.fillRect(0, y, W, 2);
+  g.fillStyle = 'rgba(0,0,0,0.22)';
+  for (let x = 0; x < W; x += 6) g.fillRect(x, 0, 2, H);
+  // spine
+  const spine = g.createLinearGradient(0, 0, 56, 0);
+  spine.addColorStop(0, BORDO_DEEP); spine.addColorStop(0.55, BORDO); spine.addColorStop(1, BORDO_DEEP);
+  g.fillStyle = spine;
+  g.fillRect(0, 0, 56, H);
+  g.fillStyle = 'rgba(0,0,0,0.5)';
+  g.fillRect(56, 0, 3, H);
+  // corners
+  g.fillStyle = BORDO;
+  g.beginPath(); g.moveTo(W - 150, 0); g.lineTo(W, 0); g.lineTo(W, 150); g.closePath(); g.fill();
+  g.beginPath(); g.moveTo(W - 150, H); g.lineTo(W, H); g.lineTo(W, H - 150); g.closePath(); g.fill();
 
-  g.strokeStyle = INK;
-  g.lineWidth = 3;
-  g.strokeRect(64, 64, W - 128, H - 128);
-  g.lineWidth = 1.2;
-  g.strokeRect(82, 82, W - 164, H - 164);
-
+  const CX = (W + 56) / 2;
   g.textAlign = 'center';
   g.textBaseline = 'alphabetic';
+
+  // label
+  const LW = 640;
+  const LX = CX - LW / 2;
+  g.fillStyle = SHEET;
+  cutRect(g, LX, 150, LW, 210, 30); g.fill();
+  g.save(); cutRect(g, LX, 150, LW, 210, 30); g.clip(); paperGrain(g, rng, LX, 150, LW, 210, 2600); g.restore();
+  g.strokeStyle = 'rgba(28,41,70,0.6)';
+  g.lineWidth = 2.5;
+  cutRect(g, LX + 14, 164, LW - 28, 182, 22); g.stroke();
+  g.lineWidth = 1.2;
+  cutRect(g, LX + 22, 172, LW - 44, 166, 18); g.stroke();
   g.fillStyle = INK;
-  g.font = `600 44px ${SERIF_DISPLAY}`;
-  spaced(g, 'KARA DEFTER', W / 2, 214, 16);
-  g.fillStyle = BLOOD;
-  g.fillRect(W / 2 - 60, 250, 120, 3);
-
+  g.font = `700 82px ${DISPLAY}`;
+  g.fillText('Kara Defter', CX, 270);
   g.fillStyle = INK_2;
-  g.font = `italic 500 72px ${SERIF_DISPLAY}`;
-  g.fillText('Vaka', W / 2, 400);
+  g.font = `500 30px ${FORM}`;
+  g.fillText('Köylerden gelen vakalar, her gün bir tane', CX, 330);
+
+  // the case slip
+  const SX = CX - 380;
+  const SY = 470;
+  g.fillStyle = 'rgba(0,0,0,0.45)';
+  g.fillRect(SX + 10, SY + 18, 760, 660);
+  g.fillStyle = SHEET;
+  g.fillRect(SX, SY, 760, 660);
+  paperGrain(g, rng, SX, SY, 760, 660, 9000);
+  g.fillStyle = BORDO;
+  g.font = `500 56px ${FORM}`;
+  g.fillText('Vaka', CX, SY + 110);
   g.fillStyle = INK;
-  g.font = `600 250px ${SERIF_DISPLAY}`;
-  // the display face has old-style figures; leave room for descending 3, 4, 5, 7, 9
-  g.fillText(`#${info.no}`, W / 2, 600);
+  g.font = `700 300px ${FORM}`;
+  g.fillText(String(info.no), CX, SY + 370);
+  g.fillStyle = 'rgba(98,124,158,0.6)';
+  g.fillRect(SX + 70, SY + 420, 620, 2);
   g.fillStyle = INK_2;
-  g.font = `400 42px ${SERIF_TEXT}`;
-  g.fillText(`${formatDateTR(info.date)} · ${info.village} köyü`, W / 2, 760);
+  fitText(g, `${formatDateTR(info.date)} · ${info.village} köyü`, (px) => `400 ${px}px ${READ}`, 40, 28, 620);
+  g.fillText(`${formatDateTR(info.date)} · ${info.village} köyü`, CX, SY + 484);
+  // rubber stamp
+  const [word, colour] = STAMP[info.outcome] || STAMP.fail;
+  g.save();
+  g.translate(CX, SY + 580);
+  g.rotate(-0.06);
+  g.globalAlpha = 0.86;
+  g.font = `700 60px ${FORM}`;
+  if ('letterSpacing' in g) g.letterSpacing = '6px';
+  const tw = g.measureText(word).width;
+  g.strokeStyle = colour;
+  g.lineWidth = 6;
+  g.strokeRect(-tw / 2 - 30, -56, tw + 60, 92);
+  g.lineWidth = 2;
+  g.strokeRect(-tw / 2 - 40, -66, tw + 80, 112);
+  g.fillStyle = colour;
+  g.fillText(word, 3, 12);
+  if ('letterSpacing' in g) g.letterSpacing = '0px';
+  g.restore();
 
-  drawSeal(g, W / 2, 1010, 140, info.no);
+  // candles
+  const s = 2.5;
+  const gap = 130;
+  const startX = CX - ((MAX_CANDLES - 1) * gap) / 2 - 15 * s;
+  for (let i = 0; i < MAX_CANDLES; i++) drawCandle(g, startX + i * gap, 1440, i < info.candlesLeft, s);
 
-  const s = 2.4;
-  const gap = 132;
-  const startX = W / 2 - ((MAX_CANDLES - 1) * gap) / 2 - 15 * s;
-  for (let i = 0; i < MAX_CANDLES; i++) drawCandle(g, startX + i * gap, 1400, i < info.candlesLeft, s);
-
-  g.fillStyle = info.outcome === 'fail' ? BLOOD : INK;
-  // shrink long outcome lines so they stay inside the inner frame
+  g.fillStyle = ON_DARK;
   const line = outcomeLine(info);
-  let size = 84;
-  g.font = `600 ${size}px ${SERIF_DISPLAY}`;
-  while (size > 52 && g.measureText(line).width > W - 280) {
-    size -= 2;
-    g.font = `600 ${size}px ${SERIF_DISPLAY}`;
-  }
-  g.fillText(line, W / 2, 1530);
-  const sub = [info.rank || '', info.streak > 0 ? `Seri: ${info.streak} gün` : '', info.total ? `Defter: ${info.pages}/${info.total}` : '']
+  fitText(g, line, (px) => `600 ${px}px ${DISPLAY}`, 70, 44, W - 300);
+  g.fillText(line, CX, 1580);
+  const sub = [info.rank || '', info.streak > 0 ? `Seri ${info.streak} gün` : '', info.total ? `Defter ${info.pages}/${info.total}` : '']
     .filter(Boolean).join('   ·   ');
   if (sub) {
-    g.fillStyle = INK_2;
-    let subSize = 44;
-    g.font = `400 ${subSize}px ${SERIF_TEXT}`;
-    while (subSize > 30 && g.measureText(sub).width > W - 260) {
-      subSize -= 2;
-      g.font = `400 ${subSize}px ${SERIF_TEXT}`;
-    }
-    g.fillText(sub, W / 2, 1604);
+    g.fillStyle = ON_DARK_2;
+    fitText(g, sub, (px) => `500 ${px}px ${FORM}`, 46, 30, W - 300);
+    g.fillText(sub, CX, 1664);
   }
 
-  g.fillStyle = INK;
-  g.fillRect(W / 2 - 220, 1672, 440, 1.5);
-  g.font = `italic 400 54px ${SERIF_TEXT}`;
-  g.fillText('Bugünün vakasını sen çöz', W / 2, 1752);
-  g.fillStyle = INK_2;
-  g.font = `500 34px ${SERIF_TEXT}`;
-  spaced(g, prettyUrl(info.url), W / 2, 1810, 3);
+  g.fillStyle = 'rgba(233,222,182,0.25)';
+  g.fillRect(CX - 220, 1722, 440, 2);
+  g.fillStyle = ON_DARK;
+  g.font = `italic 400 48px ${READ}`;
+  g.fillText('Bugünün vakasını sen çöz', CX, 1798);
+  g.fillStyle = ON_DARK_2;
+  g.font = `500 36px ${FORM}`;
+  g.fillText(prettyUrl(info.url), CX, 1854);
 
   return canvas;
 }

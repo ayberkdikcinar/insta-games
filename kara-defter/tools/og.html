@@ -1,27 +1,44 @@
 <!doctype html>
 <html lang="tr"><head><meta charset="utf-8">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,500&family=EB+Garamond:ital@0;1&display=swap" rel="stylesheet">
+<!-- Link preview, 1200×630: the closed ledger with today's envelope on it. Screenshot to assets/og.png. -->
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Besley:ital,wght@0,500..800;1,500&family=Literata:ital,opsz,wght@0,7..72,400..600;1,7..72,400..500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../style.css">
 <style>
-  html, body { margin: 0; width: 1200px; height: 630px; overflow: hidden; }
-  body { background-color: var(--paper); background-image: var(--grain); }
-  .frame { position: absolute; inset: 26px; border: 3px solid var(--ink); }
-  .frame::after { content: ""; position: absolute; inset: 7px; border: 1px solid var(--ink); }
-  .t { position: absolute; top: 70px; left: 0; right: 0; text-align: center; font-family: var(--display); font-weight: 700; font-size: 34px; letter-spacing: .42em; }
-  .rule { position: absolute; top: 128px; left: 560px; width: 80px; height: 3px; background: var(--blood); }
-  .h { position: absolute; top: 146px; left: 0; right: 0; text-align: center; font-family: var(--display); font-weight: 600; font-size: 64px; line-height: 1.05; }
-  .s { position: absolute; top: 228px; left: 0; right: 0; text-align: center; font-family: var(--text); font-style: italic; font-size: 27px; color: var(--ink-2); }
-  .figs { position: absolute; left: 70px; right: 70px; bottom: 44px; display: flex; justify-content: space-between; align-items: flex-end; }
-  .figs .sil { width: 128px; }
+  html, body { margin: 0; width: 1200px; height: 630px; overflow: hidden; padding: 0; }
+  body { position: relative; background-color: var(--cover); background-image: var(--weave); --ink: #E9DEB6; --ink-2: #A99F83; color: var(--ink); }
+  .spine { position: absolute; left: 0; top: 0; bottom: 0; width: 44px; background: linear-gradient(90deg, var(--bordo-deep), var(--bordo) 55%, var(--bordo-deep)); box-shadow: 2px 0 0 rgba(0,0,0,.5); }
+  .corner { position: absolute; right: 0; width: 110px; height: 110px; background: var(--bordo); }
+  .corner.t { top: 0; clip-path: polygon(0 0, 100% 0, 100% 100%); }
+  .corner.b { bottom: 0; clip-path: polygon(100% 0, 100% 100%, 0 100%); }
+  .cover-label { position: absolute; left: 104px; top: 62px; margin: 0; padding: 14px 44px; }
+  .label-title { font-size: 50px; }
+  .label-sub { font-size: 22px; }
+  .h { position: absolute; left: 104px; top: 226px; width: 500px; margin: 0; font-family: var(--display); font-weight: 600; font-size: 46px; line-height: 1.15; }
+  .s { position: absolute; left: 106px; top: 384px; width: 480px; margin: 0; font-size: 25px; line-height: 1.5; color: var(--ink-2); }
+  .envelope { position: absolute; right: 150px; top: 150px; width: 400px; min-height: 250px; padding: 22px 24px; transform: rotate(3deg); cursor: default; }
+  .env-to { margin-top: 110px; font-size: 26px; }
+  .env-from { margin-bottom: 4px; font-size: 18px; }
+  .figs { position: absolute; left: 104px; bottom: 34px; display: flex; gap: 26px; align-items: flex-end; padding: 10px 22px 8px; background-color: var(--sheet); background-image: var(--grain); --ink: #1C2946; }
+  .figs .sil { width: 58px; }
 </style></head><body>
 <svg width="0" height="0" style="position:absolute"><defs><filter id="ink" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency="0.045" numOctaves="2" seed="7" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="3.2" xChannelSelector="R" yChannelSelector="G"/></filter></defs></svg>
-<div class="frame"></div>
-<div class="t">KARA DEFTER</div><div class="rule"></div>
-<div class="h">Her gün bir köyden bir mektup.</div>
-<div class="s">Elli yaratıklık defterden doğrusunu bul, altı mumla avla.</div>
+<div class="spine"></div><div class="corner t"></div><div class="corner b"></div>
+<header class="cover-label"><p class="label-title">Kara Defter</p><p class="label-sub">Köylerden gelen vakalar, her gün bir tane</p></header>
+<p class="h">Her gün bir köyden bir mektup.</p>
+<p class="s">Elli yaratıklık defterden doğrusunu bul, altı mum bitmeden hükmünü yaz.</p>
+<div class="envelope">
+  <span class="env-post">
+    <svg class="postmark" viewBox="0 0 150 100"><defs><path id="pm" d="M19 50 a31 31 0 0 1 62 0"/></defs><circle cx="50" cy="50" r="42"/><circle cx="50" cy="50" r="27"/>
+      <text class="pm-name"><textPath href="#pm" startOffset="50%" text-anchor="middle">KARATEPE</textPath></text><text class="pm-date" x="50" y="55" text-anchor="middle">Köy</text><text class="pm-year" x="50" y="86" text-anchor="middle">POSTA</text>
+      <path class="pm-wave" d="M96 32q7-6 14 0t14 0t14 0t14 0M96 44q7-6 14 0t14 0t14 0t14 0M96 56q7-6 14 0t14 0t14 0t14 0M96 68q7-6 14 0t14 0t14 0t14 0"/></svg>
+    <span class="pul"><span class="pul-in"><svg viewBox="0 0 30 30"><path d="M15 3c4 7 6.5 11.5 6.5 15a6.5 6.5 0 0 1-13 0c0-3.5 2.5-8 6.5-15z"/></svg><b>1</b><i>VAKA</i></span></span>
+  </span>
+  <span class="env-to">Kara Defter’in sahibine</span>
+  <span class="env-from">Gönderen: Karatepe köyü</span>
+</div>
 <div class="figs" id="figs"></div>
 <script type="module">
   import { silhouette } from '../js/art.js';
-  document.getElementById('figs').innerHTML = ['albasti', 'karakoncolos', 'surale', 'sahmeran', 'hortlak', 'kurtadam', 'suaygiri', 'carsamba']
+  document.getElementById('figs').innerHTML = ['albasti', 'karakoncolos', 'surale', 'sahmeran', 'hortlak', 'kurtadam']
     .map((id) => silhouette(id)).join('');
 </script></body></html>

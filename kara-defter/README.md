@@ -24,6 +24,18 @@ Bir vakada:
 
 Vaka başına ortalama 3–4 mum yanar, Usta avcı değeri çoğunlukla 3'tür.
 
+## Görsel dil
+
+Tema, adını oyundan alır: **kara kaplı defter**. Gece masada duran, siyah bez ciltli, bordo sırtlı bir hesap defteri.
+
+- **Dışarısı karanlık, okunan her şey kâğıtta.** Ana ekran defterin kapağıdır (siyah bez, bordo sırt ve köşeler, üstünde etiket); günün vakası kapağın üstünde duran pullu, damgalı bir zarftır. Vaka ekranı açık sayfadır: üstte mum rafı, altında kırmızı kenar çizgili saman kâğıdı.
+- **Mum ışığı** temanın imzasıdır: mumlar karanlık rafta parlar, ışıkları sayfaya vurur ve her mum yandıkça daralır (`--lit`), oda kararır (`.dusk`).
+- **Renkler:** kapak `#1B1916`, bordo `#7B1E26`, saman kâğıdı `#E9DEB6`, ayrı kâğıtlar `#F4ECCF`, mavi-siyah mürekkep `#1C2946`, kopya kalemi moru `#5B3B8F` (damgalar, işaretler, Nazire Ebe'nin notları), alev `#F2A93B`.
+- **Yazı:** başlıklar, adlar ve etiket Besley (defter etiketlerinin Clarendon harfi), okuma metni Literata (imzalar ve kenar notları italik), defterin basılı kısımları ve düğmeler Barlow Condensed, daktiloyla yazılmış resmî mektuplar Courier Prime (`isOfficial`, `js/cases.js`).
+- **Kenar boşluğu** bilgi taşır: her notun yanında, o notun kaçıncı muma mal olduğu yazar.
+- Koyu ve kâğıt yüzeyler aynı değişkenleri (`--ink`, `--ink-2`, `--line`) yeniden tanımlar; bkz. `style.css` içinde "surfaces".
+- `assets/og.png` ve ikonlar `tools/og.html` ile `tools/icon.html` sayfalarının ekran görüntüsüdür.
+
 ## Çizimler
 
 `js/art.js` iki tür çizim üretir:

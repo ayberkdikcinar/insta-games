@@ -141,6 +141,7 @@ function duelHTML(no) {
 function tomorrowHTML() {
   const t = generateCase(todayNo + 1);
   return `<aside class="tomorrow">
+    ${pulHTML(todayNo + 1)}
     <p class="kicker">Yarının zarfı</p>
     <p class="tomorrow-from">${esc(t.village)} köyünden. Mühür gece yarısı çözülür; kâğıdın kıvrımından şu kadarı okunuyor:</p>
     <p class="tomorrow-peek">${esc(teaser(t.letter.body))}</p>
@@ -169,11 +170,27 @@ function gainsHTML() {
 
 /* ---------- screens ---------- */
 
+// The label pasted on the ledger's cover.
 function masthead() {
-  return `<header class="mast">
-    <p class="mast-title">Kara Defter</p>
-    <p class="mast-sub">Köylerden gelen vakalar · her gün bir tane</p>
+  return `<header class="cover-label">
+    <p class="label-title">Kara Defter</p>
+    <p class="label-sub">Köylerden gelen vakalar, her gün bir tane</p>
   </header>`;
+}
+
+// A stamp with the case number, and the village's postmark.
+const pulHTML = (no) => `<span class="pul" aria-hidden="true"><span class="pul-in">${FLAME}<b>${no}</b><i>VAKA</i></span></span>`;
+
+function postmarkSVG(village, iso, id) {
+  const [y, m, d] = iso.split('-');
+  return `<svg class="postmark" viewBox="0 0 150 100" aria-hidden="true">
+    <defs><path id="pm-${id}" d="M19 50 a31 31 0 0 1 62 0"/></defs>
+    <circle cx="50" cy="50" r="42"/><circle cx="50" cy="50" r="27"/>
+    <text class="pm-name"><textPath href="#pm-${id}" startOffset="50%" text-anchor="middle">${esc(village.toLocaleUpperCase('tr'))}</textPath></text>
+    <text class="pm-date" x="50" y="55" text-anchor="middle">${d}.${m}</text>
+    <text class="pm-year" x="50" y="86" text-anchor="middle">${y}</text>
+    <path class="pm-wave" d="M96 32q7-6 14 0t14 0t14 0t14 0M96 44q7-6 14 0t14 0t14 0t14 0M96 56q7-6 14 0t14 0t14 0t14 0M96 68q7-6 14 0t14 0t14 0t14 0"/>
+  </svg>`;
 }
 
 function renderHome() {
@@ -189,7 +206,7 @@ function renderHome() {
     const cr = BY_ID[res.creature];
     today = `
       <div class="closed">
-        <p class="kicker">Vaka #${todayNo} kapandı</p>
+        <p class="kicker">Vaka ${todayNo} kapandı</p>
         <h1 class="title">${esc(outcomeLine(res))}</h1>
         <p class="lede">${esc(c.village)} köyündeki iş ${res.outcome === 'fail' ? 'çözülemedi' : 'bitti'}: <b>${cr.name}</b>.</p>
         <div class="candles candles-sm">${candleRow(MAX_CANDLES, res.candlesLeft)}</div>
@@ -199,10 +216,13 @@ function renderHome() {
       ${tomorrowHTML()}`;
   } else {
     today = `
-      <p class="kicker">Vaka #${todayNo} · ${formatDateTR(todayISO)}</p>
-      <h1 class="title">${esc(c.village)} köyünden bir mektup var.</h1>
-      <p class="lede">Altı mumun var. Köyde bakabildiğin yerlere bak, geceye bir sınama bırak. Defterdeki elli sayfadan doğrusunu bul, hükmünü yaz.</p>
-      <button class="btn btn-blood" data-act="start">${inProgress ? 'Vakaya dön' : 'Mektubu aç'}</button>`;
+      <button class="envelope" data-act="start">
+        <span class="env-post" aria-hidden="true">${postmarkSVG(c.village, todayISO, 'bugun')}${pulHTML(todayNo)}</span>
+        <span class="env-to">Kara Defter’in sahibine</span>
+        <span class="env-from">Gönderen: ${esc(c.village)} köyü</span>
+        <span class="btn btn-blood env-open">${inProgress ? 'Vakaya dön' : 'Mektubu aç'}</span>
+      </button>
+      <p class="cover-note">Altı mumun var. Köyde bakabildiğin yerlere bak, geceye bir sınama bırak. Defterdeki elli sayfadan doğrusunu bul, hükmünü yaz.</p>`;
   }
   app.innerHTML = `
     ${masthead()}
@@ -236,7 +256,7 @@ function howtoList() {
 function letterHTML(c) {
   const foldable = spent() > 0;
   const folded = foldable && !play.letterOpen;
-  return `<article class="letter${folded ? ' folded' : ''}">
+  return `<article class="letter${c.official ? ' letter-official' : ''}${folded ? ' folded' : ''}">
     <p class="letter-head">${esc(c.village)} köyünden bir mektup</p>
     <p class="letter-body">${esc(c.letter.body)}</p>
     <p class="letter-sign">${esc(c.letter.sign)}</p>
@@ -257,16 +277,16 @@ const spent = () => play.used.length + play.tests.length;
 const pool = () => candidates(play.c, play.used).filter((cr) => fitsTests(cr, play.c, play.tests));
 const livePool = () => pool().filter((cr) => !play.struck.includes(cr.id));
 
-function clueHTML(dimId, fresh) {
+function clueHTML(dimId, fresh, n) {
   const clue = play.c.clues[dimId];
-  return `<li class="clue${fresh ? ' fresh' : ''}">
+  return `<li class="clue${fresh ? ' fresh' : ''}"${n ? ` data-n="${n}"` : ''}>
     <p class="clue-head"><span class="clue-cat">${DIM[dimId].name}</span><span class="tag">${famLabel(dimId, clue.fam)}</span></p>
     <p>${esc(clue.text)}</p></li>`;
 }
 
-function testHTML(toolId, fresh) {
+function testHTML(toolId, fresh, n) {
   const r = testResult(play.c, toolId);
-  return `<li class="clue${fresh ? ' fresh' : ''}">
+  return `<li class="clue${fresh ? ' fresh' : ''}"${n ? ` data-n="${n}"` : ''}>
     <p class="clue-head"><span class="clue-cat">Sınama: ${TOOL_BY_ID[toolId].name}</span><span class="tag${r.works ? ' tag-yes' : ''}">${r.works ? 'İşledi' : 'İşlemedi'}</span></p>
     <p>${esc(r.text)}</p></li>`;
 }
@@ -305,8 +325,8 @@ function logHTML() {
       out.push(`<li class="clue confront${fresh ? ' fresh' : ''}"><p class="clue-head"><span class="clue-cat">Yüzleşme</span></p><p>${esc(c.story.yuzlesme.text)}</p></li>`);
       return;
     }
-    out.push(o.startsWith('t:') ? testHTML(o.slice(2), fresh) : clueHTML(o, fresh));
     burned++;
+    out.push(o.startsWith('t:') ? testHTML(o.slice(2), fresh, burned) : clueHTML(o, fresh, burned));
     const turn = c.story.gidisat[[2, 4, 5].indexOf(burned)];
     if ([2, 4, 5].includes(burned) && turn) out.push(`<li class="turn${fresh ? ' fresh' : ''}">${esc(turn)}</li>`);
   });
@@ -342,8 +362,10 @@ function renderCase() {
   const shut = CLUE_DIMS.filter((d) => !c.sources.includes(d.id));
   app.innerHTML = `
     ${caseBar('home', 'Masa')}
-    <div class="candles" role="img" aria-label="${left} mum yanıyor">${candleRow(MAX_CANDLES, left, burning)}</div>
-    <p class="candle-count">${left === 0 ? 'Mumların bitti' : `${left} mum yanıyor`}</p>
+    <div class="shelf">
+      <div class="candles" role="img" aria-label="${left} mum yanıyor">${candleRow(MAX_CANDLES, left, burning)}</div>
+      <p class="candle-count">${left === 0 ? 'Mumların bitti' : `${left} mum yanıyor`}</p>
+    </div>
     <div class="desk">
     <section class="desk-notes">
     ${letterHTML(c)}
@@ -532,6 +554,7 @@ function setDusk() {
   const on = play && ['case', 'diagnose', 'verdict'].includes(view);
   const burnt = on ? spent() / MAX_CANDLES : 0;
   duskEl.style.opacity = burnt;
+  document.documentElement.style.setProperty('--lit', (1 - burnt).toFixed(2));
   document.body.classList.toggle('low-light', burnt >= 0.5);
 }
 
@@ -896,7 +919,7 @@ wide.addEventListener('change', () => {
 
 function sheetListHTML() {
   const caught = caughtCount();
-  return `<div class="sheet-head"><p class="mast-title">Defter</p><button class="link" data-sheet="close">Kapat</button></div>
+  return `<div class="sheet-head"><p class="sheet-title">Defter</p><button class="link" data-sheet="close">Kapat</button></div>
     <p class="lede">${caught}/${CREATURES.length} sayfa avlandı. Her sayfada köylerde anlatılanlar yazılı; avladığın yaratığın çizimi ve av notları sayfasına işlenir.</p>
     ${backNotesHTML(caught)}
     <ul class="pages">${CREATURES.map((cr) => `<li><button class="page-tile${data.caught[cr.id] ? ' caught' : ''}" data-sheet="page" data-id="${cr.id}">
@@ -1114,7 +1137,7 @@ function runScene() {
     huntEl.classList.add('letter-up');
     huntEl.innerHTML = `<div class="hunt-inner hunt-letter">
         <p class="coda-when">Haftalar sonra postadan bir zarf çıktı. ${esc(c.village)} köyünden.</p>
-        <article class="letter"><p class="letter-body">${esc(coda)}</p></article>
+        <article class="letter${c.official ? ' letter-official' : ''}"><p class="letter-body">${esc(coda)}</p></article>
         <button class="btn btn-paper" data-act="hunt-done">Sonucu gör</button>
       </div>`;
     huntEl.scrollTop = 0;

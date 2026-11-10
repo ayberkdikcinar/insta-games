@@ -37,13 +37,19 @@ export function creatureIdForCase(n) {
 // Test texts can name the village.
 const fillText = (text, c) => text.replace(/\{koy\}/g, c.village);
 
+// A letter that opens with an office heading (T.C., a report or minutes title in capitals) was typed, not hand-written.
+export const isOfficial = (body) => {
+  const first = body.split('\n')[0].trim();
+  return /^T\.C\./.test(first) || (/^[A-ZÇĞİÖŞÜ0-9 ,.:–-]{10,}$/.test(first) && !/DEFTER/.test(first));
+};
+
 // A case is the creature's hand-written story; the calendar only decides which one comes today.
 export function generateCase(n) {
   const date = dateForCaseNo(n);
   const rng = rngFor(`kara-defter:vaka:${date}`);
   const creatureId = creatureIdForCase(n);
   const story = STORIES[creatureId];
-  const c = { no: n, date, creatureId, village: story.village, chosen: story.chosen, story, letter: story.letter };
+  const c = { no: n, date, creatureId, village: story.village, chosen: story.chosen, story, letter: story.letter, official: isOfficial(story.letter.body) };
   c.clues = {};
   for (const d of CLUE_DIMS) {
     const trait = story.chosen[d.id];
