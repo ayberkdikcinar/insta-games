@@ -1,7 +1,7 @@
 {
   "name": "Kara Defter",
   "short_name": "Kara Defter",
-  "description": "Her gün bir köyden bir vaka. İpuçlarını topla, yaratığı teşhis et, doğru hazırlıkla avla.",
+  "description": "Her gün bir köyden bir vaka. Elli yaratıklık defterden doğrusunu bul, hükmünü yaz.",
   "lang": "tr",
   "start_url": "./",
   "scope": "./",

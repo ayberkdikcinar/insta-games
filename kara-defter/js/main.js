@@ -5,7 +5,11 @@ import { BACK_NOTES } from './content/nazire.js';
 import { istanbulToday, caseNoForDate, formatDateTR, msUntilNextCase, formatCountdown } from './util.js';
 import * as store from './store.js';
 import { silhouette, plate, candleRow } from './art.js';
-import { prepareCard, shareCard, returnUrl, outcomeLine, toast } from './share.js';
+import { prepareCard, shareCard, returnUrl, outcomeLine, toast, copyText } from './share.js';
+import {
+  RANKS, rankIndex, rankName, nextRank, SPARE_EVERY, streakAt, bestStreak, coverMissed, coverFail, earnSpare, week,
+  SEALS, summary, syncSeals, challengeCode, readChallenge, duel, tell, challengeText, teaser, reminderICS, reminderGoogleUrl,
+} from './meta.js';
 
 const app = document.getElementById('app');
 const sheet = document.getElementById('sheet');
@@ -27,6 +31,13 @@ const devNo = (() => {
   const n = parseInt(params.get('vaka'), 10);
   return Number.isFinite(n) && n >= 1 ? n : null;
 })();
+// A friend's link: ?c=<case>.<candles burned>.<outcome>.<rank>. Read once, then kept in the save.
+const challengeIn = devNo ? null : readChallenge(params.get('c'), todayNo);
+if (params.has('c')) {
+  params.delete('c');
+  const q = params.toString();
+  history.replaceState(null, '', location.pathname + (q ? `?${q}` : ''));
+}
 
 let data = store.load();
 let view = 'home';
@@ -35,6 +46,12 @@ let drawerState = null; // { kind: 'page', ids, i } or { kind: 'tools' }
 const wide = window.matchMedia('(min-width: 980px)');
 let burning = -1;
 let lastResult = null;
+let lastGains = []; // what the last verdict earned: a new page, a seal, a rank
+let bootNote = ''; // one line under the streak for this visit
+let homeDuel = null; // a challenge for a case already played: settled on arrival, shown on the home screen
+let notesOpen = false;
+let installEvt = null;
+window.addEventListener('beforeinstallprompt', (e) => { e.preventDefault(); installEvt = e; });
 
 const esc = (s) => String(s).replace(/[&<>"]/g, (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[ch]));
 const persist = () => store.save(data);
@@ -46,21 +63,19 @@ const modeLabel = (mode) => (mode === 'archive' ? ' · arşiv' : mode === 'dev' 
 const bucket = (mode) => (mode === 'archive' ? data.archive : mode === 'dev' ? data.dev : data.results);
 const resultFor = (no) => data.results[no] || data.archive[no] || null;
 
-function currentStreak() {
-  const ok = (n) => data.results[n] && data.results[n].outcome !== 'fail'; // finding the creature keeps the streak
-  let n = data.results[todayNo] ? todayNo : todayNo - 1;
-  let s = 0;
-  while (n >= 1 && ok(n)) { s++; n--; }
-  return s;
+const currentStreak = () => streakAt(data, todayNo); // finding the creature keeps the streak
+const nextNote = (pages) => BACK_NOTES.find((n) => n.at > pages) || null;
+const challengeLink = (res) => `${returnUrl()}?c=${challengeCode(res, caughtCount())}`;
+
+function unopened() {
+  let k = 0;
+  for (let n = 1; n < todayNo; n++) if (!resultFor(n)) k++;
+  return k;
 }
 
 function stats() {
   const rs = Object.values(data.results);
-  let best = 0;
-  let run = 0;
-  for (let n = 1; n <= todayNo; n++) {
-    if (data.results[n] && data.results[n].outcome !== 'fail') { run++; best = Math.max(best, run); } else run = 0;
-  }
+  const best = bestStreak(data, todayNo);
   const hist = Array(MAX_CANDLES + 1).fill(0);
   rs.filter((r) => r.outcome === 'success').forEach((r) => { hist[r.candlesLeft]++; });
   return {
@@ -78,7 +93,78 @@ function shareInfo(res) {
     no: res.no, date: res.date, village: res.village, outcome: res.outcome, candlesLeft: res.candlesLeft,
     streak: res.mode === 'daily' ? currentStreak() : 0, pages: caughtCount(), total: CREATURES.length,
     url: returnUrl(), mode: res.mode, tests: (res.tests || []).length,
+    rank: rankName(caughtCount()), link: res.mode === 'dev' ? returnUrl() : challengeLink(res),
   };
+}
+
+/* ---------- the long game: streak strip, challenge, tomorrow's envelope, gains ---------- */
+
+const FLAME = '<svg viewBox="0 0 30 30" aria-hidden="true"><path d="M15 3c4 7 6.5 11.5 6.5 15a6.5 6.5 0 0 1-13 0c0-3.5 2.5-8 6.5-15z"/></svg>';
+const WEEK_ALT = { lit: 'yaratık bulundu', kept: 'yedek mum korudu', out: 'boş geçti', wait: 'bu gece', none: '' };
+
+function weekHTML() {
+  return `<ol class="week" aria-label="Son yedi gece">${week(data, todayNo).map((d) => `<li class="wk wk-${d.state}${d.no === todayNo ? ' wk-today' : ''}" title="${WEEK_ALT[d.state]}">${FLAME}<span>${d.label}</span></li>`).join('')}</ol>`;
+}
+
+function streakHTML() {
+  const s = currentStreak();
+  const spare = data.spare ? ' · Yedek mum <b>1</b>' : s > 0 ? ` · yedek muma ${SPARE_EVERY - (s % SPARE_EVERY)} gün` : '';
+  return `${weekHTML()}<p class="streak">Seri <b>${s}</b> gün${spare}</p>${bootNote ? `<p class="streak-note">${bootNote}</p>` : ''}`;
+}
+
+const theirs = (ch) => `${ch.outcome === 'success' ? 'bu vakayı' : 'bu vakada'} ${tell(ch, 3)}`;
+
+function callHTML() {
+  const ch = data.challenge;
+  return `<aside class="call">
+    <p class="kicker">Çağrı var · Vaka #${ch.no}</p>
+    <p class="call-line">${RANKS[ch.rank].name} rütbesinde bir avcı ${theirs(ch)}. ${ch.outcome === 'success' ? 'Daha az mumla çözebilir misin?' : 'Sen çözebilir misin?'}</p>
+    <button class="btn btn-ink" data-act="call-start">${ch.no === todayNo ? 'Çağrıyı kabul et' : 'Vakayı arşivden aç'}</button>
+    <button class="link" data-act="call-drop">Çağrıyı bırak</button>
+  </aside>`;
+}
+
+function duelHTML(no) {
+  const d = data.duels[no];
+  const mine = resultFor(no);
+  if (!d || !mine) return '';
+  const me = { outcome: mine.outcome, used: MAX_CANDLES - mine.candlesLeft };
+  const end = d.result === 'won' ? 'Geçtin.' : d.result === 'tie' ? 'Berabere.' : 'Bu sefer o önde.';
+  return `<aside class="call call-${d.result}">
+    <p class="kicker">Çağrı · Vaka #${no}</p>
+    <p class="call-line">Seni çağıran avcı ${tell(d, 3)}. Sen ${tell(me, 2)}. <b>${end}</b></p>
+    <button class="btn btn-ghost" data-act="call-send" data-no="${no}">Cevabını gönder</button>
+  </aside>`;
+}
+
+// The next letter is already in the post: its village and its first lines, sealed until midnight.
+function tomorrowHTML() {
+  const t = generateCase(todayNo + 1);
+  return `<aside class="tomorrow">
+    <p class="kicker">Yarının zarfı</p>
+    <p class="tomorrow-from">${esc(t.village)} köyünden. Mühür gece yarısı çözülür; kâğıdın kıvrımından şu kadarı okunuyor:</p>
+    <p class="tomorrow-peek">${esc(teaser(t.letter.body))}</p>
+    <p class="next">Zarf <span data-countdown>${formatCountdown(msUntilNextCase())}</span> sonra açılır.</p>
+  </aside>`;
+}
+
+function goalLine() {
+  const pages = caughtCount();
+  const r = nextRank(pages);
+  const n = nextNote(pages);
+  const parts = [];
+  if (r) parts.push(`${r.name} rütbesine ${r.at - pages} sayfa`);
+  if (n) parts.push(`${parts.length ? 'defterin' : 'Defterin'} arkasındaki nota ${n.at - pages} sayfa`);
+  return parts.length ? `${parts.join(', ')} kaldı.` : '';
+}
+
+function gainsHTML() {
+  const goal = goalLine();
+  if (!lastGains.length && !goal) return '';
+  return `<section class="gains">
+    ${lastGains.length ? `<ul>${lastGains.map((g) => `<li>${g}</li>`).join('')}</ul>` : ''}
+    ${goal ? `<p class="goal">${goal}</p>` : ''}
+  </section>`;
 }
 
 /* ---------- screens ---------- */
@@ -94,7 +180,10 @@ function renderHome() {
   const res = data.results[todayNo];
   const c = generateCase(todayNo);
   const inProgress = data.inProgress && data.inProgress.no === todayNo && data.inProgress.mode === 'daily';
-  const streak = currentStreak();
+  const pages = caughtCount();
+  const note = nextNote(pages);
+  const open = unopened();
+  const played = Object.keys(data.results).length + Object.keys(data.archive).length;
   let today;
   if (res) {
     const cr = BY_ID[res.creature];
@@ -105,8 +194,9 @@ function renderHome() {
         <p class="lede">${esc(c.village)} köyündeki iş ${res.outcome === 'fail' ? 'çözülemedi' : 'bitti'}: <b>${cr.name}</b>.</p>
         <div class="candles candles-sm">${candleRow(MAX_CANDLES, res.candlesLeft)}</div>
         <button class="btn btn-blood" data-act="share-today">Sonucu paylaş</button>
-        <p class="next">Yeni vaka <span data-countdown>${formatCountdown(msUntilNextCase())}</span> sonra.</p>
-      </div>`;
+        <button class="btn btn-ghost" data-act="call-send" data-no="${todayNo}">Bir arkadaşını çağır</button>
+      </div>
+      ${tomorrowHTML()}`;
   } else {
     today = `
       <p class="kicker">Vaka #${todayNo} · ${formatDateTR(todayISO)}</p>
@@ -116,13 +206,14 @@ function renderHome() {
   }
   app.innerHTML = `
     ${masthead()}
-    <section class="today">${today}</section>
+    <section class="today">${data.challenge ? callHTML() : homeDuel ? duelHTML(homeDuel) : ''}${today}</section>
+    ${streakHTML()}
     <nav class="rows">
-      <button class="row" data-act="defter"><span>Defter</span><em>${caughtCount()}/${CREATURES.length} sayfa dolu</em></button>
-      <button class="row" data-act="archive"><span>Arşiv</span><em>Geçmiş vakalar</em></button>
-      <button class="row" data-act="stats"><span>Sicil</span><em>Seri, mumlar, avlar</em></button>
+      <button class="row" data-act="defter"><span>Defter</span><em>${pages}/${CREATURES.length} sayfa${note ? ` · arkadaki nota ${note.at - pages} sayfa` : ' dolu'}</em></button>
+      <button class="row" data-act="archive"><span>Arşiv</span><em>${open ? `Açılmamış ${open} vaka` : 'Geçmiş vakalar'}</em></button>
+      <button class="row" data-act="stats"><span>Sicil</span><em>${rankName(pages)} · ${Object.keys(data.seals).length}/${SEALS.length} mühür</em></button>
+      ${played ? '<button class="row" data-act="keep"><span>Hatırlatma</span><em>Her akşam dokuzda</em></button>' : ''}
     </nav>
-    <p class="streak">Seri <b>${streak}</b> gün</p>
     <details class="howto">
       <summary>Nasıl oynanır?</summary>
       ${howtoList()}
@@ -138,6 +229,7 @@ function howtoList() {
     <li>Sayfalar arasında kaldıysan <b>Sınama</b> yap: geceye tuz, demir, ateş gibi bir şey bırak. İşleyip işlemediği, hangi sayfanın doğru olduğunu ele verir. Bir sınama da bir mumdur.</li>
     <li>Her köyde biri bir şey saklıyor. Bir şey bulunca yüzleşebilirsin; bunun mumu yanmaz.</li>
     <li>Emin olunca hükmünü yaz: gelen neydi, köy neyi saklıyordu. Oyalandıkça köyde işler kötüleşir. Haftalar sonra köyden bir mektup gelir.</li>
+    <li>Yaratığı bulduğun her gün serin uzar. Yedi günde bir yedek mum kazanırsın; kaçırdığın ya da yanıldığın bir geceyi o kurtarır.</li>
   </ol>`;
 }
 
@@ -380,13 +472,20 @@ function renderResult() {
     </dl>
     <div class="candles candles-sm">${candleRow(MAX_CANDLES, res.candlesLeft)}</div>
     ${res.mode === 'daily' ? `<p class="streak">Seri <b>${currentStreak()}</b> gün · Defter <b>${caughtCount()}</b>/${CREATURES.length}</p>` : `<p class="streak">Defter <b>${caughtCount()}</b>/${CREATURES.length}</p>`}
+    ${gainsHTML()}
+    ${duelHTML(res.no)}
     <div class="actions">
       <button class="btn btn-blood" data-act="share-result">Sonucu paylaş</button>
+      ${res.mode === 'dev' ? '' : `<button class="btn btn-ghost" data-act="call-send" data-no="${res.no}">${data.duels[res.no] ? 'Başka birini çağır' : 'Bir arkadaşını çağır'}</button>`}
       <button class="btn btn-ghost" data-act="page" data-id="${cr.id}">Defterde aç</button>
       ${res.mode === 'dev' ? '<p class="hint">Deneme vakası: sonuç seriye ve günlük kilide yazılmadı.</p>'
-        : res.mode === 'archive' ? '<p class="hint">Arşiv vakası: seriyi etkilemez; sonuç defterine işlendi.</p>'
-          : `<p class="next">Yeni vaka <span data-countdown>${formatCountdown(msUntilNextCase())}</span> sonra.</p>`}
-    </div>`;
+        : res.mode === 'archive' ? '<p class="hint">Arşiv vakası: seriyi etkilemez; sonuç defterine işlendi.</p>' : ''}
+    </div>
+    ${res.mode === 'daily' ? `${tomorrowHTML()}
+      <div class="after">
+        ${unopened() ? `<button class="btn btn-ghost" data-act="archive">Arşivde açılmamış ${unopened()} vaka var</button>` : ''}
+        <button class="link" data-act="keep">Yarın akşam hatırlat</button>
+      </div>` : unopened() && res.mode === 'archive' ? `<div class="after"><button class="btn btn-ghost" data-act="archive">Arşivde açılmamış ${unopened()} vaka var</button></div>` : ''}`;
   prepareCard(shareInfo(res)).catch(() => {});
 }
 
@@ -451,7 +550,81 @@ function openModal(html, label) {
     const act = e.target.closest('[data-modal]')?.dataset.modal;
     if (e.target === modal || act === 'close') closeModal();
     else if (act === 'start') { closeModal(); startCase(todayNo, 'daily'); }
+    else if (act === 'call') { closeModal(); startChallenge(); }
+    else if (act === 'keep') showKeep();
+    else if (act === 'ics') downloadReminder();
+    else if (act === 'install') { installEvt?.prompt(); installEvt = null; closeModal(); }
   };
+}
+
+function startChallenge() {
+  const ch = data.challenge;
+  if (!ch || resultFor(ch.no)) return go('home');
+  startCase(ch.no, ch.no === todayNo ? 'daily' : 'archive');
+}
+
+// A link for a case this player has already closed is settled on the spot; otherwise it waits on the home screen.
+function acceptChallenge(ch) {
+  const mine = resultFor(ch.no);
+  if (!mine) { data.challenge = ch; return; }
+  data.duels[ch.no] = { ...ch, result: duel({ outcome: mine.outcome, used: MAX_CANDLES - mine.candlesLeft }, ch) };
+  data.challenge = null;
+  homeDuel = ch.no;
+}
+
+async function sendChallenge(no) {
+  const res = resultFor(no);
+  if (!res) return;
+  const text = challengeText(res, challengeLink(res));
+  if (navigator.share) {
+    try { await navigator.share({ text }); return; } catch (err) { if (err && err.name === 'AbortError') return; }
+  }
+  toast((await copyText(text)) ? 'Çağrı kopyalandı. Arkadaşına yapıştır.' : 'Kopyalanamadı');
+}
+
+function downloadReminder() {
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([reminderICS(returnUrl(), todayISO)], { type: 'text/calendar' }));
+  a.download = 'kara-defter.ics';
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+  toast('Dosya indi. Açınca takvimine eklenir.');
+}
+
+// A static page cannot send notifications, so the evening reminder is a calendar entry the player adds themself.
+function showKeep() {
+  const url = returnUrl();
+  const ua = navigator.userAgent;
+  const standalone = window.matchMedia('(display-mode: standalone)').matches || navigator.standalone;
+  let home = '';
+  if (standalone) home = '';
+  else if (/Instagram|FBAN|FBAV|TikTok|musical_ly/.test(ua)) {
+    home = '<p class="section-s">Tarayıcıda aç</p><p class="lede">Şu an bir uygulamanın içindeki tarayıcıdasın. Menüden “Tarayıcıda aç”ı seçersen defter kendi tarayıcında durur ve ana ekrana eklenebilir. Kayıt tarayıcıya göre tutulur; orada baştan başlar.</p>';
+  } else if (installEvt) {
+    home = '<p class="section-s">Ana ekran</p><button class="btn btn-ghost" data-modal="install">Ana ekrana ekle</button>';
+  } else if (/iPhone|iPad|iPod/.test(ua)) {
+    home = '<p class="section-s">Ana ekran</p><p class="lede">Safari’de Paylaş düğmesine, sonra “Ana Ekrana Ekle”ye dokun. Defter bir uygulama gibi açılır.</p>';
+  }
+  openModal(`
+    <p class="kicker">Hatırlatma</p>
+    <h2 class="title">Zarf her gece yarısı gelir.</h2>
+    <p class="lede">Bu sayfa bildirim gönderemez. Takvimine her akşam dokuza bir hatırlatma ekleyebilirsin; istediğin gün silersin.</p>
+    <a class="btn btn-blood" href="${esc(reminderGoogleUrl(url, todayISO))}" target="_blank" rel="noopener">Google Takvim’e ekle</a>
+    <button class="btn btn-ghost" data-modal="ics">Takvim dosyası indir</button>
+    ${home}
+    <button class="link modal-close" data-modal="close">Kapat</button>`, 'Hatırlatma');
+}
+
+function sealsHTML() {
+  const s = summary(data, todayNo);
+  return `<ul class="seals">${SEALS.map((seal) => {
+    const [have, need] = seal.prog(s);
+    const on = !!data.seals[seal.id];
+    return `<li class="seal${on ? ' on' : ''}"><span class="seal-wax" aria-hidden="true">${on ? 'KD' : ''}</span>
+      <span class="seal-text"><b>${seal.name}</b><span>${seal.how}${!on && need > 1 ? ` <i>${have}/${need}</i>` : ''}</span></span></li>`;
+  }).join('')}</ul>`;
 }
 
 function closeModal() {
@@ -461,12 +634,16 @@ function closeModal() {
 }
 
 function showIntro() {
+  const ch = data.challenge;
   openModal(`
     <p class="kicker">Kara Defter</p>
     <h2 class="title">Köylerden mektup geliyor.</h2>
     <p class="lede">Elinde, Anadolu’dan Türk dünyasına anlatılan elli yaratığın yazılı olduğu bir defter var. Her gün bir köy yardım istiyor.</p>
-    ${howtoList()}
-    <button class="btn btn-blood" data-modal="${data.results[todayNo] ? 'close' : 'start'}">${data.results[todayNo] ? 'Anladım' : 'İlk mektubu aç'}</button>
+    <p class="lede">Altı mumun var. Her soruşturma bir mum yakar; aldığın notlar defterdeki sayfaları eler. Emin olunca hükmünü yaz: gelen neydi, köy neyi saklıyordu.</p>
+    ${ch ? `<p class="lede intro-call"><b>Bir avcı seni Vaka #${ch.no} için çağırdı:</b> ${theirs(ch)}.</p>` : ''}
+    ${ch ? '<button class="btn btn-blood" data-modal="call">Çağrıyı kabul et</button>'
+    : `<button class="btn btn-blood" data-modal="${data.results[todayNo] ? 'close' : 'start'}">${data.results[todayNo] ? 'Anladım' : 'İlk mektubu aç'}</button>`}
+    <details class="howto intro-how"><summary>Bütün kurallar</summary>${howtoList()}</details>
     <button class="link modal-close" data-modal="close">Kapat</button>`, 'Nasıl oynanır');
 }
 
@@ -475,9 +652,12 @@ function showStats() {
   const max = Math.max(1, ...s.hist);
   const bars = s.hist.map((n, i) => ({ n, i })).reverse()
     .map(({ n, i }) => `<div class="bar"><span class="bar-k">${i}</span><span class="bar-v" style="width:${Math.max(6, (n / max) * 100)}%">${n}</span></div>`).join('');
+  const pages = caughtCount();
+  const up = nextRank(pages);
   openModal(`
     <p class="kicker">Sicil</p>
     <h2 class="title">Avcının defteri</h2>
+    <p class="rank-line">Rütbe: <b>${rankName(pages)}</b>${up ? ` · ${up.name} rütbesine ${up.at - pages} sayfa` : ''}</p>
     <div class="stat-row">
       <div><b>${s.played}</b><span>vaka</span></div>
       <div><b>${s.played ? Math.round((s.won / s.played) * 100) : 0}%</b><span>tam hüküm</span></div>
@@ -488,6 +668,11 @@ function showStats() {
     <div class="bars">${bars}</div>
     <p class="section-s">Defter</p>
     <p class="lede">${caughtCount()} / ${CREATURES.length} sayfa avlandı, ${Object.keys(data.seen).filter((id) => !data.caught[id]).length} sayfanın izi sürüldü.</p>
+    <p class="section-s">Mühürler · ${Object.keys(data.seals).length}/${SEALS.length}</p>
+    ${sealsHTML()}
+    <p class="section-s">Seri</p>
+    <p class="lede">Yedi günde bir yedek mum kazanırsın, elinde en çok bir tane durur. Kaçırdığın ya da yanıldığın bir geceyi o kurtarır.${data.spare ? ' Şu an bir yedek mumun var.' : ''}</p>
+    <button class="btn btn-ghost" data-modal="keep">Akşam hatırlatması ekle</button>
     <p class="hint">Kayıt yalnızca bu tarayıcıda tutuluyor.</p>
     <button class="btn btn-ghost" data-modal="close">Kapat</button>`, 'Sicil');
 }
@@ -723,10 +908,12 @@ function sheetListHTML() {
 
 function backNotesHTML(caught) {
   const notes = BACK_NOTES.filter((n) => caught >= n.at);
-  if (!notes.length) return '';
-  return `<details class="back-notes"${notes.length === BACK_NOTES.length ? ' open' : ''}>
-    <summary>Defterin arkasında yazılanlar</summary>
+  const next = nextNote(caught);
+  if (!notes.length) return next ? `<p class="back-wait">Defterin arkasında başka bir elin yazısı var. İlk not ${next.at - caught} sayfa sonra okunur.</p>` : '';
+  return `<details class="back-notes"${notes.length === BACK_NOTES.length || notesOpen ? ' open' : ''}>
+    <summary>Defterin arkasında yazılanlar · ${notes.length}/${BACK_NOTES.length}</summary>
     ${notes.map((n) => `<p class="hand">${esc(n.text)}</p>`).join('')}
+    ${next ? `<p class="back-wait">Sıradaki not ${next.at - caught} sayfa sonra okunur.</p>` : ''}
   </details>`;
 }
 
@@ -761,6 +948,7 @@ function openSheet(page = null) {
 }
 
 function closeSheet() {
+  notesOpen = false;
   sheet.hidden = true;
   sheet.innerHTML = '';
   document.body.classList.remove('locked');
@@ -835,6 +1023,7 @@ function finishVerdict() {
   const cr = BY_ID[c.creatureId];
   const sirOk = c.sirOptions[verdict.sir] === c.story.sir.right;
   const outcome = diagnosis !== cr.id ? 'fail' : sirOk ? 'success' : 'partial';
+  const before = { pages: caughtCount(), had: !!data.caught[cr.id] };
   const res = {
     no: c.no, date: c.date, village: c.village, creature: cr.id, diagnosis, tests: [...tests], outcome,
     sir: { right: c.story.sir.right, ok: sirOk }, late: spent() >= 5,
@@ -851,6 +1040,28 @@ function finishVerdict() {
     data.seen[cr.id] = true;
   }
   data.inProgress = null;
+
+  // what this verdict earned, in the order it is read on the result screen
+  const gains = [];
+  const pages = caughtCount();
+  if (!before.had && data.caught[cr.id]) gains.push(`Defterine yeni sayfa işlendi: <b>${cr.name}</b>`);
+  if (mode === 'daily') {
+    if (outcome === 'fail') {
+      if (coverFail(data, c.no)) gains.push('Yedek mumun bu geceyi kurtardı. Seri bozulmadı.');
+    } else if (earnSpare(data, c.no)) {
+      gains.push('Yedi gün doldu: bir <b>yedek mum</b> kazandın. Kaçırdığın ya da yanıldığın bir geceyi o kurtarır.');
+    }
+  }
+  if (mode !== 'dev' && data.challenge && data.challenge.no === c.no) {
+    data.duels[c.no] = { ...data.challenge, result: duel({ outcome, used: spent() }, data.challenge) };
+    data.challenge = null;
+  }
+  if (rankIndex(pages) > rankIndex(before.pages)) gains.push(`Rütben yükseldi: <b>${rankName(pages)}</b>`);
+  syncSeals(data, todayNo).forEach((seal) => gains.push(`Yeni mühür: <b>${seal.name}</b>`));
+  if (BACK_NOTES.some((n) => before.pages < n.at && pages >= n.at)) {
+    gains.push('Defterin arkasında yeni bir not açıldı. <button class="link" data-act="back-notes">Oku</button>');
+  }
+  lastGains = gains;
   persist();
   lastResult = res;
   return res;
@@ -972,8 +1183,24 @@ app.addEventListener('click', async (e) => {
     saveProgress();
     rerenderKeepScroll(renderCase);
     [...app.querySelectorAll('.fresh')].pop()?.scrollIntoView({ block: 'center', behavior: 'smooth' });
+  } else if (act === 'call-start') {
+    startChallenge();
+  } else if (act === 'call-drop') {
+    data.challenge = null;
+    persist();
+    go('home');
+  } else if (act === 'call-send') {
+    b.disabled = true;
+    try { await sendChallenge(parseInt(b.dataset.no, 10)); } finally { b.disabled = false; }
+  } else if (act === 'keep') {
+    showKeep();
+  } else if (act === 'back-notes') {
+    notesOpen = true;
+    openSheet(null);
+    sheet.querySelector('.back-notes .hand:last-of-type')?.scrollIntoView({ block: 'center' });
   } else if (act === 'seal') {
     if (b.disabled) return;
+    navigator.vibrate?.(22);
     runScene();
   } else if (act === 'share-result' || act === 'share-today') {
     const res = act === 'share-today' ? data.results[todayNo] : lastResult;
@@ -999,6 +1226,11 @@ setInterval(() => {
 }, 1000);
 
 /* ---------- boot ---------- */
+
+if (challengeIn) acceptChallenge(challengeIn);
+if (coverMissed(data, todayNo)) bootNote = 'Dün gelmedin. Yedek mumun seriyi korudu.';
+syncSeals(data, todayNo); // saves from before the seals existed get theirs without fanfare
+persist();
 
 if (devNo) {
   startCase(devNo, 'dev');

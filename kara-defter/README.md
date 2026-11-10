@@ -55,6 +55,7 @@ Sonra `http://localhost:8765/kara-defter/` adresini aç. Bütün yollar göreli,
 - `node tools/check-roster.mjs`: olası her vakanın (244) tam okunduğunda tek bir yaratığa indiğini kanıtlar. Ayrıca araç çiftlerinin benzersizliğini ve özellik dağılımını denetler.
 - `node tools/check-content.mjs`: metinlerin biçimini, yer tutucularını, roster'a uyumunu ve sayılarını denetler.
 - `node tools/check-cases.mjs`: ilk 500 vakanın eksiksiz üretildiğini, takvimi ve zorluk dağılımını denetler.
+- `node tools/check-meta.mjs`: seri ve yedek mum kurallarını, mühürleri, çağrı linklerini ve 50 mektubun "yarının zarfı" alıntısını denetler (`--teasers` hepsini yazdırır).
 
 Hikâye yazım kuralları `HIKAYE_REHBERI.md`, defter sayfası kuralları `CONTENT_GUIDE.md` dosyasında.
 
@@ -62,6 +63,7 @@ Hikâye yazım kuralları `HIKAYE_REHBERI.md`, defter sayfası kuralları `CONTE
 
 - `?vaka=N`: N numaralı vakayı deneme olarak oynatır. Sonuç seriye ve günlük kilide yazılmaz.
 - `?reset=1`: kaydı siler.
+- `?c=<vaka>.<yanan mum>.<t|e|y>.<rütbe>`: çağrı linki; oyuncular birbirine gönderir (bkz. Uzun oyun).
 
 ## Oyuncu tarafı
 
@@ -69,11 +71,23 @@ Hikâye yazım kuralları `HIKAYE_REHBERI.md`, defter sayfası kuralları `CONTE
 - **Geniş ekran (980px ve üstü):** vaka açık defter gibi iki sayfadır; solda notlar, sağda kalan sayfalar ve seçili sayfa. Ok tuşları sayfa çevirir, `X` eler, adın üstü fareyle de çizilir.
 - **Sayfa çekmecesi:** sayfanın her işareti oyuncunun kendi notuyla yan yana gösterilir. Yana kaydırınca sıradaki sayfaya geçilir, adının üstü parmakla çizilince sayfa elenir (düğmesi de var).
 - İlk ziyarette kısa bir tanıtım gösterilir.
-- **Sicil:** seri, en uzun seri, tam av oranı, kalan mum dağılımı.
+- **Sicil:** rütbe, seri, en uzun seri, tam av oranı, kalan mum dağılımı, mühürler.
 - **Defter:** 50 sayfa; yaratığı doğru bulunanların çizimi ve av notları açılır.
 - **Arşiv:** geçmiş vakalar oynanabilir; seriyi etkilemez, defteri doldurur.
 - Manifest ve ikonlar sayesinde ana ekrana eklenebilir.
 - Link önizlemesi için `assets/og.png` var.
+
+## Uzun oyun
+
+Günlük vakanın etrafındaki, geri getiren ve paylaştıran katman. Kurallar `js/meta.js` dosyasında, sunucu gerektirmez.
+
+- **Yarının zarfı:** günün vakası kapanınca ertesi günün köyü ve mektubun ilk satırları görünür; zarf gece yarısı açılır.
+- **Seri şeridi ve yedek mum:** ana ekranda son yedi gece. Yedi günde bir yedek mum kazanılır (en çok bir tane tutulur); kaçırılan ya da yanılınan tek geceyi kurtarır. Kurtarılan gece seriyi bozmaz ama sayıya eklenmez.
+- **Çağrı:** her paylaşım linki sonucu taşır. Linki açan aynı vakayı oynar (geçmiş vakaysa arşivden), sonunda iki sonuç karşılaştırılır: önce ne bulunduğu, sonra yanan mum. Link doğrulanmaz; elle değiştirilebilir.
+- **Rütbe:** dolan sayfaya göre Emanetçi, Çırak (3), Kalfa (10), Usta (20), Ocaklı (35), Defterin sahibi (50). Paylaşım kartında ve çağrıda görünür.
+- **Mühürler:** 14 hedef (ilk hüküm, usta işi, son mum, seriler, on dört çare, yaratık takımları, çağrı, yarım ve dolu defter). Sicilde ilerlemesiyle listelenir.
+- **Kazanımlar:** sonuç ekranı o hükmün getirdiğini (yeni sayfa, mühür, rütbe, defterin arkasında açılan not) ve sıradaki hedefe kalan sayfayı gösterir.
+- **Hatırlatma:** sayfa bildirim gönderemez; oyuncu isterse takvimine her akşam 21.00 için günlük hatırlatma ekler (Google Takvim linki ya da `.ics`). Ana ekrana ekleme ipucu da buradadır.
 
 ## Prototipte olmayanlar
 

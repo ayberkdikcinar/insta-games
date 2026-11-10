@@ -33,7 +33,8 @@ export function outcomeLine(info) {
 export function shareText(info) {
   const streak = `${info.tests ? ` · ${info.tests} sınama` : ''}${info.streak > 0 ? ` · Seri ${info.streak}` : ''}`;
   const candles = '🕯️'.repeat(info.candlesLeft) + '▫️'.repeat(MAX_CANDLES - info.candlesLeft);
-  return `Kara Defter · Vaka #${info.no}\n${candles} ${outcomeLine(info)}${streak}\nBugünün vakasını sen çöz: ${info.url}`;
+  // the link carries the result as a challenge, so whoever opens it plays against it
+  return `Kara Defter · Vaka #${info.no}\n${candles} ${outcomeLine(info)}${streak}\nAynı vakayı sen çöz: ${info.link || info.url}`;
 }
 
 function spaced(g, text, x, y, spacing) {
@@ -210,11 +211,16 @@ export async function drawCard(info) {
     g.font = `600 ${size}px ${SERIF_DISPLAY}`;
   }
   g.fillText(line, W / 2, 1530);
-  const sub = [info.streak > 0 ? `Seri: ${info.streak} gün` : '', info.total ? `Defter: ${info.pages}/${info.total}` : '']
+  const sub = [info.rank || '', info.streak > 0 ? `Seri: ${info.streak} gün` : '', info.total ? `Defter: ${info.pages}/${info.total}` : '']
     .filter(Boolean).join('   ·   ');
   if (sub) {
     g.fillStyle = INK_2;
-    g.font = `400 44px ${SERIF_TEXT}`;
+    let subSize = 44;
+    g.font = `400 ${subSize}px ${SERIF_TEXT}`;
+    while (subSize > 30 && g.measureText(sub).width > W - 260) {
+      subSize -= 2;
+      g.font = `400 ${subSize}px ${SERIF_TEXT}`;
+    }
     g.fillText(sub, W / 2, 1604);
   }
 
@@ -230,7 +236,7 @@ export async function drawCard(info) {
 }
 
 let cached = { key: '', blob: null, url: '' };
-const keyOf = (info) => JSON.stringify([info.no, info.outcome, info.candlesLeft, info.tests, info.streak, info.pages, info.url]);
+const keyOf = (info) => JSON.stringify([info.no, info.outcome, info.candlesLeft, info.tests, info.streak, info.pages, info.rank, info.url]);
 
 export async function prepareCard(info) {
   const key = keyOf(info);

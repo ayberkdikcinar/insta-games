@@ -6,6 +6,8 @@ let memory = null;
 
 const blank = () => ({
   v: 2, results: {}, archive: {}, dev: {}, caught: {}, seen: {}, inProgress: null, onboarded: false,
+  // the long game: spare candle and the nights it covered, seals earned, a pending challenge, challenges settled
+  spare: 0, kept: {}, seals: {}, challenge: null, duels: {},
 });
 
 function migrate(old) {
