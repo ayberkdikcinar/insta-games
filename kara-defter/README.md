@@ -83,7 +83,7 @@ Hikâye yazım kuralları `HIKAYE_REHBERI.md`, defter sayfası kuralları `CONTE
 ## Oyuncu tarafı
 
 - **Tek masa:** notlar sırayla birikir, yapılacaklar altında durur, kalan sayfalar ekranın altında hep görünür. Mumlar yandıkça oda kararır.
-- **Geniş ekran (980px ve üstü):** vaka açık defter gibi iki sayfadır; solda notlar, sağda kalan sayfalar ve seçili sayfa. Ok tuşları sayfa çevirir, `X` eler, adın üstü fareyle de çizilir.
+- **Ekran genişlikleri:** 620px'in altı telefon düzenidir. 620–899px arasında sayfa 720px'e kadar genişler, alt kenara yapışan düğmeler metnin içine iner, çekmece ve defter ortada açılır. 900px ve üstünde defter açık durur: vaka, hüküm ve sonuç iki sayfadır (solda notlar ya da levha, sağda kalan sayfalar ya da kayıt), bütün ekranlar aynı genişliktedir, ana ekrandaki kapalı defter içeriği kadar yer tutar ve masanın ortasında durur. Ok tuşları sayfa çevirir, `X` eler, adın üstü fareyle de çizilir. Kırılma noktası `style.css` ve `main.js` içindeki `wide` sorgusunda aynı olmalı.
 - **Sayfa çekmecesi:** sayfanın her işareti oyuncunun kendi notuyla yan yana gösterilir. Yana kaydırınca sıradaki sayfaya geçilir, adının üstü parmakla çizilince sayfa elenir (düğmesi de var).
 - İlk ziyarette kısa bir tanıtım gösterilir.
 - **Sicil:** rütbe, seri, en uzun seri, tam av oranı, kalan mum dağılımı, mühürler.

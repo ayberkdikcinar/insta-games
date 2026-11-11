@@ -43,7 +43,7 @@ let data = store.load();
 let view = 'home';
 let play = null; // { c, mode, used, tests, marks, draft, order, struck, diagnosis, verdict, fresh, showRest, letterOpen }
 let drawerState = null; // { kind: 'page', ids, i } or { kind: 'tools' }
-const wide = window.matchMedia('(min-width: 980px)');
+const wide = window.matchMedia('(min-width: 900px)'); // the open-book layout; keep in step with style.css
 let burning = -1;
 let lastResult = null;
 let lastGains = []; // what the last verdict earned: a new page, a seal, a rank
@@ -482,6 +482,8 @@ function renderVerdict() {
   const ready = verdict.sir !== undefined;
   app.innerHTML = `
     ${caseBar('back-case', 'Soruşturma')}
+    <div class="spread">
+    <section class="spread-l">
     <p class="kicker">${esc(c.village)} köyü · Vaka #${c.no}</p>
     <h1 class="title">Hüküm</h1>
     <dl class="tutanak">
@@ -489,6 +491,8 @@ function renderVerdict() {
       ${CLUE_DIMS.filter((d) => used.includes(d.id)).map((d) => `<div><dt>${d.page}</dt><dd>${play.marks[d.id] ? stampNames(d.id, play.marks[d.id]).join(', ') : '<span class="muted">damgalamadın</span>'}</dd></div>`).join('')}
       <div><dt>Neyden çekinir</dt><dd>${toolNames(cr.tools)}</dd></div>
     </dl>
+    </section>
+    <section class="spread-r">
     <p class="section-note">Köyde biri bir şey saklıyor.</p>
     <div class="blank">
       <p class="blank-q">${esc(c.story.sir.q)}</p>
@@ -496,6 +500,8 @@ function renderVerdict() {
     </div>
     <div class="actions sticky-actions">
       <button class="btn btn-blood" data-act="seal" ${ready ? '' : 'disabled'}>${ready ? 'Mühürle' : 'Birini seç'}</button>
+    </div>
+    </section>
     </div>`;
 }
 
@@ -531,10 +537,14 @@ function renderResult() {
       <span class="casebar-no">Vaka #${res.no}${modeLabel(res.mode)}</span>
       <button class="link" data-act="defter">Defter</button>
     </header>
+    <div class="spread">
+    <section class="spread-l">
     <div class="stamp stamp-${res.outcome}">${title}</div>
     <div class="result-fig">${plate(cr.id, { place: res.place, time: res.time })}</div>
     <h1 class="title center">${cr.name}</h1>
     <p class="aka center">${cr.aka.join(' · ')}</p>
+    </section>
+    <section class="spread-r">
     <dl class="facts">
       <div><dt>Teşhisin</dt><dd>${BY_ID[res.diagnosis].name}${right ? '' : ' <span class="wrong">(yanlış)</span>'}</dd></div>
       <div><dt>Köyün sırrı</dt><dd>${esc(res.sir.right)}${res.sir.ok ? '' : ' <span class="wrong">(doğrusu)</span>'}</dd></div>
@@ -559,7 +569,9 @@ function renderResult() {
       <div class="after">
         ${unopened() ? `<button class="btn btn-ghost" data-act="archive">Arşivde açılmamış ${unopened()} vaka var</button>` : ''}
         <button class="link" data-act="keep">Yarın akşam hatırlat</button>
-      </div>` : unopened() && res.mode === 'archive' ? `<div class="after"><button class="btn btn-ghost" data-act="archive">Arşivde açılmamış ${unopened()} vaka var</button></div>` : ''}`;
+      </div>` : unopened() && res.mode === 'archive' ? `<div class="after"><button class="btn btn-ghost" data-act="archive">Arşivde açılmamış ${unopened()} vaka var</button></div>` : ''}
+    </section>
+    </div>`;
   prepareCard(shareInfo(res)).catch(() => {});
 }
 
@@ -958,7 +970,7 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
-// Crossing the 980px line swaps drawer and right-hand page, so redraw the screen in the new layout.
+// Crossing the 900px line swaps drawer and right-hand page, so redraw the screen in the new layout.
 wide.addEventListener('change', () => {
   drawerState = null;
   drawerEl.hidden = true;

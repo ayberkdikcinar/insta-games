@@ -249,7 +249,7 @@ button { font: inherit; color: inherit; -webkit-appearance: none; appearance: no
 .call-line { margin: 4px 0 0; }
 .call .btn { margin-top: 12px; }
 .call .link { display: block; margin: 4px auto -10px; font-size: 16px; color: var(--ink-2); }
-.stamp ~ .call { margin: 16px 0 0; }
+.app[data-view="result"] .call { margin: 16px 0 0; }
 
 /* ---------- the case: candle shelf above, open page below ---------- */
 
@@ -354,7 +354,7 @@ button { font: inherit; color: inherit; -webkit-appearance: none; appearance: no
 .kunye { margin: 12px 0 2px; padding: 11px 12px 12px; border-radius: 2px; background-color: var(--sheet); background-image: var(--grain); box-shadow: 0 0 0 1.5px var(--mor); }
 .clue .kunye-q { margin: 0 0 8px; font-family: var(--form); font-weight: 600; font-size: 19px; line-height: 1.25; color: var(--mor); }
 .kunye-opts { display: grid; gap: 5px; }
-.kunye-opt { position: relative; display: block; width: 100%; min-height: 44px; padding: 6px 10px 7px 38px; text-align: left; font: inherit; color: var(--ink); background: none; border: 1px solid var(--line); border-radius: 2px; cursor: pointer; }
+.kunye-opt { position: relative; display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-start; width: 100%; min-height: 44px; padding: 6px 10px 7px 38px; text-align: left; font: inherit; color: var(--ink); background: none; border: 1px solid var(--line); border-radius: 2px; cursor: pointer; }
 .kunye-opt::before { content: ""; position: absolute; left: 11px; top: 10px; width: 16px; height: 16px; border: 1.5px solid var(--ink-2); border-radius: 2px; }
 .kunye-opt.on { border-color: var(--mor); box-shadow: inset 0 0 0 1px var(--mor); }
 .kunye-opt.on::before { border-color: var(--mor); }
@@ -714,28 +714,53 @@ button { font: inherit; color: inherit; -webkit-appearance: none; appearance: no
   .drawer-card, .drawer-card.from-right, .drawer-card.from-left { animation: none; }
 }
 
-/* ---------- wide screens: the ledger lies open on the table ---------- */
+/* ---------- from a tablet up: a page on the table, not a phone strip ---------- */
 
-@media (min-width: 980px) {
-  .kunye-opts { grid-template-columns: 1fr 1fr; }
-  :root { --pl: 64px; --pr: 44px; --margin-line: linear-gradient(90deg, transparent 40px, var(--kenar) 40px 41px, transparent 41px 43.5px, var(--kenar) 43.5px 44.5px, transparent 44.5px); }
-  body { padding: 28px 0; }
-  .app { min-height: calc(100vh - 56px); border-radius: 3px; box-shadow: 0 30px 60px -20px #000; }
-  .casebar { padding-left: 28px; padding-right: 28px; border-radius: 3px 3px 0 0; }
+@media (min-width: 620px) {
+  :root { --pl: 60px; --pr: 36px; --margin-line: linear-gradient(90deg, transparent 40px, var(--kenar) 40px 41px, transparent 41px 43.5px, var(--kenar) 43.5px 44.5px, transparent 44.5px); }
+  body { display: flex; flex-direction: column; justify-content: center; padding: 20px; }
+  .app { width: 100%; max-width: 720px; min-height: calc(100vh - 40px); border-radius: 3px; box-shadow: 0 30px 60px -20px #000; }
+  .casebar { padding-left: 24px; padding-right: 24px; border-radius: 3px 3px 0 0; }
   .clue[data-n]::before { width: 40px; }
   .letter { margin-left: -6px; margin-right: 0; }
+  .kunye-opts { grid-template-columns: 1fr 1fr; }
+  /* buttons that ride the bottom edge of a phone sit in the text here */
+  .sticky-actions, .dock { position: static; margin: 22px 0 0; padding: 0; background: none; border: 0; }
 
-  .app[data-view="case"] { max-width: 1240px; }
-  .desk { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; }
-  .desk-notes { padding: 22px 44px 40px 0; }
-  .desk-notes .letter { margin-top: 0; }
-  /* right-hand page, with the shadow of the gutter */
-  .desk-book {
-    display: block; position: sticky; top: 112px; min-height: calc(100vh - 190px); max-height: calc(100vh - 140px); overflow-y: auto;
-    margin-right: calc(-1 * var(--pr)); padding: 18px var(--pr) 28px 40px; scrollbar-width: thin;
-    background: linear-gradient(90deg, rgba(16, 15, 13, 0.3), rgba(16, 15, 13, 0.07) 14px, rgba(16, 15, 13, 0) 44px);
-    box-shadow: inset 1px 0 0 rgba(16, 15, 13, 0.35);
+  /* the closed ledger is as tall as what is on it, and lies in the middle of the table */
+  .app[data-view="home"] { max-width: 600px; min-height: min(620px, calc(100vh - 40px)); padding: 26px 44px 48px 62px; }
+  .app[data-view="home"]::before { width: 26px; border-radius: 3px 0 0 3px; }
+
+  .drawer { align-items: center; }
+  .drawer-card { max-width: 560px; max-height: 86vh; padding: 6px 26px 20px; border-radius: 2px; }
+  .sheet { padding: 20px; }
+  .sheet-card { max-width: 720px; min-height: 0; padding: 12px 30px 36px; border-radius: 3px; }
+  .pages { grid-template-columns: repeat(auto-fill, minmax(132px, 1fr)); }
+  .modal-card { max-width: 460px; padding: 22px 26px 18px; }
+  .hunt-inner { max-width: 560px; }
+}
+
+/* ---------- wide screens: the ledger lies open on the table ---------- */
+
+@media (min-width: 900px) {
+  :root { --pl: 64px; --pr: 44px; }
+  body { padding: 28px; }
+  /* one book, one width: every opened view is the same spread, so nothing jumps between screens */
+  .app { max-width: 1240px; min-height: calc(100vh - 56px); }
+  .casebar { margin-bottom: 0; padding-left: 28px; padding-right: 28px; }
+
+  /* two pages under the top bar, down to the bottom edge of the paper; the gutter's shadow falls on the right page */
+  .app[data-view="case"], .app[data-view="verdict"], .app[data-view="result"] { display: flex; flex-direction: column; padding-bottom: 0; }
+  .desk, .spread {
+    flex: 1; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start;
+    margin-right: calc(-1 * var(--pr)); padding-right: var(--pr);
+    background: linear-gradient(90deg, transparent calc(50% - 1px), rgba(16, 15, 13, 0.4) calc(50% - 1px) 50%, rgba(16, 15, 13, 0.28) 50%, rgba(16, 15, 13, 0.07) calc(50% + 14px), transparent calc(50% + 44px)) content-box;
   }
+  .desk-notes, .spread-l { padding: 22px 44px 40px 0; }
+  .desk-notes .letter { margin-top: 0; }
+  .desk-book, .spread-r { margin-right: calc(-1 * var(--pr)); padding: 18px var(--pr) 28px 40px; }
+  .desk-book { display: block; position: sticky; top: 112px; min-height: calc(100vh - 190px); max-height: calc(100vh - 140px); overflow-y: auto; scrollbar-width: thin; }
+  .spread-r { padding-top: 26px; padding-bottom: 44px; }
   .tray { --ink: #1C2946; --ink-2: #455170; --ink-3: #76809A; --line: rgba(98, 124, 158, 0.42); position: static; margin: 0; padding: 0; background: none; box-shadow: none; color: var(--ink); }
   .tray .btn { display: none; }
   .slips { flex-wrap: wrap; margin: 8px 0 0; padding: 2px; overflow: visible; }
@@ -745,15 +770,16 @@ button { font: inherit; color: inherit; -webkit-appearance: none; appearance: no
   .desk-empty { margin: 16px 0; font-style: italic; color: var(--ink-2); }
   .drawer-card.in-slot { width: auto; max-width: none; max-height: none; overflow: visible; padding: 0; background: none; border: 0; }
   .drawer-card.in-slot:not(.from-right):not(.from-left) { animation: none; }
-  .in-slot .dp-actions { bottom: -28px; padding: 10px 0 12px; grid-template-columns: 1.4fr 1fr; background: none; }
-  .in-slot .dp-actions .btn-ghost { background-color: var(--paper); } /* the page scrolls under this bar */
+  /* the page scrolls under this bar, so it fades the text out instead of letting it show between the buttons */
+  .in-slot .dp-actions { bottom: -28px; margin: 0 -8px; padding: 26px 8px 12px; grid-template-columns: 1.4fr 1fr; background: linear-gradient(180deg, rgba(233, 222, 182, 0), var(--paper) 34%); }
+  .in-slot .dp-actions .btn-ghost { background-color: var(--paper); }
   .in-slot .dp-name { font-size: 36px; }
   .dp-name[data-strike] { width: fit-content; min-width: 60%; }
-  .drawer { align-items: center; }
-  .drawer-card { max-height: 86vh; border-top-width: 5px; border-radius: 2px; }
+  .drawer-card { border-top-width: 5px; }
 
-  .app[data-view="home"] { max-width: 1000px; padding: 26px 64px 48px 76px; display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); column-gap: 72px; grid-auto-rows: min-content; align-content: start; }
-  .app[data-view="home"]::before { width: 30px; border-radius: 3px 0 0 3px; }
+  /* home: the closed ledger, label across the top, today's envelope beside the rest */
+  .app[data-view="home"] { max-width: 1000px; min-height: min(620px, calc(100vh - 56px)); padding: 30px 64px 56px 76px; display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); column-gap: 72px; grid-auto-rows: min-content; align-content: start; }
+  .app[data-view="home"]::before { width: 30px; }
   .app[data-view="home"]::after { width: 64px; background-size: 64px 64px, 64px 64px; background-image: linear-gradient(225deg, var(--bordo) 0 45px, rgba(0, 0, 0, 0.45) 45px 46px, transparent 46px), linear-gradient(315deg, var(--bordo) 0 45px, rgba(0, 0, 0, 0.45) 45px 46px, transparent 46px); }
   .app[data-view="home"] .cover-label { grid-column: 1 / -1; margin-bottom: 38px; padding: 14px 44px; }
   .app[data-view="home"] .label-title { font-size: 40px; }
@@ -763,21 +789,26 @@ button { font: inherit; color: inherit; -webkit-appearance: none; appearance: no
   .envelope { min-height: 280px; padding: 22px 26px; }
   .env-to { margin-top: 104px; font-size: 26px; }
 
-  .app[data-view="diagnose"] { max-width: 1000px; }
-  .app[data-view="diagnose"] .dx { display: grid; grid-template-columns: 1fr 1fr; column-gap: 40px; }
-  .app[data-view="diagnose"] .pool { text-align: left; margin-bottom: 10px; }
-  .app[data-view="verdict"] { max-width: 660px; }
-  .app[data-view="archive"] { max-width: 780px; }
+  /* verdict: the record on the left page, the question on the right */
+  .app[data-view="verdict"] .spread-l .title { font-size: 36px; }
+  .app[data-view="verdict"] .spread-r .btn { max-width: 360px; }
 
-  .app[data-view="result"] { max-width: 1060px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: 64px; grid-auto-rows: min-content; align-content: start; }
-  .app[data-view="result"] > * { grid-column: 2; }
-  .app[data-view="result"] > .casebar { grid-column: 1 / -1; }
-  .app[data-view="result"] > .result-fig { grid-column: 1; grid-row: 2 / span 12; max-width: none; align-self: start; position: sticky; top: 72px; }
-  .app[data-view="result"] > .stamp { margin-left: 0; }
-  .app[data-view="result"] > .title, .app[data-view="result"] > .aka { text-align: left; }
-  .app[data-view="result"] > .candles { justify-content: flex-start; }
-  .app[data-view="result"] > .streak { text-align: left; margin: 12px 0; }
-  .app[data-view="result"] > .after { text-align: left; }
+  /* result: the plate on the left page, the record on the right */
+  .app[data-view="result"] .spread-l { position: sticky; top: 28px; padding-top: 30px; }
+  .app[data-view="result"] .result-fig { max-width: 460px; }
+  .app[data-view="result"] .spread-l .title { margin-top: 18px; font-size: 38px; }
+  .app[data-view="result"] .spread-r .facts:first-child { margin-top: 0; }
+  .app[data-view="result"] .candles { justify-content: flex-start; }
+  .app[data-view="result"] .streak, .app[data-view="result"] .after { text-align: left; }
+  .app[data-view="result"] .streak { margin: 12px 0; }
+
+  /* the full list and the archive use the width of the spread */
+  .app[data-view="diagnose"] .title, .app[data-view="archive"] .title { margin-top: 26px; font-size: 36px; }
+  .app[data-view="diagnose"] .dx { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 40px; }
+  .app[data-view="diagnose"] .pool { text-align: left; margin-bottom: 10px; }
+  .app[data-view="diagnose"] .dock .btn { max-width: 320px; }
+  .app[data-view="archive"] .lede, .app[data-view="archive"] .guild { max-width: 640px; }
+  .app[data-view="archive"] .archive { display: grid; grid-template-columns: 1fr 1fr; column-gap: 56px; }
 
   .hunt-inner { max-width: 1040px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: 64px; align-content: center; }
   .hunt-fig { grid-column: 1; grid-row: 1 / span 3; max-width: 460px; margin: 0 auto; align-self: center; }
@@ -793,4 +824,24 @@ button { font: inherit; color: inherit; -webkit-appearance: none; appearance: no
   .page > .page-fig { grid-column: 1; grid-row: 1 / span 9; position: sticky; top: 12px; align-self: start; margin: 0; }
   .page .page-name, .page .aka, .page .epithet, .page .region { text-align: left; }
   .page-name { margin-top: 0; font-size: 44px; }
+}
+
+/* a small laptop or a half-width window: the same open book with tighter margins */
+@media (min-width: 900px) and (max-width: 1099px) {
+  :root { --pl: 56px; --pr: 30px; }
+  body { padding: 20px; }
+  .app { min-height: calc(100vh - 40px); }
+  .desk-notes, .spread-l { padding-right: 30px; }
+  .desk-book, .spread-r { padding-left: 30px; }
+  .app[data-view="home"] { padding: 28px 46px 50px 68px; column-gap: 44px; min-height: min(620px, calc(100vh - 40px)); }
+  .env-to { margin-top: 84px; font-size: 23px; }
+  .app[data-view="diagnose"] .dx { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .page { grid-template-columns: minmax(0, 320px) minmax(0, 1fr); column-gap: 32px; }
+  .hunt-inner { column-gap: 40px; padding-left: 32px; padding-right: 32px; }
+}
+
+/* a large monitor: a slightly bigger book, so the table does not swallow it */
+@media (min-width: 1700px) {
+  .app { max-width: 1400px; }
+  .app[data-view="home"] { max-width: 1080px; }
 }
