@@ -1,6 +1,6 @@
 import { CREATURES, BY_ID } from './bestiary.js';
 import { CLUE_DIMS, DIMS, TOOLS, TOOL_BY_ID, MAX_CANDLES } from './traits.js';
-import { generateCase, candidates, famLabel, traitLabel, testResult, fitsTests } from './cases.js';
+import { generateCase, candidatesByMarks, cleanMarks, stampOptions, reading, famLabel, traitLabel, testResult, fitsTests } from './cases.js';
 import { BACK_NOTES } from './content/nazire.js';
 import { istanbulToday, caseNoForDate, formatDateTR, msUntilNextCase, formatCountdown } from './util.js';
 import * as store from './store.js';
@@ -41,7 +41,7 @@ if (params.has('c')) {
 
 let data = store.load();
 let view = 'home';
-let play = null; // { c, mode, used, tests, order, struck, diagnosis, verdict, fresh, showRest, letterOpen }
+let play = null; // { c, mode, used, tests, marks, draft, order, struck, diagnosis, verdict, fresh, showRest, letterOpen }
 let drawerState = null; // { kind: 'page', ids, i } or { kind: 'tools' }
 const wide = window.matchMedia('(min-width: 980px)');
 let burning = -1;
@@ -245,7 +245,7 @@ function howtoList() {
   return `<ol>
     <li>Her gün herkes aynı vakayı oynar. Yeni vaka İstanbul saatiyle gece yarısı gelir.</li>
     <li>Altı mumun var. Her soruşturma bir mum yakar. Her vakada yalnızca bazı kaynaklar açıktır; yağmur izi siler, tanık susar.</li>
-    <li>Her not defterde bir işarete karşılık gelir. Defter, notlarına kabaca uyan sayfaları ayırır; ayrıntıyı okuyup kalanları sen elersin.</li>
+    <li>Her notu okuyup damgasını sen vurursun: ardında ne bırakmış, nasıl görünmüş, nereye gelmiş. Defter yalnızca senin damgalarına uyan sayfaları ayırır. Yanlış damga doğru sayfayı defterden düşürür ve bunu sana kimse söylemez. Emin değilsen iki damga vur; damgayı sonradan değiştirebilirsin.</li>
     <li>Sayfalar arasında kaldıysan <b>Sınama</b> yap: geceye tuz, demir, ateş gibi bir şey bırak. İşleyip işlemediği, hangi sayfanın doğru olduğunu ele verir. Bir sınama da bir mumdur.</li>
     <li>Her köyde biri bir şey saklıyor. Bir şey bulunca yüzleşebilirsin; bunun mumu yanmaz.</li>
     <li>Emin olunca hükmünü yaz: gelen neydi, köy neyi saklıyordu. Oyalandıkça köyde işler kötüleşir. Haftalar sonra köyden bir mektup gelir.</li>
@@ -274,14 +274,39 @@ function caseBar(back, label) {
 }
 
 const spent = () => play.used.length + play.tests.length;
-const pool = () => candidates(play.c, play.used).filter((cr) => fitsTests(cr, play.c, play.tests));
+// The defter narrows by the player's own stamps, never by what the note really said.
+const pool = () => candidatesByMarks(play.marks).filter((cr) => fitsTests(cr, play.c, play.tests));
 const livePool = () => pool().filter((cr) => !play.struck.includes(cr.id));
+const unstamped = () => play.used.filter((d) => !play.marks[d]);
+const stampNames = (dimId, fams) => fams.map((f) => famLabel(dimId, f));
+const MAX_STAMPS = 2; // hedging is allowed, ticking every box is not
+
+// The form under a note: tick what you read in it, then press the stamp.
+function stampFormHTML(dimId) {
+  const { draft } = play;
+  return `<div class="kunye" role="group" aria-label="${DIM[dimId].name} notunun damgası">
+    <p class="kunye-q">${DIM[dimId].page}?</p>
+    <div class="kunye-opts">${stampOptions(dimId).map((o) => `<button class="kunye-opt${draft.fams.includes(o.id) ? ' on' : ''}" data-act="tick" data-fam="${o.id}" aria-pressed="${draft.fams.includes(o.id)}">
+      <span class="ko-name">${o.label}</span>${o.of.length ? `<span class="ko-of">${o.of.join(', ')}</span>` : ''}</button>`).join('')}</div>
+    ${data.stampTaught ? '' : '<p class="kunye-note">Defter bu damgaya uymayan sayfaları ayırır. Yanlış damga doğru sayfayı da düşürür. Emin değilsen iki kutu işaretle; damgayı sonradan değiştirebilirsin.</p>'}
+    <div class="kunye-acts">
+      <button class="btn btn-ink" data-act="stamp" ${draft.fams.length ? '' : 'disabled'}>${draft.fams.length ? 'Damgayı vur' : 'Bir kutu işaretle'}</button>
+      ${play.marks[dimId] ? '<button class="link" data-act="stamp-cancel">Vazgeç</button>' : ''}
+    </div>
+  </div>`;
+}
 
 function clueHTML(dimId, fresh, n) {
   const clue = play.c.clues[dimId];
-  return `<li class="clue${fresh ? ' fresh' : ''}"${n ? ` data-n="${n}"` : ''}>
-    <p class="clue-head"><span class="clue-cat">${DIM[dimId].name}</span><span class="tag">${famLabel(dimId, clue.fam)}</span></p>
-    <p>${esc(clue.text)}</p></li>`;
+  const mine = play.marks[dimId];
+  const open = play.draft?.dim === dimId;
+  const head = open ? ''
+    : mine ? `<button class="stamps" data-act="stamp-edit" data-dim="${dimId}" aria-label="Damgayı değiştir">${stampNames(dimId, mine).map((t) => `<span class="tag${play.pressed === dimId ? ' tag-fresh' : ''}">${t}</span>`).join('')}</button>`
+      : `<button class="tag tag-empty" data-act="stamp-edit" data-dim="${dimId}">Damga vur</button>`;
+  return `<li class="clue${fresh ? ' fresh' : ''}"${n ? ` data-n="${n}"` : ''} data-dim="${dimId}">
+    <p class="clue-head"><span class="clue-cat">${DIM[dimId].name}</span>${head}</p>
+    <p>${esc(clue.text)}</p>
+    ${open ? stampFormHTML(dimId) : ''}</li>`;
 }
 
 function testHTML(toolId, fresh, n) {
@@ -295,14 +320,14 @@ function toolsDrawerHTML() {
   const live = livePool();
   const rows = TOOLS.filter((t) => !play.tests.includes(t.id))
     .map((t) => ({ t, holders: live.filter((cr) => cr.tools.includes(t.id)) }))
-    .filter((x) => x.holders.length)
+    .filter((x) => x.holders.length || !live.length)
     .sort((a, b) => b.holders.length - a.holders.length);
   return `<div class="drawer-bar"><span></span><button class="link" data-dr="close">Kapat</button></div>
     <h2 class="dp-title">Geceye ne bırakacaksın?</h2>
-    <p class="section-note">Bir mum yanar. Yanında, kalan sayfalardan hangilerinin ondan çekindiği yazıyor.</p>
+    <p class="section-note">${live.length ? 'Bir mum yanar. Yanında, kalan sayfalardan hangilerinin ondan çekindiği yazıyor.' : 'Bir mum yanar. Defterinde notlarına uyan sayfa kalmadığı için hangisinin kimi ayıracağı yazmıyor.'}</p>
     <ul class="tool-rows">${rows.map(({ t, holders }) => `<li><button class="tool-row" data-dr="test" data-id="${t.id}">
       <span class="tool-name">${t.name}</span>
-      <span class="tool-who">${holders.length <= 6 ? holders.map((cr) => cr.name).join(', ') : `${holders.length} sayfada yazılı`}</span>
+      <span class="tool-who">${!holders.length ? '' : holders.length <= 6 ? holders.map((cr) => cr.name).join(', ') : `${holders.length} sayfada yazılı`}</span>
     </button></li>`).join('')}</ul>`;
 }
 
@@ -347,9 +372,15 @@ function trayHTML() {
       <span class="slip-fig">${silhouette(cr.id, known(cr.id) ? 'full' : 'veiled')}</span>
       <span class="slip-name">${cr.name}</span>
     </button></li>`;
-  const line = live.length === 1 ? 'Tek sayfa kaldı' : live.length ? (spent() ? `<b>${live.length}</b> sayfa kaldı` : 'Defterde elli sayfa var') : 'Bütün sayfaları eledin';
+  const narrowed = inPool.length < CREATURES.length;
+  const line = !inPool.length ? 'Notlarına uyan sayfa kalmadı'
+    : live.length === 1 ? 'Tek sayfa kaldı' : live.length ? (narrowed ? `<b>${live.length}</b> sayfa kaldı` : 'Defterde elli sayfa var') : 'Bütün sayfaları eledin';
+  const waiting = unstamped().filter((d) => d !== play.draft?.dim).length; // the note being stamped right now needs no reminder
+  const note = !inPool.length ? 'Bir damgan yanlış olmalı. Notlarını yeniden oku, damgayı değiştir.'
+    : waiting ? `${waiting === 1 ? 'Bir notun' : `${waiting} notun`} damgasız duruyor; defter onu saymıyor.` : '';
   return `<div class="tray">
     <div class="tray-head"><p class="pool">${line}</p><button class="link" data-act="diagnose">Bütün sayfalar</button></div>
+    ${note ? `<p class="tray-note">${note}</p>` : ''}
     ${inPool.length <= 8 || wide.matches ? `<ul class="slips">${[...live, ...struck].map(slip).join('')}</ul>` : ''}
     ${live.length === 1 ? `<button class="btn btn-blood" data-act="choose" data-id="${live[0].id}">Hükmü yaz: ${live[0].name}</button>` : ''}
   </div>`;
@@ -411,7 +442,7 @@ function compareTable(cr) {
   return `<dl class="signs">${CLUE_DIMS.map((d) => {
     const read = used.includes(d.id);
     return `<div class="${read ? 'hl' : ''}"><dt>${d.page}</dt><dd>${cr.traits[d.id].map((t) => traitLabel(d.id, t)).join(', ')}
-      ${read ? `<span class="note-quote">${esc(c.clues[d.id].text)}</span>` : ''}</dd></div>`;
+      ${read ? `<span class="note-mine">${play.marks[d.id] ? `Damgan: ${stampNames(d.id, play.marks[d.id]).join(', ')}` : 'Bu notu damgalamadın'}</span><span class="note-quote">${esc(c.clues[d.id].text)}</span>` : ''}</dd></div>`;
   }).join('')}
     <div class="${tests.length ? 'hl' : ''}"><dt>Neyden çekinir</dt><dd>${toolNames(cr.tools)}${tests.length ? `<span class="note-quote">${testNote}</span>` : ''}</dd></div></dl>`;
 }
@@ -435,11 +466,11 @@ function renderDiagnose() {
   app.innerHTML = `
     ${caseBar('back-case', 'Soruşturma')}
     <h1 class="title">Bütün sayfalar</h1>
-    <p class="lede">${spent() ? 'Notlarına uyan sayfalar üstte. Bir sayfaya dokun, notlarınla yan yana gör.' : 'Henüz not almadın; defterin elli sayfası da açık.'}</p>
+    <p class="lede">${inPool.length < CREATURES.length ? 'Damgalarına uyan sayfalar üstte. Bir sayfaya dokun, notlarınla yan yana gör.' : 'Henüz damga vurmadın; defterin elli sayfası da açık.'}</p>
     <p class="pool">${poolLine()}</p>
     <ul class="dx">${live.map((c) => dxItem(c, true)).join('')}${struck.map((c) => dxItem(c, true)).join('')}</ul>
     ${rest.length ? `<details class="rest"${play.showRest ? ' open' : ''}>
-      <summary data-act="toggle-rest">Notlarına uymayan sayfalar (${rest.length})</summary>
+      <summary data-act="toggle-rest">Damgalarına uymayan sayfalar (${rest.length})</summary>
       <ul class="dx">${rest.map((c) => dxItem(c, false)).join('')}</ul>
     </details>` : ''}
     <div class="dock"><button class="btn btn-ghost" data-act="back-case">Soruşturmaya dön</button></div>`;
@@ -455,7 +486,7 @@ function renderVerdict() {
     <h1 class="title">Hüküm</h1>
     <dl class="tutanak">
       <div class="tutanak-main"><dt>Bunu yapan</dt><dd>${cr.name}</dd></div>
-      ${CLUE_DIMS.filter((d) => used.includes(d.id)).map((d) => `<div><dt>${d.page}</dt><dd>${famLabel(d.id, c.clues[d.id].fam)}</dd></div>`).join('')}
+      ${CLUE_DIMS.filter((d) => used.includes(d.id)).map((d) => `<div><dt>${d.page}</dt><dd>${play.marks[d.id] ? stampNames(d.id, play.marks[d.id]).join(', ') : '<span class="muted">damgalamadın</span>'}</dd></div>`).join('')}
       <div><dt>Neyden çekinir</dt><dd>${toolNames(cr.tools)}</dd></div>
     </dl>
     <p class="section-note">Köyde biri bir şey saklıyor.</p>
@@ -466,6 +497,26 @@ function renderVerdict() {
     <div class="actions sticky-actions">
       <button class="btn btn-blood" data-act="seal" ${ready ? '' : 'disabled'}>${ready ? 'Mühürle' : 'Birini seç'}</button>
     </div>`;
+}
+
+// The player's stamps beside what each note really said.
+const OF = { 1: 'i', 2: 'si', 3: 'ü', 4: 'ü', 5: 'i', 6: 'sı' };
+function readingHTML(res) {
+  if (!res.reading?.length) return '';
+  const ok = res.reading.filter((r) => r.ok).length;
+  const all = res.reading.length;
+  const sum = all === 1 ? `notun damgası ${ok ? 'doğru' : 'yanlış'}`
+    : ok === all ? `${all} notun ${all === 2 ? 'ikisi de' : 'hepsi'} doğru` : ok ? `${all} notun ${ok}’${OF[ok]} doğru` : `${all} notun hiçbiri doğru değil`;
+  return `<p class="section-s">Okuman: ${sum}</p>
+    <dl class="facts facts-read">${res.reading.map((r) => {
+    const fam = famLabel(r.dim, r.right);
+    const trait = traitLabel(r.dim, r.trait);
+    const right = `${fam}${trait === fam ? '' : ` <span class="muted">(${trait.toLocaleLowerCase('tr')})</span>`}`;
+    const mine = r.mine.map((f) => famLabel(r.dim, f)).join(', ');
+    const lead = r.ok ? '' : r.mine.length ? `<s class="read-mine">${mine}</s> ` : '<span class="wrong">damgalamadın</span> ';
+    const tail = r.ok && r.mine.length > 1 ? ` <span class="muted">${r.mine.length} damgadan biri</span>` : '';
+    return `<div><dt>${DIM[r.dim].name}</dt><dd>${lead}${right}${tail}</dd></div>`;
+  }).join('')}</dl>`;
 }
 
 function renderResult() {
@@ -492,6 +543,7 @@ function renderResult() {
       <div><dt>Mum</dt><dd>${used === 0 ? 'Hiç yanmadı' : `${used} tane yandı`}, ${res.candlesLeft} tane kaldı</dd></div>
       <div><dt>Usta avcı</dt><dd>${res.par} mumla kesinleştirirdi</dd></div>
     </dl>
+    ${readingHTML(res)}
     <div class="candles candles-sm">${candleRow(MAX_CANDLES, res.candlesLeft)}</div>
     ${res.mode === 'daily' ? `<p class="streak">Seri <b>${currentStreak()}</b> gün · Defter <b>${caughtCount()}</b>/${CREATURES.length}</p>` : `<p class="streak">Defter <b>${caughtCount()}</b>/${CREATURES.length}</p>`}
     ${gainsHTML()}
@@ -662,7 +714,7 @@ function showIntro() {
     <p class="kicker">Kara Defter</p>
     <h2 class="title">Köylerden mektup geliyor.</h2>
     <p class="lede">Elinde, Anadolu’dan Türk dünyasına anlatılan elli yaratığın yazılı olduğu bir defter var. Her gün bir köy yardım istiyor.</p>
-    <p class="lede">Altı mumun var. Her soruşturma bir mum yakar; aldığın notlar defterdeki sayfaları eler. Emin olunca hükmünü yaz: gelen neydi, köy neyi saklıyordu.</p>
+    <p class="lede">Altı mumun var. Her soruşturma bir mum yakar. Aldığın notu okuyup damgasını sen vurursun; defter senin damgalarına göre daralır. Emin olunca hükmünü yaz: gelen neydi, köy neyi saklıyordu.</p>
     ${ch ? `<p class="lede intro-call"><b>Bir avcı seni Vaka #${ch.no} için çağırdı:</b> ${theirs(ch)}.</p>` : ''}
     ${ch ? '<button class="btn btn-blood" data-modal="call">Çağrıyı kabul et</button>'
     : `<button class="btn btn-blood" data-modal="${data.results[todayNo] ? 'close' : 'start'}">${data.results[todayNo] ? 'Anladım' : 'İlk mektubu aç'}</button>`}
@@ -996,7 +1048,8 @@ function startCase(no, mode) {
   const tests = saved ? [...(saved.tests || [])] : [];
   const steps = new Set([...used, ...tests.map((t) => `t:${t}`)]);
   play = {
-    c, mode, used, tests, struck: saved ? [...(saved.struck || [])] : [],
+    c, mode, used, tests, marks: cleanMarks(saved?.marks, used), draft: null, pressed: null,
+    struck: saved ? [...(saved.struck || [])] : [],
     order: saved?.order ? saved.order.filter((o) => o === 'y' || steps.has(o)) : [...steps],
     diagnosis: null, verdict: {}, fresh: null, showRest: false, letterOpen: false,
   };
@@ -1005,19 +1058,25 @@ function startCase(no, mode) {
 }
 
 function saveProgress() {
-  data.inProgress = { no: play.c.no, mode: play.mode, used: play.used, tests: play.tests, order: play.order, struck: play.struck };
+  data.inProgress = { no: play.c.no, mode: play.mode, used: play.used, tests: play.tests, marks: play.marks, order: play.order, struck: play.struck };
   persist();
+}
+
+// Pages the stamps or a test have ruled out no longer need striking.
+function pruneStruck() {
+  const ids = new Set(pool().map((c) => c.id));
+  play.struck = play.struck.filter((id) => ids.has(id));
 }
 
 function afterStep() {
   burning = MAX_CANDLES - spent();
-  // pages ruled out by the new note no longer need striking
-  const ids = new Set(pool().map((c) => c.id));
-  play.struck = play.struck.filter((id) => ids.has(id));
+  pruneStruck();
   saveProgress();
   rerenderKeepScroll(renderCase);
   setDusk();
-  [...app.querySelectorAll('.fresh')].pop()?.scrollIntoView({ block: 'center', behavior: 'smooth' });
+  // a new note is read from its first line, with the stamp form under it; anything else is centred
+  if (play.draft) app.querySelector('.clue.fresh')?.scrollIntoView({ block: 'start', behavior: 'smooth' });
+  else [...app.querySelectorAll('.fresh')].pop()?.scrollIntoView({ block: 'center', behavior: 'smooth' });
 }
 
 function ask(dimId) {
@@ -1025,7 +1084,25 @@ function ask(dimId) {
   play.used.push(dimId);
   play.order.push(dimId);
   play.fresh = dimId;
+  play.draft = { dim: dimId, fams: [] }; // the new note waits for its stamp
   afterStep();
+}
+
+function pressStamp() {
+  const { draft } = play;
+  if (!draft?.fams.length) return;
+  play.marks[draft.dim] = [...draft.fams];
+  play.pressed = draft.dim;
+  play.draft = null;
+  if (!data.stampTaught) data.stampTaught = true;
+  navigator.vibrate?.(18);
+  pruneStruck();
+  saveProgress();
+  const dim = draft.dim;
+  rerenderKeepScroll(renderCase);
+  play.pressed = null;
+  // the form folds away; bring the note back so the stamp is seen landing on it
+  app.querySelector(`.clue[data-dim="${dim}"]`)?.scrollIntoView({ block: 'start', behavior: 'smooth' });
 }
 
 function runTest(toolId) {
@@ -1033,6 +1110,7 @@ function runTest(toolId) {
   play.tests.push(toolId);
   play.order.push(`t:${toolId}`);
   play.fresh = `t:${toolId}`;
+  play.draft = null;
   afterStep();
 }
 
@@ -1049,7 +1127,7 @@ function finishVerdict() {
   const before = { pages: caughtCount(), had: !!data.caught[cr.id] };
   const res = {
     no: c.no, date: c.date, village: c.village, creature: cr.id, diagnosis, tests: [...tests], outcome,
-    sir: { right: c.story.sir.right, ok: sirOk }, late: spent() >= 5,
+    sir: { right: c.story.sir.right, ok: sirOk }, late: spent() >= 5, reading: reading(c, play.used, play.marks),
     candlesLeft: MAX_CANDLES - spent(), par: c.par, place: c.place, time: c.time, mode,
   };
   bucket(mode)[c.no] = res;
@@ -1179,6 +1257,22 @@ app.addEventListener('click', async (e) => {
     showStats();
   } else if (act === 'ask') {
     ask(b.dataset.dim);
+  } else if (act === 'tick') {
+    if (!play.draft) return;
+    const { fams } = play.draft;
+    const f = b.dataset.fam;
+    if (!fams.includes(f) && fams.length >= MAX_STAMPS) return toast('Bir nota en çok iki damga vurulur. Önce birini kaldır.');
+    play.draft.fams = fams.includes(f) ? fams.filter((x) => x !== f) : [...fams, f];
+    rerenderKeepScroll(renderCase);
+  } else if (act === 'stamp') {
+    pressStamp();
+  } else if (act === 'stamp-edit') {
+    const d = b.dataset.dim;
+    play.draft = { dim: d, fams: [...(play.marks[d] || [])] };
+    rerenderKeepScroll(renderCase);
+  } else if (act === 'stamp-cancel') {
+    play.draft = null;
+    rerenderKeepScroll(renderCase);
   } else if (act === 'trap') {
     drawerState = { kind: 'tools' };
     paintDrawer();

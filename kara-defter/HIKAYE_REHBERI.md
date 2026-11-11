@@ -13,7 +13,7 @@ Bu oyunun okuru metni gerçekten okur. Bir çelişki, bir kalıp cümle ya da ye
 Her vaka tek parça bir hikâyedir. Aynı insanlar, aynı olay, aynı köy.
 
 1. **Mektup** (70–130 kelime). Yazanın sesi her vakada farklıdır: muhtar resmî yazı yazar, bakkal hesap tutar, eğitmen başkasının ağzından yazar, çocuk yazar, imam yazar, kaynana dikte eder. Yazan bir şey ister ve bir şey saklar.
-2. **Açık üç kaynak** (her biri 40–90 kelime). Oyuncu bir mum yakıp gider, görür, dinler. Yaratığın tam özelliği metinde okunur biçimde geçer. Her parça yaratık için de insan sırrı için de bir şey verir.
+2. **Açık üç kaynak** (her biri 40–90 kelime). Oyuncu bir mum yakıp gider, görür, dinler. Yaratığın tam özelliği metinde gösterilir, ama defterin kelimeleriyle söylenmez: damgayı oyuncu vurur (aşağıda “Not ve damga”). Her parça yaratık için de insan sırrı için de bir şey verir.
 3. **Kapalı üç kaynak** (her biri 1–2 cümle). Neden kapalı olduğu hikâyenin parçasıdır: odayı biri yıkamıştır, tanık kayıplar arasındadır. Kapalı olma nedeni tek başına bir ipucu olabilir.
 4. **Gidişat** (3 satır, her biri 1–2 cümle). İkinci, dördüncü ve beşinci mum yanınca köyde olan şey. Durum kötüleşir, oyuncu her mumun bedelini hikâyede görür.
 5. **Yüzleşme** (40–70 kelime). Bir kaynak okununca açılır, mum yakmaz. Oyuncu bulduğu şeyi şüphelinin önüne koyar. Cevap sırrı söylemez, ama her şeyin yönünü değiştirir.
@@ -43,6 +43,17 @@ Amaç gülümsetmek değil, okuru bırakmamak.
 - Kapalı bir kaynağın doğrusu mektupta sezilebilir, ama açıkça söylenmez. Sezen okur kazanır.
 - Açık kaynakta verilecek özellik mektupta açıkça verilmez, yoksa o mum boşa gider.
 - Metinler yalnızca yaratığın `roster.js` özellikleriyle tutarlı ayrıntı içerir. Kısa listedeki öteki yaratıkla karışacak ayrıntı bilerek ve dikkatle kullanılır.
+
+**Not ve damga**
+
+Oyuncu her notu okuyup damgasını kendi vurur; defter yalnızca o damgaya göre daralır. Not damgayı oyuncunun yerine vurursa okunacak bir şey kalmaz.
+
+- Not işareti gösterir, defterin cümlesiyle söylemez. “Çocuğun üstünde kara bir gölge vardı” yazılmaz; “bir karaltı duruyordu, lamba onu aydınlatmıyordu, yüzü de eli de yoktu” yazılır. “Öğle sıcağında oldu” yazılmaz; yaşlı adam ayağının dibindeki gölgesini gösterir.
+- Defter sayfasındaki kalıp (“Bir hayvana kıyıldı”, “Kocaman ayak izi”, “Gece yarısı”, “Bütün ev halkı”) ve damganın adı (“Verilmeyen hak”, “Su izi”) notta geçmez. `check-stories` bunu denetler.
+- Tek dürüst adı olan somut şey adıyla anılır: kuyu, ahır, orman, yılan. Yılan gören çocuk “yılan” der. Her notun dolaylı olması gerekmez; açık konuşan tanık da hikâyenin parçasıdır.
+- Dikkatli okur tek bir işarete varır. Not, aynı boyutun başka bir işaretine de uyacak kadar bulanık bırakılmaz. Ölçü: metinde, o işareti öbürlerinden ayıran en az bir somut ayrıntı bulunur (yağmur yağmayalı iki ay olmuşken su tutan ayak yeri).
+- Başka bir damgayı akla getiren ayrıntı olabilir, hatta iyidir (“sap taşıyan çocuklar bile”), ama aynı notta onu eleyen bir şey de durur (“evde oturanın eli sağlam”).
+- Yaratığın aynı boyutta iki işareti varsa not ikisini de gösterebilir (örülmüş yele ve içindeki keçeleşmiş tutam). İkisinin damgası da doğru sayılır.
 
 **Dil**
 - Sade, somut, kısa. Koku, ses, soğuk, eşya: yüklük, sedir, sac, tarhana, gaz lambası, kilim.

@@ -328,7 +328,7 @@ button { font: inherit; color: inherit; -webkit-appearance: none; appearance: no
 
 /* notes are entries in the ledger: one per line, the candle it cost written in the margin */
 .inquiry { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
-.clue { position: relative; margin: 0; padding: 11px 0 12px; border-bottom: 1px solid var(--line); }
+.clue { position: relative; margin: 0; padding: 11px 0 12px; border-bottom: 1px solid var(--line); scroll-margin-top: 130px; }
 .clue[data-n]::before {
   content: attr(data-n); position: absolute; left: calc(-1 * var(--pl)); top: 11px; width: 26px;
   text-align: center; font-family: var(--form); font-weight: 600; font-size: 18px; line-height: 1.35; color: var(--bordo);
@@ -345,6 +345,25 @@ button { font: inherit; color: inherit; -webkit-appearance: none; appearance: no
   transform: rotate(-1.4deg);
 }
 .tag-yes { background: var(--mor); color: #F4ECCF; }
+/* the stamp is the reader's own: a dashed frame until they press it, and theirs to change afterwards */
+.stamps { display: inline-flex; flex-wrap: wrap; justify-content: flex-end; gap: 4px 6px; margin: 0; padding: 5px 0; border: 0; background: none; cursor: pointer; }
+.tag-empty { padding: 6px 12px 5px; border-style: dashed; background: none; cursor: pointer; }
+.tag-fresh { animation: stamp-in 0.32s cubic-bezier(0.2, 1.5, 0.4, 1) both; }
+@keyframes stamp-in { from { opacity: 0; transform: rotate(-1.4deg) scale(1.8); } to { opacity: 1; transform: rotate(-1.4deg) scale(1); } }
+/* the form under a note: tick what you read in it, then press the stamp */
+.kunye { margin: 12px 0 2px; padding: 11px 12px 12px; border-radius: 2px; background-color: var(--sheet); background-image: var(--grain); box-shadow: 0 0 0 1.5px var(--mor); }
+.clue .kunye-q { margin: 0 0 8px; font-family: var(--form); font-weight: 600; font-size: 19px; line-height: 1.25; color: var(--mor); }
+.kunye-opts { display: grid; gap: 5px; }
+.kunye-opt { position: relative; display: block; width: 100%; min-height: 44px; padding: 6px 10px 7px 38px; text-align: left; font: inherit; color: var(--ink); background: none; border: 1px solid var(--line); border-radius: 2px; cursor: pointer; }
+.kunye-opt::before { content: ""; position: absolute; left: 11px; top: 10px; width: 16px; height: 16px; border: 1.5px solid var(--ink-2); border-radius: 2px; }
+.kunye-opt.on { border-color: var(--mor); box-shadow: inset 0 0 0 1px var(--mor); }
+.kunye-opt.on::before { border-color: var(--mor); }
+.kunye-opt.on::after { content: ""; position: absolute; left: 10px; top: 9px; width: 18px; height: 18px; background: linear-gradient(45deg, transparent 44%, var(--mor) 44% 56%, transparent 56%), linear-gradient(-45deg, transparent 44%, var(--mor) 44% 56%, transparent 56%); }
+.ko-name { display: block; font-family: var(--form); font-weight: 600; font-size: 18px; line-height: 1.25; }
+.ko-of { display: block; margin-top: 1px; font-size: 14.5px; line-height: 1.35; color: var(--ink-2); }
+.clue .kunye-note { margin: 10px 0 0; font-size: 15px; font-style: italic; line-height: 1.45; color: var(--mor); }
+.kunye-acts { display: flex; align-items: center; gap: 16px; margin-top: 10px; }
+.kunye-acts .btn { flex: 1; margin-top: 0; }
 /* what happened in the village while the candle burned */
 .turn { margin: 0; padding: 10px 0 11px 14px; border-bottom: 1px solid var(--line); box-shadow: inset 2px 0 0 var(--mor); font-size: 16px; font-style: italic; line-height: 1.5; color: var(--mor); }
 .turn.fresh { animation: ink-in 1.2s ease-out; }
@@ -381,6 +400,7 @@ button { font: inherit; color: inherit; -webkit-appearance: none; appearance: no
 .pool b { font-weight: 700; font-size: 21px; color: var(--ink); }
 .tray .pool { text-align: left; color: var(--ink); }
 .tray-head .link { font-size: 17px; color: var(--ink-2); }
+.tray-note { margin: 0 0 4px; font-size: 14.5px; font-style: italic; line-height: 1.35; color: var(--ink-2); }
 .slips { list-style: none; display: flex; gap: 8px; margin: 2px -18px 0; padding: 0 18px 4px; overflow-x: auto; scrollbar-width: none; }
 .slips::-webkit-scrollbar { display: none; }
 .slips li { flex: 0 0 auto; }
@@ -434,6 +454,7 @@ button { font: inherit; color: inherit; -webkit-appearance: none; appearance: no
 .signs .hl dd { font-weight: 500; }
 .note-quote { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 4; overflow: hidden; margin-top: 3px; font-size: 15px; font-style: italic; font-weight: 400; line-height: 1.42; color: var(--ink-2); cursor: pointer; }
 .note-quote.open { display: block; }
+.note-mine { display: block; margin-top: 3px; font-family: var(--form); font-weight: 600; font-size: 15.5px; line-height: 1.3; color: var(--mor); }
 .lore { margin: 0; font-size: 16.5px; line-height: 1.66; }
 .dp-lore { margin: 4px 0 2px; }
 .dp-lore summary, .rest > summary, .back-notes summary { padding: 10px 0; cursor: pointer; font-family: var(--form); font-weight: 600; font-size: 19px; list-style: none; }
@@ -536,6 +557,10 @@ button { font: inherit; color: inherit; -webkit-appearance: none; appearance: no
 .facts div { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 8px 0; border-bottom: 1px solid var(--line); }
 .facts dt { font-family: var(--form); font-weight: 500; font-size: 17px; white-space: nowrap; color: var(--ink-2); }
 .facts dd { margin: 0; text-align: right; font-size: 16.5px; font-weight: 500; }
+/* the reader's stamps against what each note really said */
+.facts-read { border-top-width: 1px; }
+.facts-read .muted { font-weight: 400; }
+.read-mine { font-weight: 400; color: var(--bordo); text-decoration-thickness: 1.5px; }
 
 .gains { margin: 16px 0 0; padding: 10px 14px 12px; border-radius: 2px; background-color: var(--sheet); background-image: var(--grain); box-shadow: 0 0 0 1px rgba(28, 41, 70, 0.3); }
 .gains ul { list-style: none; margin: 0; padding: 0; }
@@ -684,7 +709,7 @@ button { font: inherit; color: inherit; -webkit-appearance: none; appearance: no
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .flame-g, .gains li, .clue.fresh, .turn.fresh { animation: none; }
+  .flame-g, .gains li, .clue.fresh, .turn.fresh, .tag-fresh { animation: none; }
   .hunt-fig, .hunt-lines .s, .dusk, .shelf::after { transition: none; }
   .drawer-card, .drawer-card.from-right, .drawer-card.from-left { animation: none; }
 }
@@ -692,6 +717,7 @@ button { font: inherit; color: inherit; -webkit-appearance: none; appearance: no
 /* ---------- wide screens: the ledger lies open on the table ---------- */
 
 @media (min-width: 980px) {
+  .kunye-opts { grid-template-columns: 1fr 1fr; }
   :root { --pl: 64px; --pr: 44px; --margin-line: linear-gradient(90deg, transparent 40px, var(--kenar) 40px 41px, transparent 41px 43.5px, var(--kenar) 43.5px 44.5px, transparent 44.5px); }
   body { padding: 28px 0; }
   .app { min-height: calc(100vh - 56px); border-radius: 3px; box-shadow: 0 30px 60px -20px #000; }
@@ -720,6 +746,7 @@ button { font: inherit; color: inherit; -webkit-appearance: none; appearance: no
   .drawer-card.in-slot { width: auto; max-width: none; max-height: none; overflow: visible; padding: 0; background: none; border: 0; }
   .drawer-card.in-slot:not(.from-right):not(.from-left) { animation: none; }
   .in-slot .dp-actions { bottom: -28px; padding: 10px 0 12px; grid-template-columns: 1.4fr 1fr; background: none; }
+  .in-slot .dp-actions .btn-ghost { background-color: var(--paper); } /* the page scrolls under this bar */
   .in-slot .dp-name { font-size: 36px; }
   .dp-name[data-strike] { width: fit-content; min-width: 60%; }
   .drawer { align-items: center; }

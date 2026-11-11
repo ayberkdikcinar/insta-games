@@ -20,9 +20,9 @@ export default {
    "sign": "Dr. Cemal, Hükûmet Tabibi"
   },
   "clues": {
-   "iz": "Asiye çocuğun gömleğini usulca açıyor. Göğsünün ortasında avuç kadar bir morluk, iki bileğinde dört parmak gibi duran morluklar. Kimi sarıya dönmüş, kimi dünden kalma, koyu mor. Baba on iki gündür karakolda. Hekimin raporu sedirin üstünde: “Sağ elle sıkılarak meydana gelmiştir.” Asiye okuma bilmiyor, parmağını satırın üstünde gezdiriyor. “Buraya ne yazdı?” diyor.",
-   "tanik": "Asiye sesini alçaltıyor: “Bir gece başında oturdum, uyumadım. Lamba yanıyordu. Çocuğun üstünde kara bir gölge vardı, odada gölgesi düşecek kimse yokken. Aziz’in gözleri açıktı, bana bakıyordu, parmağı kıpırdamadı. Bağıramadı. Kocamın sağ eli hızarda kesildi, kapanmıyor, kaşığı solla tutuyordu. Çocuğu o elle nasıl sıksın. Hekim bey kendi dikti. Söyledim ona, ‘Biliyorum’ dedi.”",
-   "yer": "Evin arka odası. Penceresi yok, tek kapısı var, sürgüsü içeriden. Asiye geceleri çocuğu buraya alıp kapıyı sürüyor, kapalı odada hava ağır, gaz kokuyor. Duvar sıvalı, tavan tahtası bütün, girecek delik yok. Raftaki reçetede hekimin yazısı: “Bayram, sağ el, sekiz dikiş, ayın 3’ü. On beşine kadar kasabada hızarda kalacak.” Asiye “İlk kötü sabah ayın altısıydı” diyor."
+   "iz": "Asiye çocuğun gömleğini usulca açıyor. Göğsünün ortasında avuç kadar bir leke, iki bileğinde dört parmak gibi duran izler. Kimi sarıya dönmüş, kimi dünden kalma, koyu mor. Baba on iki gündür karakolda. Hekimin raporu sedirin üstünde: “Sağ elle sıkılarak meydana gelmiştir.” Asiye okuma bilmiyor, parmağını satırın üstünde gezdiriyor. “Buraya ne yazdı?” diyor.",
+   "tanik": "Asiye sesini alçaltıyor: “Bir gece başında oturdum, uyumadım. Lamba yanıyordu. Çocuğun üstünde bir karaltı duruyordu, lamba onu aydınlatmıyordu, yüzü de eli de yoktu. Aziz’in gözleri açıktı, bana bakıyordu, parmağı kıpırdamadı. Bağıramadı. Kocamın sağ eli hızarda kesildi, kapanmıyor, kaşığı solla tutuyordu. Çocuğu o elle nasıl sıksın. Hekim bey kendi dikti. Söyledim ona, ‘Biliyorum’ dedi.”",
+   "yer": "Evin arka odası. Penceresi yok, tek kapısı var, sürgüsü içeriden. Asiye geceleri çocuğu buraya alıp kapıyı sürüyor, içeride hava ağır, gaz kokuyor. Duvar sıvalı, tavan tahtası bütün, girecek delik yok. Raftaki reçetede hekimin yazısı: “Bayram, sağ el, sekiz dikiş, ayın 3’ü. On beşine kadar kasabada hızarda kalacak.” Asiye “İlk kötü sabah ayın altısıydı” diyor."
   },
   "closed": {
    "kurban": "Köyde bu durumda başka kim var diye soruyorsun. Bayram’ın başına gelenden sonra kimse gömleğini hekime açmıyor, hastası olan kapıyı örtüyor.",
@@ -76,8 +76,8 @@ export default {
    "sign": "Cennet"
   },
   "clues": {
-   "iz": "Tezgâhın çevresi darmadağın. Yumaklar çözülmüş, iğler birbirine dolanmış, yün kazanı devrilmiş, yastıklar sedirin altına savrulmuş. Kilime yaklaşıyorsun. Üstteki üç karışın hiçbir yeri yırtılmamış. Atkılar birer birer, sağdan sola çekilmiş, çıkarılan ipler kendi içinde sarılmış. Bu üç karışa sabırla çalışılmış. Çekiş yönü solak bir ele gider. Etrafındaki dağınıklıkla aynı gecenin işi gibi durmuyor.",
-   "yer": "Ne olduysa ocak başında olmuş. Ocağın taşları arasına bir iğ sokulmuş, küller tezgâha doğru savrulmuş, Dilber’in yemenisi ocak taşında kalmış. Külü karıştırıyorsun. Altından yarısı yanmış bir top ip çıkıyor, kilimin ipi, sıkı sarılmış. Daha altta eskileri var, kül olmuş. Bu ocağa haftalardır ip atılıyormuş. Annesi “Ocağı sabahları Cennet yakar” diyor, bunu över gibi söylüyor."
+   "iz": "Tezgâhın çevresinde yerinde duran bir şey yok. Yumaklar çözülmüş, iğler birbirine dolanmış, yün kazanı devrilmiş, yastıklar sedirin altına savrulmuş. Kilime yaklaşıyorsun. Üstteki üç karışın hiçbir yeri yırtılmamış. Atkılar birer birer, sağdan sola çekilmiş, çıkarılan ipler kendi içinde sarılmış. Bu üç karışa sabırla çalışılmış. Çekiş yönü solak bir ele gider. Etrafındaki dağınıklıkla aynı gecenin işi gibi durmuyor.",
+   "yer": "Ne olduysa ocağın önünde olmuş. Ocağın taşları arasına bir iğ sokulmuş, küller tezgâha doğru savrulmuş, Dilber’in yemenisi ocak taşında kalmış. Külü karıştırıyorsun. Altından yarısı yanmış bir top ip çıkıyor, kilimin ipi, sıkı sarılmış. Daha altta eskileri var, kül olmuş. Bu ocağa haftalardır ip atılıyormuş. Annesi “Ocağı sabahları Cennet yakar” diyor, bunu över gibi söylüyor."
   },
   "closed": {
    "kurban": "Başka kadınların başına gelmiş mi diye soruyorsun. Kızılöz’de kadınlar o bahsi açmıyor, “Bizim evde öyle gece oturulmaz” deyip kapıyı çekiyorlar.",
@@ -133,9 +133,9 @@ export default {
    "sign": "Çavuş Durmuş"
   },
   "clues": {
-   "iz": "Patikada kocaman bir ayak izi duruyor. Üstüne uzansan sığarsın. Sert toprağa basılmış, topuk bir karış gömülmüş. Bir sonrakini on dakika yürüyüp buluyorsun. Durmuş Çavuş arkandan “Manda” diyor. Patikada başka iz arıyorsun. Amelenin çıplak ayakları her gün gidip gelmiş. İki aydır su getirdiği yazılan katırın bu toprakta tek nalı yok.",
-   "tanik": "22 numara adının Bahattin olduğunu söylüyor, kimse sormamış. “Su almaya çıkmıştım. Biri oturuyordu, adam sandım. Kalktı. Bir adamın üstüne bir adam daha koy, o boyda, insan boyunun iki katı. Bana bakmadı. Yine de dizlerim gitti. Çavuş’a söyledim, adımı değil numaramı yazdı. Katır mı? Geleli katır görmedim. ‘Su yukarıda, alın gelin’ dedi.”",
-   "zaman": "Yoklama defterini açtırıyorsun. Her eksik, paydostan sonraki yoklamada eksik. 14 numara öğle sıcağında, güneş tam tepedeyken çıkmış, 9 numara altı gün sonra aynı saatte. Çavuş o saatte ameleyi gölgeye almıyor, su nöbetine yolluyor, iş saati kaybolmasın diye. Defterin kenarında bir hesap: “Katır kirası, ayda on iki lira, iki ay.” Katırın bu yola çıktığına dair tek kayıt bu kenar."
+   "iz": "Patikada bir ayak izi duruyor. Üstüne uzansan sığarsın. Sert toprağa basılmış, topuk bir karış gömülmüş. Bir sonrakini on dakika yürüyüp buluyorsun. Durmuş Çavuş arkandan “Manda” diyor. Patikada başka iz arıyorsun. Amelenin çıplak ayakları her gün gidip gelmiş. İki aydır su getirdiği yazılan katırın bu toprakta tek nalı yok.",
+   "tanik": "22 numara adının Bahattin olduğunu söylüyor, kimse sormamış. “Su almaya çıkmıştım. Biri oturuyordu, adam sandım. Kalktı. Bir adamın üstüne bir adam daha koy, o boyda. Bana bakmadı. Yine de dizlerim gitti. Çavuş’a söyledim, adımı değil numaramı yazdı. Katır mı? Geleli katır görmedim. ‘Su yukarıda, alın gelin’ dedi.”",
+   "zaman": "Yoklama defterini açtırıyorsun. Her eksik, paydostan sonraki yoklamada eksik. 14 numara güneş tam tepedeyken çıkmış, 9 numara altı gün sonra aynı saatte. Çavuş o saatte ameleyi gölgeye almıyor, su nöbetine yolluyor, iş saati kaybolmasın diye. Defterin kenarında bir hesap: “Katır kirası, ayda on iki lira, iki ay.” Katırın bu yola çıktığına dair tek kayıt bu kenar."
   },
   "closed": {
    "kurban": "Kaybolan iki kişinin kim olduğunu soruyorsun. Defterde yalnızca numara var. Yaşlarını, evli olup olmadıklarını bilen yok, koğuşta birbirlerine lakapla seslenirlermiş.",
@@ -190,9 +190,9 @@ export default {
    "sign": "Behiye"
   },
   "clues": {
-   "kurban": "Evin bütün halkı aynı yorgunlukta. Adem, karısı Cemile, üç çocuk, Behiye Nine: gözleri çukura kaçmış, küçükler sofrada uyuyor, Adem öğlene kadar kalkamıyor. “Fare” diyor, başka söz bilmiyor. Cemile sesini alçaltıyor: “Bedia Hala kışın ahırda yatarken ona çorba götürürdüm. Bir gün ‘Burası da benimdi’ dedi. Adem’e söyledim, ağzıma vurdu.”",
-   "iz": "Bütün oda altüst. Tencereler ters çevrilmiş, un döşemeye dökülmüş, yorganlar çekilip sedirin arkasına tıkılmış, eşya darmadağın. Cemile sabah toplamış, gece yine aynı. Devrilen sandığın dibinden bir kâğıt çıkıyor: Bedia’nın evi Adem’e verdiğine dair senet, altta bir parmak izi. Mürekkep fazla, parmak yana kaymış, bir el başka bir elin üstünden bastırmış. Tarihi, Bedia’nın ahıra indiği kış.",
-   "yer": "Olan hep ocak başında başlıyor. Un ilk burada dökülüyor, tencereler buradan yuvarlanıyor. Ocağın arka taşında yumruk kadar bir boşluk var. Cemile duvarı gösteriyor: “Ahır bu duvarın öbür yüzü. Bedia Hala son kışında sırtını oraya verirdi, ocağın sıcağı geçer diye.” Behiye Nine “Kırk yıl bu ocağın başı onundu” diyor. “Nazire Ebe ölü doğan çocuğunu burada aldı, çıkarken ayakkabısını uzun uzun bağladı.”"
+   "kurban": "Evde kimi görsen aynı yorgunlukta. Adem, karısı Cemile, üç çocuk, Behiye Nine: gözleri çukura kaçmış, küçükler sofrada uyuyor, Adem öğlene kadar kalkamıyor. “Fare” diyor, başka söz bilmiyor. Cemile sesini alçaltıyor: “Bedia Hala kışın ahırda yatarken ona çorba götürürdüm. Bir gün ‘Burası da benimdi’ dedi. Adem’e söyledim, ağzıma vurdu.”",
+   "iz": "Bütün oda altüst. Tencereler ters çevrilmiş, un döşemeye dökülmüş, yorganlar çekilip sedirin arkasına tıkılmış. Cemile sabah toplamış, gece yine aynı. Devrilen sandığın dibinden bir kâğıt çıkıyor: Bedia’nın evi Adem’e verdiğine dair senet, altta bir parmak izi. Mürekkep fazla, parmak yana kaymış, bir el başka bir elin üstünden bastırmış. Tarihi, Bedia’nın ahıra indiği kış.",
+   "yer": "Olan hep ocağın önünde başlıyor. Un ilk burada dökülüyor, tencereler buradan yuvarlanıyor. Ocağın arka taşında yumruk kadar bir boşluk var. Cemile duvarı gösteriyor: “Ahır bu duvarın öbür yüzü. Bedia Hala son kışında sırtını oraya verirdi, ocağın sıcağı geçer diye.” Behiye Nine “Kırk yıl bu ocağın başı onundu” diyor. “Nazire Ebe ölü doğan çocuğunu burada aldı, çıkarken ayakkabısını uzun uzun bağladı.”"
   },
   "closed": {
    "tanik": "Gece bir şey gören büyük torun Aydın. Adem “Çocuğun aklını bozmayın” deyip onu akşamdan dayısına yollamış.",
@@ -247,9 +247,9 @@ export default {
    "sign": "Cevriye"
   },
   "clues": {
-   "tanik": "Odun taşıyan Çetin gözünü senden kaçırıyor. “Baca tıkandı, dama çıktım, bakma niyetim yoktu. Damdaki delikten aşağı baktım. İçerisi puslu, lamba zor seçiliyordu. Kara bir gölge vardı, Bedriye’nin iki yanında dolaşıyordu, içeride kimse yokken. Bedriye tası yere koydu, ‘Cevriye Abla?’ dedi. Cevap gelmedi. Cevriye Abla’yı az önce köprüden yukarı giderken görmüştüm, elinde fener, Dudu Hanım’ın sokağına doğru.”",
-   "zaman": "Bekçi Alaattin çay bardağını ısınmak için tutuyor. “Köprüye her gece aynı vakit varırım, gece yarısı. O gece de köprüdeydim, tam gece yarısı, Çetin’in bağırdığını duydum. Sonra Cevriye’yi gördüm, nefes nefese iniyordu, fener elinde. Dudu Hanım’ın evinde lamba vardı. O evde gece yarısı kim uyanık oturur, ben onu da düşündüm.”",
-   "sebep": "Dudu Hanım’ın kızı Ayten, yengesi Bedriye’nin yatağını düzeltirken konuşuyor: “Kimse sırtını görmesin diye geceleri gelirdi. Cevriye Abla kapıda beklerdi, ayrılmazdı. O gece onu içeride yapayalnız bırakıp çıkmış. Annem Cevriye’ye para verirmiş, gelinin karnı büyüyor mu diye. Büyümezse Arif’e başkasını alacaktı.” Yorganı çekiyor. Bedriye’nin sırtında eski kayış izleri var."
+   "tanik": "Odun taşıyan Çetin gözünü senden kaçırıyor. “Baca tıkandı, dama çıktım, bakma niyetim yoktu. Damdaki delikten aşağı baktım. İçerisi puslu, lamba zor seçiliyordu. Duvarda iki karartı vardı, biri Bedriye’nin, öbürü onun iki yanında dolaşıyordu, içeride başka kimse yokken. Bedriye tası yere koydu, ‘Cevriye Abla?’ dedi. Cevap gelmedi. Cevriye Abla’yı az önce köprüden yukarı giderken görmüştüm, elinde fener, Dudu Hanım’ın sokağına doğru.”",
+   "zaman": "Bekçi Alaattin çay bardağını ısınmak için tutuyor. “Köprüye saatimin iki kolu üst üste gelince varırım. O gece de köprüdeydim, kollar üst üsteydi, Çetin’in bağırdığını duydum. Sonra Cevriye’yi gördüm, nefes nefese iniyordu, fener elinde. Dudu Hanım’ın evinde lamba vardı. O evde o saatte kim uyanık oturur, ben onu da düşündüm.”",
+   "sebep": "Dudu Hanım’ın kızı Ayten, yengesi Bedriye’nin yatağını düzeltirken konuşuyor: “Kimse sırtını görmesin diye geceleri gelirdi. Cevriye Abla kapıda beklerdi, ayrılmazdı. O gece onu içeride bırakıp çıkmış, kapıda da durmamış. Annem Cevriye’ye para verirmiş, gelinin karnı büyüyor mu diye. Büyümezse Arif’e başkasını alacaktı.” Yorganı çekiyor. Bedriye’nin sırtında eski kayış izleri var."
   },
   "closed": {
    "kurban": "Geceleri başka kim gelir diye soruyorsun. Cevriye gelen kadınların adını söylemiyor. “Ben sır tutarım” diyor, gözünü senden ayırmadan.",
@@ -305,8 +305,8 @@ export default {
   },
   "clues": {
    "kurban": "Yukarı ağılda üç çoban yatarmış. Ağıl dağılmış, taşları yamaca savrulmuş. Çoban Davut yok. On üç yaşındaki çırağı Ahmet yok. Üçüncü çoban, Davut’un kardeşi Cumali, üstü başı çamur içinde köye inmiş, bir daha evden çıkmamış. Davut’un karısı Berrin ağılın yanından kırık bir değnek buluyor, getirip sana uzatıyor. “Cumali’ye sor” diyor, “kardeşini nerede bıraktı.”",
-   "iz": "Çamurda kocaman bir ayak izi var. Zincirle ölçüyorsun: boyu bir kulaç. Topuğu belli, parmak yeri silik. Ardında ikincisi yok, tek bir ayak basıp kalkmış. Celal Bey ölçüyü yazıyor, kalemi duruyor. Yamaçta bir de çarık izi gidiyor, insan ölçüsü, adımları açık, koşan bir adamın. Ağıldan çıkıp köye doğru. Cumali “Üç yüz kırk adım öbür yana, Davut’a koştum” diyor. İz öbür yana gitmiyor. Altı yüz on iki adım, köyün yoluna.",
-   "zaman": "Herkes aynı geceyi anlatıyor: akşamdan kara bulut geldi, fırtına üç saat sürdü, yalnızca bu köyün üstünde, komşu köye bir damla düşmedi. Cumali’nin karısı Binnaz sen sormadan söylüyor, gözü yerde: “Fırtına başlayalı yarım saat olmamıştı, kapıyı çalıyordu. Öbür yana gidip kardeşine varacak, sonra buraya dönecek vakti yoktu. Ben hesap bilmem. O da bana baktı, ben kapıyı kapattım.”"
+   "iz": "Çamurda bir ayak izi var. Zincirle ölçüyorsun: boyu bir kulaç. Topuğu belli, parmak yeri silik. Ardında ikincisi yok, tek bir ayak basıp kalkmış. Celal Bey ölçüyü yazıyor, kalemi duruyor. Yamaçta bir de çarık izi gidiyor, insan ölçüsü, adımları açık, koşan bir adamın. Ağıldan çıkıp köye doğru. Cumali “Üç yüz kırk adım öbür yana, Davut’a koştum” diyor. İz öbür yana gitmiyor. Altı yüz on iki adım, köyün yoluna.",
+   "zaman": "Herkes aynı geceyi anlatıyor: akşamdan kara bulut geldi, gök üç saat gürleyip boşaldı, yalnızca bu köyün üstünde, komşu köye bir damla düşmedi. Cumali’nin karısı Binnaz sen sormadan söylüyor, gözü yerde: “Gök gürlemeye başlayalı yarım saat olmamıştı, kapıyı çalıyordu. Öbür yana gidip kardeşine varacak, sonra buraya dönecek vakti yoktu. Ben hesap bilmem. O da bana baktı, ben kapıyı kapattım.”"
   },
   "closed": {
    "tanik": "Olanı gören tek kişi Cumali. Ne gördüğünü sorunca duvara dönüyor, elini kolunun üstünde uzun uzun sürüyor. Karısı “Yeter” deyip seni kapıya kadar geçiriyor.",
@@ -361,7 +361,7 @@ export default {
    "sign": "Ayşe"
   },
   "clues": {
-   "iz": "Yukarı çıkan patikanın başında taşların üstünde kan var, kurumuş, damla damla. Önce bir hayvan vurulmuş sanıyorsun. Kan yukarı doğru gidiyor, gittikçe sıklaşıyor, bir kayanın önünde avuç kadar birikmiş, sonra bitiyor. Çoban Bekir kayanın yanında Bilal’in heybesini buluyor. Açıyorsun: bir somun ekmek, bir soğan. Dağda günlerce kalacak avcının heybesi bu kadar hafif olmaz.",
+   "iz": "Yukarı çıkan patikanın başında taşların üstünde koyu damlalar var, kurumuş, pas rengi. Önce bir hayvan vurulmuş sanıyorsun. Damlalar yukarı doğru gidiyor, gittikçe sıklaşıyor, bir kayanın önünde avuç kadar birikmiş, sonra bitiyor. Çoban Bekir kayanın yanında Bilal’in heybesini buluyor. Açıyorsun: bir somun ekmek, bir soğan. Dağda günlerce kalacak avcının heybesi bu kadar hafif olmaz.",
    "tanik": "Çoban Bekir tütününü yakamıyor, kibrit üç kere sönüyor. “Bembeyaz bir hayvan gördüm, kayalığın üstünde. Hayvan dedim, ama gözünü benden ayırmadı, hayvan öyle bakmaz. Bilal bunun peşine düştü. Üç yıldır buralarda dolaşırım, ilk kez o gün gördüm. ‘Kayalıkta ak bir şey var, Ağa’nın adamı postuna borcu silermiş’ diye Bilal’e Ayşe söylemiş. Ayşe oraları ne zaman gördü, kimse bilmez.”",
    "yer": "Çalıköy’ün üstündeki dağa çıkıyorsun. Yayla bitiyor, sarp kayalık başlıyor. İki saat tırmanıyorsun, sonra yol yok. Rüzgârın içinde biri “Su” diyor, kesik kesik. Bir adamın ancak ayakta durabileceği bir taşın üstünde bir şey kıpırdıyor. Ayşe seninle gelmedi. “Evde işim var” dedi, kapıyı kapatırken gözü dağa hiç gitmedi."
   },
@@ -418,8 +418,8 @@ export default {
    "sign": "Nalbant Cavit"
   },
   "clues": {
-   "iz": "Kısrağın yelesi sıkı sıkı örülmüş, çözülmüyor. Örgünün içinden keçeleşmiş bir tutam kıl çıkıyor, kızıl kahverengi, sert, birbirine yapışmış. At kılına benzemiyor. Cavit “Göster bakayım” diyor, tutamı gözüne bir karış yaklaştırıyor, sonra yanındaki çırağa uzatıyor: “Sen bak.” Çırak Bahri kılı alıyor, ustasının elini örsün kenarına götürüyor, çok alışılmış bir hareketle.",
-   "zaman": "Çırak Bahri körüğü bırakıyor, sesini alçaltıyor: “Olan hep akşam karanlığında oluyor. Lamba yanmadan, ortalık seçilmezken nal sesleri yola iniyor. Usta bu saatte iş tutmaz, üç aydır akşam işini bana bırakır, çiviyi eline ben veririm. Asım’ın atını o gün akşam karanlığında tek başına nalladı, ben kasabadaydım. Bunu kimseye söylemedim.” Arkada çekiç havada duruyor, sonra iniyor.",
+   "iz": "Kısrağın yelesi sıkı sıkı örülmüş, çözülmüyor. Örgünün içinden bir tutam çıkıyor, kızıl kahverengi, sert, birbirine yapışıp keçe olmuş. At kılına benzemiyor. Cavit “Göster bakayım” diyor, tutamı gözüne bir karış yaklaştırıyor, sonra yanındaki çırağa uzatıyor: “Sen bak.” Çırak Bahri kılı alıyor, ustasının elini örsün kenarına götürüyor, çok alışılmış bir hareketle.",
+   "zaman": "Çırak Bahri körüğü bırakıyor, sesini alçaltıyor: “Olan hep gün batınca oluyor. Lamba yanmadan, ortalık seçilmezken nal sesleri yola iniyor. Usta bu saatte iş tutmaz, üç aydır akşam işini bana bırakır, çiviyi eline ben veririm. Asım’ın atını o gün aynı saatte, lambasız, tek başına nalladı, ben kasabadaydım. Bunu kimseye söylemedim.” Arkada çekiç havada duruyor, sonra iniyor.",
    "yer": "Yazılı’nın üstündeki orman yola kadar iniyor. Asım’ın düştüğü yer ağaçların başladığı dönemeç. At yola dizüstü gelmiş, toprakta sürüklenme izi var. Ormanın dibinde, çalıların arasında bir nal buluyorsun, sol ön. Çivilerden dördü eğri girmiş, biri nalın dışından boşa geçmiş. Elinde çeviriyorsun. Bu çiviyi böyle çakan, çivinin yerini görmeden çakmış."
   },
   "closed": {
@@ -532,8 +532,8 @@ export default {
   },
   "clues": {
    "tanik": "Kağnıcı Durdu tekerleğin yanına çömelmiş, başka tarafa bakarak anlatıyor: “Arabanın altında uyuyakalmıştım. Bir koku uyandırdı, ekşi, leş gibi. Bir hayvan dolanıyordu yanımda, başı yere yakın, adını söyleyemem, karanlıktı. Üç kere döndü. Ayağa kalkmak geldi içimden, nereye, bilmiyorum. Öküz böğürdü, hayvan çekildi. Bir daha kağnının altında yatmam.” Sesini kısıyor: “Ayın on dördünde de kasaba yolundaydım. Biri beni görünce hendeğe yattı. Öksürüğünü tanıdım. Ölmüş adamın adını ağzıma almam.”",
-   "zaman": "Bekçi Burhan duvara çentik atar. “Hepsi aysız gece. Zifiri, elini göremezsin. Besim, Abdi, Cemil, üçü de öyle. Ay doğdu mu bu yol rahattır. Dündar’ın çarıkları bulunduğu gece ise ay tepsi gibiydi, ayın on dördü. Kendim yürüdüm o yolu, hiçbir şey görmedim.” Parmağını iki çentiğin arasında tutuyor, sonra sayıyor. “Üç gün.”",
-   "yer": "Kumluca’yı kasabaya bağlayan yol, tek ev, tek ağaç yok. Issız, saatlerce yürüsen kimseyi görmezsin. Bulunan yerleri gösteriyorlar. Besim’in çarığı hendekte, bir eşi yok. Abdi’nin kuşağı dikende. Cemil’in çarığı taşa takılmış. Dündar’ın çarıkları yolun ortasında, iki eşi yan yana, burunları köye dönük durmuş. Azime sana bakmıyor: “Yeni çarıktı. Topuğu aşınmamıştı. Köyde borçlu olmadığı ev yoktu.”"
+   "zaman": "Bekçi Burhan duvara çentik atar. “Hepsinde gökte ay yoktu. Elini göremezsin. Besim, Abdi, Cemil, üçü de öyle. Ay doğdu mu bu yol rahattır. Dündar’ın çarıkları bulunduğu gece ise ay tepsi gibiydi, ayın on dördü. Kendim yürüdüm o yolu, hiçbir şey görmedim.” Parmağını iki çentiğin arasında tutuyor, sonra sayıyor. “Üç gün.”",
+   "yer": "Kumluca’yı kasabaya bağlayan yol, tek ev, tek ağaç yok. Saatlerce yürüsen kimseyi görmezsin. Bulunan yerleri gösteriyorlar. Besim’in çarığı hendekte, bir eşi yok. Abdi’nin kuşağı dikende. Cemil’in çarığı taşa takılmış. Dündar’ın çarıkları yolun ortasında, iki eşi yan yana, burunları köye dönük durmuş. Azime sana bakmıyor: “Yeni çarıktı. Topuğu aşınmamıştı. Köyde borçlu olmadığı ev yoktu.”"
   },
   "closed": {
    "kurban": "O gece ne yapıyorlardı diye soruyorsun. Aileler çarığı gömdü, bir daha sorulmasın diye. Kapıyı “Allah rahmet eylesin” diyerek kapatıyorlar.",

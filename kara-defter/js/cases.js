@@ -87,6 +87,44 @@ export function candidates(c, dims) {
   return CREATURES.filter((cr) => dims.every((d) => cr.traits[d].some((t) => FAMILY_OF[d][t] === c.clues[d].fam)));
 }
 
+/* ---------- künye: the player stamps each note themself, and the defter narrows by those stamps ---------- */
+
+// What can be stamped on a note of this kind, with the signs each stamp covers.
+export const stampOptions = (dim) => Object.entries(FAMILIES[dim]).map(([id, f]) => {
+  const of = f.of.map((t) => TRAIT[dim][t].label);
+  return { id, label: f.label, of: of.length === 1 && of[0] === f.label ? [] : of };
+});
+
+// Keeps only stamps that exist, on notes that were actually read.
+export function cleanMarks(marks, dims) {
+  const out = {};
+  for (const d of dims) {
+    const fams = [...new Set((marks?.[d] || []).filter((f) => FAMILIES[d]?.[f]))].slice(0, 2);
+    if (fams.length) out[d] = fams;
+  }
+  return out;
+}
+
+// Pages that fit the player's own stamps. A note without a stamp rules nothing out; two stamps on one note keep
+// the pages of both. Nothing here looks at the truth, so a wrong stamp quietly drops the right page.
+export function candidatesByMarks(marks) {
+  const dims = Object.keys(marks).filter((d) => marks[d].length);
+  return CREATURES.filter((cr) => dims.every((d) => cr.traits[d].some((t) => marks[d].includes(FAMILY_OF[d][t]))));
+}
+
+// After the verdict: each note read, what was stamped on it and what it really said.
+// A stamp counts as right when the creature carries a sign under it, which is exactly when it keeps the page; a
+// note may show two of the creature's signs (a braided mane and the matted hair in it), and either reading is fair.
+export function reading(c, dims, marks) {
+  const cr = BY_ID[c.creatureId];
+  return dims.map((d) => {
+    const mine = marks[d] || [];
+    const said = { right: c.clues[d].fam, trait: c.clues[d].trait };
+    const hit = mine.includes(said.right) ? null : cr.traits[d].find((t) => mine.includes(FAMILY_OF[d][t]));
+    return { dim: d, mine, ...(hit ? { right: FAMILY_OF[d][hit], trait: hit } : said), ok: mine.includes(said.right) || !!hit };
+  });
+}
+
 // Does this page match the clue exactly (not just its family)?
 export const exactMatch = (cr, c, d) => cr.traits[d].includes(c.clues[d].trait);
 

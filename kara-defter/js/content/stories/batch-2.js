@@ -54,7 +54,7 @@ export default {
   "clues": {
    "tanik": "Feride kapının eşiğinde çocuğunu emzirirken konuşuyor: “Kocam Eşref bahardan beri toprakta. Bir gece kilerin kapısını açtı, ben gördüm. Eski hırkası, kasketi, sol omzunun düşüklüğü. Küpün başına çömeldi, avuç avuç yedi. Sekiz yıl bir sofrada oturduk, hiç böyle yemezdi.” Sesini alçaltıyor. “İmam Efendi cenaze günü hasta değildi. Bahçesindeydi. Beni görünce içeri girdi.”",
    "yer": "Mezarlık köyün üstünde, taş duvarlı. Başlar sıra sıra, hepsi aynı yöne dönük. Duvarın dışında, sınıra sürtünen bir kabartı var: taşsız, yanlamasına, üstünde ot bitmemiş. Kabartıdan köye inen patika yeni basılmış gibi sertleşmiş. Yanına gelen bekçi başını sallıyor: “İçeri alınmaz, diye haber geldi. Hasta yatağından. Adam kendi ipini kendi bağladı ya.”",
-   "sebep": "Elmas Hala yün eğiriyor, elini durdurmuyor: “Eşref ahırın direğine ipi bağladığında borcu vardı, kimse sormadı. Yıkanmadı. Bir çuval, gece kazılmış bir çukur. Namazı kılınmadı. Ölü usulünce toprağa verilmezse toprak onu tutmaz, büyüklerimiz öyle bilirdi. O sabah ezanı İmam Efendi kendi okudu. Ateşler içinde yatan adamın sesini ben duvarın öbür yanından duydum.”"
+   "sebep": "Elmas Hala yün eğiriyor, elini durdurmuyor: “Eşref ahırın direğine ipi bağladığında borcu vardı, kimse sormadı. Yıkanmadı. Bir çuval, gece kazılmış bir çukur. Namazı kılınmadı. Böyle gönderileni toprak tutmaz, büyüklerimiz öyle bilirdi. O sabah ezanı İmam Efendi kendi okudu. Ateşler içinde yatan adamın sesini ben duvarın öbür yanından duydum.”"
   },
   "closed": {
    "kurban": "Ahır kapıları sürgülü, göz değer diye kimseyi sokmuyorlar. Akşamları köyden kireç kokusu geliyor.",
@@ -96,8 +96,8 @@ export default {
   },
   "clues": {
    "kurban": "Fidan İlyas’ın yatağını hâlâ seriyor. “Gece yolda kalanı alıyor bu yol. Geçen güz bir kalaycı, ondan evvelki yıl iki çerçi, karanlığa kalıp yürüyenler dönmedi.” Keseyi çıkarıp gösteriyor, para tam. “Enver getirdi, sayıp teslim etti. Adam can verirken kesesini arkadaşına verir mi? Vermiştir demek.” Bir an bakıyor keseye. “Ya da almıştır, ben onu hiç düşünmedim.”",
-   "tanik": "Çoban Feyzi sopasına yaslanmış konuşuyor: “Kayanın önünde bir kocakarı oturuyordu, iki büklüm, başı dizlerinde, beli doğrulmuyor. Ağzından buğu çıkıyordu, hava soğuk değilken. Enver önünde diz çökmüştü, başını ona uzatmış, o da okşuyordu. İçeriden İlyas’ın sesi geliyordu, Enver’in adını söylüyordu. Enver bana hiç sormadı, ne gördün diye. Sen sor bakalım, ağzı niye ekşi süt kokuyor.”",
-   "zaman": "Bekçi Fikri çubuğunu yere vuruyor: “Hepsi gün batarken oldu, akşam karanlığı çökerken. Kalaycı son gördüğü ocakçıya ‘lamba yakılmadan varırım’ demiş. İlyas’ların köye varacağı vakit de oydu. Ertesi gün tam o vakitte, kapılar kapanırken, Enver köye tek başına girdi, üstü kuru, soluğu düzgün. İçeriden kaçan adam koşar. Enver yürüyordu.”"
+   "tanik": "Çoban Feyzi sopasına yaslanmış konuşuyor: “Kayanın önünde çok yaşlı bir kadın oturuyordu, başı dizlerinde, beli doğrulmuyor. Ağzından buğu çıkıyordu, hava soğuk değilken. Enver önünde diz çökmüştü, başını ona uzatmış, o da okşuyordu. İçeriden İlyas’ın sesi geliyordu, Enver’in adını söylüyordu. Enver bana hiç sormadı, ne gördün diye. Sen sor bakalım, ağzı niye ekşi süt kokuyor.”",
+   "zaman": "Bekçi Fikri çubuğunu yere vuruyor: “Hepsi gün batarken oldu, ortalık kararırken. Kalaycı son gördüğü ocakçıya ‘lamba yakılmadan varırım’ demiş. İlyas’ların köye varacağı vakit de oydu. Ertesi gün tam o vakitte, kapılar kapanırken, Enver köye tek başına girdi, üstü kuru, soluğu düzgün. İçeriden kaçan adam koşar. Enver yürüyordu.”"
   },
   "closed": {
    "iz": "Enver dönüş yolunu çalıyla süpürmüş, karısı süpürgeyi dereye atarken görmüş. Yolda bakacak bir şey kalmamış.",
@@ -139,8 +139,8 @@ export default {
   },
   "clues": {
    "kurban": "İkbal Kadın oğlunun yatağını kaldırmamış. “Ekrem yirmi üçündeydi, bekârdı, bir gün hasta olmadı. O kız köye gelince önce bizim kapıya geldi, geçen yaz. Ekrem kuru yaprak gibi hafifledi, ağustosta yatağında buldum. Sonra çeşmedeki bekâr oğlanların hepsine su verdi, en son İzzet’e.” Sana yakından bakıyor. “Edibe’nin kapısına gidip sor, oğlum neye benzedi öldüğünde. Bana sormadı.”",
-   "iz": "Edibe çeşmeye inince yüklüğü yokluyorsun. Yorganların arkasında bir kese. İçinde katlanmış ince, saydam yılan gömleği parçaları: altı tane, pulları hâlâ belli, biri bir kol boyu. Kese Edibe’nin. Gelinin eteğinden alıp alıp buraya koymuş. Parçaların arasında bir kâğıt: “Fethi’ye on beş lira, nikâh günü.” Altında Edibe’nin parmak basması var. Kâğıdı yerine koyuyorsun. Parmağında bir pul kalıyor.",
-   "zaman": "İnci Nine parmaklarını sayıyor: “Ay dolduğu gece gelin yatağında olmaz. Sabah eteği toprak, oğlan kalkamaz. Altı ayda altı dolunay, saydım. Nazire Ebe geçen güz bu odada gelinin elini tuttu, kokladı, çayını içmeden kalktı. Edibe ardından kapıyı örttü. O gün kapıda duran seyyar Fethi’yi de gördü Nazire. Amca dediğin adama nasıl da benzer, dedi, sözü orada kesti.”"
+   "iz": "Edibe çeşmeye inince yüklüğü yokluyorsun. Yorganların arkasında bir kese. İçinde katlanmış ince, saydam kabuk parçaları: altı tane, pulları hâlâ belli, biri bir kol boyu, baş yerinde iki göz deliği. Kese Edibe’nin. Gelinin eteğinden alıp alıp buraya koymuş. Parçaların arasında bir kâğıt: “Fethi’ye on beş lira, nikâh günü.” Altında Edibe’nin parmak basması var. Kâğıdı yerine koyuyorsun. Parmağında bir pul kalıyor.",
+   "zaman": "İnci Nine parmaklarını sayıyor: “Ay dolduğu gece gelin yatağında olmaz. Sabah eteği toprak, oğlan kalkamaz. Altı ayda altı kere, saydım. Nazire Ebe geçen güz bu odada gelinin elini tuttu, kokladı, çayını içmeden kalktı. Edibe ardından kapıyı örttü. O gün kapıda duran seyyar Fethi’yi de gördü Nazire. Amca dediğin adama nasıl da benzer, dedi, sözü orada kesti.”"
   },
   "closed": {
    "tanik": "Gülbahar’ı soruyorsun, herkes yalnızca yüzünü anlatıyor, başka bir şey hatırlayan çıkmıyor. Kendisi odayı kapıdan gösterip örtüyor.",
@@ -181,9 +181,9 @@ export default {
    "sign": "Fehmi Usta, ark başından"
   },
   "clues": {
-   "iz": "İçerideki tahta döşeme hâlâ kurumamış. Çıplak ayak izleri, ıslak, arktan gelip un çuvallarına kadar uzanıyor, çuvalların önünde durup dönüyor. Basılan yerde un hamur olmuş. İzlerin biri rafın dibinde bitiyor. Raftaki ölçeği kaldırıyorsun: köylüye geri verilen unu ölçen kap bu. Dibine sonradan ince bir tahta çakılmış, çivisi yeni, iki parmak yer kapıyor. Çırak İhsan omzunun üstünden bakıyor, sonra gözünü kaçırıyor.",
-   "tanik": "Çırak İhsan fısıldıyor: “Duvarda kara bir gölge gördüm, tavana kadar, eni yok. Lamba kıpırdamıyordu, o yürüyordu. Kimin gölgesi diye baktım, karşısında kimse yoktu. Feyzullah o gece kendi kantarıyla gelmişti, kapıda Usta’ya ‘Üç yıldır saydım’ diyordu. Gölge Feyzullah’ın arkasına geçti. Usta beni ‘Git yat’ diye içeri yolladı. Köye bir şey söyleme dedi, ağzıma bir lira koydu.”",
-   "zaman": "Bekçi Ferhat köprünün taşına oturuyor: “Gece yarısıydı. Her gece o vakit bu köprüden geçerim, şaşmam. Karısı Gülsüm erken çıktı diyor, demek kapıda oyalanmış. Ben Feyzullah’ı ark kıyısında gördüm, kantarı elinde. Çark durdu. Kırk yıldır gece yarısı durmaz bu çark. Sonra Fehmi Usta’nın lambası söndü. Biri suda çırpınırken lamba söndüren adam ne yapıyordur, sen söyle.”"
+   "iz": "İçerideki tahta döşeme hâlâ kurumamış. Biri çıplak ayakla basmış, arktan gelip un çuvallarına kadar uzanıyor, çuvalların önünde durup dönüyor. Basılan yerde un hamur olmuş. İzlerin biri rafın dibinde bitiyor. Raftaki ölçeği kaldırıyorsun: köylüye geri verilen unu ölçen kap bu. Dibine sonradan ince bir tahta çakılmış, çivisi yeni, iki parmak yer kapıyor. Çırak İhsan omzunun üstünden bakıyor, sonra gözünü kaçırıyor.",
+   "tanik": "Çırak İhsan fısıldıyor: “Duvarda bir karartı gördüm, tavana kadar, eni yok. Lamba kıpırdamıyordu, o yürüyordu. Kimin diye baktım, karşısında kimse yoktu. Feyzullah o gece kendi kantarıyla gelmişti, kapıda Usta’ya ‘Üç yıldır saydım’ diyordu. Karartı Feyzullah’ın arkasına geçti. Usta beni ‘Git yat’ diye içeri yolladı. Köye bir şey söyleme dedi, ağzıma bir lira koydu.”",
+   "zaman": "Bekçi Ferhat köprünün taşına oturuyor: “Günün döndüğü saatti, horozlara daha çok vardı. Her gece o vakit bu köprüden geçerim, şaşmam. Karısı Gülsüm erken çıktı diyor, demek kapıda oyalanmış. Ben Feyzullah’ı ark kıyısında gördüm, kantarı elinde. Çark durdu. Kırk yıldır o saatte durmaz bu çark. Sonra Fehmi Usta’nın lambası söndü. Biri suda çırpınırken lamba söndüren adam ne yapıyordur, sen söyle.”"
   },
   "closed": {
    "kurban": "Gülsüm kocasının üstünü kendi elleriyle yıkamış, giysilerini yakmış. Ne ile uğraştığını gösterecek bir parça kalmamış.",
@@ -224,9 +224,9 @@ export default {
    "sign": "Emin’in anası Esma"
   },
   "clues": {
-   "iz": "Kuyunun ağzındaki taşta, ipin geçtiği yerde bir kol boyu yılan gömleği asılı. Saydam, kuru, pulları birer birer belli. Çekip bakıyorsun, aşağıda bir tane daha var. Üçüncüsünü İskender’in kapısının dibinde buluyorsun, uçları birbirine düğümlenmiş, bir el değmiş. İskender kazmasıyla geçiyor, üstüne basmamak için adımını uzatıyor. Sormadığın hâlde “Rüzgâr getirir” diyor.",
+   "iz": "Kuyunun ağzındaki taşta, ipin geçtiği yerde bir kol boyu ince bir kabuk asılı. Saydam, kuru, pulları birer birer belli, içinden çıkan onu çorap gibi tersyüz bırakmış. Çekip bakıyorsun, aşağıda bir tane daha var. Üçüncüsünü İskender’in kapısının dibinde buluyorsun, uçları birbirine düğümlenmiş, bir el değmiş. İskender kazmasıyla geçiyor, üstüne basmamak için adımını uzatıyor. Sormadığın hâlde “Rüzgâr getirir” diyor.",
    "tanik": "Erol anasının yanında gözünü yerden kaldırmıyor: “Emin’le kuyu başındaydık. Taşın altından bir yılan çıktı, kolum kadar kalın. Sonra bir tane daha, sonra çok. Hepsi aynı yana bakıyordu, Emin’e. Emin eğildi, bir şey söyledi, yılanlar gitti. Ne dedin diye sordum. ‘Sen sormadın say’ dedi. İskender Ağabey uzaktan bakıyordu, kazması omzunda, ağzı kapalı, yüzü bembeyaz.”",
-   "sebep": "Feyyaz Dede başını sallıyor: “Bir hayvana kıyıldı, iş ondan başladı. Bu köyde kuyu başındaki yılana el kalkmaz. Üç ay önce birini ikiye bölüp başını taşın üstüne koymuşlar, Emin’in bulduğu suyun başında. Ağa o suyun parasını Emin’e saydı, ağabeyine saymadı. Kazmanın ağzına bak derim, ama yıkanmış olur. Üç aydır yıkanıyor.”"
+   "sebep": "Feyyaz Dede başını sallıyor: “İş üç ay önce başladı. Bu köyde kuyu başındaki yılana el kalkmaz. Birini ikiye bölüp başını taşın üstüne koymuşlar, Emin’in bulduğu suyun başında. Ağa o suyun parasını Emin’e saydı, ağabeyine saymadı. Kazmanın ağzına bak derim, ama yıkanmış olur. Üç aydır yıkanıyor.”"
   },
   "closed": {
    "kurban": "Erol’un yaşıtlarını soruyorsun, gurbete gitti diyorlar. Anaları ağzını açmıyor, kapılarında birer çift ayakkabı duruyor.",
@@ -267,9 +267,9 @@ export default {
    "sign": "Mezarcı Eyüp, Tepecik"
   },
   "clues": {
-   "kurban": "Fevzi’nin evinde dört yatak bir odaya yanaşık serilmiş. İffet, kayınvalidesi, iki kız: yüzleri aynı renk. Ateşleri yok, iştahları yerinde, ama üç aydır hiçbiri sabaha kadar gözünü kapatmamış. Küçük kız ayakta uyuyor. Komşulara bir şey olmuyor, yalnız bu ev halkı. İffet köşedeki çuvalı gösteriyor: “Gani Ağa’nın adamı getirdi. Ağa o atı alacaklısına verecekti, kocama ‘çaldı’ dediler. Hırsız evine un neden gelir, ben de bilmiyorum.”",
+   "kurban": "Fevzi’nin evinde dört yatak bir odaya yanaşık serilmiş. İffet, kayınvalidesi, iki kız: yüzleri aynı renk. Ateşleri yok, iştahları yerinde, ama üç aydır hiçbiri sabaha kadar gözünü kapatmamış. Küçük kız ayakta uyuyor. Komşulara bir şey olmuyor, yalnız bu çatının altındakilere. İffet köşedeki çuvalı gösteriyor: “Gani Ağa’nın adamı getirdi. Ağa o atı alacaklısına verecekti, kocama ‘çaldı’ dediler. Hırsız evine un neden gelir, ben de bilmiyorum.”",
    "tanik": "Büyük kız Filiz sesini alçaltmıyor: “Babam her gece kapıya geliyor. Sağ gibi, şapkası başında, yüzü temiz, hiç ezik yeri yok. Önce beni çağırıyor, sonra kardeşimi, sonra anneme ‘İffet’ diyor. Kapıyı açmıyoruz. ‘At ağılda’ diyor. Hangi ağıl diye sordum bir gece. Gani Ağa’nın arka ağılını tarif etti, kapısındaki kırık tahtaya kadar.” İffet kızının ağzını eliyle kapatıyor.",
-   "zaman": "Eyüp bir köstekli saat çıkarıyor, camı kırık: “Fevzi’yi yıkarken cebinden aldım. Üçü yirmi geçe durmuş. Her gece o saatte geliyor, üçü yirmi geçe, şaşmıyor. Nazire Ebe bu saati bir gece eline aldı, kulağına götürdü, ‘Duruyor’ dedi, geri verdi. Jandarmaya göstermedim. Adamlar atı aramaya kaçta çıktı, kim biliyor. Benim işim toprak.” Saati cebine koyarken eli camı buluyor."
+   "zaman": "Eyüp bir köstekli saat çıkarıyor, camı kırık: “Fevzi’yi yıkarken cebinden aldım. Üçü yirmi geçe durmuş. O da üçü yirmi geçe geliyor, bir gece şaşmadı. Nazire Ebe bu saati bir gece eline aldı, kulağına götürdü, ‘Duruyor’ dedi, geri verdi. Jandarmaya göstermedim. Adamlar atı aramaya kaçta çıktı, kim biliyor. Benim işim toprak.” Saati cebine koyarken eli camı buluyor."
   },
   "closed": {
    "iz": "İffet her sabah gün doğmadan odayı toplayıp sandıkları kapatıyor. Köy zaten konuşuyor, görünsün istemiyor.",
@@ -311,8 +311,8 @@ export default {
   },
   "clues": {
    "kurban": "Ethem minderde oturuyor. Yanağı kulağa doğru çekilmiş, dili dönmüyor, gözü sana bakarken öbür yana kayıyor. İnci “Bu yolda gece yürüyene olur” diyor. “Geçen yıl bir at satıcısı, kasabadan gece dönen bir tahsildar, ikisi de böyle bulundu.” Ethem’in ceketinin iç cebi dikili. Söküyorsun: mühürlü bir kâğıt. Elif’in merhum babasının adı, “tarla” kelimesi, altı boş imza yeri. Elif kapıdan bakıyor.",
-   "zaman": "Elif parmağıyla pencereyi gösteriyor: “Akşam karanlığı çökerken çıktı. Gün bitmişti, lamba daha yanmamıştı. Yengem bu vakit gidilmez dedi. Amcam sabah memura yetişeceğim dedi. Sonra köyün önünden üç kere geçti. Ben saydım. Üç kere aynı taşın yanından, hep aynı yöne. Bizi görmedi. Elinde kâğıt vardı, sıkıyordu. Ben kâğıdı gördüm. Adımı gördüm sandım. Daha iyi okuyamıyorum.”",
-   "sebep": "Fikriye Nine kaşlarını çatıyor: “Gece yalnız yola çıkılmaz, hele o yola. Yoldaş alacaksın, yoksa gün bitmeden döneceksin. Ethem’e söyledim. ‘Bu işe yoldaş alınmaz’ dedi. Ne işin varmış ki yanına kimseyi alamıyorsun? O kızın babası ölünce tarlası kimde kaldı, köyde kimse konuşmaz. Kız büyüyor. Okuyor da.”"
+   "zaman": "Elif parmağıyla pencereyi gösteriyor: “Ortalık kararırken çıktı. Gün bitmişti, lamba daha yanmamıştı. Yengem bu vakit gidilmez dedi. Amcam sabah memura yetişeceğim dedi. Sonra köyün önünden üç kere geçti. Ben saydım. Üç kere aynı taşın yanından, hep aynı yöne. Bizi görmedi. Elinde kâğıt vardı, sıkıyordu. Ben kâğıdı gördüm. Adımı gördüm sandım. Daha iyi okuyamıyorum.”",
+   "sebep": "Fikriye Nine kaşlarını çatıyor: “O yola gün bittikten sonra girilmez. Gireceksen yoldaş alacaksın. Ethem’e söyledim. ‘Bu işe yoldaş alınmaz’ dedi. Ne işin varmış ki yanına kimseyi alamıyorsun? O kızın babası ölünce tarlası kimde kaldı, köyde kimse konuşmaz. Kız büyüyor. Okuyor da.”"
   },
   "closed": {
    "iz": "İnci ceketin dışını üç kere yıkamış, kokusu gitmeyince şalvarı ocağa atmış. Bakacak bir şey bırakmamış.",
@@ -353,9 +353,9 @@ export default {
    "sign": "Fatma, Gökçeli harmanından"
   },
   "clues": {
-   "kurban": "Irgatlar duvarın dibinde oturuyor, altı kişi. Ateşleri yok, ama orak tutan elleri açılmıyor, derileri kök gibi çatlamış. Irgatbaşı Güngör “Evde oturanın eli sağlam” diyor. “Hepsi tarlaya girenler, harmanda çalışanlar. Çocuklar bile, sap taşıyan çocuklar.” Sana doğru eğiliyor. “Fatma’ya bak. O solak, oraktaki el sol. Sağ eliyle sap tutar. Tutan el kurudu.”",
+   "kurban": "Irgatlar duvarın dibinde oturuyor, altı kişi. Ateşleri yok, ama orak tutan elleri açılmıyor, derileri kök gibi çatlamış. Irgatbaşı Güngör “Evde oturanın eli sağlam” diyor. “Kimin eli ekine değdiyse onun. Biçen, bağlayan, döven süren. Çocuklar bile, sap taşıyan çocuklar.” Sana doğru eğiliyor. “Fatma’ya bak. O solak, oraktaki el sol. Sağ eliyle sap tutar. Tutan el kurudu.”",
    "iz": "Harman yerinin çevresindeki yonca dün yemyeşilmiş, bugün sarı saman. Parmağınla sıkıyorsun, toz oluyor. Tek gecede olmuş. Yan bahçede fasulye sırıklarda kurumuş, kabaklar yatmış. Gazi Ağa’nın tarlası da, dul Ganime’nin bir karışlık bahçesi de. Hiç ayırmamış. Fatma bahçenin başında duruyor, Ganime geçince başını çevirip kuru sırıkları sayıyor.",
-   "sebep": "Fevziye Nine kuru bir sapı parmağında döndürüyor: “Son demet ayakta bırakılır, örülür, onun payıdır. Bu yıl tarlanın ortasında demet yok, kökünden biçilmiş. Pay unutuldu diyorlar. Ben unutulduğunu sanmıyorum. Bu sap oradan, ağzı sağa yatmış, sağlak biçse sola yatar. Bu köyde iki solak var, biri sekiz yaşında. Nazire Ebe her harman bir başak çiğneyip tükürür, giderdi. Bu yıl gelmedi.”"
+   "sebep": "Fevziye Nine kuru bir sapı parmağında döndürüyor: “Son demet ayakta bırakılır, örülür, onun payıdır. Bu yıl tarlanın ortasında demet yok, kökünden biçilmiş. Unutmuşuz diyorlar. Ben unutulduğunu sanmıyorum. Bu sap oradan, ağzı sağa yatmış, sağlak biçse sola yatar. Bu köyde iki solak var, biri sekiz yaşında. Nazire Ebe her harman bir başak çiğneyip tükürür, giderdi. Bu yıl gelmedi.”"
   },
   "closed": {
    "tanik": "Akşam tarlada kim gördü, soruyorsun. Bir çocuk bir kadına selam verdiğini söylüyor, anası çocuğun ağzını kapatıyor.",
@@ -396,8 +396,8 @@ export default {
    "sign": "Bekçi İlhan"
   },
   "clues": {
-   "tanik": "Ercan ağını onarırken bakmıyor: “Faik’in kayığının yüz kulaç gerisindeydim. Kayanın yanında bir kadın gördüm. Öyle güzeldi ki gözünü alamıyorsun, annenin adını unutursun. Faik yüzünü çeviremedi. Ben küreğe asıldım. Asılırken fark ettim, üstümüzde fener karanlıktı. Fener hep yanar. O gece yanmıyordu, başımı kaldırdım, gördüm.”",
-   "zaman": "Kayıkçı Gürsel tenekeleri kıyıya diziyor: “Ay dolduğu gece oldu, üçü de. Dolunayda su ışıl ışıldır, kayığı çıkarırsın. Ama kaya yine kayadır, fener gerekir. Bekçinin gazını ben getiririm. Dolunay geçince tenekeler hep biraz fazla dolu çıkıyor. Yakan adamın gazı artmaz. İlhan’ın karısı Firdevs Kadın suya gideli dört yıl oldu. O gecelerde aşağı iner, taşların orada dikilir. Bunu sana ben söylemedim.”"
+   "tanik": "Ercan ağını onarırken bakmıyor: “Faik’in kayığının yüz kulaç gerisindeydim. Kayanın yanında bir kadın gördüm. Bakınca annenin adını unutursun, elindeki küreği unutursun. Faik yüzünü çeviremedi. Ben küreğe asıldım. Asılırken fark ettim, üstümüzde fener karanlıktı. Fener hep yanar. O gece yanmıyordu, başımı kaldırdım, gördüm.”",
+   "zaman": "Kayıkçı Gürsel tenekeleri kıyıya diziyor: “Ay dolduğu gece oldu, üçü de. O gecelerde su ışıl ışıldır, kayığı çıkarırsın. Ama kaya yine kayadır, fener gerekir. Bekçinin gazını ben getiririm. Ay küçülmeye başlayınca tenekeler hep biraz fazla dolu çıkıyor. Yakan adamın gazı artmaz. İlhan’ın karısı Firdevs Kadın suya gideli dört yıl oldu. O gecelerde aşağı iner, taşların orada dikilir. Bunu sana ben söylemedim.”"
   },
   "closed": {
    "kurban": "Üç adamın kayıklarını aileleri parçalayıp odun etmiş. Köyde onlardan söz edilmiyor.",

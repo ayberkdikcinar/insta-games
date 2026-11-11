@@ -21,7 +21,7 @@ export default {
   },
   "clues": {
    "kurban": "Demirci Ali’nin evine giriyorsun. Sofra beş kişilik kurulu, kaşıklar çorbanın içinde, çorba donmuş. Çocuk terliğinin biri sofranın altında, öbürü eşikte. Ali, karısı, iki oğlu ve Ali’nin anası: bir hanenin tamamı aynı akşam kalkıp gitmiş. Kapının hemen yanındaki yatakta yorgan açık. Yaşlı kadının değneği duvarda duruyor. Muhtar arkandan “O kadın değneksiz ayağa kalkamazdı” diyor.",
-   "tanik": "On iki yaşındaki Gülizar annesinin eteğini bırakmıyor: “Dedem dört yıl önce öldü. Gece kapıdan ‘Gülizar, kızım, üşüdüm, aç’ dedi. Öksürüğü bile aynıydı. Sonra annemi adıyla çağırdı, onun ölmüş ablasının sesiyle. Sonra babamı. Annem ağzımı kapattı. Babam kalktı, kilimle bağladık. Demirci’nin ninesi de her kış kapıyı dinlerdi. Kırk yıldır dul. Kocası bir kış gelecek der dururdu.”",
+   "tanik": "On iki yaşındaki Gülizar annesinin eteğini bırakmıyor: “Dedem dört yıl önce öldü. Gece kapıdan ‘Gülizar, kızım, üşüdüm, aç’ dedi. Öksürüğü bile aynıydı. Sonra anneme seslendi, onun ölmüş ablasının sesiyle. Sonra babama. Kapının önünde kimseyi görmedik. Annem ağzımı kapattı. Babam kalktı, kilimle bağladık. Demirci’nin ninesi de her kış kapıyı dinlerdi. Kırk yıldır dul. Kocası bir kış gelecek der dururdu.”",
    "yer": "Kapıları tek tek geziyorsun. Yedi evin önünde aynı şey var: eşik taşının hemen dışında kar ezilmiş, bir şey orada uzun uzun durmuş. Eşikten içeri geçen olmamış. Eşiği aşılmış tek ev Demirci’nin evi, onun da kapısı içeriden açılmış: sürgü kırık değil, usulca çekilmiş. Sürgü alçakta. Yatağından doğrulan biri elini uzatsa yetişir."
   },
   "closed": {
@@ -79,7 +79,7 @@ export default {
   "clues": {
    "kurban": "Emine odanın dibinde yatıyor. Yirmi yaşında bile yok. Alnı yanıyor, parmakları buz. Bebeği göğsüne yaklaştırıyorlar, başını çeviriyor. Ebe çocuğun ağzına pamukla süt damlatıyor. Seni görünce “Kapıyı kapatma” diyor. Kapı açık. Hatice Kadın arkandan “Sayıklıyor, aldırmayın” diyor. Emine’nin gözü kayınvalidesine gidiyor ve bir daha konuşmuyor.",
    "yer": "Evin en içindeki oda. Tek penceresi avluya bakıyor, üstü kalın bir kilimle kapatılmış. İçerisi havasız, yeni yıkanmış tahta ve sabun kokuyor. Kapıyı kapatıp bakıyorsun: sürgü dışarıda. Demiri yeni. Tahtanın iç yüzünde eski bir sürgünün delikleri duruyor, onlar macunla doldurulmuş. Odada bir bardak su yok.",
-   "sebep": "Ebe Döne Nine sesini alçaltıyor: “Kırk çıkmadan lohusa yalnız bırakılmaz, bunu bu köyde çocuklar bilir. Doğumun üçüncü akşamı Hatice’nin yeğeninin düğünü vardı, aşağı köyde. Herkes gitti. Sabaha kadar o evde ne lamba yandı ne bir ses çıktı. Dördüncü gün beni çağırdılar. Bana yemin ettirdi, sana söylemedim say.”"
+   "sebep": "Ebe Döne Nine sesini alçaltıyor: “Kırk çıkmadan lohusanın başından ayrılınmaz, bunu bu köyde çocuklar bilir. Doğumun üçüncü akşamı Hatice’nin yeğeninin düğünü vardı, aşağı köyde. Herkes gitti. Sabaha kadar o evde ne lamba yandı ne bir ses çıktı. Dördüncü gün beni çağırdılar. Bana yemin ettirdi, sana söylemedim say.”"
   },
   "closed": {
    "iz": "Hatice Kadın odayı ertesi sabah kendi elleriyle yıkamış, yorganı dereye götürüp çitilemiş. Bakılacak bir şey bırakmamış.",
@@ -135,8 +135,8 @@ export default {
   },
   "clues": {
    "kurban": "Hasan Usta avlunun ortasında bir kütüğe oturmuş. Sağ eli kazmanın sapında, parmakları bembeyaz. Tırnaklarının içi toprak dolu, dokuz gündür yıkanıyor, çıkmıyor. Karısı adamın ağzına bir lokma ekmek koyarken “Kışın harabe kazar, yazın borç öder” diyor. “Üç sene önce de küp bulacaktı.” Hasan seni görünce kazmayı bir karış kaldırıp yıkık hanın olduğu tepeyi gösteriyor. Sonra aynı kazmayla bakkalın olduğu yanı.",
-   "yer": "Köyün üstündeki yıkık han. Dört duvardan ikisi ayakta, avluyu diken basmış. Eski ahırın köşesinde yeni doldurulmuş toprak var, üstüne bir kapı tahtası atmışlar. Tahtanın altından bir kâğıt parçası çıkıyor. Kurşun kalemle yazılmış: “Ortaklık, yarı yarıya.” Altında bir imza, yanında bir parmak izi. İmzadaki Ş’nin kuyruğu uzun. Cebindeki mektubu çıkarıp yan yana tutuyorsun.",
-   "sebep": "Ali Dede tütününü sarıyor: “O handa ne varsa sahibine kalmış. Sahibi öleli iki yüz sene oldu, ama orası sahipsiz değil. Şükrü’ye dedim, toprağın altındakine el uzatma. ‘Dede, devlet bile kazıyor’ dedi. Haritayı seyyardan on liraya aldı. Aynısından iki köy ötede de var. Kendi gitmedi, Hasan’a verdi kazmayı. Akıllıdır. Akıllıya dokunmuyor işte.”"
+   "yer": "Köyün üstündeki eski han. Dört duvardan ikisi ayakta, avluyu diken basmış. Eski ahırın köşesinde yeni doldurulmuş toprak var, üstüne bir kapı tahtası atmışlar. Tahtanın altından bir kâğıt parçası çıkıyor. Kurşun kalemle yazılmış: “Ortaklık, yarı yarıya.” Altında bir imza, yanında bir parmak izi. İmzadaki Ş’nin kuyruğu uzun. Cebindeki mektubu çıkarıp yan yana tutuyorsun.",
+   "sebep": "Ali Dede tütününü sarıyor: “O handa ne varsa sahibine kalmış. Sahibi öleli iki yüz sene oldu, ama orası sahipsiz değil. Şükrü’ye dedim, gömülü olan gömüldüğü yerde kalsın. ‘Dede, devlet bile kazıyor’ dedi. Haritayı seyyardan on liraya aldı. Aynısından iki köy ötede de var. Kendi gitmedi, Hasan’a verdi kazmayı. Akıllıdır. Akıllıya dokunmuyor işte.”"
   },
   "closed": {
    "iz": "Şükrü Bakkal çukuru bir gecede doldurtmuş. “Çocuklar düşmesin” diyor. Köyde o tarafa giden çocuk yok.",

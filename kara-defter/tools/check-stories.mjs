@@ -2,7 +2,7 @@
 // Structure, agreement with the roster, a shortlist only tests can settle, name leaks, banned phrases, repetition.
 import { readFileSync } from 'node:fs';
 import { CREATURES, BY_ID } from '../js/bestiary.js';
-import { CLUE_DIMS, FAMILY_OF, TOOL_BY_ID } from '../js/traits.js';
+import { CLUE_DIMS, FAMILY_OF, FAMILIES, TRAIT, TOOL_BY_ID } from '../js/traits.js';
 import STORIES from '../js/content/stories/index.js';
 
 const plan = JSON.parse(readFileSync(new URL('./story-plan.json', import.meta.url)));
@@ -65,6 +65,15 @@ for (const cr of CREATURES) {
   const limit = (name, t, lo, hi) => { const n = words(t); if (n < lo || n > hi) warn(id, `${name}: ${n} words (want ${lo}–${hi})`); };
   limit('letter', s.letter.body, 45, 170);
   for (const [d, t] of Object.entries(s.clues)) limit(`clue ${d}`, t, 35, 110);
+  // a note shows its sign; it does not say it in the ledger's own words, or the player has nothing left to read
+  for (const [d, t] of Object.entries(s.clues)) {
+    const sign = TRAIT[d][s.chosen[d]].label;
+    const stamp = FAMILIES[d][FAMILY_OF[d][s.chosen[d]]].label;
+    for (const part of [...sign.split(/[,;]/), ...stamp.split(/[,;]/)].map((x) => lower(x.trim()))) {
+      // one plain noun (kuyu, yılan, "bir kadın") is how a villager would say it; a phrase of the ledger's is not
+      if (part.split(' ').filter((w) => w !== 'bir' && w !== 've').length >= 2 && lower(t).includes(part)) err(id, `clue ${d} quotes the ledger: "${part}"`);
+    }
+  }
   limit('yuzlesme', s.yuzlesme.text, 30, 90); limit('sahne', s.sahne, 30, 100); limit('kovma', s.kovma, 25, 75); limit('yanlis', s.yanlis, 20, 75);
   limit('tam', s.cevap.tam, 30, 110); limit('eksik', s.cevap.eksik, 15, 65); limit('kenar', s.kenar, 3, 26);
   for (const t of cr.tools) if (!TOOL_WORDS[t].test(lower(s.kovma))) warn(id, `kovma does not show ${TOOL_BY_ID[t].name}`);

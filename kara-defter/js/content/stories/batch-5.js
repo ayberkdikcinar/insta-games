@@ -20,7 +20,7 @@ export default {
    "sign": "İmam Yakup, Çamlıbel"
   },
   "clues": {
-   "iz": "Seyit’in avlusundan çıkıyorsun. Taşların üstünde ıslak ayak izleri var, çıplak, çocuk ayağı. Yağmur yağmayalı iki ay oldu. Yusuf’un annesi “Her gün çıkıyor, siliyorum, yine çıkıyor” diyor. İzleri takip ediyorsun. Köprüye, çocukların indiği yere gitmiyorlar; arkın kenarından yukarı, kimsenin işi olmayan dönemece çıkıyorlar ve kıyıda bitiyorlar. Dönen iz yok. Bu sabah ikinci bir sıra iz çıkmış: Tahir’in kapısından başlıyor.",
+   "iz": "Seyit’in avlusundan çıkıyorsun. Taşların üstünde çıplak ayakla basılmış yerler koyu duruyor, çocuk ayağı, parmağını değdirince su geliyor. Yağmur yağmayalı iki ay oldu. Yusuf’un annesi “Her gün çıkıyor, siliyorum, yine çıkıyor” diyor. İzleri takip ediyorsun. Köprüye, çocukların indiği yere gitmiyorlar; arkın kenarından yukarı, kimsenin işi olmayan dönemece çıkıyorlar ve kıyıda bitiyorlar. Dönen iz yok. Bu sabah ikinci bir sıra iz çıkmış: Tahir’in kapısından başlıyor.",
    "tanik": "Yeter sırtını avlu duvarına vermiş, dereye bakmıyor: “Yusuf’u gördüm. Kendi boyundan uzun bir kürek taşıyordu. ‘Babam söyledi, kimseye deme’ dedi. Dönemeçte, düz taşın üstünde bir kadın oturuyordu, saçını tarıyordu. Saçı taştan iniyordu, yere yayılıyordu. Yüzünü görmedim. Yusuf’un adını söyledi, çok tatlı söyledi. Yusuf küreği bıraktı.” Tahir içeriden “Yeter, gir içeri” diye sesleniyor. Çocuk adını duyunca irkiliyor.",
    "yer": "Köprünün yukarısında dere dönüyor, suyu orada göllenmiş, dibi görünmüyor. Kıyıya yeni taş dizilmiş, araları çamurla sıvanmış; suyun yarısı buradan dar bir arka sapıyor. Ark doğruca Seyit’in tarlasına iniyor. Tahir’in arkı kupkuru. Yığının dibinde çamura saplı bir kürek duruyor. Sapına, çocuk eli yetişsin diye, aşağıdan bez sarılmış. Karşı kıyıda oturmaya elverişli tek bir düz taş var. Çevresi yosunlu, üstü parlak."
   },
@@ -77,9 +77,9 @@ export default {
    "sign": "Sevim, Ortaköy"
   },
   "clues": {
-   "iz": "Kasaba tarafından gelen yolun toprağında kurumuş kan var, on adımda bir. Yürüyen bir ayağın kanı: topuk yeri, parmak yeri. Bir kütüğün dibinde çocuk oturmuş, ayağını sarmış. Sardığı bez orada kalmış, kalın beyaz bez, kenarında kırmızı iplikle işlenmiş bir Z. Kan buradan sonra köye gitmiyor. Sağa, daha dar bir yere sapıyor. Adımlar düzelmiş, acele yok. Yanında ikinci bir ayak izi de yok.",
+   "iz": "Kasaba tarafından gelen yolun toprağında kurumuş koyu kırmızı lekeler var, on adımda bir. Yürüyen bir ayağın bıraktığı: topuk yeri, parmak yeri. Bir kütüğün dibinde çocuk oturmuş, ayağını sarmış. Sardığı bez orada kalmış, kalın beyaz bez, kenarında kırmızı iplikle işlenmiş bir Z. Lekeler buradan sonra köye gitmiyor. Sağa, daha dar bir yere sapıyor. Adımlar düzelmiş, acele yok. Yanında ikinci bir ayak izi de yok.",
    "yer": "Orman yolu köye iki saat kala daralıyor. Meşeler üstte birleşiyor, öğle vakti lamba isteyecek kadar karanlık. Sapakta dar bir patika ayrılıyor; ağzındaki kütük oturmaktan cilalanmış, dibinde kırılmış ceviz kabukları var. Sevim yürürken durmadan konuşuyor: “Babam güzden beri bu yoldan üç kere kasabaya gitti, kızını görmeye. Üçünde de eli boş gitti, cebi dolu döndü.” Sonra susuyor. Kütüğe bakmadan geçiyor.",
-   "sebep": "Seyyar Şakir denklerini indiriyor: “Geçen ay Zarife Hanım’ın arka kapısında bu çocuk koluma yapıştı. Elleri kül suyundan yara içinde. ‘Ablama söyle, gelsin beni alsın’ dedi. Söyledim. Ablası bana bir kuruş verdi, babama deme dedi. Kız bir ay bekledi, gelen olmadı. Aşçısı anlattı: gece pencereden inmiş, tek başına yola düşmüş. O ormanın yoluna gece yalnız çıkılır mı? Bilmiyordu.”"
+   "sebep": "Seyyar Şakir denklerini indiriyor: “Geçen ay Zarife Hanım’ın arka kapısında bu çocuk koluma yapıştı. Elleri kül suyundan yara içinde. ‘Ablama söyle, gelsin beni alsın’ dedi. Söyledim. Ablası bana bir kuruş verdi, babama deme dedi. Kız bir ay bekledi, gelen olmadı. Aşçısı anlattı: gece pencereden inmiş, tek başına yola düşmüş. O yola gece çıkılır mı, yanında kimse yokken? Bilmiyordu.”"
   },
   "closed": {
    "kurban": "Talip’in küçüğünü görmek istiyorsun. Babası çocuğu ahıra kapatmış, kapıda oturuyor, “Yabancıya gösterilmez” diyor.",
@@ -134,8 +134,8 @@ export default {
    "sign": "Muhafaza Memuru Tevfik"
   },
   "clues": {
-   "tanik": "Kömürcünün oğlu Sefer on iki yaşında, elindeki kuruşu bırakmıyor: “Ocaktan dönerken gördüm. Önce ağaçlar sallandı, rüzgâr yoktu. Yola bir şey çıktı, iri, baştan aşağı kıl. Ayakta duruyordu. Karşısında iki kişi vardı. Biri kazanlı kalaycı, biri fenerli, kasketli. Fenerli olan feneri kaldırdı, sonra fener koştu.” Avcundaki kuruşa bakıyor. “Tevfik Bey ‘Bunları kimseye anlatma’ dedi. Bunu verdi.”",
-   "zaman": "Oduncular aynı şeyi söylüyor: bu bölmede iş gün inerken biter. “Güneş şu tepeye değdi mi balta da kağnı da geri döner” diyor Kahveci Zeki. “Kalaycı akşam karanlığında yola düşeceğim dedi, ben ‘Sabahı bekle’ dedim. Tevfik Bey de kahvedeydi. ‘Ben götürürüm, korkma’ dedi.” Karakolun nöbet defterini açtırıyorsun. O akşamın hanesi imzasız. Tutanaktaki saat de boş.",
+   "tanik": "Kömürcünün oğlu Sefer on iki yaşında, elindeki kuruşu bırakmıyor: “Ocaktan dönerken gördüm. Önce ağaçlar sallandı, rüzgâr yoktu. Yola bir şey çıktı, iki adam eninde, baştan aşağı kıl. Ayakta duruyordu. Karşısında iki kişi vardı. Biri kazanlı kalaycı, biri fenerli, kasketli. Fenerli olan feneri kaldırdı, sonra fener koştu.” Avcundaki kuruşa bakıyor. “Tevfik Bey ‘Bunları kimseye anlatma’ dedi. Bunu verdi.”",
+   "zaman": "Oduncular aynı şeyi söylüyor: bu bölmede iş gün inerken biter. “Güneş şu tepeye değdi mi balta da kağnı da geri döner” diyor Kahveci Zeki. “Kalaycı gün inince yola düşeceğim dedi, ben ‘Sabahı bekle’ dedim. Tevfik Bey de kahvedeydi. ‘Ben götürürüm, korkma’ dedi.” Karakolun nöbet defterini açtırıyorsun. O akşamın hanesi imzasız. Tutanaktaki saat de boş.",
    "yer": "Kirazlı’dan iki saat yukarıda orman sıklaşıyor. Çam ve gürgen üstte kapanmış, yol iki yanından kökle sıkışmış. Kalaycının bulunduğu yerde kazanı duruyor, ezilmemiş. On beş adım ötede, köye dönen yönde fener camı kırıkları var; biri koşarken düşürmüş, geri dönüp fenerini almış, camı bırakmış. Kırıkların birinde devlet malı damgası okunuyor."
   },
   "closed": {
@@ -192,7 +192,7 @@ export default {
   },
   "clues": {
    "tanik": "Ağanın yedi yaşındaki torunu Ümit gece gizlice samana yatarmış. Fısıldıyor: “Bir karış. Sakallı. Merdivensiz çıktı, yabancı kısrağın sırtına oturdu. Baktığımı gördü, parmağını ağzına götürdü. Kapının orada Üzeyir Dede de vardı, elinde bohça. Yaşar’ın yatağının altına itti. O beni görmedi.” Ümit parmağını ağzına götürüyor. “Sen de söyleme.”",
-   "zaman": "Yaşar’ın gözlerinin altı mor: “Yatsıdan sonra hiçbir şey olmuyor. Tam gece yarısı hayvanlar ayağa kalkıyor, hepsi birden, biri emretmiş gibi. Yabancı kısrak yerinde durduğu halde terden sırılsıklam oluyor. Bir saat sürüyor, sonra kesiliyor.” Bir an duraklıyor. “Üzeyir Usta’nın yatağı evde. Ama gece yarısından önce hep gelir, ben uyudum sanınca çıkar. Bunca yıl uykusu kaçmış, derler.”",
+   "zaman": "Yaşar’ın gözlerinin altı mor: “Yatsıdan sonra hiçbir şey olmuyor. Konağın saati on ikiyi çalarken hayvanlar ayağa kalkıyor, hepsi birden, biri emretmiş gibi. Yabancı kısrak yerinde durduğu halde terden sırılsıklam oluyor. Bir saat sürüyor, sonra kesiliyor.” Bir an duraklıyor. “Üzeyir Usta’nın yatağı evde. Ama o saatten önce hep gelir, ben uyudum sanınca çıkar. Bunca yıl uykusu kaçmış, derler.”",
    "yer": "Ahırda yedi bölme var, taş yemlik, sıcak gübre ve ter kokusu. Yaşar’ın yatağı kapının yanında, samanın üstünde. Bohçası dün, Ağa’nın adamları arayınca yatağın altından çıkmış; içinde bir avuç göztaşı. “Dün açtık” diyor kâhya, “Daha önce kimsenin haberi yoktu.” Üzeyir Usta’nın mektubu sana sekiz gün önce ulaştı."
   },
   "closed": {
@@ -249,7 +249,7 @@ export default {
   },
   "clues": {
    "tanik": "Sakine’nin on yaşındaki oğlu Zeki damda oturuyormuş: “Kimse yoktu. Veli Abi dirgeni kaldırdı, biri elinden aldı. Biri derken, kimse yoktu, ben yukarıdan bakıyordum. Dirgen dönerek havaya çıktı. Veli Abi yere yapıştı, sonra bir ağaç boyu kalktı, indi. Yanında kimse yoktu.” Avluya bakıyor. “Annem ‘Görmedin’ diyor. Amcam bize buğday gönderiyor, görmedin diye.”",
-   "zaman": "Salih Dede elini göğe kaldırıyor: “Durgundu. Ağaçta yaprak oynamıyordu. Gök bir anda kapandı, fırtına ikindide bastı, bir saat sürdü, aynı durgunlukla kesildi. Üç kere böyle oldu, üçü de Turan’ın üstüne. Bak, fırtına bir yerde durdu, bıçakla kesilmiş gibi. Taşın beş adım berisinde. Sadık sağken taş orada dururdu. Şimdi taş içeride.” Ağzını siliyor, sözü orada bırakıyor.",
+   "zaman": "Salih Dede elini göğe kaldırıyor: “Durgundu. Ağaçta yaprak oynamıyordu. Gök bir anda kapandı, ikindide yel de yağmur da birden bastı, bir saat sürdü, aynı durgunlukla kesildi. Üç kere böyle oldu, üçü de Turan’ın üstüne. Bak, bir yerde durdu, bıçakla kesilmiş gibi. Taşın beş adım berisinde. Sadık sağken taş orada dururdu. Şimdi taş içeride.” Ağzını siliyor, sözü orada bırakıyor.",
    "sebep": "Seyfi sesini alçaltıyor: “Harman başlamadan Turan kahvede kalktı: ‘Fırtına mı? Bana vız gelir. Rüzgârın babası gelsin, harmanımı kaldırsın da görelim.’ Sonra göğe tükürdü, ağır bir söz etti, onu ben söylemem. Biz sustuk. Sadık’ın kırkında da aynı ağızla ‘Yarısı zaten benimdi’ demişti.” Bardağı çeviriyor. “O gün de sustuk.”"
   },
   "closed": {
@@ -305,9 +305,9 @@ export default {
    "sign": "Şerife, Ardıçlı"
   },
   "clues": {
-   "zaman": "Zübeyde Kadın parmaklarıyla sayıyor: “Akşam gülüyor, memesini alıyor, bir şeyi yok. Ben yatsıyı kılıp yatarım. Gece yarısı, tam orta yerinde ağlaması başlar, horozdan önce biter. Her gece aynı saatte, uyanırım. Ağlama kesilir, gelinin sesi gelmez. Bir ninni yok, bir tıkırtı yok.” Bir an duruyor. “Ana dediğin ayağa kalkar, sesi olur. O odadan ses çıkmaz.”",
-   "yer": "Oda kapalı. Tek penceresi tahta kapakla çakılı, kapı kalın, mandalı içeriden. Beşik sedirin yanında. Hava ağır, süt ve yanmış gaz kokuyor. Kapının dibinde, kilimin ucunda kurumuş çamur var, ayak biçiminde, dışarıdan içeriye doğru. Kırmızı çamur. Ardıçlı’da avlular kara topraktır; o kırmızı toprak yalnızca bir yerde var, mezarlık yolunda.",
-   "sebep": "Komşu Sultan çamaşır sererken söylüyor: “O çocuk yalnız bırakılıyor, ben öyle derim, kimseye de demem. Bir gece suya çıktım, gece yarısına yakın. Şerife kara örtüyle önümden geçti, mezarlık yoluna saptı, elinde bir bez parçası. Bebeği kim bekliyor, dedim içimden. Kimse. O kapalı odada kimse.” Çamaşırı silkeliyor. “Bunu ben söylemedim.”"
+   "zaman": "Zübeyde Kadın parmaklarıyla sayıyor: “Akşam gülüyor, memesini alıyor, bir şeyi yok. Ben yatsıyı kılıp yatarım. Gecenin tam orta yerinde ağlaması başlar, horozdan çok önce biter. Hiç şaşmaz, uyanırım. Ağlama kesilir, gelinin sesi gelmez. Bir ninni yok, bir tıkırtı yok.” Bir an duruyor. “Ana dediğin ayağa kalkar, sesi olur. O odadan ses çıkmaz.”",
+   "yer": "Tek penceresi tahta kapakla çakılı, kapı kalın, mandalı içeriden. Beşik sedirin yanında. Hava ağır, süt ve yanmış gaz kokuyor. Kapının dibinde, kilimin ucunda kurumuş çamur var, ayak biçiminde, dışarıdan içeriye doğru. Kırmızı çamur. Ardıçlı’da avlular kara topraktır; o kırmızı toprak yalnızca bir yerde var, mezarlık yolunda.",
+   "sebep": "Komşu Sultan çamaşır sererken söylüyor: “O çocuğun başında duran yok, ben öyle derim, kimseye de demem. Bir gece suya çıktım, geç vakit. Şerife kara örtüyle önümden geçti, mezarlık yoluna saptı, elinde bir bez parçası. Bebeği kim bekliyor, dedim içimden. Kimse. O odada kimse.” Çamaşırı silkeliyor. “Bunu ben söylemedim.”"
   },
   "closed": {
    "kurban": "Selma’nın nasıl gittiğini soruyorsun. Nüfusa yazılmadan ölmüş; kâğıtta öyle bir çocuk hiç doğmamış.",
@@ -363,7 +363,7 @@ export default {
   },
   "clues": {
    "tanik": "On iki yaşındaki Ulvi Selim’in yanındaymış: “Yukarıda kimse yoktu, buna yemin ederim. Selim’in kepeneği sırtından çekildi, biri çekmiş gibi. Tüfek elinden alındı, bir adam alır gibi, havada durdu, düştü. Koyunlar iki yana açıldı, orta yer boş kaldı, bir şey geçiyormuş gibi. Hiçbir şey geçmedi. Selim bağırdı, ‘Semih’ dedi, bağırdı.” Yutkunuyor. “Semih öldü. Niye Semih dedi?”",
-   "zaman": "Yadigar Nine çadırın ipine bakıyor: “Öğleye doğru gök açıktı, oğlanlar gömleksizdi. Bir anda sis çöktü, fırtına bastı, gök gürültüsü başımızın üstünde durdu. İpi dört kişi tuttuk. Selim o sabah çıkmıştı. Geçen güz de böyle bir gün çıkmıştı. O gün kardeşiyle çıktı, tek indi.” Düğümü yokluyor. “Türküde kardeş yok. Sen hava soruyorum sanıyorsan, hava sor.”",
+   "zaman": "Yadigar Nine çadırın ipine bakıyor: “Öğleye doğru gök açıktı, oğlanlar gömleksizdi. Bir anda sis çöktü, yel çadırı yerden kaldırdı, gök gürültüsü başımızın üstünde durdu. İpi dört kişi tuttuk. Selim o sabah çıkmıştı. Geçen güz de böyle bir gün çıkmıştı. O gün kardeşiyle çıktı, tek indi.” Düğümü yokluyor. “Türküde kardeş yok. Sen hava soruyorum sanıyorsan, hava sor.”",
    "sebep": "Turgut Çoban tütününü bırakmıyor: “Bayramda çalgı başında Selim kalktı. ‘Kocabaş’ı bir günde aşarım’ dedi. ‘Taş yığını o kadar. Ben aştım, güz ortasında, hem de tek başıma.’ Yaşlılar başını eğdi, kimse dur demedi. Kardeşinin yılı dolmamıştı daha. Ertesi sabah yukarı çıktı.” Dumanı üflüyor. “Tek başıma diyenin yanında kim vardı, onu Şahin Dede’ye sor.”"
   },
   "closed": {
@@ -420,7 +420,7 @@ export default {
   },
   "clues": {
    "kurban": "Seher Kadın Temel’in bayramlık gömleğini dizinde tutuyor: “Yirmi dört yaşındaydı, bekârdı. Zehra’yla söz kesilmişti, oğlan bozdu. Zekeriya o gün bu gün selam vermedi. Ondan bir ay önce Safiye’nin Yahya’sı gitti, o da bekârdı. Evli olana bir şey olmuyor bu köyde. Nazire Ebe bu oğlanı doğurttuğunda göbeğini göle atmayın demişti, attık.” Gömleği katlıyor, yeniden açıyor.",
-   "zaman": "Yaşlı balıkçı Tayyar ağını onarıyor: “Ay dolunca Taşkesen ağ atmaz. Temel ayın tam dolduğu gece gitti, Yahya bir önceki dolunayda. Bu ay da iki gece sonra tam olacak, bak, şişti.” Sesini alçaltıyor. “Zekeriya ‘Çıkmadım’ der. Ertesi sabah kayığının altı ıslaktı, ağları sıkılmamıştı. Dolunayda kim ıslatır kayığını, oğlum?”",
+   "zaman": "Yaşlı balıkçı Tayyar ağını onarıyor: “Ay dolunca Taşkesen ağ atmaz. Temel ayın tam dolduğu gece gitti, Yahya bir önceki ayın aynı gecesinde. Bu ay da iki gece sonra tam olacak, bak, şişti.” Sesini alçaltıyor. “Zekeriya ‘Çıkmadım’ der. Ertesi sabah kayığının altı ıslaktı, ağları sıkılmamıştı. O gece kim ıslatır kayığını, oğlum?”",
    "sebep": "Safiye Kadın kapısının önünde oturuyor: “Yazın başında Seher’in kapısında bulduk, ipsiz sapsız. Kimin olduğunu kimse bilmedi, üç köye sordular, tanıyan çıkmadı. Gece gelmiş, durmuş, bekliyormuş. Temel ‘Yazık, üşür’ deyip içeri aldı, baktı. Benim Yahya da gelir giderdi. Seher artık yanına yaklaşmıyor, ama avludan da gitmiyor, gönderen olmadı. Şimdi Zekeriya’nın oğlu geliyor. Zehra’nın kardeşi, görüyor musun, Temel’in yerini o aldı.”"
   },
   "closed": {
@@ -476,9 +476,9 @@ export default {
    "sign": "Hoca Sabri, Korucuk"
   },
   "clues": {
-   "iz": "Satılmış’ın tarlasında duruyorsun. Dün yeşil olduğu söylenen arpa avcunda kırılıyor, kökü bile kuru. Bir gecede sararmış, yukarıdan aşağıya inmiş. Yol kenarındaki ot da aynı gece gitmiş. Aşağı dönerken Hoca’nın avlusundaki asmayı görüyorsun, o da kuru. Hoca’nın oğlu Sami kökünü baltayla söküyor. Yirmi iki yaşında, askerlik çağında, sapasağlam.",
+   "iz": "Satılmış’ın tarlasında duruyorsun. Dün yeşil olduğu söylenen arpa avcunda kırılıyor, kökü bile kuru. Sabaha böyle bulmuşlar, yukarıdan aşağıya inmiş. Yol kenarındaki ot da aynı gece gitmiş. Aşağı dönerken Hoca’nın avlusundaki asmayı görüyorsun, o da kuru. Hoca’nın oğlu Sami kökünü baltayla söküyor. Yirmi iki yaşında, askerlik çağında, sapasağlam.",
    "tanik": "Ulviye eşikte oturuyor: “Kocam saban başındaydı. Öküz durdu, diz çöktü. Tarlada ikimizden başka kimse yoktu. Satılmış elini toprağa koydu, kaldıramadı. Kim tuttu dersen, kimse. Ben baktım, kuş bile geçmedi. Akşama kolu kurudu, kuru dal gibi.” Elinin içini gösteriyor. “Hoca geldi, okudu, gitti. Giderken para bıraktı. On bir yıldır bu kapıya para bırakmamıştı.”",
-   "sebep": "Zülfikar Dede sakalını sıvazlıyor: “Yetmiş yıldır her yıl köyün koçu kesilirdi, yukarıdakinin payı diye. Bu yıl Hoca vaaz etti, ‘Günahtır’ dedi. Pay verilmedi, ilk defa. Koçu kasabada sattılar, para cami damına gidecekti. Dam hâlâ akıyor, git bak. Borcu olanın kapısı çalınır. Hoca’nın oğlu askere gidecekti, gitmedi.” Bir süre susuyor. “Bedel dedikleri ucuz değildir.”"
+   "sebep": "Zülfikar Dede sakalını sıvazlıyor: “Yetmiş yıldır her yıl köyün koçu kesilirdi, yukarıdakinin payı diye. Bu yıl Hoca vaaz etti, ‘Günahtır’ dedi. Bu yıl kesilmedi, ilk defa. Koçu kasabada sattılar, para cami damına gidecekti. Dam hâlâ akıyor, git bak. Borcu olanın kapısı çalınır. Hoca’nın oğlu askere gidecekti, gitmedi.” Bir süre susuyor. “Bedel dedikleri ucuz değildir.”"
   },
   "closed": {
    "kurban": "Satılmış’ı görmek istiyorsun. İç odada yatıyor; Ulviye kapının önünden çekilmiyor, “Kolunu kimse görmeyecek” diyor.",

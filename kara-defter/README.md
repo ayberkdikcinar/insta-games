@@ -15,7 +15,9 @@ Her vaka **elle yazılmış tek parça bir hikâyedir**: yaratık başına bir t
 Bir vakada:
 
 - Altı kaynaktan genelde üçü açıktır. Kapalı olanların nedeni hikâyenin parçasıdır. Açık kaynaklar tam okunduğunda 2–3 sayfa bırakır; son ayrımı **Sınama** yapar (`js/content/tests.js`).
-- Her ipucu **ailesiyle** işaretlenir ve defter bu aileye göre eler. Asıl özellik yalnızca metinde ve sayfada yazar.
+- **Künye:** not damgasız gelir. Oyuncu notu okur, o boyutun 5–8 damgasından birini (en çok ikisini) kendi vurur; her damganın altında kapsadığı işaretler yazar. Defter yalnızca oyuncunun damgalarına göre daralır (`candidatesByMarks`). Yanlış damga doğru sayfayı sessizce düşürür; bir sınama hiçbir sayfaya uymayınca defter "uyan sayfa kalmadı" der, hangi damganın yanlış olduğunu söylemez. Damga sonradan değiştirilebilir. Hüküm ekranı her notun damgasını gerçeğiyle yan yana gösterir. Sınama sonucu bir okuma değil olgu olduğu için defter onu kendisi uygular.
+- Doğru damgalar eski otomatik kısa listenin aynısını verir, yani mum dengesi değişmedi. Bir nota ikinci damga vurmak listeyi ortalama 0,4 sayfa uzatır.
+- Notların dili: 50 hikâyenin notları işareti defterin kelimeleriyle söylemez, gösterir (`HIKAYE_REHBERI.md`, "Not ve damga"). Tek dürüst adı olan somut şeyler (kuyu, ahır, yılan) adıyla geçer. Yaratığın o boyutta taşıdığı herhangi bir işaretin damgası doğru sayılır.
 - **Gidişat:** ikinci, dördüncü ve beşinci mumda köyde işler kötüleşir.
 - **Yüzleşme:** bir kaynak okununca açılır, mum yakmaz.
 - **Hüküm:** yaratık ve insan sırrı. Yaratık yanlışsa vaka kaybedilir. Yaratık doğru, sır yanlışsa cevap mektubunun eksik hali gelir; seri bozulmaz.
@@ -63,10 +65,11 @@ Sonra `http://localhost:8765/kara-defter/` adresini aç. Bütün yollar göreli,
 
 ## Denetimler
 
-- `node tools/check-stories.mjs`: 50 hikâyenin yapısını, roster'a uyumunu, kısa listesini, ad sızıntılarını, yasak kalıpları ve uzunlukları denetler.
+- `node tools/check-stories.mjs`: 50 hikâyenin yapısını, roster'a uyumunu, kısa listesini, ad sızıntılarını, yasak kalıpları ve uzunlukları denetler; bir notun defterdeki kalıbı ya da damga adını aynen söylemesini de hata sayar.
 - `node tools/check-roster.mjs`: olası her vakanın (244) tam okunduğunda tek bir yaratığa indiğini kanıtlar. Ayrıca araç çiftlerinin benzersizliğini ve özellik dağılımını denetler.
 - `node tools/check-content.mjs`: metinlerin biçimini, yer tutucularını, roster'a uyumunu ve sayılarını denetler.
 - `node tools/check-cases.mjs`: ilk 500 vakanın eksiksiz üretildiğini, takvimi ve zorluk dağılımını denetler.
+- `node tools/check-kunye.mjs`: damga kurallarını denetler: doğru damgalar eski kısa listeyi verir, yaratığın taşımadığı bir damga sayfasını düşürür, ikinci damga sayfayı kaybettirmez.
 - `node tools/check-meta.mjs`: seri ve yedek mum kurallarını, mühürleri, çağrı linklerini ve 50 mektubun "yarının zarfı" alıntısını denetler (`--teasers` hepsini yazdırır).
 
 Hikâye yazım kuralları `HIKAYE_REHBERI.md`, defter sayfası kuralları `CONTENT_GUIDE.md` dosyasında.

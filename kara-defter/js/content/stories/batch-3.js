@@ -20,7 +20,7 @@ export default {
    "sign": "Kıymet"
   },
   "clues": {
-   "iz": "Kıymet’in eşiğinde avuç avuç toprak var. Sabah süpürmüşler, ertesi sabah yine yığılmış. Avlunun toprağı sarı, bu kara ve yaş. Avlu kapısından eşiğe kadar yer eşilmiş, biri ayağını kaldırmadan yürümüş gibi. Toprağı parmağınla dağıtıyorsun, içinden kemik bir ceket düğmesi çıkıyor, ipi üstünde. Kıymet avucuna bakıp “Bir yerden düşmüştür” diyor. Kefen düğme taşımaz.",
+   "iz": "Kıymet’in eşiğinde avuç avuç toprak var. Sabah süpürmüşler, ertesi sabah yine yığılmış. Avlunun toprağı sarı, bu kara ve yaş. Avlu kapısından eşiğe kadar yerde iki oluk var, biri ayağını kaldırmadan yürümüş gibi. Toprağı parmağınla dağıtıyorsun, içinden kemik bir ceket düğmesi çıkıyor, ipi üstünde. Kıymet avucuna bakıp “Bir yerden düşmüştür” diyor. Kefen düğme taşımaz.",
    "tanik": "Hediye çeşmede çamaşır çitiliyor, seni görünce ellerini kuruluyor. “Kâzım’ı ben de gördüm. Öleli ay oldu, gözümle gördüm. Yolun ortasından yürüdü, ceketi sırtında, yakası toprak, sağ kaşındaki yarık olduğu gibi. Kapımın önünde durdu. Bana bakmadı, sonra kendi evine doğru gitti.” Sesini kısıyor. “Neden bizim evin önünde durur, onu Kıymet bilir.” Sabun elinden yere düşüyor.",
    "sebep": "Hamza Hoca otuz yıldır köyün ölüsünü yıkar. Tesbihini bırakıyor. “Kâzım’ı ben yıkamadım. Kimse yıkamadı. Bana sabah haber geldi, iş bitmişti: kefen yok, namaz yok, gün doğmadan fenerle kazılmış. Hamit’e sordum, ‘Yengem istedi’ dedi. Kıymet’e sordum, ‘Yüzü kötüydü’ dedi. Yolda kalbi duran adamın yüzü neden kötü olsun? Kefenini kendi eliyle almıştı, sandıkta duruyordu. Hâlâ orada.”"
   },
@@ -77,8 +77,8 @@ export default {
    "sign": "Kamile"
   },
   "clues": {
-   "kurban": "Hüsnü’nün ahırında on iki başlık yer var, üçünde hayvan duruyor. Ahırdaki hayvanların kalanı aylar içinde gitmiş, ineğin kaburgası sayılıyor, kalkarken dizi titriyor. Köşede üst üste boş çuvallar, üstlerinde Ofis damgası. Sayıyorsun, on bir tane. Bir haneye en çok üç çuval yazılırmış. Kapıda oynayan bir kız çocuğu arkandan “Kerim buğday istemeye buraya gelmişti” diyor, annesinin sesi duyulunca kaçıyor.",
-   "zaman": "Muhtar Haydar zararları deftere yazıyor. Sayfa sayfa bakıyorsun, her zarar ayda bir, hep aynı sabaha düşüyor. Takvimin ay hanesiyle yan yana koyuyorsun: hepsi dolunayın ertesi sabahı. Bu perşembe yine ay dolu. Defterin arkasında üç kış öncesinin erzak listesi duruyor. “Kamile Kadın, üç çuval” satırının üstü çizilmiş. Yanına başka kalemle Hüsnü’nün adı yazılmış.",
+   "kurban": "Hüsnü’nün ahırında on iki başlık yer var, üçünde hayvan duruyor. Kalanı aylar içinde gitmiş, ineğin kaburgası sayılıyor, kalkarken dizi titriyor. Köşede üst üste boş çuvallar, üstlerinde Ofis damgası. Sayıyorsun, on bir tane. Bir haneye en çok üç çuval yazılırmış. Kapıda oynayan bir kız çocuğu arkandan “Kerim buğday istemeye buraya gelmişti” diyor, annesinin sesi duyulunca kaçıyor.",
+   "zaman": "Muhtar Haydar zararları deftere yazıyor. Sayfa sayfa bakıyorsun, her zarar ayda bir, hep aynı sabaha düşüyor. Takvimin ay hanesiyle yan yana koyuyorsun: hepsi ayın tepsi gibi olduğu gecenin ertesi sabahı. Bu perşembe yine öyle. Defterin arkasında üç kış öncesinin erzak listesi duruyor. “Kamile Kadın, üç çuval” satırının üstü çizilmiş. Yanına başka kalemle Hüsnü’nün adı yazılmış.",
    "yer": "Ahırları tek tek dolaşıyorsun. Zarar yalnız ahırın içinde kalmış, avludaki tavuğa, dışarıdaki koyuna bir şey olmamış. Kapılar sabah sürgülü bulunmuş. Zarar gören ahırların hepsi köyün tok evlerinin ahırı, tek inekli yoksul ahırlara uğranmamış. Kamile’nin ahırına bakıyorsun, boş. Tek ineğini köy geçen yıl “zararına karşılık” elinden alıp kesmiş, etini paylaşmış. Kapısında yedi taş çukuru var."
   },
   "closed": {
@@ -191,9 +191,9 @@ export default {
    "sign": "Şef İhsan"
   },
   "clues": {
-   "iz": "Yol kenarındaki taşın dibinde kan kurumuş. Jandarma üstüne toprak atmış, çizmenle açıyorsun: kalın, kara, yola doğru sızmış. Biraz ileride yine kan, daha ileride yine. Üç ölü, üç leke. Çalıya takılı bir bavul kapağı buluyorsun, astarına bir bilet sıkışmış. Arkasına kurşun kalemle yazılmış: “Hanım, salon kilitli, sabahlayacak yer yok. Yürüyorum, sabaha evdeyim.” Evine varmamış.",
+   "iz": "Yol kenarındaki taşın dibinde bir leke kurumuş. Jandarma üstüne toprak atmış, çizmenle açıyorsun: kalın, kara, yola doğru sızmış. Biraz ileride bir tane daha, daha ileride yine. Üç ölü, üç leke. Çalıya takılı bir bavul kapağı buluyorsun, astarına bir bilet sıkışmış. Arkasına kurşun kalemle yazılmış: “Hanım, salon kilitli, sabahlayacak yer yok. Yürüyorum, sabaha evdeyim.” Evine varmamış.",
    "zaman": "Makasçı Hilmi katar cetvelini gösteriyor. “Son katar akşam ezanına doğru iner. Üçü de ondan indi, ortalık kararırken yola düştü. Sabah trenini bekleyene bir şey olmadı. Bekleyecek yer de vardı eskiden, salonda lamba sabaha kadar yanardı. Geçen güzden beri kilit. Şef Bey talimat diyor. Talimatı ben de okudum, öyle bir şey yazmıyor. Benden duydunuz demeyin.”",
-   "yer": "İstasyondan köye iki saatlik ıssız yol. Bir ev yok, bir çeşme yok. Yarı yolda eski yol bekçisinin kulübesi duruyor, kapısında kilit yok. Köşeye dört gaz tenekesi dizilmiş, üstlerinde demiryolu damgası, ikisi hâlâ dolu. Yerde taze tekerlek izi. Kağnıcı İzzet’in köy bakkalına gaz taşıdığını herkes bilir. Gazın nereden geldiğini soran olmamış."
+   "yer": "İstasyondan köye iki saatlik yol. Bir ev yok, bir çeşme yok. Yarı yolda eski yol bekçisinin kulübesi duruyor, kapısında kilit yok. Köşeye dört gaz tenekesi dizilmiş, üstlerinde demiryolu damgası, ikisi hâlâ dolu. Yerde taze tekerlek izi. Kağnıcı İzzet’in köy bakkalına gaz taşıdığını herkes bilir. Gazın nereden geldiğini soran olmamış."
   },
   "closed": {
    "kurban": "Ölenlerin adlarını soruyorsun. Bilet defterinin o sayfaları idareye gönderilmiş, İhsan Efendi makbuzunu gösteremiyor.",
@@ -250,7 +250,7 @@ export default {
   "clues": {
    "kurban": "Halil sedirde oturuyor, ağzının sağ yanı aşağı inmiş, sağ kolu dizinin üstünde başkasının koluymuş gibi duruyor. Karısı Kezban sayıyor: “Biçerken Halil. Harmanda Hüseyin. Tarlada çapa yaparken Ağa’nın ırgatı. Tarlaya inen düşüyor, evde oturanın kılına zarar gelmedi.” Sesini alçaltıyor. “Bizim pay merayla sınır. Bahardan beri sınırın nereden geçtiğini kimse bilmiyor.”",
    "tanik": "Haşim, Halil’in bir adım ötesinde biçiyormuş. “Yanındaydım. Hiçbir şey yoktu, toz bile kalkmadı. Tırpan havada durdu, düştü, ağzı aynı anda kaydı. Kim vurdu diye döndüm, tarlada ikimizden başka kimse yok. Görünen bir şey olmadı, ama bir şey oldu.” Elini ağzına götürüp indiriyor. “Eskiden sınırı işaretten gösterirdik. O işareti tarif edebilecek son adam Halil’di.”",
-   "zaman": "İsa Dede güneşe bakıyor, gölgesini gösteriyor, ayağının dibinde. “Üçü de öğle sıcağında oldu, güneş tepedeyken. Sabah çalışana, akşam çalışana bir şey olmuyor. Ortakçılar öğlen orağı bırakıyor, Ağa yevmiyeyi kesiyor.” Bastonunu yere vuruyor. “Kadastro memuru gelince meranın sınırı nereden geçer diye soracak. Babam bana gösterdi, ben oğluma gösterdim. Şimdi gösterecek bir şey kalmadı.”"
+   "zaman": "İsa Dede güneşe bakıyor, gölgesini gösteriyor, ayağının dibinde. “Üçü de gölge böyleyken oldu, güneş tepedeyken. Sabah çalışana, akşam çalışana bir şey olmuyor. Ortakçılar öğlen orağı bırakıyor, Ağa yevmiyeyi kesiyor.” Bastonunu yere vuruyor. “Kadastro memuru gelince meranın sınırı nereden geçer diye soracak. Babam bana gösterdi, ben oğluma gösterdim. Şimdi gösterecek bir şey kalmadı.”"
   },
   "closed": {
    "iz": "Halil’in ekinine bakmak istiyorsun. Ağa’nın adamları tarlayı bir gecede sürüp altüst etmiş, önceki halini gösterecek sap bırakmamış.",
@@ -305,8 +305,8 @@ export default {
    "sign": "Kadriye, üçüncü sınıf"
   },
   "clues": {
-   "kurban": "Halime hamuru tekneye vuruyor, üç gündür aynı hamur, kabarmıyor. Büyük oğlan çiftten elini kolunu sallayarak dönmüş, ortağı payını vermemiş. Kadriye’nin ayakkabısı delik. Hacer’in tası yarım. Bütün ev halkının payına bir eksiklik düşmüş. Bakkal İbrahim defterini açıyor: “Hayri’nin on altı lira borcu vardı, geçen ay nakit kapattı.” Ambarı boş ev on altı lirayı nereden bulur, o da sormamış.",
-   "iz": "Halime yüklüğün dibinden bir bohça çıkarıyor. İçinde kâğıt gibi hafif, pul pul yılan gömlekleri var, üst üste, on yıllık. “Rahmetli kaynanam saklardı, her yaz bir tane çıkar, atılmaz.” Bu yazınki yok. Bohçanın astarına bir kâğıt sıkışmış: kasabalı kuyumcunun pusulası. “İki burma bilezik alındı, otuz lira.” Üstünde ad yok. “Bu bohçaya evde kimse el sürmez” diyor Halime. “Kadriye korkar, Hacer’i yaklaştırmam.”",
+   "kurban": "Halime hamuru tekneye vuruyor, üç gündür aynı hamur, kabarmıyor. Büyük oğlan çiftten elini kolunu sallayarak dönmüş, ortağı payını vermemiş. Kadriye’nin ayakkabısı delik. Hacer’in tası yarım. Bu damın altında kimin payına baksan bir eksiklik düşmüş. Bakkal İbrahim defterini açıyor: “Hayri’nin on altı lira borcu vardı, geçen ay nakit kapattı.” Ambarı boş ev on altı lirayı nereden bulur, o da sormamış.",
+   "iz": "Halime yüklüğün dibinden bir bohça çıkarıyor. İçinde kâğıt gibi hafif, pul pul, içi boş deriler var, üst üste, on yıllık. “Rahmetli kaynanam saklardı, her yaz bir tane çıkar, atılmaz.” Bu yazınki yok. Bohçanın astarına bir kâğıt sıkışmış: kasabalı kuyumcunun pusulası. “İki burma bilezik alındı, otuz lira.” Üstünde ad yok. “Bu bohçaya evde kimse el sürmez” diyor Halime. “Kadriye korkar, Hacer’i yaklaştırmam.”",
    "tanik": "Hacer bohçasıyla kapı önünde oturuyor, gözü yerde. “Yılanı ben gördüm. Üç senedir görürüm. Ev halkı görmez, ben eşikte yattığım için bana görünür. Kara, parlak, yavaş geçer. Bana bakar, giderdi. Bu yaz görmedim.” Bohçasını düzeltiyor. “Bileziklere gelince, bir pazar sabahı yüklüğün önünde birini gördüm. Söylemedim, bir beslemeyi kim dinler.”"
   },
   "closed": {
@@ -362,9 +362,9 @@ export default {
    "sign": "Tüccar Kasım"
   },
   "clues": {
-   "kurban": "Hakkı Usta han defterini açıyor. Geçen ay gece yola düşenlerden postacı dönmemiş, kantarcı köyüne varıp yatağa düşmüş. Gündüz geçen kafilelerin bir tanesine bir şey olmamış. Gece yolcularının üçüncüsü Hıdır: içerideki yatakta, dört yorgan altında üşüyor, gözü kapıda. Yanına eğiliyorsun. Dudakları tek bir şey söylüyor, durup yine başlıyor: “Bulamadım usta.”",
-   "zaman": "Hamide Kadın duvarın kirecine çentik atmış. “Üçü de ay doğmayan geceler. Zifiri karanlık, elini görmezsin. Ay olan gece aynı yoldan geçen sağ salim geldi.” Öksürüyor, elini ağzına kapatıyor. “O gece Kasım Efendi avluda kesem diye bağırıyordu. Ertesi sabah heybesinin astarını söktü, dikti, borcunu saydı. Kese bulunmuş. Nerede bulundu, söylemedi.”",
-   "sebep": "Hakkı Usta sesini alçaltıyor: “Üç beş kişi, fenerle giden kafileye dokunulmadı. Gece yalnız yola çıkanı alır. Çırak o akşam ocağın başındaydı. Kasım Efendi ‘Yitirdiğin yerden kesemi bulmadan yüzüme bakma’ dedi, ay yokken tek başına yolladı. Katırı vermedi, fenerin gazına da kıyamadı. Ben engel olmadım, bana borcu vardı.”"
+   "kurban": "Hakkı Usta han defterini açıyor. Geçen ay gece yola düşenlerden postacı dönmemiş, kantarcı köyüne varıp yatağa düşmüş. Gündüz geçen kafilelerin bir tanesine bir şey olmamış. Üçüncüsü Hıdır: içerideki yatakta, dört yorgan altında üşüyor, gözü kapıda. Yanına eğiliyorsun. Dudakları tek bir şey söylüyor, durup yine başlıyor: “Bulamadım usta.”",
+   "zaman": "Hamide Kadın duvarın kirecine çentik atmış. “Üçü de ay doğmayan geceler. Elini görmezsin. Ay olan gece aynı yoldan geçen sağ salim geldi.” Öksürüyor, elini ağzına kapatıyor. “O gece Kasım Efendi avluda kesem diye bağırıyordu. Ertesi sabah heybesinin astarını söktü, dikti, borcunu saydı. Kese bulunmuş. Nerede bulundu, söylemedi.”",
+   "sebep": "Hakkı Usta sesini alçaltıyor: “Üç beş kişi, fenerle giden kafileye dokunulmadı. Tek başına gideni alır. Çırak o akşam ocağın başındaydı. Kasım Efendi ‘Yitirdiğin yerden kesemi bulmadan yüzüme bakma’ dedi, ay yokken tek başına yolladı. Katırı vermedi, fenerin gazına da kıyamadı. Ben engel olmadım, bana borcu vardı.”"
   },
   "closed": {
    "iz": "Hıdır’ın gömleğini sormak istiyorsun. Kasım Efendi “Bulaşır” diye o sabah ocakta yaktırmış, yastık kılıfını da.",
@@ -419,9 +419,9 @@ export default {
    "sign": "Harun"
   },
   "clues": {
-   "iz": "Hisarın avlusunda bir çukur var. Çevresindeki taşlar is tutmuş, elini sürünce parmakların kararıyor. Dibinde ince kül, avuçlayınca uçuyor. Sapı kömür olmuş bir kazma, demiri yerinde. Yanında bir çizme teki, ucu yanık, İskender’in çizmesi. Bir adım ötede üç çuval kaçak tütün duruyor, ağzı bağlı, tek bir yanık izi yok. Yakan her neyse tütüne bakmamış.",
-   "yer": "Köyün batısındaki yıkık hisar, kemerlerinin ikisi düşmüş, avluyu otlar basmış. Harabenin kilerine iniyorsun. Mum artıkları, ekmek kabukları, bir çul: biri burada günlerce saklanmış. Duvara kurşun kalemle çetele atılmış, altı gün. Altında tek satır, harf harf bastırılarak yazılmış: “Yolu bir kişiye söyledim.” Kalemin ucu orada kırılmış, yerde duruyor.",
-   "sebep": "İshak Dede tütün tabakasını açıyor. “Hisarın altında bir şey var, babam söylerdi. Yerin altındakine el uzatan elini geri alamaz. İskender oraya yıllarca tütün sakladı, kilerin dibindeki taşa dokunmadı. Altı gün aç kalınca dokunmuş. Bir gece kapıma gelip ekmek istedi, ‘Küpü buldum, borcu kapatacağım’ dedi. Giderken ‘Kardeşime selam söyle’ dedi. Birkaç adım gitti, döndü, ‘Söyleme’ dedi.”"
+   "iz": "Hisarın avlusunda bir çukur var. Çevresindeki taşlar kararmış, elini sürünce parmakların kara çıkıyor. Dibinde ince, gri bir toz, avuçlayınca uçuyor. Sapı kömür olmuş bir kazma, demiri yerinde. Yanında bir çizme teki, ucu kavrulmuş, İskender’in çizmesi. Bir adım ötede üç çuval kaçak tütün duruyor, ağzı bağlı, tek bir kavruk yeri yok. Yakan her neyse tütüne bakmamış.",
+   "yer": "Köyün batısındaki eski hisar, kemerlerinin ikisi düşmüş, avluyu otlar basmış. Kilerine iniyorsun. Mum artıkları, ekmek kabukları, bir çul: biri burada günlerce saklanmış. Duvara kurşun kalemle çetele atılmış, altı gün. Altında tek satır, harf harf bastırılarak yazılmış: “Yolu bir kişiye söyledim.” Kalemin ucu orada kırılmış, yerde duruyor.",
+   "sebep": "İshak Dede tütün tabakasını açıyor. “Hisarın altında bir şey var, babam söylerdi. Oraya uzanan el geri gelmez. İskender oraya yıllarca tütün sakladı, kilerin dibindeki taşa dokunmadı. Altı gün aç kalınca dokunmuş. Bir gece kapıma gelip ekmek istedi, ‘Küpü buldum, borcu kapatacağım’ dedi. Giderken ‘Kardeşime selam söyle’ dedi. Birkaç adım gitti, döndü, ‘Söyleme’ dedi.”"
   },
   "closed": {
    "kurban": "Ortağı Kenan’ı sormak istiyorsun. Karısı eşyalarını toplayıp gitmiş, kapıda kilit var, Kenan’ın kazması ambarda yok.",
@@ -476,9 +476,9 @@ export default {
    "sign": "Bekçi Hayrullah"
   },
   "clues": {
-   "iz": "Köyün dışında çamurda pençe izi var, dört parmak, önde tırnak oyukları, dizi halinde gidiyor. Hangi hayvanın olduğunu bilen çıkmıyor. Hemen üstünde bir adamın çizme izi. Eğilip bakıyorsun: çizme pençenin içine basıyor. Adam kaçmamış, izi izleyerek yürümüş. Aynı çamurda bir de bekçi çarığı var, üç gece üst üste gidip gelmiş. Defterine yazmamış.",
+   "iz": "Köyün dışında çamurda bir iz var, dört yastık, önlerinde tırnak oyukları, dizi halinde gidiyor. Hangi hayvanın olduğunu bilen çıkmıyor. Hemen üstünde bir adamın çizme izi. Eğilip bakıyorsun: çizme o izin içine basıyor. Adam kaçmamış, izi izleyerek yürümüş. Aynı çamurda bir de bekçi çarığı var, üç gece üst üste gidip gelmiş. Defterine yazmamış.",
    "tanik": "Kevser on iki yaşında, kaybolan koyunu ararken görmüş. “Hayvandı. Dört ayaklıydı, öyle bir hayvan görmedim. Önümden yürüdü, durdum, durdu, baktı bana. Ağabeyim olsa anlardı.” Ağabeyi çoban İsmail, yaz sonu mahkemeye götürülmüş, dönmemiş. Bunu söylerken önüne bakıyor. “Bekçi amca her ay kapımıza para bırakır. Annem almıyor. Neden bıraktığını da söylemiyor.”",
-   "zaman": "Hayrullah defterini açmana izin veriyor. Ay doğmayan gecelerin yanına tek kelime yazmış: “Karanlık.” İki adamın eksildiği gece de “Karanlık”. Bu cumartesi yine öyle, takvimde ay yok, zifiri. Sayfaları yaz sonuna çeviriyorsun. O gecenin satırı: “Ambar önü, ses yok.” Üstü çizilmiş, başka mürekkeple yazılmış: “İsmail’i gördüm.” Hayrullah sayfayı kapatıyor."
+   "zaman": "Hayrullah defterini açmana izin veriyor. Ay doğmayan gecelerin yanına tek kelime yazmış: “Karanlık.” İki adamın eksildiği gece de “Karanlık”. Bu cumartesi yine öyle, takvimde ay yok. Sayfaları yaz sonuna çeviriyorsun. O gecenin satırı: “Ambar önü, ses yok.” Üstü çizilmiş, başka mürekkeple yazılmış: “İsmail’i gördüm.” Hayrullah sayfayı kapatıyor."
   },
   "closed": {
    "kurban": "Eksilen iki adamı soruyorsun. Evlerinin kapısı kapalı, Muhtar Hulki oralara gidilmesini yasaklamış, “Köy karışmasın” diyor.",
